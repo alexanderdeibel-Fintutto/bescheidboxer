@@ -15,6 +15,8 @@ export interface PlanConfig {
   letterPrice: number
   tier: number
   badge?: string
+  stripePriceIdMonthly?: string
+  stripePriceIdYearly?: string
 }
 
 export const PLANS: Record<PlanType, PlanConfig> = {
@@ -36,7 +38,7 @@ export const PLANS: Record<PlanType, PlanConfig> = {
   starter: {
     name: 'Starter',
     price: 2.99,
-    priceYearly: 29.99,
+    priceYearly: 28.70,
     creditsPerMonth: 10,
     chatMessagesPerDay: 10,
     lettersPerMonth: 1,
@@ -47,11 +49,13 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     mieterAppInklusive: false,
     letterPrice: 1.99,
     tier: 1,
+    stripePriceIdMonthly: 'price_bb_starter_monthly',
+    stripePriceIdYearly: 'price_bb_starter_yearly',
   },
   kaempfer: {
     name: 'Kaempfer',
     price: 4.99,
-    priceYearly: 49.99,
+    priceYearly: 47.90,
     creditsPerMonth: 25,
     chatMessagesPerDay: -1,
     lettersPerMonth: 3,
@@ -63,11 +67,13 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     letterPrice: 0.99,
     tier: 2,
     badge: 'Beliebt',
+    stripePriceIdMonthly: 'price_bb_kaempfer_monthly',
+    stripePriceIdYearly: 'price_bb_kaempfer_yearly',
   },
   vollschutz: {
     name: 'Vollschutz',
     price: 7.99,
-    priceYearly: 79.99,
+    priceYearly: 76.70,
     creditsPerMonth: 50,
     chatMessagesPerDay: -1,
     lettersPerMonth: -1,
@@ -79,6 +85,8 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     letterPrice: 0,
     tier: 3,
     badge: 'VIP',
+    stripePriceIdMonthly: 'price_bb_vollschutz_monthly',
+    stripePriceIdYearly: 'price_bb_vollschutz_yearly',
   },
 }
 
@@ -94,9 +102,9 @@ export const CREDIT_COSTS = {
 }
 
 export const CREDIT_PACKAGES = [
-  { credits: 10, price: 4.99, label: '10 Credits' },
-  { credits: 25, price: 9.99, label: '25 Credits', discount: '10%' },
-  { credits: 50, price: 17.99, label: '50 Credits', discount: '20%' },
+  { credits: 10, price: 4.99, label: '10 Credits', stripePriceId: 'price_bb_credits_10' },
+  { credits: 25, price: 9.99, label: '25 Credits', discount: '10%', stripePriceId: 'price_bb_credits_25' },
+  { credits: 50, price: 17.99, label: '50 Credits', discount: '20%', stripePriceId: 'price_bb_credits_50' },
 ]
 
 export interface UserCredits {

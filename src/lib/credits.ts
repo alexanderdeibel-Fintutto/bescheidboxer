@@ -47,6 +47,8 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     mieterAppInklusive: false,
     letterPrice: 1.99,
     tier: 1,
+    stripePriceIdMonthly: 'price_1T0nav52lqSgjCzezfeyYiwy',
+    stripePriceIdYearly: 'price_1T0naw52lqSgjCzeZU9otXyg',
   },
   kaempfer: {
     name: 'Kaempfer',
@@ -63,6 +65,8 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     letterPrice: 0.99,
     tier: 2,
     badge: 'Beliebt',
+    stripePriceIdMonthly: 'price_1T0nax52lqSgjCzeELDbmrUQ',
+    stripePriceIdYearly: 'price_1T0nax52lqSgjCzecXnrSRr0',
   },
   vollschutz: {
     name: 'Vollschutz',
@@ -79,6 +83,8 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     letterPrice: 0,
     tier: 3,
     badge: 'VIP',
+    stripePriceIdMonthly: 'price_1T0nay52lqSgjCzexKgGvJkS',
+    stripePriceIdYearly: 'price_1T0nay52lqSgjCzeHLGLpsuu',
   },
 }
 
@@ -94,9 +100,9 @@ export const CREDIT_COSTS = {
 }
 
 export const CREDIT_PACKAGES = [
-  { credits: 10, price: 4.99, label: '10 Credits' },
-  { credits: 25, price: 9.99, label: '25 Credits', discount: '10%' },
-  { credits: 50, price: 17.99, label: '50 Credits', discount: '20%' },
+  { credits: 10, price: 4.99, label: '10 Credits', stripePriceId: 'price_1T0naz52lqSgjCzeYuBqo0na' },
+  { credits: 25, price: 9.99, label: '25 Credits', discount: '10%', stripePriceId: 'price_1T0naz52lqSgjCzeJUXiFb19' },
+  { credits: 50, price: 17.99, label: '50 Credits', discount: '20%', stripePriceId: 'price_1T0nb052lqSgjCzeyUSt1hL6' },
 ]
 
 export interface UserCredits {

@@ -137,6 +137,7 @@ export default function BescheidScanPage() {
     // Try API first, fall back to demo
     try {
       const apiEndpoint = import.meta.env.VITE_AI_API_ENDPOINT
+      console.log('[BescheidScan] apiEndpoint:', apiEndpoint, 'file:', !!file)
       if (apiEndpoint && file) {
         const fileData = await fileToBase64(file)
         const mediaType = getMediaType(file)
@@ -151,15 +152,19 @@ export default function BescheidScanPage() {
           }),
         })
 
+        console.log('[BescheidScan] API response status:', response.status)
         if (response.ok) {
           const data = await response.json()
           setResult(data)
           setScanState('result')
           return
+        } else {
+          const errorText = await response.text()
+          console.error('[BescheidScan] API error:', errorText)
         }
       }
-    } catch {
-      // Fall through to demo
+    } catch (err) {
+      console.error('[BescheidScan] fetch error:', err)
     }
 
     // Demo mode fallback

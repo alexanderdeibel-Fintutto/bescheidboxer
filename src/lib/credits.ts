@@ -15,6 +15,8 @@ export interface PlanConfig {
   letterPrice: number
   tier: number
   badge?: string
+  stripePriceIdMonthly?: string
+  stripePriceIdYearly?: string
 }
 
 export const PLANS: Record<PlanType, PlanConfig> = {

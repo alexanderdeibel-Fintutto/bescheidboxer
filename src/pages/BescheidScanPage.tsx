@@ -102,6 +102,28 @@ export default function BescheidScanPage() {
     }
   }
 
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        const result = reader.result as string
+        // Remove the data URL prefix (e.g. "data:image/jpeg;base64,")
+        const base64 = result.split(',')[1]
+        resolve(base64)
+      }
+      reader.onerror = reject
+      reader.readAsDataURL(file)
+    })
+  }
+
+  const getMediaType = (file: File): string => {
+    const type = file.type.toLowerCase()
+    if (type === 'application/pdf') return 'application/pdf'
+    if (type === 'image/png') return 'image/png'
+    if (type === 'image/webp') return 'image/webp'
+    return 'image/jpeg'
+  }
+
   const startScan = async (file?: File) => {
     // Credit gate
     const scanCheck = checkScan()
@@ -116,12 +138,17 @@ export default function BescheidScanPage() {
     try {
       const apiEndpoint = import.meta.env.VITE_AI_API_ENDPOINT
       if (apiEndpoint && file) {
-        const formData = new FormData()
-        formData.append('file', file)
+        const fileData = await fileToBase64(file)
+        const mediaType = getMediaType(file)
 
         const response = await fetch(`${apiEndpoint}/amt-scan`, {
           method: 'POST',
-          body: formData,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fileData,
+            mediaType,
+            fileName: file.name,
+          }),
         })
 
         if (response.ok) {

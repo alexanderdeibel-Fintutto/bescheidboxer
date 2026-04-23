@@ -13,13 +13,13 @@ import {
   Truck,
   ArrowRight,
   MessageCircle,
-  Info,
   GitCompare,
   Wallet,
   MapPin,
 } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 
 const calculators = [
   {
@@ -251,24 +251,7 @@ export default function RechnerPage() {
       {/* ============================================================= */}
       <section className="container py-8 pb-16">
         <div className="max-w-3xl mx-auto">
-          <Card className="border border-amber-200 bg-amber-50/50 dark:bg-amber-950/20 dark:border-amber-900/40 rounded-xl">
-            <CardContent className="p-5">
-              <div className="flex items-start gap-3">
-                <Info className="h-5 w-5 text-amber-600 mt-0.5 flex-shrink-0" />
-                <div className="text-sm">
-                  <h3 className="font-semibold text-amber-900 dark:text-amber-100 mb-1">
-                    Rechtlicher Hinweis
-                  </h3>
-                  <p className="text-amber-800 dark:text-amber-200">
-                    Die Rechner dienen zur ersten Orientierung. Alle Angaben
-                    ohne Gewaehr. Rechtsverbindliche Auskuenfte erhaeltst du
-                    nur von deinem Jobcenter oder einem Fachanwalt fuer
-                    Sozialrecht.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <RechtlicherHinweis />
         </div>
       </section>
     </div>

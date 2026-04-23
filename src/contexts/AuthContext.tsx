@@ -73,6 +73,15 @@ function generateId(): string {
     : Date.now().toString(36) + Math.random().toString(36).slice(2)
 }
 
+// Simple password hashing for demo mode (NOT for production - use bcrypt server-side)
+async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder()
+  const data = encoder.encode(password + 'bescheidboxer_salt_2026')
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+}
+
 // True when a real Supabase anon key is provided via env
 const hasRealSupabase = !!(
   import.meta.env.VITE_SUPABASE_ANON_KEY &&
@@ -179,7 +188,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signIn = async (email: string, password: string) => {
     if (!hasRealSupabase) {
       const users = getDemoUsers()
-      const found = users.find(u => u.email === email && u.password === password)
+      const hashedInput = await hashPassword(password)
+      const found = users.find(u => u.email === email && u.password === hashedInput)
       if (!found) throw new Error('E-Mail oder Passwort falsch.')
       setUser({ id: found.id, email: found.email } as User)
       setProfile({
@@ -210,7 +220,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: generateId(),
         email,
         name: name || null,
-        password,
+        password: await hashPassword(password),
         plan: 'schnupperer',
         createdAt: new Date().toISOString(),
       }

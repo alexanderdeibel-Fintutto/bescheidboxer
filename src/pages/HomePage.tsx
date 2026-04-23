@@ -146,7 +146,7 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="text-sm text-muted-foreground mt-4">
-              1 kostenloser Scan &middot; 3 Fragen/Tag &middot; Kein Account noetig
+              2 kostenlose Scans &middot; 5 Fragen/Tag &middot; Kein Account noetig
             </p>
           </div>
         </div>

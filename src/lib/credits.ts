@@ -15,6 +15,8 @@ export interface PlanConfig {
   letterPrice: number
   tier: number
   badge?: string
+  stripePriceIdMonthly?: string
+  stripePriceIdYearly?: string
 }
 
 export const PLANS: Record<PlanType, PlanConfig> = {
@@ -23,9 +25,9 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     price: 0,
     priceYearly: 0,
     creditsPerMonth: 0,
-    chatMessagesPerDay: 3,
+    chatMessagesPerDay: 5,
     lettersPerMonth: 0,
-    bescheidScansPerMonth: 1,
+    bescheidScansPerMonth: 2,
     forumAccess: 'read_post',
     postversandInklusive: 0,
     prioritySupport: false,
@@ -125,7 +127,7 @@ export function canAskQuestion(credits: UserCredits): { allowed: boolean; reason
     if (credits.plan === 'schnupperer') {
       return {
         allowed: false,
-        reason: 'Du hast deine 3 kostenlosen Nachrichten fuer heute aufgebraucht. Upgrade auf Starter fuer 10/Tag oder Kaempfer fuer unbegrenzt.',
+        reason: 'Du hast deine 5 kostenlosen Nachrichten fuer heute aufgebraucht. Upgrade auf Starter fuer 10/Tag oder Kaempfer fuer unbegrenzt.',
       }
     }
     return {

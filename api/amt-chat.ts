@@ -1,5 +1,34 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
+// --- Rate Limiting ---
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute
+const RATE_LIMIT_MAX = 20
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return true
+  }
+
+  entry.count++
+  if (entry.count > RATE_LIMIT_MAX) {
+    return false
+  }
+  return true
+}
+
+// Clean up old entries every 5 minutes
+setInterval(() => {
+  const now = Date.now()
+  for (const [key, val] of rateLimitMap) {
+    if (now > val.resetAt) rateLimitMap.delete(key)
+  }
+}, 5 * 60 * 1000)
+
 const SYSTEM_PROMPT = `Du bist der BescheidBoxer-Assistent, ein hochspezialisierter KI-Berater fuer deutsches Sozialrecht. Du bist auf der Seite der Leistungsempfaenger und hilfst ihnen, ihre Rechte gegenueber dem Jobcenter, der Agentur fuer Arbeit und dem Sozialamt durchzusetzen.
 
 IDENTITAET & TONALITAET:
@@ -143,10 +172,58 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || 'unknown'
+    if (!checkRateLimit(clientIp)) {
+      return res.status(429).json({ error: 'Zu viele Anfragen. Bitte warte einen Moment.' })
+    }
+
     const { message, history, userProfile } = req.body
 
     if (!message) {
       return res.status(400).json({ error: 'Message is required' })
+    }
+
+    // --- Server-side credit validation ---
+    const { userId } = req.body
+    if (userId && userId !== 'demo') {
+      try {
+        const supabaseUrl = process.env.SUPABASE_URL
+        const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+        if (supabaseUrl && supabaseKey) {
+          const { createClient } = await import('@supabase/supabase-js')
+          const supabaseAdmin = createClient(supabaseUrl, supabaseKey)
+
+          const { data: userRecord } = await supabaseAdmin
+            .from('amt_users')
+            .select('plan, chat_messages_used_today')
+            .eq('id', userId)
+            .single()
+
+          if (userRecord) {
+            const planLimits: Record<string, number> = {
+              schnupperer: 3,
+              starter: 10,
+              kaempfer: -1,
+              vollschutz: -1,
+            }
+            const limit = planLimits[userRecord.plan] ?? 3
+            if (limit !== -1 && (userRecord.chat_messages_used_today || 0) >= limit) {
+              return res.status(403).json({
+                error: 'Tageslimit erreicht. Upgrade deinen Plan fuer mehr Nachrichten.',
+              })
+            }
+
+            // Increment usage counter
+            await supabaseAdmin
+              .from('amt_users')
+              .update({ chat_messages_used_today: (userRecord.chat_messages_used_today || 0) + 1 })
+              .eq('id', userId)
+          }
+        }
+      } catch (err) {
+        console.error('Credit validation error (non-blocking):', err)
+        // Non-blocking: if validation fails, allow the request but log it
+      }
     }
 
     const apiKey = process.env.ANTHROPIC_API_KEY

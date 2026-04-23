@@ -23,8 +23,8 @@ const planMeta: Record<
   schnupperer: {
     icon: Shield,
     features: [
-      '3 KI-Nachrichten pro Tag',
-      '1 Bescheid-Scan pro Monat',
+      '5 KI-Nachrichten pro Tag',
+      '2 Bescheid-Scans pro Monat',
       'Forum lesen & posten',
       'Basis-Rechtsinfos zu SGB II, III, XII',
     ],
@@ -123,6 +123,17 @@ export default function PricingPage() {
         <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
           Starte kostenlos mit dem Schnupperer-Tarif und upgrade, wenn du mehr brauchst.
           Keine versteckten Kosten, jederzeit kuendbar.
+        </p>
+      </div>
+
+      {/* Trial Banner */}
+      <div className="max-w-2xl mx-auto mb-10 p-4 rounded-xl bg-gradient-to-r from-red-50 to-amber-50 dark:from-red-950/30 dark:to-amber-950/30 border border-red-200 dark:border-red-800 text-center">
+        <p className="text-sm font-semibold text-red-800 dark:text-red-300">
+          Neu: 14 Tage kostenlos den Kaempfer-Plan testen!
+        </p>
+        <p className="text-xs text-red-600 dark:text-red-400 mt-1">
+          Unbegrenzte Scans, unbegrenzter Chat, 3 Schreiben - ohne Risiko.
+          Jederzeit kuendbar.
         </p>
       </div>
 
@@ -256,9 +267,9 @@ export default function PricingPage() {
             </thead>
             <tbody>
               {[
-                ['KI-Nachrichten/Tag', '3', '10', 'Unbegrenzt', 'Unbegrenzt'],
+                ['KI-Nachrichten/Tag', '5', '10', 'Unbegrenzt', 'Unbegrenzt'],
                 ['Schreiben/Monat', '\u2013', '1', '3', 'Unbegrenzt'],
-                ['Bescheid-Scans', '1/Monat', '3/Monat', 'Unbegrenzt', 'Unbegrenzt'],
+                ['Bescheid-Scans', '2/Monat', '3/Monat', 'Unbegrenzt', 'Unbegrenzt'],
                 ['Credits/Monat', '\u2013', '10', '25', '50'],
                 ['Forum-Zugang', 'Lesen & Posten', 'Lesen, Posten & Chat (limitiert)', 'Voll', 'VIP'],
                 ['Postversand inkl.', '\u2013', '\u2013', '1/Monat', '3/Monat'],

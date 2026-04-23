@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /profil
+Disallow: /api/
+Sitemap: https://bescheidboxer.de/sitemap.xml

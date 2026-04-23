@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useCreditsContext } from '@/contexts/CreditsContext'
+import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 
 interface ScanError {
   type: 'fehler' | 'warnung' | 'ok'
@@ -114,14 +115,27 @@ export default function BescheidScanPage() {
 
     // Try API first, fall back to demo
     try {
-      const apiEndpoint = import.meta.env.VITE_AI_API_ENDPOINT
-      if (apiEndpoint && file) {
-        const formData = new FormData()
-        formData.append('file', file)
+      if (file) {
+        const reader = new FileReader()
+        const base64Promise = new Promise<string>((resolve) => {
+          reader.onload = () => {
+            const result = reader.result as string
+            // Remove the data:...;base64, prefix
+            const base64 = result.split(',')[1]
+            resolve(base64)
+          }
+          reader.readAsDataURL(file)
+        })
+        const fileContent = await base64Promise
 
-        const response = await fetch(`${apiEndpoint}/amt-scan`, {
+        const response = await fetch('/api/amt-scan', {
           method: 'POST',
-          body: formData,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fileContent,
+            fileType: file.type,
+            fileName: file.name,
+          }),
         })
 
         if (response.ok) {
@@ -426,6 +440,8 @@ export default function BescheidScanPage() {
           </div>
         </div>
       )}
+
+      <RechtlicherHinweis />
     </div>
   )
 }

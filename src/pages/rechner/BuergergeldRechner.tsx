@@ -7,6 +7,7 @@ import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 
 // Local wrapper with id for UI management
 interface UiMitglied extends BgMitglied {
@@ -612,6 +613,8 @@ export default function BuergergeldRechner() {
                 <strong>Hinweis:</strong> Diese Berechnung ist eine Schaetzung basierend auf den Regelsaetzen 2025. Der tatsaechliche Anspruch kann aufgrund individueller Umstaende abweichen.
               </p>
             </div>
+
+            <RechtlicherHinweis compact />
           </div>
         )}
 

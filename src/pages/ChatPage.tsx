@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import { LETTER_TEMPLATES } from '@/lib/sgb-knowledge'
+import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -820,6 +821,13 @@ export default function ChatPage() {
           )}
 
           <div ref={messagesEndRef} />
+        </div>
+      </div>
+
+      {/* ---- Disclaimer ---- */}
+      <div className="border-t border-border bg-card px-4 py-4">
+        <div className="container max-w-3xl">
+          <RechtlicherHinweis compact />
         </div>
       </div>
 

@@ -25,6 +25,10 @@ async function buffer(readable: VercelRequest): Promise<Buffer> {
   return Buffer.concat(chunks)
 }
 
+// --- Webhook deduplication ---
+const processedEvents = new Set<string>()
+const MAX_PROCESSED_EVENTS = 1000
+
 // Credit amounts per plan
 const PLAN_CREDITS: Record<string, number> = {
   starter: 10,
@@ -52,6 +56,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Deduplicate webhook events
+    if (processedEvents.has(event.id)) {
+      return res.status(200).json({ received: true, deduplicated: true })
+    }
+    processedEvents.add(event.id)
+    // Keep set from growing unbounded
+    if (processedEvents.size > MAX_PROCESSED_EVENTS) {
+      const entries = Array.from(processedEvents)
+      for (let i = 0; i < entries.length - 500; i++) {
+        processedEvents.delete(entries[i])
+      }
+    }
+
     // Only process BescheidBoxer events
     const metadata = (event.data.object as Record<string, unknown>)?.metadata as Record<string, string> | undefined
     if (metadata?.app !== 'bescheidboxer' && metadata?.app !== 'amtshilfe') {

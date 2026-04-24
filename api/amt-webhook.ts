@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 import { sendSubscriptionConfirmedMail, sendSubscriptionCancelledMail } from './_lib/email'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2025-02-24.acacia',
 })
 
 const supabase = createClient(
@@ -129,7 +129,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Only process BescheidBoxer events
-    const metadata = (event.data.object as Record<string, unknown>)?.metadata as Record<string, string> | undefined
+    const metadata = (event.data.object as unknown as Record<string, unknown>)?.metadata as Record<string, string> | undefined
     if (metadata?.app !== 'bescheidboxer' && metadata?.app !== 'amtshilfe') {
       return res.status(200).json({ received: true, skipped: true })
     }

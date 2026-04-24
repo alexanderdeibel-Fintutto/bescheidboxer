@@ -6,3 +6,17 @@ dist/
 .DS_Store
 *.log
 .vite/
+.vercel
+.env*.local
+
+# Lokale Reports und Launch-Doku (Snapshot-Dateien, gehoeren nicht ins Repo)
+/DEBUG_REPORT_*.txt
+/ENV_UND_MODEL_CHECK_*.txt
+/LAUNCH_MASTERPLAN_*.txt
+/LAUNCH_STATUS_*.txt
+/STARTGUIDE_LAUNCH_*.txt
+/SUPABASE_KONSOLIDIERUNG_*.txt
+/TESTPLAN_UND_LAUNCH_*.txt
+
+# Migration-Backups (durch Konsolidierung ersetzt)
+*.archived

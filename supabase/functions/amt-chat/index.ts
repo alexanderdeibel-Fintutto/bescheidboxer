@@ -78,7 +78,7 @@ serve(async (req) => {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-5-20250929',
+        model: 'claude-sonnet-4-6',
         max_tokens: 2048,
         system: SYSTEM_PROMPT,
         messages,
@@ -104,11 +104,11 @@ serve(async (req) => {
         const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
         const supabase = createClient(supabaseUrl, supabaseKey)
 
-        await supabase.from('amt_chat_logs').insert({
+        await supabase.from('bb_chat_logs').insert({
           user_id: userId,
           user_message: message,
           ai_response: reply,
-          model: 'claude-sonnet-4-5-20250929',
+          model: 'claude-sonnet-4-6',
           tokens_used: data.usage?.output_tokens || 0,
         })
       } catch (logError) {

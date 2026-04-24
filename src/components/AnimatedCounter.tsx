@@ -28,7 +28,7 @@ export default function AnimatedCounter({
           hasAnimated.current = true
           const startTime = performance.now()
 
-          function animate(now: number) {
+          const animate = (now: number) => {
             const elapsed = now - startTime
             const progress = Math.min(elapsed / duration, 1)
             // ease-out cubic

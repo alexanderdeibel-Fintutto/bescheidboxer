@@ -21,6 +21,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import RechtlicherHinweis from '@/components/RechtlicherHinweis'
+import { toast } from 'sonner'
 
 interface ScanError {
   type: 'fehler' | 'warnung' | 'ok'
@@ -92,7 +93,7 @@ export default function BescheidScanPage() {
   const [fileName, setFileName] = useState<string>('')
   const [, setSelectedFile] = useState<File | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const { checkScan, useScan } = useCreditsContext()
+  const { checkScan, consumeScan } = useCreditsContext()
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -107,59 +108,73 @@ export default function BescheidScanPage() {
     // Credit gate
     const scanCheck = checkScan()
     if (!scanCheck.allowed) {
+      toast.error(scanCheck.reason || 'Scan nicht verfuegbar.')
+      return
+    }
+
+    if (!file) {
+      toast.error('Keine Datei ausgewaehlt.')
       return
     }
 
     setScanState('scanning')
-    await useScan()
 
-    // Try API first, fall back to demo
     try {
-      if (file) {
-        const reader = new FileReader()
-        const base64Promise = new Promise<string>((resolve) => {
-          reader.onload = () => {
-            const result = reader.result as string
-            // Remove the data:...;base64, prefix
-            const base64 = result.split(',')[1]
-            resolve(base64)
-          }
-          reader.readAsDataURL(file)
-        })
-        const fileContent = await base64Promise
-
-        const response = await fetch('/api/amt-scan', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fileContent,
-            fileType: file.type,
-            fileName: file.name,
-          }),
-        })
-
-        if (response.ok) {
-          const data = await response.json()
-          setResult(data)
-          setScanState('result')
-          return
+      const reader = new FileReader()
+      const base64Promise = new Promise<string>((resolve, reject) => {
+        reader.onload = () => {
+          const res = reader.result as string
+          const base64 = res.split(',')[1]
+          resolve(base64)
         }
-      }
-    } catch {
-      // Fall through to demo
-    }
+        reader.onerror = () => reject(new Error('Datei konnte nicht gelesen werden.'))
+        reader.readAsDataURL(file)
+      })
+      const fileContent = await base64Promise
 
-    // Demo mode fallback
-    await new Promise((r) => setTimeout(r, 3500))
-    const scanResult = generateDemoScanResult()
-    setResult(scanResult)
-    setScanState('result')
+      const response = await fetch('/api/amt-scan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fileContent,
+          fileType: file.type,
+          fileName: file.name,
+        }),
+      })
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}))
+        throw new Error(
+          payload?.error ||
+            `Scan fehlgeschlagen (HTTP ${response.status}). Bitte versuche es spaeter erneut.`,
+        )
+      }
+
+      const data = await response.json()
+      setResult(data)
+      setScanState('result')
+      await consumeScan() // erst nach erfolgreichem Scan buchen
+    } catch (err) {
+      console.error('BescheidScan fehlgeschlagen:', err)
+      toast.error(
+        err instanceof Error
+          ? err.message
+          : 'Scan fehlgeschlagen. Bitte pruefe deine Internet-Verbindung.',
+      )
+      setScanState('upload')
+    }
   }
 
   const handleDemoScan = () => {
+    // Demo-Modus zeigt explizit das Ergebnis aus der statischen
+    // Beispielanalyse — NICHT als Fallback bei API-Fehlern.
     setFileName('Bescheid_Jobcenter_2026.pdf')
     setSelectedFile(null)
-    startScan()
+    setScanState('scanning')
+    setTimeout(() => {
+      setResult(generateDemoScanResult())
+      setScanState('result')
+    }, 2500)
   }
 
   const errorsCount = result?.errors.filter(e => e.type === 'fehler').length || 0
@@ -205,7 +220,7 @@ export default function BescheidScanPage() {
                 <h2 className="text-xl font-semibold mb-2">Bescheid hochladen</h2>
                 <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                   Lade deinen Bewilligungsbescheid, Aenderungsbescheid oder Sanktionsbescheid hoch.
-                  Wir akzeptieren PDF, JPG und PNG.
+                  Wir akzeptieren PDF (auch mehrseitig), JPG und PNG.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button variant="amt" size="lg" onClick={() => fileInputRef.current?.click()}>

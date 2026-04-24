@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, ComponentType } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import { Search, Calculator, FileText, HelpCircle, Wrench, ArrowRight, MessageCircle } from 'lucide-react'
@@ -383,7 +383,7 @@ function ResultCard({
   getCategoryIcon
 }: {
   item: SearchItem
-  getCategoryIcon: (category: string) => any
+  getCategoryIcon: (category: string) => ComponentType<{ className?: string }>
 }) {
   const Icon = getCategoryIcon(item.category)
 

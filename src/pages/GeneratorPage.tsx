@@ -340,7 +340,7 @@ Mit freundlichen Gruessen
 ${name}`
       break
 
-    case 'widerspruch_sanktion':
+    case 'widerspruch_sanktion': {
       const sanktionsgrund = data.sanktionsgrund === 'termin' ? 'Meldeversaeumnis'
         : data.sanktionsgrund === 'massnahme' ? 'Nichtantritt einer Massnahme'
         : data.sanktionsgrund === 'arbeit' ? 'Nichtannahme eines Arbeitsangebots'
@@ -384,6 +384,7 @@ Mit freundlichen Gruessen
 
 ${name}`
       break
+    }
 
     case 'ueberpruefungsantrag':
       letterBody = `${name}

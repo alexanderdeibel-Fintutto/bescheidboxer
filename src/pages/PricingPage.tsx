@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import {
   CheckCircle2,
@@ -10,15 +11,19 @@ import {
   CreditCard,
   ArrowRight,
   Home,
+  Loader2,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { PLANS, CREDIT_PACKAGES, type PlanType } from '@/lib/credits'
+import { useAuth } from '@/contexts/AuthContext'
+import { startCheckout } from '@/lib/stripeCheckout'
+import { toast } from 'sonner'
 
 const planMeta: Record<
   PlanType,
-  { icon: typeof Shield; features: string[]; cta: string; ctaLink: string }
+  { icon: typeof Shield; features: string[]; cta: string }
 > = {
   schnupperer: {
     icon: Shield,
@@ -29,7 +34,6 @@ const planMeta: Record<
       'Basis-Rechtsinfos zu SGB II, III, XII',
     ],
     cta: 'Kostenlos starten',
-    ctaLink: '/register',
   },
   starter: {
     icon: Zap,
@@ -41,7 +45,6 @@ const planMeta: Record<
       'Forum lesen, posten & limitierter Chat',
     ],
     cta: 'Starter waehlen',
-    ctaLink: '/register?plan=starter',
   },
   kaempfer: {
     icon: Swords,
@@ -55,7 +58,6 @@ const planMeta: Record<
       'MieterApp Basic inklusive',
     ],
     cta: 'Kaempfer waehlen',
-    ctaLink: '/register?plan=kaempfer',
   },
   vollschutz: {
     icon: Crown,
@@ -69,7 +71,6 @@ const planMeta: Record<
       'MieterApp Premium inklusive',
     ],
     cta: 'Vollschutz waehlen',
-    ctaLink: '/register?plan=vollschutz',
   },
 }
 
@@ -108,8 +109,97 @@ const faqItems = [
   },
 ]
 
+type BillingInterval = 'monthly' | 'yearly'
+
 export default function PricingPage() {
   useDocumentTitle('Preise - BescheidBoxer')
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const [loadingPlan, setLoadingPlan] = useState<PlanType | null>(null)
+  const [loadingPack, setLoadingPack] = useState<number | null>(null)
+  const [interval, setInterval] = useState<BillingInterval>('monthly')
+
+  const handlePlanClick = async (planKey: PlanType) => {
+    if (planKey === 'schnupperer') {
+      navigate(user ? '/dashboard' : '/register')
+      return
+    }
+
+    const plan = PLANS[planKey]
+    const priceId =
+      interval === 'yearly' ? plan.stripePriceIdYearly : plan.stripePriceIdMonthly
+    if (!priceId) {
+      toast.error('Dieser Plan ist aktuell nicht buchbar. Bitte kontaktiere den Support.')
+      return
+    }
+
+    try {
+      setLoadingPlan(planKey)
+      await startCheckout({
+        planId: planKey as 'starter' | 'kaempfer' | 'vollschutz',
+        interval,
+        priceId,
+        user,
+        navigate,
+      })
+    } catch (err) {
+      console.error('Checkout fehlgeschlagen:', err)
+      toast.error(
+        err instanceof Error
+          ? err.message
+          : 'Checkout konnte nicht gestartet werden.',
+      )
+    } finally {
+      setLoadingPlan(null)
+    }
+  }
+
+  const handleCreditPackClick = async (pkg: (typeof CREDIT_PACKAGES)[number]) => {
+    if (!user) {
+      navigate('/login?next=/preise')
+      return
+    }
+    if (!pkg.stripePriceId) {
+      toast.error('Dieses Paket ist aktuell nicht buchbar.')
+      return
+    }
+
+    try {
+      setLoadingPack(pkg.credits)
+      const res = await fetch('/api/amt-credit-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          priceId: pkg.stripePriceId,
+          userId: user.id,
+          userEmail: user.email,
+          creditsAmount: pkg.credits,
+        }),
+      })
+
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}))
+        throw new Error(
+          payload?.error ||
+            `Credit-Checkout konnte nicht gestartet werden (HTTP ${res.status}).`,
+        )
+      }
+
+      const { url } = (await res.json()) as { url?: string }
+      if (!url) throw new Error('Keine Checkout-URL von Stripe erhalten.')
+      window.location.href = url
+    } catch (err) {
+      console.error('Credit-Checkout fehlgeschlagen:', err)
+      toast.error(
+        err instanceof Error
+          ? err.message
+          : 'Credit-Checkout konnte nicht gestartet werden.',
+      )
+    } finally {
+      setLoadingPack(null)
+    }
+  }
+
   return (
     <div className="container py-12">
       {/* Header */}
@@ -127,7 +217,7 @@ export default function PricingPage() {
       </div>
 
       {/* Trial Banner */}
-      <div className="max-w-2xl mx-auto mb-10 p-4 rounded-xl bg-gradient-to-r from-red-50 to-amber-50 dark:from-red-950/30 dark:to-amber-950/30 border border-red-200 dark:border-red-800 text-center">
+      <div className="max-w-2xl mx-auto mb-6 p-4 rounded-xl bg-gradient-to-r from-red-50 to-amber-50 dark:from-red-950/30 dark:to-amber-950/30 border border-red-200 dark:border-red-800 text-center">
         <p className="text-sm font-semibold text-red-800 dark:text-red-300">
           Neu: 14 Tage kostenlos den Kaempfer-Plan testen!
         </p>
@@ -135,6 +225,37 @@ export default function PricingPage() {
           Unbegrenzte Scans, unbegrenzter Chat, 3 Schreiben - ohne Risiko.
           Jederzeit kuendbar.
         </p>
+      </div>
+
+      {/* Monthly / Yearly Toggle */}
+      <div className="flex justify-center mb-8">
+        <div className="inline-flex items-center p-1 rounded-full border bg-muted/40">
+          <button
+            type="button"
+            onClick={() => setInterval('monthly')}
+            className={`px-5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              interval === 'monthly'
+                ? 'bg-background text-foreground shadow-sm'
+                : 'text-muted-foreground'
+            }`}
+          >
+            Monatlich
+          </button>
+          <button
+            type="button"
+            onClick={() => setInterval('yearly')}
+            className={`px-5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              interval === 'yearly'
+                ? 'bg-background text-foreground shadow-sm'
+                : 'text-muted-foreground'
+            }`}
+          >
+            Jaehrlich
+            <span className="ml-2 text-xs text-green-600 font-semibold">
+              -17%
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Pricing Cards */}
@@ -177,16 +298,28 @@ export default function PricingPage() {
                   </div>
                   <CardTitle className="text-xl">{plan.name}</CardTitle>
                   <div className="mt-3">
-                    <span className="text-4xl font-extrabold">
-                      {plan.price === 0
-                        ? '0'
-                        : plan.price.toFixed(2).replace('.', ',')}
-                    </span>
-                    <span className="text-muted-foreground">
-                      {plan.price === 0 ? ' EUR' : ' EUR/Mo'}
-                    </span>
+                    {plan.price === 0 ? (
+                      <>
+                        <span className="text-4xl font-extrabold">0</span>
+                        <span className="text-muted-foreground"> EUR</span>
+                      </>
+                    ) : interval === 'yearly' && plan.priceYearly > 0 ? (
+                      <>
+                        <span className="text-4xl font-extrabold">
+                          {plan.priceYearly.toFixed(2).replace('.', ',')}
+                        </span>
+                        <span className="text-muted-foreground"> EUR/Jahr</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-4xl font-extrabold">
+                          {plan.price.toFixed(2).replace('.', ',')}
+                        </span>
+                        <span className="text-muted-foreground"> EUR/Mo</span>
+                      </>
+                    )}
                   </div>
-                  {plan.priceYearly > 0 && (
+                  {plan.priceYearly > 0 && interval === 'monthly' && (
                     <p className="text-xs text-muted-foreground mt-1">
                       oder{' '}
                       {plan.priceYearly.toFixed(2).replace('.', ',')}{' '}
@@ -195,6 +328,13 @@ export default function PricingPage() {
                         (1 - plan.priceYearly / (plan.price * 12)) * 100
                       )}
                       %)
+                    </p>
+                  )}
+                  {plan.priceYearly > 0 && interval === 'yearly' && (
+                    <p className="text-xs text-green-600 mt-1 font-medium">
+                      entspricht{' '}
+                      {(plan.priceYearly / 12).toFixed(2).replace('.', ',')}{' '}
+                      EUR/Mo
                     </p>
                   )}
                 </CardHeader>
@@ -230,9 +370,17 @@ export default function PricingPage() {
                             : 'outline'
                     }
                     size="lg"
-                    asChild
+                    disabled={loadingPlan === key}
+                    onClick={() => handlePlanClick(key)}
                   >
-                    <Link to={meta.ctaLink}>{meta.cta}</Link>
+                    {loadingPlan === key ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Moment...
+                      </>
+                    ) : (
+                      meta.cta
+                    )}
                   </Button>
                 </CardContent>
               </Card>
@@ -341,11 +489,20 @@ export default function PricingPage() {
                 <p className="text-xs text-muted-foreground mb-5">
                   {(pkg.price / pkg.credits).toFixed(2).replace('.', ',')} EUR pro Credit
                 </p>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link to="/register">
-                    Paket kaufen
-                    <ArrowRight className="ml-1.5 h-4 w-4" />
-                  </Link>
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  disabled={loadingPack === pkg.credits}
+                  onClick={() => handleCreditPackClick(pkg)}
+                >
+                  {loadingPack === pkg.credits ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Moment...
+                    </>
+                  ) : (
+                    'Credits kaufen'
+                  )}
                 </Button>
               </CardContent>
             </Card>

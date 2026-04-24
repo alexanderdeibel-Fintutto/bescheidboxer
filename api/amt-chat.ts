@@ -184,6 +184,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // --- Server-side credit validation ---
+    // userId ist hier die auth.users.id (== profiles.id == bb_user_state.user_id).
+    // Das Frontend schickt profile.id, was nach dem Refactor dieselbe UUID ist.
     const { userId } = req.body
     if (userId && userId !== 'demo') {
       try {
@@ -194,10 +196,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           const supabaseAdmin = createClient(supabaseUrl, supabaseKey)
 
           const { data: userRecord } = await supabaseAdmin
-            .from('amt_users')
+            .from('bb_user_state')
             .select('plan, chat_messages_used_today')
-            .eq('id', userId)
-            .single()
+            .eq('user_id', userId)
+            .maybeSingle()
 
           if (userRecord) {
             const planLimits: Record<string, number> = {
@@ -215,9 +217,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
             // Increment usage counter
             await supabaseAdmin
-              .from('amt_users')
+              .from('bb_user_state')
               .update({ chat_messages_used_today: (userRecord.chat_messages_used_today || 0) + 1 })
-              .eq('id', userId)
+              .eq('user_id', userId)
           }
         }
       } catch (err) {
@@ -274,7 +276,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-5-20250929',
+        model: 'claude-sonnet-4-6',
         max_tokens: 2500,
         system: SYSTEM_PROMPT + userContext,
         messages,

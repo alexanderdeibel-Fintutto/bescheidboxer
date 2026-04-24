@@ -98,28 +98,53 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Keine Datei hochgeladen' })
     }
 
-    // Build the message for Claude
-    const userMessage = fileType?.startsWith('image/')
-      ? [
-          {
-            type: 'image' as const,
-            source: {
-              type: 'base64' as const,
-              media_type: fileType,
-              data: fileContent,
-            },
+    // Build the message for Claude.
+    //
+    // Drei Pfade:
+    //   1) application/pdf   -> Anthropic Document-API (mehrseitig ok)
+    //   2) image/*           -> Image-Block (JPG, PNG, etc.)
+    //   3) sonst             -> text-Fallback (roher Text aus OCR-freien
+    //                           Quellen, oder vom Frontend bereits extrahiert)
+    let userMessage: Array<Record<string, unknown>>
+
+    if (fileType === 'application/pdf') {
+      userMessage = [
+        {
+          type: 'document' as const,
+          source: {
+            type: 'base64' as const,
+            media_type: 'application/pdf' as const,
+            data: fileContent,
           },
-          {
-            type: 'text' as const,
-            content: `Analysiere diesen Bescheid (${fileName || 'Bescheid'}). Finde alle Fehler und fehlenden Leistungen.`,
+        },
+        {
+          type: 'text' as const,
+          text: `Analysiere diesen Bescheid (${fileName || 'Bescheid'}). Finde alle Fehler und fehlenden Leistungen. Beachte ALLE Seiten des Dokuments.`,
+        },
+      ]
+    } else if (fileType?.startsWith('image/')) {
+      userMessage = [
+        {
+          type: 'image' as const,
+          source: {
+            type: 'base64' as const,
+            media_type: fileType,
+            data: fileContent,
           },
-        ]
-      : [
-          {
-            type: 'text' as const,
-            content: `Analysiere diesen Bescheid-Text:\n\n${fileContent}\n\nFinde alle Fehler und fehlenden Leistungen.`,
-          },
-        ]
+        },
+        {
+          type: 'text' as const,
+          text: `Analysiere diesen Bescheid (${fileName || 'Bescheid'}). Finde alle Fehler und fehlenden Leistungen.`,
+        },
+      ]
+    } else {
+      userMessage = [
+        {
+          type: 'text' as const,
+          text: `Analysiere diesen Bescheid-Text:\n\n${fileContent}\n\nFinde alle Fehler und fehlenden Leistungen.`,
+        },
+      ]
+    }
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -127,9 +152,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         'Content-Type': 'application/json',
         'x-api-key': apiKey,
         'anthropic-version': '2023-06-01',
+        // PDF-Support ist ein Beta-Feature in der Messages-API.
+        'anthropic-beta': 'pdfs-2024-09-25',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-5-20250929',
+        model: 'claude-sonnet-4-6',
         max_tokens: 3000,
         system: SCAN_SYSTEM_PROMPT,
         messages: [{ role: 'user', content: userMessage }],

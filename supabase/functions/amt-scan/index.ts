@@ -45,7 +45,7 @@ serve(async (req) => {
   }
 
   try {
-    const { bescheidText, userId } = await req.json()
+    const { bescheidText, userId: _userId } = await req.json()
 
     if (!bescheidText) {
       return new Response(JSON.stringify({ error: 'Bescheid text is required' }), {
@@ -70,7 +70,7 @@ serve(async (req) => {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-5-20250929',
+        model: 'claude-sonnet-4-6',
         max_tokens: 4096,
         system: SCAN_SYSTEM_PROMPT,
         messages: [

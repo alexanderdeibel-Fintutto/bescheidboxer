@@ -526,7 +526,7 @@ export default function ChatPage() {
   const [showQuickActions, setShowQuickActions] = useState(!restored)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
-  const { checkQuestion, useQuestion } = useCreditsContext()
+  const { checkQuestion, consumeQuestion } = useCreditsContext()
 
   // Auto-scroll on new messages
   const scrollToBottom = () => {
@@ -596,7 +596,7 @@ export default function ChatPage() {
     setIsLoading(true)
 
     // Consume credit
-    await useQuestion()
+    await consumeQuestion()
 
     // Call API or fall back to demo
     try {

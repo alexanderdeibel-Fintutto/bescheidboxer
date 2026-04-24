@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useRef, useMemo, ComponentType } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, Calculator, FileText, MessageCircle, ScanSearch, ClipboardList, HelpCircle, ArrowRight } from 'lucide-react'
 
 interface SearchItem {
   title: string
   href: string
-  icon: any
+  icon: ComponentType<{ className?: string }>
   keywords: string[]
 }
 

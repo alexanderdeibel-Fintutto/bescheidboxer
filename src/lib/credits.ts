@@ -49,8 +49,8 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     mieterAppInklusive: false,
     letterPrice: 1.99,
     tier: 1,
-    stripePriceIdMonthly: 'price_1T0nav52lqSgjCzezfeyYiwy',
-    stripePriceIdYearly: 'price_1T0naw52lqSgjCzeZU9otXyg',
+    stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_STARTER_MONTH || '',
+    stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_STARTER_YEAR || '',
   },
   kaempfer: {
     name: 'Kaempfer',
@@ -67,8 +67,8 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     letterPrice: 0.99,
     tier: 2,
     badge: 'Beliebt',
-    stripePriceIdMonthly: 'price_1T0nax52lqSgjCzeELDbmrUQ',
-    stripePriceIdYearly: 'price_1T0nax52lqSgjCzecXnrSRr0',
+    stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_KAEMPFER_MONTH || '',
+    stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_KAEMPFER_YEAR || '',
   },
   vollschutz: {
     name: 'Vollschutz',
@@ -85,8 +85,8 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     letterPrice: 0,
     tier: 3,
     badge: 'VIP',
-    stripePriceIdMonthly: 'price_1T0nay52lqSgjCzexKgGvJkS',
-    stripePriceIdYearly: 'price_1T0nay52lqSgjCzeHLGLpsuu',
+    stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_VOLLSCHUTZ_MONTH || '',
+    stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_VOLLSCHUTZ_YEAR || '',
   },
 }
 
@@ -101,10 +101,39 @@ export const CREDIT_COSTS = {
   privatchatProTag: 1,
 }
 
+/**
+ * Credit-Top-up-Pakete (Einmalkauf, keine Subscription).
+ *
+ * Die stripePriceId wird zur Laufzeit aus VITE_STRIPE_PRICE_CREDITS_*
+ * gelesen, damit Test-Mode vs Production-Mode ohne Code-Change
+ * umschaltbar sind. Setze die ENV-Variablen in Vercel fuer Preview
+ * und Production jeweils auf die richtige price_*-ID.
+ *
+ * Fallback auf leeren String, wenn ENV nicht gesetzt ist -> Buttons
+ * zeigen einen Support-Fehler an, statt zu einem leeren Checkout zu
+ * leiten.
+ */
 export const CREDIT_PACKAGES = [
-  { credits: 10, price: 4.99, label: '10 Credits', stripePriceId: 'price_1T0naz52lqSgjCzeYuBqo0na' },
-  { credits: 25, price: 9.99, label: '25 Credits', discount: '10%', stripePriceId: 'price_1T0naz52lqSgjCzeJUXiFb19' },
-  { credits: 50, price: 17.99, label: '50 Credits', discount: '20%', stripePriceId: 'price_1T0nb052lqSgjCzeyUSt1hL6' },
+  {
+    credits: 5,
+    price: 4.99,
+    label: '5 Credits',
+    stripePriceId: import.meta.env.VITE_STRIPE_PRICE_CREDITS_S || '',
+  },
+  {
+    credits: 15,
+    price: 9.99,
+    label: '15 Credits',
+    discount: '11%',
+    stripePriceId: import.meta.env.VITE_STRIPE_PRICE_CREDITS_M || '',
+  },
+  {
+    credits: 40,
+    price: 19.99,
+    label: '40 Credits',
+    discount: '25%',
+    stripePriceId: import.meta.env.VITE_STRIPE_PRICE_CREDITS_L || '',
+  },
 ]
 
 export interface UserCredits {

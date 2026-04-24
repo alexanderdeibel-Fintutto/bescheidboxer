@@ -1,6 +1,7 @@
 import Stripe from 'stripe'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { createClient } from '@supabase/supabase-js'
+import { sendSubscriptionConfirmedMail, sendSubscriptionCancelledMail } from './_lib/email'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-12-18.acacia',
@@ -36,6 +37,65 @@ const PLAN_CREDITS: Record<string, number> = {
   vollschutz: 50,
 }
 
+/**
+ * Finde die user_id (== profiles.id == auth.users.id) fuer einen
+ * BescheidBoxer-Account. Reihenfolge:
+ *   1. metadata.userId  (auth.users.id — so schickt es das Frontend)
+ *   2. customerEmail    (Fallback, falls Metadata fehlt)
+ *
+ * Wir schauen in profiles nach, nicht in auth.users direkt — so
+ * stellen wir sicher, dass es auch ein UAR-Profil gibt.
+ */
+async function resolveBbUser(
+  userIdFromMeta: string | undefined,
+  customerEmail: string | null | undefined,
+): Promise<string | null> {
+  if (userIdFromMeta) {
+    const { data: p } = await supabase
+      .from('profiles')
+      .select('id')
+      .eq('id', userIdFromMeta)
+      .maybeSingle()
+    if (p?.id) return p.id
+  }
+
+  if (customerEmail) {
+    const { data: p } = await supabase
+      .from('profiles')
+      .select('id')
+      .eq('email', customerEmail)
+      .maybeSingle()
+    if (p?.id) return p.id
+  }
+
+  return null
+}
+
+/**
+ * Liefert die bb_user_state-Zeile; legt sie bei Bedarf an. So
+ * koennen Webhooks auch dann durchlaufen, wenn der Trigger fuer
+ * irgendeinen Edge-Case nicht gefeuert hat.
+ */
+async function ensureBbUserState(userId: string) {
+  const { data } = await supabase
+    .from('bb_user_state')
+    .select('user_id, plan, credits_current')
+    .eq('user_id', userId)
+    .maybeSingle()
+  if (data) return data
+
+  const { data: created, error } = await supabase
+    .from('bb_user_state')
+    .insert({ user_id: userId })
+    .select('user_id, plan, credits_current')
+    .maybeSingle()
+  if (error) {
+    console.error('ensureBbUserState failed:', error)
+    return null
+  }
+  return created
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
@@ -61,7 +121,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(200).json({ received: true, deduplicated: true })
     }
     processedEvents.add(event.id)
-    // Keep set from growing unbounded
     if (processedEvents.size > MAX_PROCESSED_EVENTS) {
       const entries = Array.from(processedEvents)
       for (let i = 0; i < entries.length - 500; i++) {
@@ -79,12 +138,81 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session
 
-        const userId = session.metadata?.userId
-        const planId = session.metadata?.planId || 'starter'
-        const creditsPerMonth = PLAN_CREDITS[planId] || 0
+        const userIdFromMeta = session.metadata?.userId
+        const kind = session.metadata?.kind || 'subscription'
         const customerEmail = session.customer_email
 
-        console.log('BescheidBoxer checkout completed:', { userId, planId, customerEmail })
+        // --- Credit-Top-up (Einmalkauf) ---
+        if (kind === 'credits') {
+          const creditsAmount = parseInt(session.metadata?.creditsAmount || '0', 10)
+
+          if (!creditsAmount || creditsAmount <= 0) {
+            console.error('BescheidBoxer credit top-up: invalid creditsAmount', session.metadata)
+            break
+          }
+
+          console.log('BescheidBoxer credit top-up completed:', {
+            userIdFromMeta,
+            creditsAmount,
+            customerEmail,
+          })
+
+          const userId = await resolveBbUser(userIdFromMeta, customerEmail)
+          if (!userId) {
+            console.error('BescheidBoxer credit top-up: user not found', {
+              userIdFromMeta,
+              customerEmail,
+            })
+            break
+          }
+
+          const state = await ensureBbUserState(userId)
+          if (!state) break
+
+          const currentCredits = Number(state.credits_current) || 0
+          const newBalance = currentCredits + creditsAmount
+
+          const { error: updErr } = await supabase
+            .from('bb_user_state')
+            .update({ credits_current: newBalance })
+            .eq('user_id', userId)
+
+          if (updErr) {
+            console.error('BescheidBoxer credit top-up: update failed', updErr)
+            break
+          }
+
+          await supabase.from('bb_credit_transactions').insert({
+            user_id: userId,
+            amount: creditsAmount,
+            type: 'topup',
+            description: `Credit-Top-up: +${creditsAmount} Credits`,
+            balance_after: newBalance,
+          })
+
+          break
+        }
+
+        // --- Subscription-Checkout (Default) ---
+        const planId = session.metadata?.planId || 'starter'
+        const creditsPerMonth = PLAN_CREDITS[planId] || 0
+
+        console.log('BescheidBoxer checkout completed:', {
+          userIdFromMeta,
+          planId,
+          customerEmail,
+        })
+
+        const userId = await resolveBbUser(userIdFromMeta, customerEmail)
+        if (!userId) {
+          console.error('BescheidBoxer subscription: user not found', {
+            userIdFromMeta,
+            customerEmail,
+          })
+          break
+        }
+
+        await ensureBbUserState(userId)
 
         const updateData = {
           plan: planId,
@@ -98,45 +226,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           period_end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
         }
 
-        if (userId) {
-          const { error } = await supabase
-            .from('amt_users')
-            .update(updateData)
-            .eq('id', userId)
+        const { error: updateErr } = await supabase
+          .from('bb_user_state')
+          .update(updateData)
+          .eq('user_id', userId)
 
-          if (error) {
-            console.error('Error updating amt_user:', error)
-          }
+        if (updateErr) {
+          console.error('Error updating bb_user_state:', updateErr)
+        }
 
-          // Log credit transaction
-          await supabase.from('amt_credit_transactions').insert({
-            user_id: userId,
-            amount: creditsPerMonth,
-            type: 'subscription_credit',
-            description: `${planId}-Plan monatliche Credits`,
-            balance_after: creditsPerMonth,
-          })
-        } else if (customerEmail) {
-          const { data: existingUser } = await supabase
-            .from('amt_users')
-            .select('id')
-            .eq('email', customerEmail)
-            .single()
+        await supabase.from('bb_credit_transactions').insert({
+          user_id: userId,
+          amount: creditsPerMonth,
+          type: 'subscription_credit',
+          description: `${planId}-Plan monatliche Credits`,
+          balance_after: creditsPerMonth,
+        })
 
-          if (existingUser) {
-            await supabase
-              .from('amt_users')
-              .update(updateData)
-              .eq('id', existingUser.id)
-
-            await supabase.from('amt_credit_transactions').insert({
-              user_id: existingUser.id,
-              amount: creditsPerMonth,
-              type: 'subscription_credit',
-              description: `${planId}-Plan monatliche Credits`,
-              balance_after: creditsPerMonth,
-            })
-          }
+        // Confirmation-Mail (nicht blockierend)
+        if (customerEmail) {
+          await sendSubscriptionConfirmedMail(customerEmail, planId, creditsPerMonth)
         }
         break
       }
@@ -146,17 +255,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const invoice = event.data.object as Stripe.Invoice
         const customerId = invoice.customer as string
 
-        const { data: user } = await supabase
-          .from('amt_users')
-          .select('id, plan')
+        const { data: state } = await supabase
+          .from('bb_user_state')
+          .select('user_id, plan')
           .eq('stripe_customer_id', customerId)
           .single()
 
-        if (user && user.plan !== 'schnupperer') {
-          const creditsPerMonth = PLAN_CREDITS[user.plan] || 0
+        if (state && state.plan !== 'schnupperer') {
+          const creditsPerMonth = PLAN_CREDITS[state.plan] || 0
 
           await supabase
-            .from('amt_users')
+            .from('bb_user_state')
             .update({
               credits_current: creditsPerMonth,
               letters_generated_this_month: 0,
@@ -164,13 +273,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               period_start: new Date().toISOString(),
               period_end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
             })
-            .eq('id', user.id)
+            .eq('user_id', state.user_id)
 
-          await supabase.from('amt_credit_transactions').insert({
-            user_id: user.id,
+          await supabase.from('bb_credit_transactions').insert({
+            user_id: state.user_id,
             amount: creditsPerMonth,
             type: 'subscription_credit',
-            description: `${user.plan}-Plan monatliche Erneuerung`,
+            description: `${state.plan}-Plan monatliche Erneuerung`,
             balance_after: creditsPerMonth,
           })
         }
@@ -181,15 +290,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const subscription = event.data.object as Stripe.Subscription
         const customerId = subscription.customer as string
 
-        const { data: user } = await supabase
-          .from('amt_users')
-          .select('id')
+        const { data: state } = await supabase
+          .from('bb_user_state')
+          .select('user_id')
           .eq('stripe_customer_id', customerId)
           .single()
 
-        if (user) {
+        if (state) {
           await supabase
-            .from('amt_users')
+            .from('bb_user_state')
             .update({
               plan: 'schnupperer',
               stripe_subscription_id: null,
@@ -197,9 +306,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               letters_generated_this_month: 0,
               scans_this_month: 0,
             })
-            .eq('id', user.id)
+            .eq('user_id', state.user_id)
 
-          console.log('BescheidBoxer subscription cancelled, downgraded to schnupperer:', user.id)
+          // Fuer die Abo-Cancel-Mail brauchen wir die E-Mail aus profiles.
+          const { data: p } = await supabase
+            .from('profiles')
+            .select('email')
+            .eq('id', state.user_id)
+            .maybeSingle()
+
+          console.log('BescheidBoxer subscription cancelled, downgraded to schnupperer:', state.user_id)
+
+          if (p?.email) {
+            await sendSubscriptionCancelledMail(p.email)
+          }
         }
         break
       }

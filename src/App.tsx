@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext'
 import Layout from '@/components/layout/Layout'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import ScrollToTop from '@/components/ScrollToTop'
+import AdminRoute from '@/components/AdminRoute'
 
 // Eagerly load the home page for fast first paint
 import HomePage from '@/pages/HomePage'
@@ -71,6 +72,7 @@ const SanktionsTracker = lazy(() => import('@/pages/SanktionsTracker'))
 const BescheidArchivPage = lazy(() => import('@/pages/BescheidArchivPage'))
 const KostenUebersichtPage = lazy(() => import('@/pages/KostenUebersichtPage'))
 const ErinnerungenPage = lazy(() => import('@/pages/ErinnerungenPage'))
+const AdminPage = lazy(() => import('@/pages/AdminPage'))
 
 import PageSkeleton from '@/components/PageSkeleton'
 
@@ -163,6 +165,16 @@ function App() {
                 <Route path="bescheid-archiv" element={<BescheidArchivPage />} />
                 <Route path="kosten" element={<KostenUebersichtPage />} />
                 <Route path="erinnerungen" element={<ErinnerungenPage />} />
+
+                {/* Admin (nur fuer role='admin' oder 'support') */}
+                <Route
+                  path="admin"
+                  element={
+                    <AdminRoute>
+                      <AdminPage />
+                    </AdminRoute>
+                  }
+                />
 
                 {/* Auth */}
                 <Route path="login" element={<LoginPage />} />

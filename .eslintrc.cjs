@@ -19,4 +19,21 @@ module.exports = {
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
     ],
   },
+  overrides: [
+    {
+      // shadcn/ui-Komponenten exportieren Komponenten + Varianten im
+      // selben File. Context-Provider exportieren Provider + Hook.
+      // Beide Patterns sind by-design, kein Problem fuer Production-Builds.
+      files: [
+        'src/components/ui/badge.tsx',
+        'src/components/ui/button.tsx',
+        'src/contexts/AuthContext.tsx',
+        'src/contexts/CreditsContext.tsx',
+        'src/contexts/ThemeContext.tsx',
+      ],
+      rules: {
+        'react-refresh/only-export-components': 'off',
+      },
+    },
+  ],
 }

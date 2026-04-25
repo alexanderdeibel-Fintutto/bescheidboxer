@@ -1,16 +1,30 @@
 import Stripe from 'stripe'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import { sendSubscriptionConfirmedMail, sendSubscriptionCancelledMail } from './_lib/email'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-02-24.acacia',
-})
+// Lazy-Init: ENV-Asserts auf Top-Level fuehrten bei fehlenden ENVs zu
+// FUNCTION_INVOCATION_FAILED, weil das Modul beim Laden crasht. Stattdessen
+// Init im Handler — dann koennen wir saubere 500-Responses zurueckgeben.
+let _stripe: Stripe | null = null
+let _supabase: SupabaseClient | null = null
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getStripe(): Stripe {
+  if (_stripe) return _stripe
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) throw new Error('STRIPE_SECRET_KEY env var missing')
+  _stripe = new Stripe(key, { apiVersion: '2025-02-24.acacia' })
+  return _stripe
+}
+
+function getSupabase(): SupabaseClient {
+  if (_supabase) return _supabase
+  const url = process.env.SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !key) throw new Error('SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY missing')
+  _supabase = createClient(url, key)
+  return _supabase
+}
 
 export const config = {
   api: {
@@ -109,7 +123,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const buf = await buffer(req)
-    event = stripe.webhooks.constructEvent(buf, sig, webhookSecret)
+    event = getStripe().webhooks.constructEvent(buf, sig, webhookSecret)
   } catch (err) {
     console.error('Webhook signature verification failed:', err)
     return res.status(400).json({ error: 'Webhook signature verification failed' })
@@ -182,7 +196,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             break
           }
 
-          await supabase.from('bb_credit_transactions').insert({
+          await getSupabase().from('bb_credit_transactions').insert({
             user_id: userId,
             amount: creditsAmount,
             type: 'topup',
@@ -235,7 +249,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           console.error('Error updating bb_user_state:', updateErr)
         }
 
-        await supabase.from('bb_credit_transactions').insert({
+        await getSupabase().from('bb_credit_transactions').insert({
           user_id: userId,
           amount: creditsPerMonth,
           type: 'subscription_credit',
@@ -275,7 +289,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             })
             .eq('user_id', state.user_id)
 
-          await supabase.from('bb_credit_transactions').insert({
+          await getSupabase().from('bb_credit_transactions').insert({
             user_id: state.user_id,
             amount: creditsPerMonth,
             type: 'subscription_credit',

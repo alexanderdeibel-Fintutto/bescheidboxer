@@ -70,7 +70,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       ],
       success_url: `${origin}/dashboard?checkout=success&kind=credits&credits=${creditsInt}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/preise?checkout=cancel`,
-      ...(customerId ? { customer: customerId } : { customer_email: userEmail || undefined }),
+      ...(customerId
+        ? {
+            customer: customerId,
+            customer_update: { name: 'auto', address: 'auto' },
+          }
+        : { customer_email: userEmail || undefined }),
       metadata: {
         app: 'bescheidboxer',
         kind: 'credits',

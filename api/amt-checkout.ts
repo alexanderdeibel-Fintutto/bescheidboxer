@@ -86,7 +86,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       ],
       success_url: `${origin}/dashboard?checkout=success&plan=${planId}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/preise?checkout=cancel`,
-      ...(customerId ? { customer: customerId } : { customer_email: userEmail || undefined }),
+      ...(customerId
+        ? {
+            customer: customerId,
+            // Stripe Accounts V2: bei existing-customer + tax_id_collection
+            // muss man Stripe erlauben, Name/Address am Customer zu updaten.
+            customer_update: { name: 'auto', address: 'auto' },
+          }
+        : { customer_email: userEmail || undefined }),
       metadata: {
         app: 'bescheidboxer',
         userId: userId || '',

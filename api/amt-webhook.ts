@@ -347,6 +347,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({ received: true })
   } catch (error) {
     console.error('BescheidBoxer webhook error:', error)
-    return res.status(500).json({ error: 'Webhook handler failed' })
+    return res.status(500).json({
+      error: 'Webhook handler failed',
+      details: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack?.split('\n').slice(0, 5).join(' | ') : undefined,
+    })
   }
 }

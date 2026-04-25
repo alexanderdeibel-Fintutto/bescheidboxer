@@ -37,6 +37,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       })
     }
 
+    // Robuster Origin-Fallback (siehe amt-checkout.ts)
+    const proto = (req.headers['x-forwarded-proto'] as string) || 'https'
+    const host = (req.headers['x-forwarded-host'] as string) || (req.headers.host as string)
+    const origin =
+      (req.headers.origin as string) ||
+      (host ? `${proto}://${host}` : 'https://app.bescheidboxer.de')
+
+    // Stripe Accounts V2: Customer pre-create (siehe amt-checkout.ts)
+    let customerId: string | undefined
+    if (userEmail) {
+      const existing = await stripe.customers.list({ email: userEmail, limit: 1 })
+      if (existing.data.length > 0) {
+        customerId = existing.data[0].id
+      } else {
+        const created = await stripe.customers.create({
+          email: userEmail,
+          metadata: { app: 'bescheidboxer', userId },
+        })
+        customerId = created.id
+      }
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
@@ -46,9 +68,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           quantity: 1,
         },
       ],
-      success_url: `${req.headers.origin}/dashboard?checkout=success&kind=credits&credits=${creditsInt}&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.origin}/preise?checkout=cancel`,
-      customer_email: userEmail || undefined,
+      success_url: `${origin}/dashboard?checkout=success&kind=credits&credits=${creditsInt}&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/preise?checkout=cancel`,
+      ...(customerId ? { customer: customerId } : { customer_email: userEmail || undefined }),
       metadata: {
         app: 'bescheidboxer',
         kind: 'credits',

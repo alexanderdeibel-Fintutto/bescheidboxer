@@ -1,7 +1,12 @@
 import Stripe from 'stripe'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
-import { sendSubscriptionConfirmedMail, sendSubscriptionCancelledMail } from './_lib/email'
+// HINWEIS: Email-Helper ist temporaer rausgezogen, weil Vercel den
+// 'api/_lib/'-Subfolder nicht ins Function-Bundle inkludiert
+// (FUNCTION_INVOCATION_FAILED zur Runtime). Mails sind nice-to-have und
+// kommen wieder rein, sobald wir _lib auf einen anderen Pfad migriert haben.
+async function sendSubscriptionConfirmedMail(_to: string, _planId: string, _credits: number) { /* stub */ }
+async function sendSubscriptionCancelledMail(_to: string) { /* stub */ }
 
 // Lazy-Init: ENV-Asserts auf Top-Level fuehrten bei fehlenden ENVs zu
 // FUNCTION_INVOCATION_FAILED, weil das Modul beim Laden crasht. Stattdessen

@@ -70,7 +70,7 @@ async function resolveBbUser(
   customerEmail: string | null | undefined,
 ): Promise<string | null> {
   if (userIdFromMeta) {
-    const { data: p } = await supabase
+    const { data: p } = await getSupabase()
       .from('profiles')
       .select('id')
       .eq('id', userIdFromMeta)
@@ -79,7 +79,7 @@ async function resolveBbUser(
   }
 
   if (customerEmail) {
-    const { data: p } = await supabase
+    const { data: p } = await getSupabase()
       .from('profiles')
       .select('id')
       .eq('email', customerEmail)
@@ -96,14 +96,14 @@ async function resolveBbUser(
  * irgendeinen Edge-Case nicht gefeuert hat.
  */
 async function ensureBbUserState(userId: string) {
-  const { data } = await supabase
+  const { data } = await getSupabase()
     .from('bb_user_state')
     .select('user_id, plan, credits_current')
     .eq('user_id', userId)
     .maybeSingle()
   if (data) return data
 
-  const { data: created, error } = await supabase
+  const { data: created, error } = await getSupabase()
     .from('bb_user_state')
     .insert({ user_id: userId })
     .select('user_id, plan, credits_current')
@@ -191,7 +191,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           const currentCredits = Number(state.credits_current) || 0
           const newBalance = currentCredits + creditsAmount
 
-          const { error: updErr } = await supabase
+          const { error: updErr } = await getSupabase()
             .from('bb_user_state')
             .update({ credits_current: newBalance })
             .eq('user_id', userId)
@@ -245,7 +245,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           period_end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
         }
 
-        const { error: updateErr } = await supabase
+        const { error: updateErr } = await getSupabase()
           .from('bb_user_state')
           .update(updateData)
           .eq('user_id', userId)
@@ -274,7 +274,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const invoice = event.data.object as Stripe.Invoice
         const customerId = invoice.customer as string
 
-        const { data: state } = await supabase
+        const { data: state } = await getSupabase()
           .from('bb_user_state')
           .select('user_id, plan')
           .eq('stripe_customer_id', customerId)
@@ -283,7 +283,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (state && state.plan !== 'schnupperer') {
           const creditsPerMonth = PLAN_CREDITS[state.plan] || 0
 
-          await supabase
+          await getSupabase()
             .from('bb_user_state')
             .update({
               credits_current: creditsPerMonth,
@@ -309,14 +309,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const subscription = event.data.object as Stripe.Subscription
         const customerId = subscription.customer as string
 
-        const { data: state } = await supabase
+        const { data: state } = await getSupabase()
           .from('bb_user_state')
           .select('user_id')
           .eq('stripe_customer_id', customerId)
           .single()
 
         if (state) {
-          await supabase
+          await getSupabase()
             .from('bb_user_state')
             .update({
               plan: 'schnupperer',
@@ -328,7 +328,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             .eq('user_id', state.user_id)
 
           // Fuer die Abo-Cancel-Mail brauchen wir die E-Mail aus profiles.
-          const { data: p } = await supabase
+          const { data: p } = await getSupabase()
             .from('profiles')
             .select('email')
             .eq('id', state.user_id)

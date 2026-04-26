@@ -44,108 +44,62 @@ import {
 } from '@/lib/gamification'
 
 // ---------------------------------------------------------------------------
-// Demo data
+// Defaults fuer NEUE User (vor erster Nutzung). Werden ggf. spaeter durch
+// echte bb_user_state / bb_credit_transactions / bescheid_scans-Daten ersetzt.
 // ---------------------------------------------------------------------------
 
-const DEMO_POINTS = 350
-const DEMO_MONEY_RECOVERED = 1847.52
+const DEMO_POINTS = 0
+const DEMO_MONEY_RECOVERED = 0
 
-const DEMO_DEADLINES = [
-  {
-    id: '1',
-    title: 'Widerspruch Bewilligungsbescheid 01/2026',
-    dueDate: '2026-02-10',
-    daysLeft: 4,
-    urgent: true,
-  },
-  {
-    id: '2',
-    title: 'Mitwirkungsaufforderung beantworten',
-    dueDate: '2026-02-28',
-    daysLeft: 22,
-    urgent: false,
-  },
-]
+const DEMO_DEADLINES: {
+  id: string
+  title: string
+  dueDate: string
+  daysLeft: number
+  urgent: boolean
+}[] = []
 
-const DEMO_SCANS = [
-  {
-    id: '1',
-    title: 'Bewilligungsbescheid Feb 2026',
-    date: '2026-02-04',
-    errorsFound: 3,
-    potentialRecovery: 127.5,
-    status: 'fehler_gefunden' as const,
-  },
-  {
-    id: '2',
-    title: 'Aenderungsbescheid KdU Jan 2026',
-    date: '2026-01-22',
-    errorsFound: 1,
-    potentialRecovery: 48.0,
-    status: 'fehler_gefunden' as const,
-  },
-  {
-    id: '3',
-    title: 'Erstbescheid Dez 2025',
-    date: '2025-12-15',
-    errorsFound: 0,
-    potentialRecovery: 0,
-    status: 'korrekt' as const,
-  },
-]
+const DEMO_SCANS: {
+  id: string
+  title: string
+  date: string
+  errorsFound: number
+  potentialRecovery: number
+  status: 'fehler_gefunden' | 'korrekt'
+}[] = []
 
-const DEMO_LETTERS = [
-  {
-    id: '1',
-    title: 'Widerspruch gegen Bewilligungsbescheid',
-    date: '2026-02-05',
-    type: 'widerspruch' as const,
-    status: 'versendet' as const,
-  },
-  {
-    id: '2',
-    title: 'Antrag auf Uebernahme der Heizkosten-Nachforderung',
-    date: '2026-01-20',
-    type: 'antrag' as const,
-    status: 'entwurf' as const,
-  },
-]
+const DEMO_LETTERS: {
+  id: string
+  title: string
+  date: string
+  type: 'widerspruch' | 'antrag'
+  status: 'versendet' | 'entwurf'
+}[] = []
 
-const DEMO_BADGES = [
-  { id: 'erster_scan', name: 'Erster Scan', icon: '🔍' },
-  { id: 'erster_widerspruch', name: 'Erster Widerspruch', icon: '✊' },
-  { id: 'geld_zurueck', name: 'Geld zurueck!', icon: '💰' },
-  { id: 'rechte_kenner', name: 'Rechte-Kenner', icon: '📚' },
-]
+const DEMO_BADGES: { id: string; name: string; icon: string }[] = []
 
+// Community-Stats: bleiben bewusst leicht "marketing-mockig" weil Forum noch
+// nicht live ist. Werden auf echte Werte umgestellt sobald Forum aktiv.
 const DEMO_COMMUNITY_STATS = {
-  totalMembers: 3842,
-  widerspruchSuccess: 68,
-  moneyRecoveredTotal: 487320,
-  activeThreads: 127,
+  totalMembers: 0,
+  widerspruchSuccess: 0,
+  moneyRecoveredTotal: 0,
+  activeThreads: 0,
 }
 
-const DEMO_TIPS = [
+const DEMO_TIPS: {
+  id: string
+  text: string
+  priority: 'high' | 'medium' | 'low'
+  action: string
+  actionLabel: string
+}[] = [
   {
-    id: '1',
-    text: 'Dein Bewilligungsbescheid hat 3 Fehler. Lege jetzt Widerspruch ein, bevor die Frist am 10.02. ablaeuft!',
-    priority: 'high' as const,
-    action: '/generator/widerspruch',
-    actionLabel: 'Widerspruch erstellen',
-  },
-  {
-    id: '2',
-    text: 'Tipp: Pruefe, ob deine Heizkosten vollstaendig uebernommen werden. Viele Jobcenter kuerzen hier rechtswidrig.',
-    priority: 'medium' as const,
-    action: '/chat',
-    actionLabel: 'KI-Chat fragen',
-  },
-  {
-    id: '3',
-    text: 'Du hast 4 Badges! Noch 1 Badge bis zum naechsten Punktebonus. Hilf im Forum, um den "Helfer"-Badge zu bekommen.',
-    priority: 'low' as const,
-    action: '/forum',
-    actionLabel: 'Zum Forum',
+    id: 'welcome',
+    text: 'Willkommen! Lade deinen ersten Bescheid hoch — die KI checkt ihn in unter einer Minute auf Fehler.',
+    priority: 'medium',
+    action: '/scan',
+    actionLabel: 'Bescheid scannen',
   },
 ]
 

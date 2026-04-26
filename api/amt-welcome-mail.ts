@@ -1,8 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-// HINWEIS: '_lib/email' wird von Vercel nicht ins Function-Bundle inkludiert
-// — Mail-Funktion ist temporaer ein 200-Stub, bis die Helper auf einen
-// gueltigen Pfad migriert sind.
-async function sendWelcomeMail(_to: string, _name?: string) { /* stub */ }
+import { sendWelcomeMail } from './_email'
 
 /**
  * POST /api/amt-welcome-mail

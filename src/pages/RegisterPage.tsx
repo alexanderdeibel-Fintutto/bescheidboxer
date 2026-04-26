@@ -31,7 +31,28 @@ export default function RegisterPage() {
       await signUp(email, password, name)
       navigate('/dashboard')
     } catch (err) {
-      setError('Registrierung fehlgeschlagen. Bitte versuche es erneut.')
+      // Fehler-Message von Supabase parsen
+      const msg = err instanceof Error ? err.message.toLowerCase() : ''
+      if (
+        msg.includes('already') ||
+        msg.includes('user_already_exists') ||
+        msg.includes('exists') ||
+        msg.includes('registered')
+      ) {
+        setError(
+          'Diese E-Mail ist bereits registriert. Logge dich bitte ein statt neu zu registrieren.',
+        )
+      } else if (msg.includes('invalid') || msg.includes('email')) {
+        setError('Bitte pruefe die E-Mail-Adresse.')
+      } else if (msg.includes('password')) {
+        setError('Passwort zu schwach. Bitte mindestens 8 Zeichen, Buchstaben + Zahlen.')
+      } else {
+        setError(
+          err instanceof Error && err.message
+            ? `Registrierung fehlgeschlagen: ${err.message}`
+            : 'Registrierung fehlgeschlagen. Bitte versuche es spaeter erneut.',
+        )
+      }
     } finally {
       setIsLoading(false)
     }

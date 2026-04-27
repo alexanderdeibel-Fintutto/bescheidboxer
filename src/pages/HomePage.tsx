@@ -127,9 +127,10 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              BescheidBoxer scannt deinen Bescheid, findet jeden Fehler und
-              erstellt dir den passenden Widerspruch. KI-gestuetzt, blitzschnell,
-              verstaendlich.
+              BescheidBoxer scannt deinen Bescheid mit KI, findet jeden Fehler
+              und erstellt dir den passenden Widerspruch.
+              <br />
+              <strong className="text-foreground">Blitzschnell. Verstaendlich. Rechtssicher.</strong>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="xl" className="gradient-boxer text-white border-0 hover:opacity-90" asChild>

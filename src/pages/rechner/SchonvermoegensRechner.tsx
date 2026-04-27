@@ -7,6 +7,7 @@ import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 export default function SchonvermoegensRechner() {
   const [alter, setAlter] = useState(30)
@@ -231,6 +232,14 @@ export default function SchonvermoegensRechner() {
               <Link to="/rechner/buergergeld"><Button variant="outline" className="w-full">Buergergeld berechnen</Button></Link>
               <Link to="/chat"><Button variant="outline" className="w-full">KI-Berater fragen</Button></Link>
               <Link to="/rechner"><Button variant="outline" className="w-full">Alle Rechner</Button></Link>
+              {result && (
+                <SaveCalculationButton
+                  toolId="schonvermoegen"
+                  toolType="rechner"
+                  inputData={{ alter, vermoegen, altersvorsorge }}
+                  resultData={JSON.parse(JSON.stringify(result)) as Record<string, unknown>}
+                />
+              )}
             </div>
           </div>
         )}

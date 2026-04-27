@@ -8,6 +8,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 const ERSTAUSSTATTUNG_KATEGORIEN = [
   {
@@ -262,6 +263,17 @@ export default function ErstausstattungsRechner() {
                       Antrag erstellen
                     </Link>
                   </Button>
+                  <SaveCalculationButton
+                    toolId="erstausstattung"
+                    toolType="rechner"
+                    inputData={{ selectedItems }}
+                    resultData={{
+                      durchschnitt: totals.avgTotal,
+                      minimum: totals.minTotal,
+                      maximum: totals.maxTotal,
+                      anzahl_posten: totals.count,
+                    }}
+                  />
                   <Button asChild variant="outline" className="flex-1">
                     <Link to="/chat" className="flex items-center justify-center gap-2">
                       Im Chat besprechen

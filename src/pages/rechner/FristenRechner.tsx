@@ -5,6 +5,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 type FristTyp = 'widerspruch' | 'klage' | 'ueberpruefung' | 'eilantrag' | 'berufung' | 'anhoerung' | 'mitwirkung'
 
@@ -448,6 +449,18 @@ export default function FristenRechner() {
                 >
                   <Share2 className="w-4 h-4 mr-2" />Teilen
                 </Button>
+                <SaveCalculationButton
+                  toolId="fristen"
+                  toolType="rechner"
+                  inputData={{ bescheidDatum, fristTyp, perPost }}
+                  resultData={{
+                    fristende: ergebnis.fristende.toISOString(),
+                    tage_verbleibend: ergebnis.tageVerbleibend,
+                    frist_dauer: ergebnis.fristDauer,
+                    paragraph: ergebnis.paragraph,
+                    keine_starre_frist: ergebnis.keineStarreFrist,
+                  }}
+                />
               </div>
             </div>
           </div>

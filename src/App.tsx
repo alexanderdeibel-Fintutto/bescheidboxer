@@ -73,6 +73,7 @@ const BescheidArchivPage = lazy(() => import('@/pages/BescheidArchivPage'))
 const KostenUebersichtPage = lazy(() => import('@/pages/KostenUebersichtPage'))
 const ErinnerungenPage = lazy(() => import('@/pages/ErinnerungenPage'))
 const MeineBerechnungenPage = lazy(() => import('@/pages/MeineBerechnungenPage'))
+const WiderspruchJobcenterPage = lazy(() => import('@/pages/WiderspruchJobcenterPage'))
 const AdminPage = lazy(() => import('@/pages/AdminPage'))
 
 import PageSkeleton from '@/components/PageSkeleton'
@@ -135,6 +136,9 @@ function App() {
 
                 {/* Widerspruch-Tracker */}
                 <Route path="tracker" element={<WiderspruchTracker />} />
+
+                {/* Widerspruch Jobcenter SEO-Landing */}
+                <Route path="widerspruch/jobcenter" element={<WiderspruchJobcenterPage />} />
 
                 {/* Probleme-Guide */}
                 <Route path="probleme" element={<ProblemePage />} />

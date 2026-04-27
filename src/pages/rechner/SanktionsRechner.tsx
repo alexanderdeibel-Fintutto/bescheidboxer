@@ -210,6 +210,101 @@ export default function SanktionsRechner() {
             </div>
           </div>
         </div>
+
+        {/* === SEO-CONTENT-BLOCK fuer buergergeld-sanktion.de ============ */}
+        <article className="mt-12 space-y-8 max-w-3xl mx-auto">
+          <header className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              Sanktion vom Jobcenter? Pruefe deine Rechte
+            </h2>
+            <p className="text-lg text-gray-600">
+              Das Jobcenter hat dich sanktioniert? In den meisten Faellen lohnt sich ein Widerspruch —
+              wir zeigen dir, wann eine Sanktion rechtswidrig ist und wie du sie anfichst.
+            </p>
+          </header>
+
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-3">Was sind Buergergeld-Sanktionen?</h3>
+            <p className="text-gray-700 leading-relaxed">
+              Sanktionen sind <strong>Kuerzungen des Regelsatzes</strong>, die das Jobcenter bei
+              Pflichtverletzungen verhaengen kann (§ 31 SGB II). Seit der Reform 2023 ist die maximale
+              Kuerzung auf <strong>30%</strong> begrenzt — frueher waren bis zu 100% moeglich.
+              Die Kosten der Unterkunft (KdU) duerfen nicht mehr gekuerzt werden.
+            </p>
+          </section>
+
+          <section className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <h3 className="font-semibold text-xl mb-3 text-amber-900">Wann ist eine Sanktion rechtswidrig?</h3>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2">
+              <li><strong>Keine Anhoerung</strong> vor Erlass des Bescheids (§ 24 SGB X) — pflichtwidrig</li>
+              <li><strong>Wichtiger Grund</strong> lag vor (Krankheit, Kinderbetreuung, Familienangehoerigen-Pflege)</li>
+              <li><strong>Massnahme war unzumutbar</strong> (z.B. uebermaessig weit, gesundheitsschaedlich)</li>
+              <li><strong>Frist abgelaufen</strong> — Sanktion muss innerhalb von 6 Monaten verhaengt werden</li>
+              <li><strong>Form-/Begruendungsfehler</strong> im Sanktionsbescheid</li>
+            </ul>
+          </section>
+
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-4">FAQ Sanktion</h3>
+            <div className="space-y-5">
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Wie lange dauert eine Sanktion?</h4>
+                <p className="text-sm text-gray-700">
+                  In der Regel <strong>1 Monat</strong> bei Meldeversaeumnis, <strong>2 Monate</strong> bei zweiter
+                  Pflichtverletzung, <strong>3 Monate</strong> bei dritter und weiteren Pflichtverletzungen.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Bekomme ich Geld zurueck wenn ich Widerspruch einlege?</h4>
+                <p className="text-sm text-gray-700">
+                  Ein Widerspruch hat <strong>keine aufschiebende Wirkung</strong> — du musst ggf. einen
+                  Eilantrag beim Sozialgericht stellen. Bei Erfolg wird die Sanktion rueckwirkend zurueckgenommen
+                  und das Geld nachgezahlt.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Was ist die "Meldepflicht"?</h4>
+                <p className="text-sm text-gray-700">
+                  Du musst zu allen Terminen erscheinen, zu denen das Jobcenter dich vorlaedt — z.B.
+                  Beratungsgespraeche, Massnahmen-Termine. Versaeumst du einen Termin ohne wichtigen Grund,
+                  drohen 10% Kuerzung fuer einen Monat (§ 32 SGB II).
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Verstoesst eine Sanktion gegen die Verfassung?</h4>
+                <p className="text-sm text-gray-700">
+                  Das BVerfG hat 2019 (1 BvL 7/16) entschieden: Sanktionen <strong>ueber 30%</strong> sind
+                  verfassungswidrig. Die Reform 2023 hat das gesetzlich umgesetzt. Volle Streichung
+                  des Existenzminimums ist nicht mehr moeglich.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-lg p-6 gradient-boxer text-white">
+            <h3 className="text-xl font-bold mb-2">Sanktionsbescheid erhalten?</h3>
+            <p className="opacity-90 mb-4">
+              Lade ihn zur KI-Pruefung hoch — wir zeigen dir in unter einer Minute, ob die Sanktion
+              rechtmaessig ist und erstellen dir den Widerspruch.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/scan">
+                <Button size="lg" className="bg-white text-red-700 hover:bg-white/90">
+                  Sanktionsbescheid pruefen
+                </Button>
+              </Link>
+              <Link to="/generator/widerspruch_sanktion">
+                <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10">
+                  Widerspruch erstellen
+                </Button>
+              </Link>
+            </div>
+          </section>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-600 text-center">
+            Rechtsgrundlage: § 31, § 31a, § 32 SGB II — Pflichtverletzungen + Sanktionen
+          </div>
+        </article>
       </div>
     </div>
   )

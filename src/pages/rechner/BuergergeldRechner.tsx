@@ -613,12 +613,13 @@ export default function BuergergeldRechner() {
                   toolType="rechner"
                   inputData={{ mitglieder, kaltmiete, nebenkosten, heizkosten, plz }}
                   resultData={{
-                    gesamtBedarf: ergebnis.gesamtBedarf,
-                    gesamtAnspruch: ergebnis.gesamtAnspruch,
-                    regelsatz: ergebnis.regelsatz,
-                    kdu: ergebnis.kdu,
-                    mehrbedarfe: ergebnis.mehrbedarfe,
-                    einkommen: ergebnis.einkommen,
+                    bedarf_gesamt: ergebnis.bedarfGesamt,
+                    anspruch: ergebnis.anspruch,
+                    regelbedarf_gesamt: ergebnis.regelbedarfGesamt,
+                    mehrbedarf_gesamt: ergebnis.mehrbedarfGesamt,
+                    kdu_gesamt: ergebnis.kduGesamt,
+                    kdu_angemessen: ergebnis.kduAngemessen,
+                    einkommen_anrechenbar: ergebnis.einkommenAnrechenbar,
                   }}
                 />
               )}

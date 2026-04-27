@@ -293,7 +293,7 @@ export default function BescheidScanPage() {
 
       // Backend liefert direkt ScanResult-shape via "errors" — oder das alte Cloud-shape
       // mit "fehler"/"korrekt". Beide Wege absichern.
-      const a = data.analysis as Record<string, unknown>
+      const a = data.analysis as unknown as Record<string, unknown>
       let errors: ScanError[] = []
       if (Array.isArray(a.errors)) {
         errors = a.errors as ScanError[]

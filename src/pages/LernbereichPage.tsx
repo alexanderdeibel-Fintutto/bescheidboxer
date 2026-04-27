@@ -63,31 +63,31 @@ const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; color: string; bg: 
 const MODULE_DATA: LernModul[] = [
   {
     id: 'buergergeld-grundlagen',
-    title: 'Buergergeld-Grundlagen',
-    description: 'Was ist Buergergeld, wer hat Anspruch und wie hoch sind die Regelsaetze 2025? Der perfekte Einstieg in das Thema Grundsicherung.',
+    title: 'Bürgergeld-Grundlagen',
+    description: 'Was ist Bürgergeld, wer hat Anspruch und wie hoch sind die Regelsaetze 2025? Der perfekte Einstieg in das Thema Grundsicherung.',
     icon: BookOpen,
     difficulty: 'einsteiger',
     estimatedMinutes: 15,
     paragraphs: ['§ 7 SGB II', '§ 19 SGB II', '§ 20 SGB II', '§ 37 SGB II'],
     relatedTools: [
-      { label: 'Buergergeld-Rechner', to: '/rechner/buergergeld' },
+      { label: 'Bürgergeld-Rechner', to: '/rechner/buergergeld' },
       { label: 'KI-Berater', to: '/chat' },
     ],
     sections: [
       {
-        title: 'Was ist Buergergeld?',
-        content: `Das Buergergeld ist seit dem 1. Januar 2023 die Grundsicherung fuer erwerbsfaehige Leistungsberechtigte in Deutschland. Es loeste das fruehere Arbeitslosengeld II (umgangssprachlich "Hartz IV") ab und ist im Zweiten Buch Sozialgesetzbuch (SGB II) geregelt. Im Kern sichert das Buergergeld das Existenzminimum: Es soll sicherstellen, dass jeder Mensch in Deutschland ein menschenwuerdiges Leben fuehren kann, auch wenn das eigene Einkommen oder Vermoegen dafuer nicht ausreicht.
+        title: 'Was ist Bürgergeld?',
+        content: `Das Bürgergeld ist seit dem 1. Januar 2023 die Grundsicherung für erwerbsfaehige Leistungsberechtigte in Deutschland. Es loeste das fruehere Arbeitslosengeld II (umgangssprachlich "Hartz IV") ab und ist im Zweiten Buch Sozialgesetzbuch (SGB II) geregelt. Im Kern sichert das Bürgergeld das Existenzminimum: Es soll sicherstellen, dass jeder Mensch in Deutschland ein menschenwuerdiges Leben fuehren kann, auch wenn das eigene Einkommen oder Vermoegen dafuer nicht ausreicht.
 
-Im Unterschied zum frueheren System setzt das Buergergeld staerker auf Vertrauen und Kooperation. Die sogenannte Karenzzeit von 12 Monaten schuetzt Neuantragsteller davor, sofort ihre Wohnung aufgeben oder ihr Erspartes aufbrauchen zu muessen. Das Buergergeld ist keine Almose, sondern ein Rechtsanspruch. Jeder, der die Voraussetzungen erfuellt, hat ein gesetzliches Recht auf diese Leistung.
+Im Unterschied zum frueheren System setzt das Bürgergeld stärker auf Vertrauen und Kooperation. Die sogenannte Karenzzeit von 12 Monaten schuetzt Neuantragsteller davor, sofort ihre Wohnung aufgeben oder ihr Erspartes aufbrauchen zu muessen. Das Bürgergeld ist keine Almose, sondern ein Rechtsanspruch. Jeder, der die Voraussetzungen erfuellt, hat ein gesetzliches Recht auf diese Leistung.
 
-Zustaendig fuer die Bewilligung und Auszahlung sind die oertlichen Jobcenter. Diese sind gemeinsame Einrichtungen der Bundesagentur fuer Arbeit und der Kommunen. Bei Fragen oder Problemen ist das Jobcenter Ihr erster Ansprechpartner - aber nicht der einzige. Sozialverbaende wie der VdK, der SoVD oder Beratungsstellen der Caritas und Diakonie bieten ebenfalls Unterstuetzung.`,
-        tip: 'Auch wenn Sie nur teilweise hilfebeduerft ig sind (z.B. Ihr Einkommen reicht fast, aber nicht ganz), koennen Sie "aufstockend" Buergergeld erhalten. Pruefen Sie Ihren Anspruch mit unserem Buergergeld-Rechner.',
+Zustaendig für die Bewilligung und Auszahlung sind die oertlichen Jobcenter. Diese sind gemeinsame Einrichtungen der Bundesagentur für Arbeit und der Kommunen. Bei Fragen oder Problemen ist das Jobcenter Ihr erster Ansprechpartner - aber nicht der einzige. Sozialverbaende wie der VdK, der SoVD oder Beratungsstellen der Caritas und Diakonie bieten ebenfalls Unterstuetzung.`,
+        tip: 'Auch wenn Sie nur teilweise hilfebeduerft ig sind (z.B. Ihr Einkommen reicht fast, aber nicht ganz), koennen Sie "aufstockend" Bürgergeld erhalten. Pruefen Sie Ihren Anspruch mit unserem Bürgergeld-Rechner.',
       },
       {
-        title: 'Wer hat Anspruch auf Buergergeld?',
-        content: `Die Voraussetzungen fuer den Anspruch auf Buergergeld sind in § 7 Abs. 1 SGB II geregelt. Vier Bedingungen muessen gleichzeitig erfuellt sein:
+        title: 'Wer hat Anspruch auf Bürgergeld?',
+        content: `Die Voraussetzungen für den Anspruch auf Bürgergeld sind in § 7 Abs. 1 SGB II geregelt. Vier Bedingungen muessen gleichzeitig erfuellt sein:
 
-1. Alter: Sie muessen mindestens 15 Jahre alt sein und duerfen die Altersgrenze fuer die Regelaltersrente noch nicht erreicht haben. Diese liegt derzeit bei 67 Jahren (fuer juengere Jahrgaenge).
+1. Alter: Sie muessen mindestens 15 Jahre alt sein und duerfen die Altersgrenze für die Regelaltersrente noch nicht erreicht haben. Diese liegt derzeit bei 67 Jahren (für juengere Jahrgaenge).
 
 2. Erwerbsfaehigkeit: Sie muessen in der Lage sein, mindestens drei Stunden taeglich unter den ueblichen Bedingungen des Arbeitsmarktes zu arbeiten (§ 8 SGB II). Es kommt nicht darauf an, ob Sie tatsaechlich arbeiten, sondern ob Sie grundsaetzlich dazu in der Lage waeren. Auch bei gesundheitlichen Einschraenkungen gelten Sie als erwerbsfaehig, solange die Drei-Stunden-Grenze nicht unterschritten wird.
 
@@ -96,7 +96,7 @@ Zustaendig fuer die Bewilligung und Auszahlung sind die oertlichen Jobcenter. Di
 4. Gewoehnlicher Aufenthalt: Sie muessen Ihren gewoehnlichen Aufenthalt in Deutschland haben. Fuer EU-Buerger und Nicht-EU-Buerger gelten besondere Regelungen bezueglich des Aufenthaltsrechts.
 
 Wichtig: Auch Mitglieder Ihrer Bedarfsgemeinschaft (Partner, Kinder unter 25 im Haushalt) erhalten Leistungen, selbst wenn sie selbst nicht alle Voraussetzungen erfuellen.`,
-        tip: 'Falls Sie nicht erwerbsfaehig sind (z.B. wegen schwerer Krankheit), kommt statt Buergergeld die Grundsicherung im Alter und bei Erwerbsminderung nach SGB XII in Betracht. Lassen Sie sich hierzu beraten.',
+        tip: 'Falls Sie nicht erwerbsfaehig sind (z.B. wegen schwerer Krankheit), kommt statt Bürgergeld die Grundsicherung im Alter und bei Erwerbsminderung nach SGB XII in Betracht. Lassen Sie sich hierzu beraten.',
       },
       {
         title: 'Regelsaetze 2025',
@@ -104,23 +104,23 @@ Wichtig: Auch Mitglieder Ihrer Bedarfsgemeinschaft (Partner, Kinder unter 25 im 
 
 - Regelbedarfsstufe 1 (Alleinstehende / Alleinerziehende): 563 EUR
 - Regelbedarfsstufe 2 (Paare, je Person): 506 EUR
-- Regelbedarfsstufe 3 (erwachsene Mitglieder der Bedarfsgemeinschaft, z.B. ueber-25-jaehrige Kinder): 451 EUR
+- Regelbedarfsstufe 3 (erwachsene Mitglieder der Bedarfsgemeinschaft, z.B. über-25-jaehrige Kinder): 451 EUR
 - Regelbedarfsstufe 4 (Jugendliche 14-17 Jahre): 471 EUR
 - Regelbedarfsstufe 5 (Kinder 6-13 Jahre): 390 EUR
 - Regelbedarfsstufe 6 (Kinder 0-5 Jahre): 357 EUR
 
-Der Regelbedarf deckt folgende Bereiche ab: Ernaehrung, Kleidung, Koerperpflege, Hausrat, Strom (nicht Heizung!), persoenliche Beduerfnisse des taeglichen Lebens sowie in vertretbarem Umfang die Teilnahme am gesellschaftlichen und kulturellen Leben. Nicht vom Regelsatz gedeckt sind die Kosten fuer Unterkunft und Heizung - diese werden gesondert uebernommen.`,
+Der Regelbedarf deckt folgende Bereiche ab: Ernaehrung, Kleidung, Koerperpflege, Hausrat, Strom (nicht Heizung!), persoenliche Beduerfnisse des taeglichen Lebens sowie in vertretbarem Umfang die Teilnahme am gesellschaftlichen und kulturellen Leben. Nicht vom Regelsatz gedeckt sind die Kosten für Unterkunft und Heizung - diese werden gesondert uebernommen.`,
       },
       {
         title: 'Antragstellung',
-        content: `Den Antrag auf Buergergeld stellen Sie beim oertlich zustaendigen Jobcenter (§ 36 SGB II). Die Zustaendigkeit richtet sich nach Ihrem Wohnort. Sie finden Ihr Jobcenter ueber die Webseite der Bundesagentur fuer Arbeit oder durch eine einfache Internetsuche.
+        content: `Den Antrag auf Bürgergeld stellen Sie beim oertlich zustaendigen Jobcenter (§ 36 SGB II). Die Zustaendigkeit richtet sich nach Ihrem Wohnort. Sie finden Ihr Jobcenter über die Webseite der Bundesagentur für Arbeit oder durch eine einfache Internetsuche.
 
 Der Antrag kann formlos gestellt werden - muendlich, per Telefon, per E-Mail oder schriftlich. Es genuegt, wenn Sie Ihren Bedarf an Leistungen zum Ausdruck bringen. Das Jobcenter muss Ihnen dann die offiziellen Antragsformulare aushae ndigen. Nutzen Sie dennoch nach Moeglichkeit den offiziellen Hauptantrag (Formular), da dieser den Prozess beschleunigt.
 
-Besonders wichtig: Der Antrag wirkt auf den Ersten des Monats zurueck, in dem er gestellt wird (§ 37 Abs. 2 SGB II). Wenn Sie am 20. Maerz den Antrag stellen, erhalten Sie Leistungen ab dem 1. Maerz. Deshalb gilt: Stellen Sie den Antrag so frueh wie moeglich, auch wenn noch nicht alle Unterlagen vorliegen. Fehlende Unterlagen koennen nachgereicht werden.
+Besonders wichtig: Der Antrag wirkt auf den Ersten des Monats zurück, in dem er gestellt wird (§ 37 Abs. 2 SGB II). Wenn Sie am 20. Maerz den Antrag stellen, erhalten Sie Leistungen ab dem 1. Maerz. Deshalb gilt: Stellen Sie den Antrag so frueh wie moeglich, auch wenn noch nicht alle Unterlagen vorliegen. Fehlende Unterlagen koennen nachgereicht werden.
 
-Fuer den Antrag benoetigen Sie typischerweise: Personalausweis, Mietvertrag, Kontoauszuege der letzten drei Monate, Nachweise ueber Einkommen und Vermoegen, sowie gegebenenfalls Nachweise ueber besondere Bedarfe (z.B. Schwangerschaft, Behinderung).`,
-        tip: 'Lassen Sie sich bei der Abgabe des Antrags den Eingang schriftlich bestaetigen (Eingangsstempel auf einer Kopie). So haben Sie im Streitfall einen Nachweis ueber den Zeitpunkt der Antragstellung.',
+Fuer den Antrag benoetigen Sie typischerweise: Personalausweis, Mietvertrag, Kontoauszuege der letzten drei Monate, Nachweise über Einkommen und Vermoegen, sowie gegebenenfalls Nachweise über besondere Bedarfe (z.B. Schwangerschaft, Behinderung).`,
+        tip: 'Lassen Sie sich bei der Abgabe des Antrags den Eingang schriftlich bestaetigen (Eingangsstempel auf einer Kopie). So haben Sie im Streitfall einen Nachweis über den Zeitpunkt der Antragstellung.',
       },
     ],
   },
@@ -139,12 +139,12 @@ Fuer den Antrag benoetigen Sie typischerweise: Personalausweis, Mietvertrag, Kon
     sections: [
       {
         title: 'Was sind Kosten der Unterkunft?',
-        content: `Neben dem Regelbedarf haben Sie Anspruch auf Uebernahme der Kosten fuer Unterkunft und Heizung (KdU) nach § 22 SGB II. Diese umfassen Ihre tatsaechlichen Aufwendungen fuer Miete (Kaltmiete plus kalte Nebenkosten) und Heizung, soweit diese angemessen sind.
+        content: `Neben dem Regelbedarf haben Sie Anspruch auf Uebernahme der Kosten für Unterkunft und Heizung (KdU) nach § 22 SGB II. Diese umfassen Ihre tatsaechlichen Aufwendungen für Miete (Kaltmiete plus kalte Nebenkosten) und Heizung, soweit diese angemessen sind.
 
 Zu den Unterkunftskosten zaehlen: die Grundmiete (Nettokaltmiete), die kalten Betriebskosten (Wasser, Abwasser, Muellabfuhr, Hausmeister, Treppenhausreinigung etc.) und die Heizkosten (einschliesslich Warmwasserkosten, sofern diese zentral erzeugt werden). Strom ist hingegen nicht Teil der KdU, sondern muss aus dem Regelsatz bezahlt werden.
 
 Bei selbst genutztem Wohneigentum werden anstelle der Miete die angemessenen Aufwendungen uebernommen: Schuldzinsen (nicht Tilgung!), Grundsteuer, Wohngebaeudeversicherung, Nebenkosten und Heizkosten. Die Tilgung des Darlehens wird nur in Ausnahmefaellen uebernommen, etwa wenn die Immobilie ansonsten verloren ginge und die Gesamtbelastung unter der Mietobergrenze liegt.`,
-        tip: 'Auch wenn Sie Eigentuemer sind, koennen Sie KdU erhalten. Lassen Sie sich nicht abwimmeln - das Jobcenter muss Ihre Aufwendungen pruefen und im Rahmen der Angemessenheit uebernehmen.',
+        tip: 'Auch wenn Sie Eigentuemer sind, koennen Sie KdU erhalten. Lassen Sie sich nicht abwimmeln - das Jobcenter muss Ihre Aufwendungen prüfen und im Rahmen der Angemessenheit uebernehmen.',
       },
       {
         title: 'Angemessenheit der Mietkosten',
@@ -155,20 +155,20 @@ Die als angemessen geltende Wohnflaeche richtet sich nach der Anzahl der Persone
 Fuer die Bestimmung des angemessenen Mietpreises muss das Jobcenter ein sogenanntes "schluessiges Konzept" erstellen. Dieses muss den oertlichen Wohnungsmarkt realistisch abbilden und darf nicht nur auf den untersten Bereich abstellen. Viele Jobcenter verwenden Mietspiegel, qualifizierte Mietspiegel oder eigene Auswertungen. Das Bundessozialgericht hat hohe Anforderungen an diese Konzepte gestellt - viele Jobcenter erfuellen diese nicht, was haeufig zu fehlerhaften Bescheiden fuehrt.
 
 Wenn das Jobcenter kein schluessiges Konzept hat, muss es auf die Tabellenwerte nach § 12 Wohngeldgesetz (WoGG) plus einen Zuschlag von 10% zurueckgreifen. In der Praxis fuehrt dies oft zu hoeheren Mietobergrenzen als die vom Jobcenter angesetzten Werte.`,
-        tip: 'Fragen Sie Ihr Jobcenter schriftlich nach dem "schluessigen Konzept" zur Bestimmung der Mietobergrenze. Kann das Jobcenter keines vorlegen, muessen die WoGG-Tabellenwerte + 10% angewandt werden, was oft guenstiger fuer Sie ist.',
+        tip: 'Fragen Sie Ihr Jobcenter schriftlich nach dem "schluessigen Konzept" zur Bestimmung der Mietobergrenze. Kann das Jobcenter keines vorlegen, muessen die WoGG-Tabellenwerte + 10% angewandt werden, was oft guenstiger für Sie ist.',
       },
       {
         title: 'Die Karenzzeit und Kostensenkungsaufforderung',
-        content: `Seit der Einfuehrung des Buergergeldes gilt eine Karenzzeit von 12 Monaten ab Erstantrag (§ 22 Abs. 1 Satz 2 SGB II). In dieser Zeit werden Ihre tatsaechlichen Unterkunftskosten vollstaendig uebernommen, auch wenn sie ueber der Angemessenheitsgrenze liegen. Nur wenn die Kosten offensichtlich unangemessen hoch sind, kann eine Kuerzung erfolgen - das ist aber ein sehr hoher Massstab.
+        content: `Seit der Einfuehrung des Bürgergeldes gilt eine Karenzzeit von 12 Monaten ab Erstantrag (§ 22 Abs. 1 Satz 2 SGB II). In dieser Zeit werden Ihre tatsaechlichen Unterkunftskosten vollstaendig uebernommen, auch wenn sie über der Angemessenheitsgrenze liegen. Nur wenn die Kosten offensichtlich unangemessen hoch sind, kann eine Kürzung erfolgen - das ist aber ein sehr hoher Massstab.
 
-Nach Ablauf der Karenzzeit, wenn Ihre Kosten als unangemessen gelten, muss das Jobcenter Sie zunaechst zur Kostensenkung auffordern. Diese Kostensenkungsaufforderung muss konkret sein: Das Jobcenter muss Ihnen mitteilen, welche Kosten angemessen waeren und Ihnen eine angemessene Frist einraeumen, in der Regel 6 Monate. Erst nach Ablauf dieser Frist darf das Jobcenter die KdU auf das angemessene Mass kuerzen.
+Nach Ablauf der Karenzzeit, wenn Ihre Kosten als unangemessen gelten, muss das Jobcenter Sie zunaechst zur Kostensenkung auffordern. Diese Kostensenkungsaufforderung muss konkret sein: Das Jobcenter muss Ihnen mitteilen, welche Kosten angemessen waeren und Ihnen eine angemessene Frist einraeumen, in der Regel 6 Monate. Erst nach Ablauf dieser Frist darf das Jobcenter die KdU auf das angemessene Mass kürzen.
 
-Sie sind nicht verpflichtet, sofort umzuziehen. Als Kostensenkungsmassnahmen kommen auch in Betracht: Untervermietung eines Zimmers, Neuverhandlung der Miete mit dem Vermieter, oder der Nachweis, dass keine guenstigere Wohnung verfuegbar ist. Dokumentieren Sie Ihre Bemuehungen (z.B. Suchanfragen auf Immobilienportalen, Absagen von Vermietern).`,
-        tip: 'Bewahren Sie alle Nachweise ueber Ihre Wohnungssuche auf: Screenshots von Suchanfragen, Absagen, Bewerbungen. Wenn trotz nachweislicher Bemuehungen keine guenstigere Wohnung zu finden ist, muss das Jobcenter weiterhin die hoeheren Kosten tragen.',
+Sie sind nicht verpflichtet, sofort umzuziehen. Als Kostensenkungsmassnahmen kommen auch in Betracht: Untervermietung eines Zimmers, Neuverhandlung der Miete mit dem Vermieter, oder der Nachweis, dass keine guenstigere Wohnung verfuegbar ist. Dokumentieren Sie Ihre Bemühungen (z.B. Suchanfragen auf Immobilienportalen, Absagen von Vermietern).`,
+        tip: 'Bewahren Sie alle Nachweise über Ihre Wohnungssuche auf: Screenshots von Suchanfragen, Absagen, Bewerbungen. Wenn trotz nachweislicher Bemühungen keine guenstigere Wohnung zu finden ist, muss das Jobcenter weiterhin die hoeheren Kosten tragen.',
       },
       {
         title: 'Heizkosten und Nachzahlungen',
-        content: `Die Heizkosten werden grundsaetzlich in tatsaechlicher Hoehe uebernommen, sofern sie nicht unangemessen hoch sind. Als Orientierung dient der bundesweite oder kommunale Heizspiegel. Liegen Ihre Heizkosten deutlich ueber dem Durchschnitt, kann das Jobcenter eine Absenkung verlangen - muss dabei aber die konkreten Umstaende beruecksichtigen (z.B. schlechte Isolation, Altbau, Dachgeschoss).
+        content: `Die Heizkosten werden grundsaetzlich in tatsaechlicher Höhe uebernommen, sofern sie nicht unangemessen hoch sind. Als Orientierung dient der bundesweite oder kommunale Heizspiegel. Liegen Ihre Heizkosten deutlich über dem Durchschnitt, kann das Jobcenter eine Absenkung verlangen - muss dabei aber die konkreten Umstaende beruecksichtigen (z.B. schlechte Isolation, Altbau, Dachgeschoss).
 
 Besonders wichtig sind Nebenkostennachzahlungen: Nach § 22 Abs. 1 SGB II werden auch Nachzahlungen aus der jaehrlichen Betriebskostenabrechnung als tatsaechliche Kosten der Unterkunft uebernommen - sofern die Gesamtkosten angemessen sind. Legen Sie die Nebenkostenabrechnung daher immer dem Jobcenter vor und beantragen Sie die Uebernahme der Nachzahlung.
 
@@ -191,30 +191,30 @@ Erhalten Sie hingegen ein Guthaben aus der Betriebskostenabrechnung, wird dieses
     sections: [
       {
         title: 'Aufbau eines Bewilligungsbescheids',
-        content: `Ein Bewilligungsbescheid ueber Buergergeld ist ein Verwaltungsakt nach § 31 SGB X. Er besteht aus mehreren Bestandteilen, die Sie kennen sollten, um Fehler erkennen zu koennen:
+        content: `Ein Bewilligungsbescheid über Bürgergeld ist ein Verwaltungsakt nach § 31 SGB X. Er besteht aus mehreren Bestandteilen, die Sie kennen sollten, um Fehler erkennen zu koennen:
 
 1. Kopf/Adressfeld: Ihr Name, Adresse und Ihr Aktenzeichen (BG-Nummer). Pruefen Sie, ob die Bedarfsgemeinschaft korrekt erfasst ist - fehlen Personen, fehlt auch deren Bedarf.
 
-2. Tenor/Verfuegungssatz: Die eigentliche Entscheidung, z.B. "Ihnen wird Buergergeld in Hoehe von XXX EUR monatlich fuer den Zeitraum XX.XX.XXXX bis XX.XX.XXXX bewilligt." Hier steht der Bewilligungszeitraum (in der Regel 6 oder 12 Monate) und die monatliche Gesamtleistung.
+2. Tenor/Verfuegungssatz: Die eigentliche Entscheidung, z.B. "Ihnen wird Bürgergeld in Höhe von XXX EUR monatlich für den Zeitraum XX.XX.XXXX bis XX.XX.XXXX bewilligt." Hier steht der Bewilligungszeitraum (in der Regel 6 oder 12 Monate) und die monatliche Gesamtleistung.
 
 3. Berechnungsbogen: Die detaillierte Berechnung Ihres Anspruchs, aufgeschluesselt nach Monaten. Hier finden Sie den Regelbedarf, eventuelle Mehrbedarfe, die KdU, das angerechnete Einkommen und den sich daraus ergebenden Zahlbetrag.
 
-4. Begruendung: Warum das Jobcenter so entschieden hat (§ 35 SGB X). Bei Ablehnungen oder Kuerzungen muss die Begruendung nachvollziehbar und auf Ihren konkreten Fall bezogen sein.
+4. Begruendung: Warum das Jobcenter so entschieden hat (§ 35 SGB X). Bei Ablehnungen oder Kürzungen muss die Begruendung nachvollziehbar und auf Ihren konkreten Fall bezogen sein.
 
 5. Rechtsbehelfsbelehrung: Der Hinweis, dass Sie innerhalb eines Monats Widerspruch einlegen koennen (§ 36 SGB X). Fehlt diese oder ist sie fehlerhaft, verlaengert sich die Frist auf ein Jahr.`,
-        tip: 'Laden Sie Ihren Bescheid in unseren BescheidScan hoch. Die KI prueft automatisch, ob alle Bestandteile vorhanden und korrekt sind.',
+        tip: 'Laden Sie Ihren Bescheid in unseren BescheidScan hoch. Die KI prüft automatisch, ob alle Bestandteile vorhanden und korrekt sind.',
       },
       {
         title: 'Typische Fehler in Bescheiden',
-        content: `Studien zeigen, dass rund 40-50% aller Widersprueche und Klagen gegen Jobcenter-Bescheide ganz oder teilweise erfolgreich sind. Die haeufigsten Fehlerquellen sind:
+        content: `Studien zeigen, dass rund 40-50% aller Widersprüche und Klagen gegen Jobcenter-Bescheide ganz oder teilweise erfolgreich sind. Die haeufigsten Fehlerquellen sind:
 
-Falsche Regelbedarfsstufe: Pruefen Sie, ob die richtige Regelbedarfsstufe zugeordnet wurde. Haeufig werden Alleinerziehende faelschlicherweise in Stufe 2 statt Stufe 1 eingruppiert, oder erwachsene Kinder ueber 25 im Haushalt nicht als eigene Bedarfsgemeinschaft behandelt.
+Falsche Regelbedarfsstufe: Pruefen Sie, ob die richtige Regelbedarfsstufe zugeordnet wurde. Haeufig werden Alleinerziehende faelschlicherweise in Stufe 2 statt Stufe 1 eingruppiert, oder erwachsene Kinder über 25 im Haushalt nicht als eigene Bedarfsgemeinschaft behandelt.
 
 Fehlende Mehrbedarfe: Viele Leistungsberechtigte wissen nicht, dass ihnen Mehrbedarfe zustehen. Schwangere ab der 13. Woche, Alleinerziehende, Menschen mit Behinderung oder Personen mit kostenaufwaendiger Ernaehrung haben Anspruch auf zusaetzliche Leistungen. Pruefen Sie den Berechnungsbogen darauf, ob alle Ihre Mehrbedarfe beruecksichtigt wurden.
 
 Falsche Einkommensanrechnung: Werden die Freibetraege korrekt berechnet? Wurde Kindergeld dem richtigen Mitglied der Bedarfsgemeinschaft zugeordnet? Wurden Werbungskosten und Versicherungspauschale abgesetzt?
 
-Fehlerhafte KdU-Berechnung: Wurde die volle Miete uebernommen oder wurden Kosten gekuerzt? Falls ja - liegt ein schluessiges Konzept vor? Wurde die Karenzzeit beachtet?`,
+Fehlerhafte KdU-Berechnung: Wurde die volle Miete uebernommen oder wurden Kosten gekürzt? Falls ja - liegt ein schluessiges Konzept vor? Wurde die Karenzzeit beachtet?`,
         tip: 'Pruefen Sie JEDEN Bescheid, den Sie erhalten - auch Folgebewilligungen. Fehler setzen sich oft fort, wenn sie nicht beanstandet werden.',
       },
       {
@@ -225,7 +225,7 @@ Widerspruchsfrist: 1 Monat ab Bekanntgabe (§ 84 SGG). Bei postalischer Zustellu
 
 Ueberpruefungsantrag: Auch nach Ablauf der Widerspruchsfrist koennen Sie einen Ueberpruefungsantrag nach § 44 SGB X stellen. Damit koennen bestandskraeftige Bescheide bis zu 4 Jahre rueckwirkend korrigiert werden, wenn sie rechtswidrig waren. Nachzahlungen werden allerdings auf maximal 1 Jahr begrenzt (§ 44 Abs. 4 SGB X).
 
-Bekanntgabe: Ein Bescheid wird wirksam, sobald er Ihnen bekanntgegeben wird. Erst mit der Bekanntgabe beginnt die Widerspruchsfrist. Wenn Sie einen Bescheid erst spaeter tatsaechlich erhalten als den dritten Tag nach Absendung, muessen Sie dies geltend machen - die Beweislast fuer den Zugang liegt beim Jobcenter.`,
+Bekanntgabe: Ein Bescheid wird wirksam, sobald er Ihnen bekanntgegeben wird. Erst mit der Bekanntgabe beginnt die Widerspruchsfrist. Wenn Sie einen Bescheid erst spaeter tatsaechlich erhalten als den dritten Tag nach Absendung, muessen Sie dies geltend machen - die Beweislast für den Zugang liegt beim Jobcenter.`,
         tip: 'Notieren Sie das Datum, an dem Sie jeden Bescheid tatsaechlich erhalten haben (z.B. handschriftlich auf dem Umschlag). So koennen Sie im Streitfall den tatsaechlichen Zugang nachweisen.',
       },
     ],
@@ -233,7 +233,7 @@ Bekanntgabe: Ein Bescheid wird wirksam, sobald er Ihnen bekanntgegeben wird. Ers
   {
     id: 'widerspruch-einlegen',
     title: 'Widerspruch einlegen',
-    description: 'Schritt-fuer-Schritt-Anleitung zum Widerspruch: Fristen, Formvorschriften und praktische Tipps fuer einen erfolgreichen Widerspruch.',
+    description: 'Schritt-für-Schritt-Anleitung zum Widerspruch: Fristen, Formvorschriften und praktische Tipps für einen erfolgreichen Widerspruch.',
     icon: Shield,
     difficulty: 'fortgeschritten',
     estimatedMinutes: 25,
@@ -246,11 +246,11 @@ Bekanntgabe: Ein Bescheid wird wirksam, sobald er Ihnen bekanntgegeben wird. Ers
     sections: [
       {
         title: 'Wann lohnt sich ein Widerspruch?',
-        content: `Ein Widerspruch lohnt sich immer dann, wenn Sie der Meinung sind, dass Ihr Bescheid fehlerhaft ist. Angesichts der hohen Erfolgsquote von 40-50% bei Widerspruechen und Klagen im Sozialrecht ist die Hemmschwelle niedrig. Ein Widerspruch ist kostenlos, es entstehen keine Gebuehren.
+        content: `Ein Widerspruch lohnt sich immer dann, wenn Sie der Meinung sind, dass Ihr Bescheid fehlerhaft ist. Angesichts der hohen Erfolgsquote von 40-50% bei Widersprüchen und Klagen im Sozialrecht ist die Hemmschwelle niedrig. Ein Widerspruch ist kostenlos, es entstehen keine Gebuehren.
 
-Typische Gruende fuer einen Widerspruch sind: zu geringer Bewilligungsbetrag, unberechtigte Sanktionen, falsche Einkommensanrechnung, fehlerhafte KdU-Berechnung, fehlende Mehrbedarfe, Ablehnung von Sonderleistungen (z.B. Erstausstattung), oder eine Aufhebung und Erstattung (Rueckforderung).
+Typische Gruende für einen Widerspruch sind: zu geringer Bewilligungsbetrag, unberechtigte Sanktionen, falsche Einkommensanrechnung, fehlerhafte KdU-Berechnung, fehlende Mehrbedarfe, Ablehnung von Sonderleistungen (z.B. Erstausstattung), oder eine Aufhebung und Erstattung (Rueckforderung).
 
-Wichtig zu wissen: Der Widerspruch hat grundsaetzlich aufschiebende Wirkung (§ 86a SGG). Das bedeutet, dass eine belastende Entscheidung (z.B. eine Aufhebung) nicht vollstreckt werden darf, solange der Widerspruch laeuft. Eine Ausnahme gilt allerdings bei Erstattungsforderungen nach § 50 SGB X und bei der Anordnung der sofortigen Vollziehung.
+Wichtig zu wissen: Der Widerspruch hat grundsaetzlich aufschiebende Wirkung (§ 86a SGG). Das bedeutet, dass eine belastende Entscheidung (z.B. eine Aufhebung) nicht vollstreckt werden darf, solange der Widerspruch läuft. Eine Ausnahme gilt allerdings bei Erstattungsforderungen nach § 50 SGB X und bei der Anordnung der sofortigen Vollziehung.
 
 Im Zweifelsfall gilt: Lieber einen Widerspruch zu viel als einen zu wenig einlegen. Sie koennen den Widerspruch jederzeit zuruecknehmen, wenn sich herausstellt, dass der Bescheid doch korrekt war.`,
         tip: 'Wenn Sie unsicher sind, ob sich ein Widerspruch lohnt, nutzen Sie unseren BescheidScan. Die KI analysiert Ihren Bescheid und zeigt moegliche Fehler auf.',
@@ -259,7 +259,7 @@ Im Zweifelsfall gilt: Lieber einen Widerspruch zu viel als einen zu wenig einleg
         title: 'Form und Frist des Widerspruchs',
         content: `Die Widerspruchsfrist betraegt einen Monat ab Bekanntgabe des Bescheids (§ 84 Abs. 1 SGG). Bei postalischer Zustellung gilt der dritte Tag nach Aufgabe zur Post als Bekanntgabetag (§ 37 Abs. 2 SGB X). Faellt das Fristende auf einen Samstag, Sonntag oder Feiertag, verlaengert sich die Frist bis zum naechsten Werktag.
 
-Der Widerspruch muss schriftlich oder zur Niederschrift eingelegt werden. Er muss enthalten: Ihren Namen und Ihre Anschrift, das Aktenzeichen und das Datum des angefochtenen Bescheids, sowie die klare Erklaerung, dass Sie Widerspruch einlegen.
+Der Widerspruch muss schriftlich oder zur Niederschrift eingelegt werden. Er muss enthalten: Ihren Namen und Ihre Anschrift, das Aktenzeichen und das Datum des angefochtenen Bescheids, sowie die klare Erklärung, dass Sie Widerspruch einlegen.
 
 Die Begruendung des Widerspruchs ist zunaechst nicht zwingend erforderlich. Um die Frist zu wahren, genuegt ein kurzer "fristwahrende r Widerspruch" mit dem Hinweis "Begruendung folgt". Sie koennen die Begruendung dann in Ruhe nachreichen. Beachten Sie dabei, dass Sie das Jobcenter um eine angemessene Frist zur Nachreichung der Begruendung bitten sollten.
 
@@ -268,7 +268,7 @@ Der Widerspruch muss an die Behoerde gerichtet werden, die den Bescheid erlassen
       },
       {
         title: 'Das Widerspruchsverfahren',
-        content: `Nach Eingang Ihres Widerspruchs prueft das Jobcenter den Bescheid erneut. Es gibt zwei moegliche Ergebnisse:
+        content: `Nach Eingang Ihres Widerspruchs prüft das Jobcenter den Bescheid erneut. Es gibt zwei moegliche Ergebnisse:
 
 Abhilfe: Das Jobcenter erkennt den Fehler und aendert den Bescheid zu Ihren Gunsten. Sie erhalten einen Abhilfebescheid und gegebenenfalls eine Nachzahlung. Dies geschieht durch die Ausgangsstelle selbst.
 
@@ -279,15 +279,15 @@ Das Jobcenter hat grundsaetzlich 3 Monate Zeit zur Bearbeitung (§ 88 Abs. 2 SGG
 Waehrend des Widerspruchsverfahrens erhalten Sie weiterhin Ihre bisherigen Leistungen. Wurde Ihr Antrag abgelehnt und Sie erhalten noch gar keine Leistungen, koennen Sie parallel zum Widerspruch einen Antrag auf einstweiligen Rechtsschutz (Eilantrag) beim Sozialgericht stellen, um vorlaeufig Leistungen zu erhalten.`,
       },
       {
-        title: 'Praktische Tipps fuer den Widerspruch',
+        title: 'Praktische Tipps für den Widerspruch',
         content: `Dokumentation ist alles: Fertigen Sie von jedem Schreiben eine Kopie an. Notieren Sie Datum und Uhrzeit jedes Telefonats mit dem Jobcenter, den Namen des Sachbearbeiters und den Inhalt des Gespraechs. Fordern Sie muendliche Zusagen immer schriftlich an.
 
 Akteneinsicht: Sie haben das Recht auf vollstaendige Einsicht in Ihre Leistungsakte (§ 25 SGB X). Beantragen Sie Akteneinsicht, bevor Sie die Begruendung Ihres Widerspruchs formulieren. So sehen Sie, auf welcher Grundlage das Jobcenter entschieden hat.
 
-Beratungshilfe: Wenn Sie anwaltliche Unterstuetzung benoetigen, koennen Sie beim Amtsgericht einen Beratungshilfeschein beantragen. Damit uebernimmt die Staatskasse die Anwaltskosten fuer die aussergerichtliche Beratung (Eigenanteil: 15 EUR). Viele Sozialverbaende (VdK, SoVD) bieten ihren Mitgliedern auch kostenlose Rechtsberatung.
+Beratungshilfe: Wenn Sie anwaltliche Unterstuetzung benoetigen, koennen Sie beim Amtsgericht einen Beratungshilfeschein beantragen. Damit uebernimmt die Staatskasse die Anwaltskosten für die aussergerichtliche Beratung (Eigenanteil: 15 EUR). Viele Sozialverbaende (VdK, SoVD) bieten ihren Mitgliedern auch kostenlose Rechtsberatung.
 
 Kein Nachteil durch Widerspruch: Durch einen Widerspruch darf sich Ihre Situation niemals verschlechtern - das sogenannte "Verbot der reformatio in peius" (Verschlechterungsverbot) gilt auch im Sozialrecht. Das Jobcenter darf den Bescheid also nicht zu Ihrem Nachteil aendern, nur weil Sie Widerspruch eingelegt haben.`,
-        tip: 'Beantragen Sie immer Akteneinsicht! Oft finden sich in der Akte Hinweise auf Berechnungsfehler oder fehlende Unterlagen, die Sie fuer Ihren Widerspruch nutzen koennen.',
+        tip: 'Beantragen Sie immer Akteneinsicht! Oft finden sich in der Akte Hinweise auf Berechnungsfehler oder fehlende Unterlagen, die Sie für Ihren Widerspruch nutzen koennen.',
       },
     ],
   },
@@ -306,20 +306,20 @@ Kein Nachteil durch Widerspruch: Durch einen Widerspruch darf sich Ihre Situatio
     sections: [
       {
         title: 'Was sind Sanktionen?',
-        content: `Sanktionen (offiziell: Leistungsminderungen) sind Kuerzungen des Buergergeldes, die das Jobcenter verhaengen kann, wenn Leistungsberechtigte gegen bestimmte Pflichten verstossen. Die rechtliche Grundlage findet sich in §§ 31 bis 32 SGB II.
+        content: `Sanktionen (offiziell: Leistungsminderungen) sind Kürzungen des Bürgergeldes, die das Jobcenter verhaengen kann, wenn Leistungsberechtigte gegen bestimmte Pflichten verstossen. Die rechtliche Grundlage findet sich in §§ 31 bis 32 SGB II.
 
-Seit der Reform des Sanktionsrechts durch das Buergergeld-Gesetz und insbesondere nach dem Urteil des Bundesverfassungsgerichts vom 5. November 2019 (1 BvL 7/16) gelten deutlich mildere Regeln als frueher. Die maximale Kuerzung betraegt nun 30% des Regelsatzes. Eine vollstaendige Streichung der Leistungen ist nicht mehr zulaessig. Auch die Kosten der Unterkunft duerfen nicht gekuerzt werden - das Dach ueber dem Kopf bleibt immer gesichert.
+Seit der Reform des Sanktionsrechts durch das Bürgergeld-Gesetz und insbesondere nach dem Urteil des Bundesverfassungsgerichts vom 5. November 2019 (1 BvL 7/16) gelten deutlich mildere Regeln als frueher. Die maximale Kürzung betraegt nun 30% des Regelsatzes. Eine vollstaendige Streichung der Leistungen ist nicht mehr zulaessig. Auch die Kosten der Unterkunft duerfen nicht gekürzt werden - das Dach über dem Kopf bleibt immer gesichert.
 
 Die Karenzzeit von 6 Monaten nach Antragstellung schuetzt Sie zusaetzlich: In den ersten 6 Monaten des Leistungsbezugs sollen Sanktionen nur bei besonders schwerwiegenden Pflichtverletzungen verhaengt werden. Die Kooperationszeit und der Kooperationsplan ersetzen die fruehere starre Eingliederungsvereinbarung und setzen auf gemeinsame Vereinbarungen statt einseitige Vorgaben.`,
-        tip: 'Seit dem BVerfG-Urteil von 2019 und der Buergergeld-Reform sind Sanktionen deutlich eingeschraenkt. Mehr als 30% des Regelsatzes duerfen nie gekuerzt werden, und die KdU bleiben immer unangetastet.',
+        tip: 'Seit dem BVerfG-Urteil von 2019 und der Bürgergeld-Reform sind Sanktionen deutlich eingeschraenkt. Mehr als 30% des Regelsatzes duerfen nie gekürzt werden, und die KdU bleiben immer unangetastet.',
       },
       {
         title: 'Mitwirkungspflichten',
-        content: `Als Buergergeld-Empfaenger haben Sie bestimmte Pflichten, deren Verletzung zu Sanktionen fuehren kann:
+        content: `Als Bürgergeld-Empfaenger haben Sie bestimmte Pflichten, deren Verletzung zu Sanktionen fuehren kann:
 
 Bewerbungspflichten: Sie muessen sich um Arbeit bemuehen und zumutbare Arbeitsangebote annehmen oder sich darauf bewerben. Was "zumutbar" ist, hat der Gesetzgeber in § 10 SGB II definiert. Nicht zumutbar ist eine Arbeit, wenn Sie koerperlich, geistig oder seelisch dazu nicht in der Lage sind, die Ausuebung der Arbeit die kuenftige Ausuebung Ihrer bisherigen Taetigkeit wesentlich erschweren wuerde, oder die Arbeit mit der Erziehung Ihres Kindes nicht vereinbar ist.
 
-Meldepflichten: Sie muessen Einladungen des Jobcenters zu Terminen folgen (§ 59 SGB II i.V.m. § 309 SGB III). Die Einladung muss schriftlich erfolgen und den Zweck des Termins benennen. Eine Ladung per E-Mail oder muendlich genuegt nicht fuer eine Sanktion.
+Meldepflichten: Sie muessen Einladungen des Jobcenters zu Terminen folgen (§ 59 SGB II i.V.m. § 309 SGB III). Die Einladung muss schriftlich erfolgen und den Zweck des Termins benennen. Eine Ladung per E-Mail oder muendlich genuegt nicht für eine Sanktion.
 
 Massnahmepflichten: Sie muessen an zugewiesenen Eingliederungsmassnahmen teilnehmen. Allerdings muessen diese Massnahmen sinnvoll und auf Ihre individuelle Situation zugeschnitten sein. "Sinnlose" Massnahmen muessen Sie nicht hinnehmen - hier lohnt sich ein Widerspruch.
 
@@ -330,11 +330,11 @@ Meldepflicht bei Veraenderungen: Sie muessen Veraenderungen Ihrer Verhaeltnisse 
         title: 'Wie Sie sich gegen Sanktionen wehren',
         content: `Wenn das Jobcenter eine Sanktion verhaengt, erhalten Sie zunaechst ein Anhoerungsschreiben (§ 24 SGB X). In diesem Schreiben wird Ihnen der Vorwurf mitgeteilt und Sie haben die Gelegenheit, sich zu aeussern, bevor die Sanktion ausgesprochen wird. Nehmen Sie diese Anhoerung ernst und antworten Sie schriftlich!
 
-Haeufige Verteidigungsgruende sind: Sie hatten einen wichtigen Grund fuer die Pflichtverletzung (§ 31 Abs. 1 Satz 2 SGB II), z.B. Krankheit, Kinderbetreuungsprobleme, Pflege von Angehoerigen, unzumutbares Arbeitsangebot, fehlende oder mangelhafte Rechtsfolgenbelehrung in der Einladung, oder die Einladung wurde nicht ordnungsgemaess zugestellt.
+Haeufige Verteidigungsgruende sind: Sie hatten einen wichtigen Grund für die Pflichtverletzung (§ 31 Abs. 1 Satz 2 SGB II), z.B. Krankheit, Kinderbetreuungsprobleme, Pflege von Angehoerigen, unzumutbares Arbeitsangebot, fehlende oder mangelhafte Rechtsfolgenbelehrung in der Einladung, oder die Einladung wurde nicht ordnungsgemaess zugestellt.
 
-Besonders wichtig: Die Rechtsfolgenbelehrung. Bevor eine Sanktion verhaengt werden kann, muss das Jobcenter Sie vorher ueber die moeglichen Rechtsfolgen einer Pflichtverletzung belehrt haben. Diese Belehrung muss konkret, verstaendlich und auf Ihren Fall bezogen sein. Eine pauschale Belehrung im Eingliederungsvertrag genuegt nach der Rechtsprechung des Bundessozialgerichts oft nicht.
+Besonders wichtig: Die Rechtsfolgenbelehrung. Bevor eine Sanktion verhaengt werden kann, muss das Jobcenter Sie vorher über die moeglichen Rechtsfolgen einer Pflichtverletzung belehrt haben. Diese Belehrung muss konkret, verständlich und auf Ihren Fall bezogen sein. Eine pauschale Belehrung im Eingliederungsvertrag genuegt nach der Rechtsprechung des Bundessozialgerichts oft nicht.
 
-Gegen den Sanktionsbescheid koennen und sollten Sie Widerspruch einlegen. Parallel koennen Sie beim Sozialgericht einen Eilantrag stellen, um die Sanktion vorlaeufig auszusetzen, insbesondere wenn die Kuerzung Ihre Existenz gefaehrdet.`,
+Gegen den Sanktionsbescheid koennen und sollten Sie Widerspruch einlegen. Parallel koennen Sie beim Sozialgericht einen Eilantrag stellen, um die Sanktion vorlaeufig auszusetzen, insbesondere wenn die Kürzung Ihre Existenz gefaehrdet.`,
         tip: 'Pruefen Sie bei jedem Sanktionsbescheid, ob die Rechtsfolgenbelehrung korrekt und individuell war. Fehlt sie oder ist sie fehlerhaft, ist die Sanktion rechtswidrig.',
       },
     ],
@@ -342,14 +342,14 @@ Gegen den Sanktionsbescheid koennen und sollten Sie Widerspruch einlegen. Parall
   {
     id: 'mehrbedarf-sonderleistungen',
     title: 'Mehrbedarf & Sonderleistungen',
-    description: 'Zusaetzliche Leistungen bei Schwangerschaft, Alleinerziehung, Behinderung und fuer Erstausstattungen - Ihre Ansprueche im Detail.',
+    description: 'Zusaetzliche Leistungen bei Schwangerschaft, Alleinerziehung, Behinderung und für Erstausstattungen - Ihre Ansprueche im Detail.',
     icon: Heart,
     difficulty: 'fortgeschritten',
     estimatedMinutes: 20,
     paragraphs: ['§ 21 SGB II', '§ 23 SGB II', '§ 24 SGB II'],
     relatedTools: [
       { label: 'Erstausstattungs-Rechner', to: '/rechner/erstausstattung' },
-      { label: 'Buergergeld-Rechner', to: '/rechner/buergergeld' },
+      { label: 'Bürgergeld-Rechner', to: '/rechner/buergergeld' },
       { label: 'BescheidScan', to: '/scan' },
     ],
     sections: [
@@ -357,35 +357,35 @@ Gegen den Sanktionsbescheid koennen und sollten Sie Widerspruch einlegen. Parall
         title: 'Mehrbedarfe nach § 21 SGB II',
         content: `Neben dem Regelbedarf und den KdU koennen Sie Anspruch auf Mehrbedarfe haben. Diese werden zusaetzlich zum Regelsatz gezahlt und sollen besondere Lebensumstaende abdecken, die hoehere Kosten verursachen.
 
-Mehrbedarf fuer Schwangere (§ 21 Abs. 2 SGB II): Ab der 13. Schwangerschaftswoche erhalten Sie einen Mehrbedarf von 17% des fuer Sie massgebenden Regelsatzes. Bei Regelbedarfsstufe 1 (563 EUR) sind das rund 95,71 EUR monatlich. Der Mehrbedarf wird bis zum Ende des Monats der Entbindung gezahlt. Sie benoetigen lediglich eine aerztliche Bescheinigung ueber die Schwangerschaft mit dem voraussichtlichen Entbindungstermin.
+Mehrbedarf für Schwangere (§ 21 Abs. 2 SGB II): Ab der 13. Schwangerschaftswoche erhalten Sie einen Mehrbedarf von 17% des für Sie massgebenden Regelsatzes. Bei Regelbedarfsstufe 1 (563 EUR) sind das rund 95,71 EUR monatlich. Der Mehrbedarf wird bis zum Ende des Monats der Entbindung gezahlt. Sie benoetigen lediglich eine aerztliche Bescheinigung über die Schwangerschaft mit dem voraussichtlichen Entbindungstermin.
 
-Mehrbedarf fuer Alleinerziehende (§ 21 Abs. 3 SGB II): Der Mehrbedarf haengt von der Anzahl und dem Alter der Kinder ab. Bei einem Kind unter 7 Jahren oder zwei Kindern unter 16 Jahren betraegt er 36% des Regelsatzes. Der Mehrbedarf kann zwischen 12% und maximal 60% des Regelsatzes liegen. Alleinerziehend sind Sie, wenn Sie mit mindestens einem minderjaehrigen Kind zusammenleben und allein fuer die Pflege und Erziehung sorgen. Ein regelmaessiger Wechsel des Kindes zwischen beiden Elternteilen (Wechselmodell) kann dazu fuehren, dass beide Elternteile anteilig einen Mehrbedarf erhalten.
+Mehrbedarf für Alleinerziehende (§ 21 Abs. 3 SGB II): Der Mehrbedarf haengt von der Anzahl und dem Alter der Kinder ab. Bei einem Kind unter 7 Jahren oder zwei Kindern unter 16 Jahren betraegt er 36% des Regelsatzes. Der Mehrbedarf kann zwischen 12% und maximal 60% des Regelsatzes liegen. Alleinerziehend sind Sie, wenn Sie mit mindestens einem minderjaehrigen Kind zusammenleben und allein für die Pflege und Erziehung sorgen. Ein regelmaessiger Wechsel des Kindes zwischen beiden Elternteilen (Wechselmodell) kann dazu fuehren, dass beide Elternteile anteilig einen Mehrbedarf erhalten.
 
-Mehrbedarf fuer Menschen mit Behinderung (§ 21 Abs. 4 SGB II): Wer Leistungen zur Teilhabe am Arbeitsleben erhaelt (z.B. berufliche Rehabilitation), bekommt einen Mehrbedarf von 35% des Regelsatzes.`,
-        tip: 'Mehrbedarfe muessen beantragt werden! Pruefen Sie, ob alle Ihnen zustehenden Mehrbedarfe in Ihrem Bescheid beruecksichtigt sind. Besonders der Mehrbedarf fuer Alleinerziehende wird haeufig vergessen.',
+Mehrbedarf für Menschen mit Behinderung (§ 21 Abs. 4 SGB II): Wer Leistungen zur Teilhabe am Arbeitsleben erhaelt (z.B. berufliche Rehabilitation), bekommt einen Mehrbedarf von 35% des Regelsatzes.`,
+        tip: 'Mehrbedarfe muessen beantragt werden! Pruefen Sie, ob alle Ihnen zustehenden Mehrbedarfe in Ihrem Bescheid beruecksichtigt sind. Besonders der Mehrbedarf für Alleinerziehende wird haeufig vergessen.',
       },
       {
         title: 'Weitere Mehrbedarfe',
-        content: `Mehrbedarf fuer kostenaufwaendige Ernaehrung (§ 21 Abs. 5 SGB II): Wenn Sie aus medizinischen Gruenden eine besondere Ernaehrung benoetigen, koennen Sie einen Mehrbedarf geltend machen. Anerkannte Krankheitsbilder sind unter anderem: Zoeliakie (glutenfreie Ernaehrung), Niereninsuffizienz, Morbus Crohn, Colitis ulcerosa, Mukoviszidose und schwere Lebererkrankungen. Die Hoehe richtet sich nach den Empfehlungen des Deutschen Vereins fuer oeffentliche und private Fuersorge. Eine blosse Laktoseintoleranz oder Diabetes mellitus Typ 2 genuegen nach aktueller Rechtsprechung in der Regel nicht, da eine vollwertige Ernaehrung im Rahmen des Regelsatzes moeglich ist.
+        content: `Mehrbedarf für kostenaufwaendige Ernaehrung (§ 21 Abs. 5 SGB II): Wenn Sie aus medizinischen Gruenden eine besondere Ernaehrung benoetigen, koennen Sie einen Mehrbedarf geltend machen. Anerkannte Krankheitsbilder sind unter anderem: Zoeliakie (glutenfreie Ernaehrung), Niereninsuffizienz, Morbus Crohn, Colitis ulcerosa, Mukoviszidose und schwere Lebererkrankungen. Die Höhe richtet sich nach den Empfehlungen des Deutschen Vereins für oeffentliche und private Fuersorge. Eine blosse Laktoseintoleranz oder Diabetes mellitus Typ 2 genuegen nach aktueller Rechtsprechung in der Regel nicht, da eine vollwertige Ernaehrung im Rahmen des Regelsatzes moeglich ist.
 
-Mehrbedarf fuer dezentrale Warmwassererzeugung (§ 21 Abs. 7 SGB II): Wenn das Warmwasser in Ihrer Wohnung nicht zentral, sondern durch einen Durchlauferhitzer oder Boiler erzeugt wird, erhalten Sie einen Mehrbedarf. Dieser betraegt je nach Regelbedarfsstufe zwischen 0,8% und 2,3% des Regelsatzes. Der Grund: Die Kosten fuer die Warmwassererzeugung sind in diesem Fall nicht in den Heizkosten enthalten und werden daher gesondert uebernommen.
+Mehrbedarf für dezentrale Warmwassererzeugung (§ 21 Abs. 7 SGB II): Wenn das Warmwasser in Ihrer Wohnung nicht zentral, sondern durch einen Durchlauferhitzer oder Boiler erzeugt wird, erhalten Sie einen Mehrbedarf. Dieser betraegt je nach Regelbedarfsstufe zwischen 0,8% und 2,3% des Regelsatzes. Der Grund: Die Kosten für die Warmwassererzeugung sind in diesem Fall nicht in den Heizkosten enthalten und werden daher gesondert uebernommen.
 
-Haertefallmehrbedarf (§ 21 Abs. 6 SGB II): In besonderen Faellen kann ein laufender Mehrbedarf anerkannt werden, der nicht von den uebrigen Mehrbedarfsregelungen erfasst wird. Beispiele: Kosten fuer Hygieneartikel bei Stoma, Kosten fuer nicht verschreibungspflichtige Medikamente bei chronischen Erkrankungen, Fahrtkosten fuer regelmaessige Therapiebesuche.`,
+Haertefallmehrbedarf (§ 21 Abs. 6 SGB II): In besonderen Faellen kann ein laufender Mehrbedarf anerkannt werden, der nicht von den uebrigen Mehrbedarfsregelungen erfasst wird. Beispiele: Kosten für Hygieneartikel bei Stoma, Kosten für nicht verschreibungspflichtige Medikamente bei chronischen Erkrankungen, Fahrtkosten für regelmaessige Therapiebesuche.`,
       },
       {
         title: 'Einmalige Sonderleistungen nach § 24 SGB II',
         content: `Neben den laufenden Mehrbedarfen gibt es einmalige Leistungen nach § 24 Abs. 3 SGB II, die gesondert beantragt werden muessen:
 
-Erstausstattung fuer die Wohnung: Wenn Sie erstmals eine Wohnung beziehen (z.B. nach Obdachlosigkeit, Trennung, Haft oder erstmaligem Auszug aus dem Elternhaus), haben Sie Anspruch auf eine Erstausstattung. Diese umfasst Moebel, Haushaltsgeraete und Hausrat. Die Leistung kann als Geld- oder Sachleistung erbracht werden. Die Pauschalbetraege variieren je nach Kommune erheblich.
+Erstausstattung für die Wohnung: Wenn Sie erstmals eine Wohnung beziehen (z.B. nach Obdachlosigkeit, Trennung, Haft oder erstmaligem Auszug aus dem Elternhaus), haben Sie Anspruch auf eine Erstausstattung. Diese umfasst Moebel, Haushaltsgeraete und Hausrat. Die Leistung kann als Geld- oder Sachleistung erbracht werden. Die Pauschalbetraege variieren je nach Kommune erheblich.
 
-Erstausstattung fuer Bekleidung: In besonderen Faellen (z.B. nach Brand, Diebstahl, starker Gewichtsveraenderung) haben Sie Anspruch auf eine Erstausstattung fuer Bekleidung.
+Erstausstattung für Bekleidung: In besonderen Faellen (z.B. nach Brand, Diebstahl, starker Gewichtsveraenderung) haben Sie Anspruch auf eine Erstausstattung für Bekleidung.
 
-Erstausstattung bei Schwangerschaft und Geburt: Werdende Muetter haben Anspruch auf eine Erstausstattung fuer Schwangerschaftsbekleidung und fuer das Baby (Babybett, Kinderwagen, Babykleidung etc.). Beantragen Sie dies moeglichst frueh, idealerweise ab der 13. Schwangerschaftswoche.
+Erstausstattung bei Schwangerschaft und Geburt: Werdende Muetter haben Anspruch auf eine Erstausstattung für Schwangerschaftsbekleidung und für das Baby (Babybett, Kinderwagen, Babykleidung etc.). Beantragen Sie dies moeglichst frueh, idealerweise ab der 13. Schwangerschaftswoche.
 
 Anschaffung und Reparatur von orthopaedischen Schuhen und therapeutischen Geraeten: Kosten, die nicht von der Krankenkasse uebernommen werden.
 
 Wichtig: Einmalige Bedarfe muessen gesondert beantragt werden und werden nicht automatisch bewilligt. Der Antrag muss VOR der Anschaffung gestellt werden. Kaufen Sie also nicht zuerst ein und beantragen dann eine Erstattung - das Jobcenter kann die Uebernahme dann ablehnen.`,
-        tip: 'Nutzen Sie unseren Erstausstattungs-Rechner, um eine Schaetzung der Ihnen zustehenden Pauschalbetraege zu erhalten. So koennen Sie pruefen, ob das Angebot des Jobcenters angemessen ist.',
+        tip: 'Nutzen Sie unseren Erstausstattungs-Rechner, um eine Schaetzung der Ihnen zustehenden Pauschalbetraege zu erhalten. So koennen Sie prüfen, ob das Angebot des Jobcenters angemessen ist.',
       },
     ],
   },
@@ -404,18 +404,18 @@ Wichtig: Einmalige Bedarfe muessen gesondert beantragt werden und werden nicht a
     sections: [
       {
         title: 'Wann ist eine Klage sinnvoll?',
-        content: `Eine Klage vor dem Sozialgericht kommt in Betracht, wenn Ihr Widerspruch durch einen Widerspruchsbescheid abgelehnt wurde oder wenn das Jobcenter innerhalb von 3 Monaten nicht ueber Ihren Widerspruch entschieden hat (Untaetigkeitsklage nach § 88 SGG).
+        content: `Eine Klage vor dem Sozialgericht kommt in Betracht, wenn Ihr Widerspruch durch einen Widerspruchsbescheid abgelehnt wurde oder wenn das Jobcenter innerhalb von 3 Monaten nicht über Ihren Widerspruch entschieden hat (Untaetigkeitsklage nach § 88 SGG).
 
-Die gute Nachricht: Klagen im Sozialrecht sind fuer Leistungsempfaenger grundsaetzlich kostenfrei. Es fallen keine Gerichtsgebuehren an (§ 183 SGG). Auch wenn Sie verlieren, muessen Sie die Kosten der Gegenseite nicht tragen. Das Kostenrisiko ist also minimal. Lediglich eigene Anwaltskosten koennten anfallen - aber auch diese koennen durch Prozesskostenhilfe (PKH) abgedeckt werden.
+Die gute Nachricht: Klagen im Sozialrecht sind für Leistungsempfaenger grundsaetzlich kostenfrei. Es fallen keine Gerichtsgebuehren an (§ 183 SGG). Auch wenn Sie verlieren, muessen Sie die Kosten der Gegenseite nicht tragen. Das Kostenrisiko ist also minimal. Lediglich eigene Anwaltskosten koennten anfallen - aber auch diese koennen durch Prozesskostenhilfe (PKH) abgedeckt werden.
 
-Die Erfolgsaussichten sind gut: Statistisch gesehen enden etwa 40-50% der Klagen im Sozialrecht ganz oder teilweise zugunsten der Klaeger. Viele Verfahren enden durch Vergleich, bei dem das Jobcenter zumindest teilweise einlenkt. Die Sozialgerichte sind unabhaengig und pruefen den Fall vollstaendig neu - sie sind nicht an die Entscheidung des Jobcenters gebunden.
+Die Erfolgsaussichten sind gut: Statistisch gesehen enden etwa 40-50% der Klagen im Sozialrecht ganz oder teilweise zugunsten der Klaeger. Viele Verfahren enden durch Vergleich, bei dem das Jobcenter zumindest teilweise einlenkt. Die Sozialgerichte sind unabhaengig und prüfen den Fall vollstaendig neu - sie sind nicht an die Entscheidung des Jobcenters gebunden.
 
-Eine Klage kann sich auch bei kleinen Betraegen lohnen, da die Entscheidung Grundsatzwirkung fuer alle zukuenftigen Bescheide haben kann. Wenn z.B. eine hoehe re KdU-Obergrenze festgestellt wird, profitieren Sie davon fuer den gesamten weiteren Leistungsbezug.`,
-        tip: 'Die Klage vor dem Sozialgericht ist fuer Sie als Leistungsempfaenger kostenfrei. Selbst wenn Sie verlieren, entstehen keine Gerichtsgebuehren. Nutzen Sie dieses Recht!',
+Eine Klage kann sich auch bei kleinen Betraegen lohnen, da die Entscheidung Grundsatzwirkung für alle zukuenftigen Bescheide haben kann. Wenn z.B. eine hoehe re KdU-Obergrenze festgestellt wird, profitieren Sie davon für den gesamten weiteren Leistungsbezug.`,
+        tip: 'Die Klage vor dem Sozialgericht ist für Sie als Leistungsempfaenger kostenfrei. Selbst wenn Sie verlieren, entstehen keine Gerichtsgebuehren. Nutzen Sie dieses Recht!',
       },
       {
         title: 'Ablauf des Klageverfahrens',
-        content: `Die Klagefrist betraegt einen Monat nach Zustellung des Widerspruchsbescheids (§ 87 SGG). Die Klage wird beim oertlich zustaendigen Sozialgericht eingereicht. Sie koennen die Klage schriftlich einreichen oder zur Niederschrift bei der Geschaeftsstelle des Sozialgerichts erklaeren - ein Anwalt ist nicht erforderlich.
+        content: `Die Klagefrist betraegt einen Monat nach Zustellung des Widerspruchsbescheids (§ 87 SGG). Die Klage wird beim oertlich zustaendigen Sozialgericht eingereicht. Sie koennen die Klage schriftlich einreichen oder zur Niederschrift bei der Geschäftsstelle des Sozialgerichts erklären - ein Anwalt ist nicht erforderlich.
 
 Die Klage muss enthalten: Ihren Namen und Anschrift, den Beklagten (das Jobcenter), den angefochtenen Bescheid und Widerspruchsbescheid mit Daten und Aktenzeichen, sowie Ihr Begehren (was Sie erreichen wollen). Eine ausfuehrliche Begruendung kann nachgereicht werden.
 
@@ -425,38 +425,38 @@ Die Verfahrensdauer variiert je nach Gericht erheblich. Im Durchschnitt dauern V
       },
       {
         title: 'Prozesskostenhilfe (PKH)',
-        content: `Wenn Sie sich einen Anwalt nicht leisten koennen, haben Sie Anspruch auf Prozesskostenhilfe (PKH) nach § 73a SGG i.V.m. §§ 114 ff. ZPO. Die PKH uebernimmt die Anwalts- und Gerichtskosten ganz oder teilweise. Als Buergergeld-Empfaenger erfuellen Sie in der Regel die wirtschaftlichen Voraussetzungen automatisch.
+        content: `Wenn Sie sich einen Anwalt nicht leisten koennen, haben Sie Anspruch auf Prozesskostenhilfe (PKH) nach § 73a SGG i.V.m. §§ 114 ff. ZPO. Die PKH uebernimmt die Anwalts- und Gerichtskosten ganz oder teilweise. Als Bürgergeld-Empfaenger erfuellen Sie in der Regel die wirtschaftlichen Voraussetzungen automatisch.
 
-Voraussetzungen fuer PKH sind: Sie koennen die Kosten der Prozessfuehrung nicht, nur zum Teil oder nur in Raten aufbringen, und die beabsichtigte Rechtsverfolgung hat hinreichende Aussicht auf Erfolg und erscheint nicht mutwillig. Das Gericht prueft die Erfolgsaussichten summarisch - es genuegt, wenn ein Erfolg moeglich erscheint.
+Voraussetzungen für PKH sind: Sie koennen die Kosten der Prozessfuehrung nicht, nur zum Teil oder nur in Raten aufbringen, und die beabsichtigte Rechtsverfolgung hat hinreichende Aussicht auf Erfolg und erscheint nicht mutwillig. Das Gericht prüft die Erfolgsaussichten summarisch - es genuegt, wenn ein Erfolg moeglich erscheint.
 
-Den PKH-Antrag stellen Sie zusammen mit der Klage beim Sozialgericht. Dem Antrag muss die "Erklaerung ueber die persoenlichen und wirtschaftlichen Verhaeltnisse" beigefuegt werden (Formular erhaeltlich beim Gericht oder online). Fuegen Sie Nachweise ueber Ihr Einkommen und Vermoegen bei (Buergergeld-Bescheid genuegt in der Regel).
+Den PKH-Antrag stellen Sie zusammen mit der Klage beim Sozialgericht. Dem Antrag muss die "Erklärung über die persoenlichen und wirtschaftlichen Verhaeltnisse" beigefuegt werden (Formular erhaeltlich beim Gericht oder online). Fuegen Sie Nachweise über Ihr Einkommen und Vermoegen bei (Bürgergeld-Bescheid genuegt in der Regel).
 
-Bei Bewilligung von PKH wird Ihnen ein Rechtsanwalt beigeordnet. Sie koennen selbst einen Anwalt vorschlagen, z.B. einen Fachanwalt fuer Sozialrecht. Das Gericht muss Ihren Vorschlag in der Regel akzeptieren. Die PKH deckt alle Anwaltsgebuehren ab, Sie muessen als Buergergeld-Empfaenger in der Regel keine Ratenzahlung leisten.`,
-        tip: 'Stellen Sie den PKH-Antrag immer gleichzeitig mit der Klage. So verlieren Sie keine Zeit. Waehlen Sie moeglichst einen Fachanwalt fuer Sozialrecht - dieser kennt die aktuelle Rechtsprechung und kann Ihre Erfolgsaussichten am besten einschaetzen.',
+Bei Bewilligung von PKH wird Ihnen ein Rechtsanwalt beigeordnet. Sie koennen selbst einen Anwalt vorschlagen, z.B. einen Fachanwalt für Sozialrecht. Das Gericht muss Ihren Vorschlag in der Regel akzeptieren. Die PKH deckt alle Anwaltsgebuehren ab, Sie muessen als Bürgergeld-Empfaenger in der Regel keine Ratenzahlung leisten.`,
+        tip: 'Stellen Sie den PKH-Antrag immer gleichzeitig mit der Klage. So verlieren Sie keine Zeit. Waehlen Sie moeglichst einen Fachanwalt für Sozialrecht - dieser kennt die aktuelle Rechtsprechung und kann Ihre Erfolgsaussichten am besten einschaetzen.',
       },
     ],
   },
   {
     id: 'einkommen-vermoegen',
     title: 'Einkommen & Vermoegen',
-    description: 'Freibetraege, Einkommensanrechnung und Schonvermoegen: Was duerfen Sie behalten und was wird angerechnet?',
+    description: 'Freibetraege, Einkommensanrechnung und Schonvermögen: Was duerfen Sie behalten und was wird angerechnet?',
     icon: Euro,
     difficulty: 'experte',
     estimatedMinutes: 25,
     paragraphs: ['§ 11 SGB II', '§ 11b SGB II', '§ 12 SGB II', '§ 12a SGB II'],
     relatedTools: [
       { label: 'Zuverdienst-Rechner', to: '/rechner/zuverdienst' },
-      { label: 'Buergergeld-Rechner', to: '/rechner/buergergeld' },
+      { label: 'Bürgergeld-Rechner', to: '/rechner/buergergeld' },
       { label: 'BescheidScan', to: '/scan' },
     ],
     sections: [
       {
         title: 'Grundregeln der Einkommensanrechnung',
-        content: `Als Buergergeld-Empfaenger duerfen Sie grundsaetzlich hinzuverdienen. Allerdings wird Einkommen auf das Buergergeld angerechnet - allerdings nicht vollstaendig. Das Gesetz sieht verschiedene Freibetraege vor, die sicherstellen, dass sich Arbeit immer lohnt.
+        content: `Als Bürgergeld-Empfaenger duerfen Sie grundsaetzlich hinzuverdienen. Allerdings wird Einkommen auf das Bürgergeld angerechnet - allerdings nicht vollstaendig. Das Gesetz sieht verschiedene Freibetraege vor, die sicherstellen, dass sich Arbeit immer lohnt.
 
-Als Einkommen gilt nach § 11 SGB II grundsaetzlich alles, was Ihnen in Geld oder Geldeswert zuflie sst: Arbeitsentgelt, Einkuenfte aus selbstaendiger Taetigkeit, Renten, Unterhalt, Kindergeld, Elterngeld (ueber 300 EUR), Krankengeld, Steuererstattungen und aehnliches. Nicht als Einkommen zaehlen unter anderem: Grundrente nach dem Bundesversorgungsgesetz, Blindengeld, Schmerzensgeld und zweckbestimmte Leistungen anderer Traeger (z.B. Pflegegeld, das fuer den Pflegebeduerftigen bestimmt ist).
+Als Einkommen gilt nach § 11 SGB II grundsaetzlich alles, was Ihnen in Geld oder Geldeswert zuflie sst: Arbeitsentgelt, Einkuenfte aus selbstaendiger Taetigkeit, Renten, Unterhalt, Kindergeld, Elterngeld (über 300 EUR), Krankengeld, Steuererstattungen und aehnliches. Nicht als Einkommen zaehlen unter anderem: Grundrente nach dem Bundesversorgungsgesetz, Blindengeld, Schmerzensgeld und zweckbestimmte Leistungen anderer Traeger (z.B. Pflegegeld, das für den Pflegebeduerftigen bestimmt ist).
 
-Einmaliges Einkommen (z.B. eine Steuererstattung oder Abfindung) wird auf einen Zeitraum von 6 Monaten aufgeteilt und monatlich angerechnet (§ 11 Abs. 3 SGB II). Der Zuflussmonat zaehlt als erster Monat. Bei Einnahmen aus nichtselbstaendiger Arbeit gilt das sogenannte Zuflussprinzip: Entscheidend ist der Monat, in dem das Einkommen tatsaechlich auf Ihrem Konto eingeht, nicht der Monat, fuer den es gezahlt wird.
+Einmaliges Einkommen (z.B. eine Steuererstattung oder Abfindung) wird auf einen Zeitraum von 6 Monaten aufgeteilt und monatlich angerechnet (§ 11 Abs. 3 SGB II). Der Zuflussmonat zaehlt als erster Monat. Bei Einnahmen aus nichtselbstaendiger Arbeit gilt das sogenannte Zuflussprinzip: Entscheidend ist der Monat, in dem das Einkommen tatsaechlich auf Ihrem Konto eingeht, nicht der Monat, für den es gezahlt wird.
 
 Kindergeld wird dem Kind zugeordnet, nicht den Eltern. Ist das Kind nicht hilfebeduerft ig (z.B. weil es eigenes Einkommen hat), wird das ueberschuessige Kindergeld bei den Eltern angerechnet.`,
         tip: 'Pruefen Sie bei Ihrem Bescheid genau, ob das Einkommen dem richtigen Monat zugeordnet wurde (Zuflussprinzip). Vor allem bei Nachzahlungen oder verspaeteten Gehaltszahlungen passieren hier Fehler.',
@@ -465,25 +465,25 @@ Kindergeld wird dem Kind zugeordnet, nicht den Eltern. Ist das Kind nicht hilfeb
         title: 'Freibetraege bei Erwerbseinkommen',
         content: `Die Freibetraege bei Erwerbseinkommen sind in § 11b SGB II geregelt und sorgen dafuer, dass Sie von Ihrem Verdienst immer mehr behalten als ohne Arbeit:
 
-Grundfreibetrag: Die ersten 100 EUR brutto pro Monat sind vollstaendig anrechnungsfrei (§ 11b Abs. 2 SGB II). Dieser Grundfreibetrag deckt pauschal die Kosten fuer Steuern, Sozialversicherung, Versicherungen (30 EUR Pauschale) und Werbungskosten ab. Verdienen Sie weniger als 400 EUR, sinkt der Grundfreibetrag auf die tatsaechlichen Absetzbetraege.
+Grundfreibetrag: Die ersten 100 EUR brutto pro Monat sind vollstaendig anrechnungsfrei (§ 11b Abs. 2 SGB II). Dieser Grundfreibetrag deckt pauschal die Kosten für Steuern, Sozialversicherung, Versicherungen (30 EUR Pauschale) und Werbungskosten ab. Verdienen Sie weniger als 400 EUR, sinkt der Grundfreibetrag auf die tatsaechlichen Absetzbetraege.
 
 Erwerbstaetigenfreibetrag: Vom Bruttoeinkommen zwischen 100 EUR und 520 EUR bleiben 20% anrechnungsfrei. Vom Bruttoeinkommen zwischen 520 EUR und 1.000 EUR bleiben weitere 10% anrechnungsfrei. Fuer Leistungsberechtigte mit minderjaehrigem Kind gilt die erhoehte Grenze von 1.500 EUR statt 1.000 EUR.
 
-Rechenbeispiel: Sie verdienen 800 EUR brutto. Freibetrag: 100 EUR (Grundfreibetrag) + 84 EUR (20% von 420 EUR, also 520 minus 100) + 28 EUR (10% von 280 EUR, also 800 minus 520) = 212 EUR. Von Ihren 800 EUR brutto werden also 212 EUR nicht angerechnet. Vom Nettoeinkommen abzueglich der Freibetraege wird der Rest auf das Buergergeld angerechnet.
+Rechenbeispiel: Sie verdienen 800 EUR brutto. Freibetrag: 100 EUR (Grundfreibetrag) + 84 EUR (20% von 420 EUR, also 520 minus 100) + 28 EUR (10% von 280 EUR, also 800 minus 520) = 212 EUR. Von Ihren 800 EUR brutto werden also 212 EUR nicht angerechnet. Vom Nettoeinkommen abzueglich der Freibetraege wird der Rest auf das Bürgergeld angerechnet.
 
-Freibetrag fuer ehrenamtliche Taetigkeit: Aufwandsentschaedigungen fuer ehrenamtliche Taetigkeiten sind bis 250 EUR monatlich anrechnungsfrei (§ 11b Abs. 2 Satz 3 SGB II).`,
-        tip: 'Nutzen Sie unseren Zuverdienst-Rechner, um genau zu berechnen, wie viel von Ihrem Verdienst Sie behalten duerfen und wie hoch Ihr Buergergeld-Anspruch nach Anrechnung ist.',
+Freibetrag für ehrenamtliche Taetigkeit: Aufwandsentschaedigungen für ehrenamtliche Taetigkeiten sind bis 250 EUR monatlich anrechnungsfrei (§ 11b Abs. 2 Satz 3 SGB II).`,
+        tip: 'Nutzen Sie unseren Zuverdienst-Rechner, um genau zu berechnen, wie viel von Ihrem Verdienst Sie behalten duerfen und wie hoch Ihr Bürgergeld-Anspruch nach Anrechnung ist.',
       },
       {
-        title: 'Vermoegen und Schonvermoegen',
-        content: `Anders als Einkommen ist Vermoegen alles, was Sie bereits besitzen, wenn Sie Buergergeld beantragen. Die Regeln zur Vermoegensanrechnung finden sich in § 12 SGB II.
+        title: 'Vermoegen und Schonvermögen',
+        content: `Anders als Einkommen ist Vermoegen alles, was Sie bereits besitzen, wenn Sie Bürgergeld beantragen. Die Regeln zur Vermoegensanrechnung finden sich in § 12 SGB II.
 
-Karenzzeit: In den ersten 12 Monaten des Leistungsbezugs wird Vermoegen nur beruecksichtigt, wenn es erheblich ist. Die Grenze fuer "erhebliches Vermoegen" liegt bei 40.000 EUR fuer die erste Person der Bedarfsgemeinschaft und 15.000 EUR fuer jede weitere Person (§ 12 Abs. 1 SGB II). In dieser Zeit muessen Sie also kein Vermoegen aufbrauchen, solange es unter diesen Grenzen liegt.
+Karenzzeit: In den ersten 12 Monaten des Leistungsbezugs wird Vermoegen nur beruecksichtigt, wenn es erheblich ist. Die Grenze für "erhebliches Vermoegen" liegt bei 40.000 EUR für die erste Person der Bedarfsgemeinschaft und 15.000 EUR für jede weitere Person (§ 12 Abs. 1 SGB II). In dieser Zeit muessen Sie also kein Vermoegen aufbrauchen, solange es unter diesen Grenzen liegt.
 
-Nach der Karenzzeit gelten niedrigere Freibetraege: 15.000 EUR fuer jede Person der Bedarfsgemeinschaft. Vermoegen ueber diesem Freibetrag ist "verwertbar" und muss eingesetzt werden, bevor Buergergeld bezogen werden kann.
+Nach der Karenzzeit gelten niedrigere Freibetraege: 15.000 EUR für jede Person der Bedarfsgemeinschaft. Vermoegen über diesem Freibetrag ist "verwertbar" und muss eingesetzt werden, bevor Bürgergeld bezogen werden kann.
 
-Geschuetztes Vermoegen (unabhaengig von Freibetraegen): Eine selbst bewohnte Immobilie angemessener Groesse (bis 140 qm Haus bzw. 130 qm Wohnung fuer 4 Personen), ein angemessenes Kraftfahrzeug je erwerbsfaehiger Person in der Bedarfsgemeinschaft (Wert bis ca. 15.000 EUR nach Rechtsprechung), Altersvorsorge, die nachweislich nicht vor dem Rentenalter verfuegbar ist (z.B. Riester-Rente mit Verwertungsausschluss), sowie Hausrat und persoenliche Gegenstaende von angemessenem Wert.`,
-        tip: 'Nutzen Sie die 12-monatige Karenzzeit! In dieser Zeit koennen Sie bis zu 40.000 EUR behalten, ohne dass es auf das Buergergeld angerechnet wird. Planen Sie Ihren Antrag entsprechend.',
+Geschuetztes Vermoegen (unabhaengig von Freibetraegen): Eine selbst bewohnte Immobilie angemessener Groesse (bis 140 qm Haus bzw. 130 qm Wohnung für 4 Personen), ein angemessenes Kraftfahrzeug je erwerbsfaehiger Person in der Bedarfsgemeinschaft (Wert bis ca. 15.000 EUR nach Rechtsprechung), Altersvorsorge, die nachweislich nicht vor dem Rentenalter verfuegbar ist (z.B. Riester-Rente mit Verwertungsausschluss), sowie Hausrat und persoenliche Gegenstaende von angemessenem Wert.`,
+        tip: 'Nutzen Sie die 12-monatige Karenzzeit! In dieser Zeit koennen Sie bis zu 40.000 EUR behalten, ohne dass es auf das Bürgergeld angerechnet wird. Planen Sie Ihren Antrag entsprechend.',
       },
       {
         title: 'Besonderheiten und haeufige Fehler',
@@ -491,7 +491,7 @@ Geschuetztes Vermoegen (unabhaengig von Freibetraegen): Eine selbst bewohnte Imm
 
 Zuordnung von Kindergeld: Das Kindergeld wird nach § 11 Abs. 1 Satz 5 SGB II dem Kind zugerechnet. Das Jobcenter darf es nicht bei den Eltern als Einkommen anrechnen, wenn das Kind zum Haushalt gehoert. Nur wenn das Kind nicht hilfebeduerft ig ist, wird das ueberschuessige Kindergeld bei den Eltern beruecksichtigt.
 
-Einmaliges Einkommen: Steuererstattungen, Nachzahlungen, Abfindungen und aehnliche einmalige Einnahmen muessen auf 6 Monate verteilt werden. Pruefen Sie, ob die Verteilung korrekt berechnet wurde und ob der richtige Startmonat gewaehlt wurde (Zuflussmonat).
+Einmaliges Einkommen: Steuererstattungen, Nachzahlungen, Abfindungen und aehnliche einmalige Einnahmen muessen auf 6 Monate verteilt werden. Pruefen Sie, ob die Verteilung korrekt berechnet wurde und ob der richtige Startmonat gewählt wurde (Zuflussmonat).
 
 Absetzbetraege: Vom Einkommen sind neben den Freibetraegen auch folgende Betraege abzusetzen: Steuern, Sozialversicherungsbeitraege, Werbungskosten (z.B. Fahrtkosten zur Arbeit, Arbeitskleidung), die Versicherungspauschale von 30 EUR, und Beitraege zu gesetzlich vorgeschriebenen Versicherungen. Pruefen Sie, ob alle Absetzbetraege beruecksichtigt wurden.
 
@@ -583,7 +583,7 @@ export default function LernbereichPage() {
             }}
           >
             <ChevronLeft className="w-4 h-4" />
-            Zurueck zur Uebersicht
+            Zurück zur Uebersicht
           </Button>
 
           {/* Module header */}
@@ -724,8 +724,8 @@ export default function LernbereichPage() {
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold mb-3">Lernbereich</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Deine Rechte verstehen - Schritt fuer Schritt. Lerne in 8 Modulen alles
-            Wichtige ueber Buergergeld, Widerspruch und deine Rechte im Sozialrecht.
+            Deine Rechte verstehen - Schritt für Schritt. Lerne in 8 Modulen alles
+            Wichtige über Bürgergeld, Widerspruch und deine Rechte im Sozialrecht.
           </p>
         </div>
 
@@ -833,7 +833,7 @@ export default function LernbereichPage() {
         {filteredModules.length === 0 && (
           <div className="text-center py-12 text-muted-foreground">
             <BookOpen className="w-12 h-12 mx-auto mb-3 opacity-30" />
-            <p>Keine Module fuer den gewaehlten Schwierigkeitsgrad gefunden.</p>
+            <p>Keine Module für den gewaehlten Schwierigkeitsgrad gefunden.</p>
           </div>
         )}
 

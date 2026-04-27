@@ -10,7 +10,7 @@ export default function AgbPage() {
           <FileText className="h-7 w-7" />
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Allgemeine Geschaeftsbedingungen
+          Allgemeine Geschäftsbedingungen
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
           AGB der BescheidBoxer-Plattform
@@ -25,7 +25,7 @@ export default function AgbPage() {
             &sect; 1 Geltungsbereich
           </h2>
           <p className="text-gray-600">
-            Diese Allgemeinen Geschaeftsbedingungen (AGB) gelten fuer die
+            Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die
             Nutzung der BescheidBoxer-Plattform, betrieben von der Fintutto UG
             (haftungsbeschraenkt) i.G. (nachfolgend &bdquo;Anbieter&ldquo;).
             Die Plattform ist unter der Domain bescheidboxer.de und als
@@ -45,24 +45,24 @@ export default function AgbPage() {
             &sect; 2 Vertragsgegenstand
           </h2>
           <p className="text-gray-600 mb-3">
-            Der Anbieter stellt dem Nutzer ueber die BescheidBoxer-Plattform
+            Der Anbieter stellt dem Nutzer über die BescheidBoxer-Plattform
             folgende Dienste zur Verfuegung:
           </p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
             <li>
               <strong className="text-gray-900">KI-gestuetzte Analysen</strong>{' '}
-              &ndash; Automatische Pruefung von Bescheiden auf moegliche Fehler
-              (BescheidScan) sowie einen KI-Rechtsberater fuer Fragen zu SGB II,
+              &ndash; Automatische Prüfung von Bescheiden auf moegliche Fehler
+              (BescheidScan) sowie einen KI-Rechtsberater für Fragen zu SGB II,
               III, X und XII
             </li>
             <li>
               <strong className="text-gray-900">Musterschreiben</strong> &ndash;
-              Vorlagen und personalisierte Schreiben fuer Widersprueche,
-              Antraege und sonstige Korrespondenz mit Behoerden
+              Vorlagen und personalisierte Schreiben für Widersprüche,
+              Anträge und sonstige Korrespondenz mit Behoerden
             </li>
             <li>
               <strong className="text-gray-900">Rechner</strong> &ndash;
-              Tools zur Berechnung von Buergergeld, Kosten der Unterkunft,
+              Tools zur Berechnung von Bürgergeld, Kosten der Unterkunft,
               Mehrbedarf und weiteren Leistungsanspruechen
             </li>
             <li>
@@ -90,11 +90,11 @@ export default function AgbPage() {
             </p>
           </div>
           <p className="text-gray-600">
-            Der Anbieter uebernimmt keine Haftung fuer die Richtigkeit,
+            Der Anbieter uebernimmt keine Haftung für die Richtigkeit,
             Vollstaendigkeit oder Aktualitaet der bereitgestellten
             Informationen und Analysen. Die Nutzung der Plattform erfolgt auf
             eigenes Risiko des Nutzers. Es wird ausdruecklich empfohlen, bei
-            konkreten Rechtsfragen einen Fachanwalt fuer Sozialrecht oder eine
+            konkreten Rechtsfragen einen Fachanwalt für Sozialrecht oder eine
             anerkannte Beratungsstelle (z.&nbsp;B. VdK, SoVD) zu konsultieren.
           </p>
         </section>
@@ -108,7 +108,7 @@ export default function AgbPage() {
             Fuer die Nutzung bestimmter Funktionen ist die Erstellung eines
             Benutzerkontos erforderlich. Der Nutzer ist verpflichtet, bei der
             Registrierung wahrheitsgemaesse Angaben zu machen und seine
-            Zugangsdaten vertraulich zu behandeln. Der Nutzer haftet fuer
+            Zugangsdaten vertraulich zu behandeln. Der Nutzer haftet für
             saemtliche Aktivitaeten, die unter seinem Benutzerkonto
             vorgenommen werden.
           </p>
@@ -160,7 +160,7 @@ export default function AgbPage() {
                   </td>
                   <td className="py-3 px-4">2,99 EUR/Monat</td>
                   <td className="py-3 px-4">
-                    Erweiterte Funktionen fuer den Einstieg
+                    Erweiterte Funktionen für den Einstieg
                   </td>
                 </tr>
                 <tr className="border-b border-gray-100">
@@ -169,7 +169,7 @@ export default function AgbPage() {
                   </td>
                   <td className="py-3 px-4">4,99 EUR/Monat</td>
                   <td className="py-3 px-4">
-                    Voller Funktionsumfang fuer aktive Nutzer
+                    Voller Funktionsumfang für aktive Nutzer
                   </td>
                 </tr>
                 <tr className="border-b border-gray-100">
@@ -186,14 +186,14 @@ export default function AgbPage() {
           </div>
           <p className="text-gray-600">
             Alle Preise verstehen sich inklusive der gesetzlichen
-            Mehrwertsteuer. Die Zahlungsabwicklung erfolgt ueber den
+            Mehrwertsteuer. Die Zahlungsabwicklung erfolgt über den
             Zahlungsdienstleister Stripe. Der Nutzer kann zwischen monatlicher
-            und jaehrlicher Abrechnung waehlen.
+            und jaehrlicher Abrechnung wählen.
           </p>
           <p className="text-gray-600 mt-3">
-            Die Kuendigung ist jederzeit zum Ende des laufenden
+            Die Kündigung ist jederzeit zum Ende des laufenden
             Abrechnungszeitraums (Monatsende bzw. Jahresende) moeglich. Nach
-            der Kuendigung wird das Benutzerkonto auf den kostenlosen
+            der Kündigung wird das Benutzerkonto auf den kostenlosen
             Schnupperer-Tarif zurueckgestuft.
           </p>
         </section>
@@ -204,7 +204,7 @@ export default function AgbPage() {
             &sect; 6 Credits und Kontingente
           </h2>
           <p className="text-gray-600">
-            Die Plattform verwendet ein Credit-System fuer bestimmte
+            Die Plattform verwendet ein Credit-System für bestimmte
             Zusatzleistungen (z.&nbsp;B. Detail-Analysen, Postversand,
             personalisierte Schreiben). Je nach Tarif erhaelt der Nutzer ein
             monatliches Credit-Guthaben. Darueber hinaus koennen Credits in
@@ -242,13 +242,13 @@ export default function AgbPage() {
           <p className="text-gray-600 mt-3">
             Um Ihr Widerrufsrecht auszuueben, muessen Sie uns (Fintutto UG
             (haftungsbeschraenkt) i.G., E-Mail: kontakt@fintutto.de) mittels
-            einer eindeutigen Erklaerung (z.&nbsp;B. ein mit der Post
-            versandter Brief oder eine E-Mail) ueber Ihren Entschluss, diesen
+            einer eindeutigen Erklärung (z.&nbsp;B. ein mit der Post
+            versandter Brief oder eine E-Mail) über Ihren Entschluss, diesen
             Vertrag zu widerrufen, informieren.
           </p>
           <p className="text-gray-600 mt-3">
             Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die
-            Mitteilung ueber die Ausuebung des Widerrufsrechts vor Ablauf der
+            Mitteilung über die Ausuebung des Widerrufsrechts vor Ablauf der
             Widerrufsfrist absenden. Im Falle eines wirksamen Widerrufs werden
             bereits geleistete Zahlungen unverzueglich zurueckerstattet.
           </p>
@@ -260,16 +260,16 @@ export default function AgbPage() {
             &sect; 8 Haftung
           </h2>
           <p className="text-gray-600">
-            Der Anbieter haftet unbeschraenkt fuer Schaeden aus der Verletzung
+            Der Anbieter haftet unbeschraenkt für Schaeden aus der Verletzung
             des Lebens, des Koerpers oder der Gesundheit, die auf einer
             vorsaetzlichen oder fahrlaessigen Pflichtverletzung des Anbieters
-            beruhen, sowie fuer sonstige Schaeden, die auf einer
+            beruhen, sowie für sonstige Schaeden, die auf einer
             vorsaetzlichen oder grob fahrlaessigen Pflichtverletzung des
             Anbieters beruhen.
           </p>
           <p className="text-gray-600 mt-3">
             Bei leichter Fahrlaessigkeit haftet der Anbieter nur bei Verletzung
-            wesentlicher Vertragspflichten (Kardinalpflichten) und der Hoehe
+            wesentlicher Vertragspflichten (Kardinalpflichten) und der Höhe
             nach begrenzt auf den vorhersehbaren, vertragstypischen Schaden.
             Wesentliche Vertragspflichten sind solche, deren Erfuellung die
             ordnungsgemaesse Durchfuehrung des Vertrages ueberhaupt erst
@@ -279,7 +279,7 @@ export default function AgbPage() {
           <p className="text-gray-600 mt-3">
             Die vorstehenden Haftungsbeschraenkungen gelten nicht bei
             arglistigem Verschweigen von Maengeln, bei Uebernahme einer
-            Garantie und fuer Ansprueche nach dem Produkthaftungsgesetz.
+            Garantie und für Ansprueche nach dem Produkthaftungsgesetz.
           </p>
         </section>
 
@@ -308,8 +308,8 @@ export default function AgbPage() {
             &sect; 10 Aenderungen der AGB
           </h2>
           <p className="text-gray-600">
-            Der Anbieter behaelt sich vor, diese AGB jederzeit mit Wirkung fuer
-            die Zukunft zu aendern. Der Nutzer wird ueber Aenderungen per
+            Der Anbieter behaelt sich vor, diese AGB jederzeit mit Wirkung für
+            die Zukunft zu aendern. Der Nutzer wird über Aenderungen per
             E-Mail oder durch einen Hinweis beim naechsten Login informiert.
             Widerspricht der Nutzer den geaenderten AGB nicht innerhalb von
             vier Wochen nach Zugang der Aenderungsmitteilung, gelten die
@@ -334,7 +334,7 @@ export default function AgbPage() {
           <p className="text-gray-600 mt-3">
             Ist der Nutzer Kaufmann, juristische Person des oeffentlichen Rechts
             oder ein oeffentlich-rechtliches Sondervermoegen, ist Gerichtsstand
-            fuer alle Streitigkeiten aus Vertragsverhaeltnissen zwischen dem
+            für alle Streitigkeiten aus Vertragsverhaeltnissen zwischen dem
             Nutzer und dem Anbieter der Sitz des Anbieters.
           </p>
           <p className="text-gray-600 mt-3">

@@ -14,12 +14,12 @@ export const SGB_CATEGORIES: Record<SgbCategory, SgbCategoryInfo> = {
   sgb2: {
     id: 'sgb2',
     name: 'SGB II',
-    fullName: 'Buergergeld (ehem. ALG II / Hartz IV)',
-    description: 'Grundsicherung fuer Arbeitsuchende - Buergergeld, Regelsatz, Mehrbedarf, Sanktionen',
+    fullName: 'Bürgergeld (ehem. ALG II / Hartz IV)',
+    description: 'Grundsicherung für Arbeitsuchende - Bürgergeld, Regelsatz, Mehrbedarf, Sanktionen',
     color: '#059669',
     badgeClass: 'badge-sgb2',
     topics: [
-      'Buergergeld-Regelsatz',
+      'Bürgergeld-Regelsatz',
       'Mehrbedarf',
       'Sanktionen & Leistungskuerzungen',
       'Eingliederungsvereinbarung',
@@ -113,7 +113,7 @@ export type LetterType =
   | 'antrag_umzug'
   | 'eilantrag_sozialgericht'
   | 'akteneinsicht'
-  | 'fristverlängerung'
+  | 'fristverlaengerung'
   | 'beschwerde_sachbearbeiter'
 
 export interface LetterTemplate {
@@ -159,7 +159,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     ],
     legalBasis: ['§ 39 SGB II', '§ 84 SGG', '§ 36 SGB X'],
     tips: [
-      'Du hast 1 Monat nach Zugang des Bescheids Zeit fuer den Widerspruch.',
+      'Du hast 1 Monat nach Zugang des Bescheids Zeit für den Widerspruch.',
       'Du kannst den Widerspruch auch erstmal ohne Begruendung einlegen und diese nachreichen.',
       'Sende den Widerspruch immer per Einschreiben oder gib ihn persoenlich ab und lass dir den Empfang bestaetigen.',
     ],
@@ -167,8 +167,8 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
   {
     id: 'widerspruch_sanktion',
     title: 'Widerspruch gegen Sanktion',
-    shortDescription: 'Wenn dir Leistungen gekuerzt werden (Pflichtverletzung)',
-    description: 'Widerspruch gegen einen Sanktionsbescheid nach neuem Buergergeld-Recht. Seit 2023 gelten neue, mildere Sanktionsregeln.',
+    shortDescription: 'Wenn dir Leistungen gekürzt werden (Pflichtverletzung)',
+    description: 'Widerspruch gegen einen Sanktionsbescheid nach neuem Bürgergeld-Recht. Seit 2023 gelten neue, mildere Sanktionsregeln.',
     category: 'sgb2',
     difficulty: 'mittel',
     estimatedTime: '10-15 Min.',
@@ -189,16 +189,16 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     ],
     legalBasis: ['§ 31 SGB II', '§ 31a SGB II', '§ 31b SGB II', '§ 32 SGB II'],
     tips: [
-      'Seit dem Buergergeld duerfen Sanktionen maximal 30% des Regelsatzes betragen.',
+      'Seit dem Bürgergeld duerfen Sanktionen maximal 30% des Regelsatzes betragen.',
       'Bei einem wichtigen Grund (Krankheit, Kinderbetreuung etc.) darf nicht sanktioniert werden.',
       'Hol dir eine aerztliche Bescheinigung, wenn du krank warst.',
     ],
   },
   {
     id: 'widerspruch_kdu',
-    title: 'Widerspruch gegen KdU-Kuerzung',
+    title: 'Widerspruch gegen KdU-Kürzung',
     shortDescription: 'Wenn das Amt nicht die volle Miete zahlt',
-    description: 'Widerspruch wenn das Jobcenter die Kosten der Unterkunft (Miete + Heizung) nicht in voller Hoehe uebernimmt oder eine Kostensenkungsaufforderung schickt.',
+    description: 'Widerspruch wenn das Jobcenter die Kosten der Unterkunft (Miete + Heizung) nicht in voller Höhe uebernimmt oder eine Kostensenkungsaufforderung schickt.',
     category: 'kdu',
     difficulty: 'mittel',
     estimatedTime: '10-15 Min.',
@@ -214,7 +214,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     ],
     legalBasis: ['§ 22 SGB II', '§ 35 SGB XII'],
     tips: [
-      'Das Amt muss die tatsaechlichen Kosten fuer 6 Monate uebernehmen, bevor es kuerzen darf.',
+      'Das Amt muss die tatsaechlichen Kosten für 6 Monate uebernehmen, bevor es kürzen darf.',
       'Die Angemessenheitsgrenze muss nach einem "schluessigen Konzept" ermittelt worden sein.',
       'Verknuepfung mit dem Mieter-Checker: Pruefe ob deine Miete ortsueblich ist!',
     ],
@@ -222,8 +222,8 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
   {
     id: 'ueberpruefungsantrag',
     title: 'Ueberpruefungsantrag nach § 44 SGB X',
-    shortDescription: 'Alte Bescheide nochmal pruefen lassen (bis zu 4 Jahre zurueck)',
-    description: 'Mit dem Ueberpruefungsantrag kannst du Bescheide der letzten 4 Jahre nochmal pruefen lassen, auch wenn die Widerspruchsfrist abgelaufen ist. Sehr maechtig!',
+    shortDescription: 'Alte Bescheide nochmal prüfen lassen (bis zu 4 Jahre zurück)',
+    description: 'Mit dem Ueberpruefungsantrag kannst du Bescheide der letzten 4 Jahre nochmal prüfen lassen, auch wenn die Widerspruchsfrist abgelaufen ist. Sehr maechtig!',
     category: 'sgb10',
     difficulty: 'einfach',
     estimatedTime: '5-10 Min.',
@@ -238,7 +238,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     ],
     legalBasis: ['§ 44 SGB X'],
     tips: [
-      'Du kannst Bescheide der letzten 4 Jahre pruefen lassen!',
+      'Du kannst Bescheide der letzten 4 Jahre prüfen lassen!',
       'Typische Gruende: Falsche Regelsaetze, fehlender Mehrbedarf, zu niedrige KdU.',
       'Das Amt muss den Bescheid aendern, wenn er rechtswidrig war.',
       'Nachzahlungen sind moeglich - manchmal mehrere hundert Euro!',
@@ -247,8 +247,8 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
   {
     id: 'antrag_mehrbedarf',
     title: 'Antrag auf Mehrbedarf',
-    shortDescription: 'Zusaetzliche Leistungen fuer besondere Lebenslagen',
-    description: 'Antrag auf Anerkennung eines Mehrbedarfs, z.B. fuer Alleinerziehende, Schwangere, chronisch Kranke oder bei kostenaufwaendiger Ernaehrung.',
+    shortDescription: 'Zusaetzliche Leistungen für besondere Lebenslagen',
+    description: 'Antrag auf Anerkennung eines Mehrbedarfs, z.B. für Alleinerziehende, Schwangere, chronisch Kranke oder bei kostenaufwaendiger Ernaehrung.',
     category: 'sgb2',
     difficulty: 'einfach',
     estimatedTime: '5 Min.',
@@ -333,7 +333,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     id: 'antrag_weiterbewilligung',
     title: 'Weiterbewilligungsantrag',
     shortDescription: 'Verlaengerung deiner Leistungen rechtzeitig beantragen',
-    description: 'Antrag auf Weiterbewilligung von Buergergeld-Leistungen. Sollte rechtzeitig vor Ablauf des Bewilligungszeitraums gestellt werden.',
+    description: 'Antrag auf Weiterbewilligung von Bürgergeld-Leistungen. Sollte rechtzeitig vor Ablauf des Bewilligungszeitraums gestellt werden.',
     category: 'sgb2',
     difficulty: 'einfach',
     estimatedTime: '5 Min.',
@@ -367,7 +367,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
       { id: 'jobcenter', label: 'Zustaendiges Jobcenter (Gegner)', type: 'text', placeholder: '', required: true },
       { id: 'sozialgericht', label: 'Zustaendiges Sozialgericht', type: 'text', placeholder: 'z.B. Sozialgericht Berlin', required: true },
       { id: 'sachverhalt', label: 'Was ist passiert?', type: 'textarea', placeholder: 'Beschreibe die Situation: Warum brauchst du dringend Hilfe?', required: true },
-      { id: 'notlage', label: 'Welche Notlage besteht?', type: 'textarea', placeholder: 'z.B. kein Geld fuer Essen, Miete kann nicht bezahlt werden, droht Stromsperre...', required: true },
+      { id: 'notlage', label: 'Welche Notlage besteht?', type: 'textarea', placeholder: 'z.B. kein Geld für Essen, Miete kann nicht bezahlt werden, droht Stromsperre...', required: true },
     ],
     legalBasis: ['§ 86b SGG'],
     tips: [
@@ -381,7 +381,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     id: 'akteneinsicht',
     title: 'Antrag auf Akteneinsicht',
     shortDescription: 'Deine komplette Akte beim Amt einsehen',
-    description: 'Du hast das Recht, deine komplette Akte beim Jobcenter einzusehen. Wichtig um Fehler zu finden und Widersprueche vorzubereiten.',
+    description: 'Du hast das Recht, deine komplette Akte beim Jobcenter einzusehen. Wichtig um Fehler zu finden und Widersprüche vorzubereiten.',
     category: 'sgb10',
     difficulty: 'einfach',
     estimatedTime: '3 Min.',
@@ -402,8 +402,8 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
   {
     id: 'beschwerde_sachbearbeiter',
     title: 'Dienstaufsichtsbeschwerde',
-    shortDescription: 'Beschwerde ueber Sachbearbeiter-Verhalten',
-    description: 'Formelle Beschwerde wenn dein Sachbearbeiter sich fehlverhaelt, Antraege verschleppt oder dich schlecht behandelt.',
+    shortDescription: 'Beschwerde über Sachbearbeiter-Verhalten',
+    description: 'Formelle Beschwerde wenn dein Sachbearbeiter sich fehlverhaelt, Anträge verschleppt oder dich schlecht behandelt.',
     category: 'sgb10',
     difficulty: 'einfach',
     estimatedTime: '5-10 Min.',
@@ -418,15 +418,15 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     legalBasis: ['Art. 17 GG (Petitionsrecht)'],
     tips: [
       'Bleibe sachlich und beschreibe den Vorfall mit Datum und Zeugen.',
-      'Die Beschwerde geht an die Teamleitung / Geschaeftsfuehrung des Jobcenters.',
+      'Die Beschwerde geht an die Teamleitung / Geschäftsfuehrung des Jobcenters.',
       'Du kannst dich auch beim Buergerbeauftragten oder Petitionsausschuss beschweren.',
     ],
   },
   {
-    id: 'fristverlängerung',
+    id: 'fristverlaengerung',
     title: 'Antrag auf Fristverlängerung',
-    shortDescription: 'Mehr Zeit fuer Unterlagen oder Stellungnahmen',
-    description: 'Wenn du fuer eine Mitwirkungspflicht oder Anhoerung mehr Zeit brauchst.',
+    shortDescription: 'Mehr Zeit für Unterlagen oder Stellungnahmen',
+    description: 'Wenn du für eine Mitwirkungspflicht oder Anhoerung mehr Zeit brauchst.',
     category: 'sgb10',
     difficulty: 'einfach',
     estimatedTime: '3 Min.',
@@ -448,7 +448,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     id: 'antrag_umzug',
     title: 'Antrag auf Zusicherung bei Umzug',
     shortDescription: 'Umzugsgenehmigung und Kostenuebernahme',
-    description: 'Antrag auf Zusicherung der Mietuebernahme fuer eine neue Wohnung und ggf. Uebernahme der Umzugskosten.',
+    description: 'Antrag auf Zusicherung der Mietuebernahme für eine neue Wohnung und ggf. Uebernahme der Umzugskosten.',
     category: 'kdu',
     difficulty: 'mittel',
     estimatedTime: '10 Min.',
@@ -461,7 +461,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
       { id: 'neue_adresse', label: 'Adresse der neuen Wohnung', type: 'text', placeholder: '', required: true },
       { id: 'umzugsgrund', label: 'Grund des Umzugs', type: 'select', placeholder: '', required: true, options: [
         { value: 'aufforderung', label: 'Kostensenkungsaufforderung vom Amt' },
-        { value: 'kuendigung', label: 'Kuendigung durch Vermieter' },
+        { value: 'kuendigung', label: 'Kündigung durch Vermieter' },
         { value: 'gesundheit', label: 'Gesundheitliche Gruende' },
         { value: 'familie', label: 'Familiaere Gruende (z.B. Nachwuchs)' },
         { value: 'arbeit', label: 'Arbeitsaufnahme in anderer Stadt' },
@@ -474,7 +474,7 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
       'IMMER VOR dem Umzug die Zusicherung einholen!',
       'Ohne Zusicherung riskierst du, dass nur die alte, niedrigere Miete gezahlt wird.',
       'Bei einem Umzug auf Aufforderung des Amtes muessen die Umzugskosten uebernommen werden.',
-      'Verknuepfung: Nutze den Mieter-Checker fuer KdU-Angemessenheitspruefung!',
+      'Verknuepfung: Nutze den Mieter-Checker für KdU-Angemessenheitspruefung!',
     ],
   },
   {
@@ -521,7 +521,7 @@ export const COMMON_PROBLEMS = [
   },
   {
     id: 'sanktion_erhalten',
-    title: 'Ich wurde sanktioniert / Leistungen wurden gekuerzt',
+    title: 'Ich wurde sanktioniert / Leistungen wurden gekürzt',
     description: 'Du hast einen Sanktionsbescheid erhalten weil du einen Termin verpasst oder eine Massnahme nicht angetreten hast.',
     category: 'sgb2' as SgbCategory,
     suggestedTemplates: ['widerspruch_sanktion'] as LetterType[],
@@ -535,7 +535,7 @@ export const COMMON_PROBLEMS = [
   },
   {
     id: 'geld_zurueck',
-    title: 'Das Amt fordert Geld zurueck',
+    title: 'Das Amt fordert Geld zurück',
     description: 'Du hast einen Aufhebungs- und Erstattungsbescheid erhalten.',
     category: 'sgb10' as SgbCategory,
     suggestedTemplates: ['widerspruch_aufhebung', 'widerspruch_rueckforderung'] as LetterType[],
@@ -550,7 +550,7 @@ export const COMMON_PROBLEMS = [
   {
     id: 'umzug',
     title: 'Ich will/muss umziehen',
-    description: 'Du brauchst eine Zusicherung vom Amt fuer die neue Wohnung.',
+    description: 'Du brauchst eine Zusicherung vom Amt für die neue Wohnung.',
     category: 'kdu' as SgbCategory,
     suggestedTemplates: ['antrag_umzug'] as LetterType[],
   },

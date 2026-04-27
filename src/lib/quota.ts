@@ -1,11 +1,11 @@
 /**
- * Zentraler Ort fuer alle DB-Inkremente (Scans, Chat, Letters).
+ * Zentraler Ort für alle DB-Inkremente (Scans, Chat, Letters).
  *
  * Warum existiert diese Datei?
- * - Vorher wurde im Frontend ueber useState gezaehlt (manipulierbar,
+ * - Vorher wurde im Frontend über useState gezaehlt (manipulierbar,
  *   persistiert nicht).
  * - Jetzt: pro Aktion wird in bb_user_state die jeweilige Spalte um
- *   +1 hochgesetzt. So bleibt das Zaehlen konsistent ueber
+ *   +1 hochgesetzt. So bleibt das Zaehlen konsistent über
  *   Tab-Wechsel, Reload und mehrere Devices hinweg.
  *
  * Hinweis zur Architektur:
@@ -30,10 +30,10 @@ const hasRealSupabase = !!(
 )
 
 /**
- * Atomisches Increment ueber eine einzelne Spalte in bb_user_state.
+ * Atomisches Increment über eine einzelne Spalte in bb_user_state.
  * Nutzt den Round-Trip: lesen -> +1 -> updaten. Fuer echte
  * Concurrency-Safety wuerden wir eine Postgres-Function anlegen;
- * fuer den Launch reicht dieser Ansatz, da die UI immer nur einen
+ * für den Launch reicht dieser Ansatz, da die UI immer nur einen
  * Call gleichzeitig feuert.
  *
  * @returns der neue Wert der Spalte, oder null bei Fehler/Demo-Mode.

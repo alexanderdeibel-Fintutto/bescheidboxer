@@ -54,7 +54,7 @@ export default function KontaktPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              Bescheid automatisch pruefen lassen
+              Bescheid automatisch prüfen lassen
             </p>
             <Button asChild variant="outline" className="w-full">
               <Link to="/scan">Zum Scan</Link>
@@ -127,7 +127,7 @@ export default function KontaktPage() {
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="font-semibold text-lg">Diakonie</h3>
-                <p className="text-muted-foreground">Sozialberatung fuer Betroffene</p>
+                <p className="text-muted-foreground">Sozialberatung für Betroffene</p>
               </div>
               <a
                 href="https://www.diakonie.de"
@@ -143,7 +143,7 @@ export default function KontaktPage() {
           <div className="border-l-4 border-primary pl-4 py-2">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="font-semibold text-lg">Pro Bono Anwaelte</h3>
+                <h3 className="font-semibold text-lg">Pro Bono Anwälte</h3>
                 <p className="text-muted-foreground">Kostenlose Rechtsberatung</p>
               </div>
               <a

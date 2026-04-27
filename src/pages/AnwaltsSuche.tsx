@@ -87,7 +87,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.sozialrecht-bergmann.de',
     bewertung: 4.8,
     beschreibung:
-      'Seit ueber 15 Jahren spezialisiert auf Sozialrecht mit Schwerpunkt Buergergeld und Hartz-IV-Nachfolgeregelungen. Vertritt Mandanten vor dem Sozialgericht Berlin-Brandenburg und beraet zu allen Fragen rund um Leistungsbescheide.',
+      'Seit über 15 Jahren spezialisiert auf Sozialrecht mit Schwerpunkt Bürgergeld und Hartz-IV-Nachfolgeregelungen. Vertritt Mandanten vor dem Sozialgericht Berlin-Brandenburg und beraet zu allen Fragen rund um Leistungsbescheide.',
     pkh: true,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch', 'Englisch'],
@@ -103,7 +103,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.schreiber-sozialrecht.de',
     bewertung: 4.5,
     beschreibung:
-      'Renommierte Kanzlei mit drei Fachanwaelten fuer Sozialrecht. Umfassende Betreuung von der Erstberatung ueber Widerspruchsverfahren bis hin zur Klage vor dem Sozialgericht. Besondere Expertise bei ALG-I-Sperrzeiten.',
+      'Renommierte Kanzlei mit drei Fachanwaelten für Sozialrecht. Umfassende Betreuung von der Erstberatung über Widerspruchsverfahren bis hin zur Klage vor dem Sozialgericht. Besondere Expertise bei ALG-I-Sperrzeiten.',
     pkh: true,
     erstberatungKostenlos: false,
     sprachen: ['Deutsch', 'Englisch', 'Tuerkisch'],
@@ -119,7 +119,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.sozialberatung-muenchen.de',
     bewertung: 4.7,
     beschreibung:
-      'Gemeinnuetziger Verein mit ehrenamtlichen Beratern und Juristen. Bietet kostenlose Erstberatung fuer Buergergeld-Empfaenger und Hilfe bei der Pruefung von Bescheiden. Besonders engagiert im Bereich Mehrbedarf und Kosten der Unterkunft.',
+      'Gemeinnuetziger Verein mit ehrenamtlichen Beratern und Juristen. Bietet kostenlose Erstberatung für Bürgergeld-Empfaenger und Hilfe bei der Prüfung von Bescheiden. Besonders engagiert im Bereich Mehrbedarf und Kosten der Unterkunft.',
     pkh: false,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch', 'Englisch', 'Arabisch'],
@@ -135,7 +135,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.ra-meier-hoffmann.de',
     bewertung: 4.9,
     beschreibung:
-      'Fachanwaeltin fuer Sozialrecht mit besonderem Schwerpunkt auf Sanktionsverfahren und Eingliederungsvereinbarungen. Bekannt fuer hohe Erfolgsquote bei Widerspruechen gegen Sanktionsbescheide. Engagiert sich ehrenamtlich fuer die Rechte von Erwerbslosen.',
+      'Fachanwaeltin für Sozialrecht mit besonderem Schwerpunkt auf Sanktionsverfahren und Eingliederungsvereinbarungen. Bekannt für hohe Erfolgsquote bei Widersprüchen gegen Sanktionsbescheide. Engagiert sich ehrenamtlich für die Rechte von Erwerbslosen.',
     pkh: true,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch', 'Franzoesisch'],
@@ -151,7 +151,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.weber-sozialrecht.de',
     bewertung: 4.3,
     beschreibung:
-      'Spezialkanzlei fuer Sozialrecht im Herzen von Frankfurt. Zwei Fachanwaelte beraten zu saemtlichen Fragen des SGB II und SGB III. Schwerpunkt auf Kosten der Unterkunft und Heizkosten sowie Klageverfahren vor dem Hessischen Landessozialgericht.',
+      'Spezialkanzlei für Sozialrecht im Herzen von Frankfurt. Zwei Fachanwälte beraten zu saemtlichen Fragen des SGB II und SGB III. Schwerpunkt auf Kosten der Unterkunft und Heizkosten sowie Klageverfahren vor dem Hessischen Landessozialgericht.',
     pkh: true,
     erstberatungKostenlos: false,
     sprachen: ['Deutsch', 'Englisch', 'Spanisch'],
@@ -167,7 +167,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.erwerbslosenberatung-leipzig.de',
     bewertung: 4.6,
     beschreibung:
-      'Unabhaengige Beratungsstelle fuer Erwerbslose und Aufstocker. Hilft bei der Pruefung von Bescheiden, beim Verfassen von Widerspruechen und bei der Vorbereitung auf Termine beim Jobcenter. Offene Sprechstunde ohne Termin moeglich.',
+      'Unabhaengige Beratungsstelle für Erwerbslose und Aufstocker. Hilft bei der Prüfung von Bescheiden, beim Verfassen von Widersprüchen und bei der Vorbereitung auf Termine beim Jobcenter. Offene Sprechstunde ohne Termin moeglich.',
     pkh: false,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch', 'Russisch', 'Arabisch'],
@@ -183,7 +183,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.ra-brandt-dortmund.de',
     bewertung: 4.4,
     beschreibung:
-      'Erfahrener Rechtsanwalt fuer Sozialrecht mit Kanzlei in der Dortmunder Innenstadt. Vertritt Mandanten seit 12 Jahren vor den Sozialgerichten in NRW. Besonderer Fokus auf Mehrbedarf-Ansprueche und Sozialhilfe nach SGB XII.',
+      'Erfahrener Rechtsanwalt für Sozialrecht mit Kanzlei in der Dortmunder Innenstadt. Vertritt Mandanten seit 12 Jahren vor den Sozialgerichten in NRW. Besonderer Fokus auf Mehrbedarf-Ansprueche und Sozialhilfe nach SGB XII.',
     pkh: true,
     erstberatungKostenlos: false,
     sprachen: ['Deutsch', 'Polnisch'],
@@ -199,7 +199,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.sozialrechtsverein-nuernberg.de',
     bewertung: 4.2,
     beschreibung:
-      'Ehrenamtlicher Verein, der Buergergeld-Empfaenger bei Problemen mit dem Jobcenter unterstuetzt. Bietet woechentliche Sprechstunden mit juristischer Fachberatung und Hilfe beim Ausfuellen von Antraegen und Formularen.',
+      'Ehrenamtlicher Verein, der Bürgergeld-Empfaenger bei Problemen mit dem Jobcenter unterstuetzt. Bietet woechentliche Sprechstunden mit juristischer Fachberatung und Hilfe beim Ausfuellen von Anträgen und Formularen.',
     pkh: false,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch'],
@@ -215,7 +215,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.ra-keller-dresden.de',
     bewertung: 4.7,
     beschreibung:
-      'Fachanwaeltin fuer Sozialrecht in Dresden. Spezialisiert auf Widersprueche und Klagen gegen Jobcenter-Bescheide. Umfangreiche Erfahrung mit Sperrzeiten-Problematik bei ALG I und Sanktionsverfahren im Buergergeld.',
+      'Fachanwaeltin für Sozialrecht in Dresden. Spezialisiert auf Widersprüche und Klagen gegen Jobcenter-Bescheide. Umfangreiche Erfahrung mit Sperrzeiten-Problematik bei ALG I und Sanktionsverfahren im Bürgergeld.',
     pkh: true,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch', 'Tschechisch'],
@@ -231,7 +231,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.hartmann-grosse-sozialrecht.de',
     bewertung: 4.6,
     beschreibung:
-      'Ueberregional taetige Kanzlei mit Schwerpunkt Sozialrecht. Vier Anwaelte decken das gesamte Spektrum des Sozialrechts ab. Besondere Kompetenz bei Klageverfahren vor den Sozialgerichten Baden-Wuerttembergs und bei komplexen KdU-Faellen.',
+      'Ueberregional taetige Kanzlei mit Schwerpunkt Sozialrecht. Vier Anwälte decken das gesamte Spektrum des Sozialrechts ab. Besondere Kompetenz bei Klageverfahren vor den Sozialgerichten Baden-Wuerttembergs und bei komplexen KdU-Faellen.',
     pkh: true,
     erstberatungKostenlos: false,
     sprachen: ['Deutsch', 'Englisch', 'Italienisch'],
@@ -247,7 +247,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.ali-hannover.de',
     bewertung: 4.5,
     beschreibung:
-      'Seit ueber 20 Jahren bietet die Arbeitsloseninitiative Hannover kostenlose Beratung fuer Menschen im Buergergeld-Bezug. Erfahrene Berater helfen bei Widerspruechen, begleiten zu Jobcenter-Terminen und bieten regelmaessige Informationsveranstaltungen.',
+      'Seit über 20 Jahren bietet die Arbeitsloseninitiative Hannover kostenlose Beratung für Menschen im Bürgergeld-Bezug. Erfahrene Berater helfen bei Widersprüchen, begleiten zu Jobcenter-Terminen und bieten regelmaessige Informationsveranstaltungen.',
     pkh: false,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch', 'Englisch', 'Arabisch', 'Farsi'],
@@ -263,7 +263,7 @@ const eintraege: AnwaltEintrag[] = [
     website: 'https://www.dr-reuter-sozialrecht.de',
     bewertung: 4.8,
     beschreibung:
-      'Promovierter Fachanwalt fuer Sozialrecht mit umfassender Expertise im gesamten Sozialgesetzbuch. Publiziert regelmaessig zu aktuellen Entwicklungen im Buergergeld-Recht. Vertritt Mandanten auch in Revisionsverfahren vor dem Bundessozialgericht.',
+      'Promovierter Fachanwalt für Sozialrecht mit umfassender Expertise im gesamten Sozialgesetzbuch. Publiziert regelmaessig zu aktuellen Entwicklungen im Bürgergeld-Recht. Vertritt Mandanten auch in Revisionsverfahren vor dem Bundessozialgericht.',
     pkh: true,
     erstberatungKostenlos: true,
     sprachen: ['Deutsch', 'Englisch', 'Niederlaendisch'],
@@ -466,10 +466,10 @@ export default function AnwaltsSuche() {
             <Scale className="w-8 h-8" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            Anwaltssuche fuer Sozialrecht
+            Anwaltssuche für Sozialrecht
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Finde Rechtsanwaelte, Kanzleien und Beratungsstellen in deiner Naehe, die auf
+            Finde Rechtsanwaelte, Kanzleien und Beratungsstellen in deiner Nähe, die auf
             Sozialrecht spezialisiert sind und dir bei Problemen mit dem Jobcenter helfen koennen.
           </p>
         </div>
@@ -685,14 +685,14 @@ export default function AnwaltsSuche() {
                   Was ist Prozesskostenhilfe (PKH)?
                 </h2>
                 <p className="text-sm text-muted-foreground mb-3">
-                  Prozesskostenhilfe (PKH) uebernimmt die Kosten fuer einen Rechtsanwalt und die
+                  Prozesskostenhilfe (PKH) uebernimmt die Kosten für einen Rechtsanwalt und die
                   Gerichtskosten, wenn Sie sich einen Prozess vor dem Sozialgericht nicht leisten
-                  koennen. Als Buergergeld-Empfaenger haben Sie in der Regel Anspruch auf PKH, wenn
+                  koennen. Als Bürgergeld-Empfaenger haben Sie in der Regel Anspruch auf PKH, wenn
                   Ihre Klage oder Ihr Widerspruch hinreichende Aussicht auf Erfolg hat. Der Antrag
                   wird beim zustaendigen Sozialgericht gestellt - Ihr Anwalt hilft Ihnen dabei.
                 </p>
                 <p className="text-sm text-muted-foreground mb-4">
-                  <strong>Wichtig:</strong> Auch fuer die aussergerichtliche Beratung gibt es
+                  <strong>Wichtig:</strong> Auch für die aussergerichtliche Beratung gibt es
                   Hilfe: Mit einem <strong>Beratungshilfeschein</strong> vom Amtsgericht koennen
                   Sie sich kostenlos von einem Rechtsanwalt beraten lassen. Der Eigenanteil betraegt
                   maximal 15 Euro.

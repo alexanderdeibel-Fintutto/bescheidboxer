@@ -25,8 +25,8 @@ export const BOXER_LEVELS: BoxerLevelInfo[] = [
     name: 'Kaempfer',
     minPoints: 100,
     icon: '💪',
-    cssClass: 'level-kaempfer',
-    description: 'Du wehrst dich! Erste Widersprueche sind raus.',
+    cssClass: 'level-kämpfer',
+    description: 'Du wehrst dich! Erste Widersprüche sind raus.',
   },
   {
     id: 'profi',
@@ -50,7 +50,7 @@ export const BOXER_LEVELS: BoxerLevelInfo[] = [
     minPoints: 5000,
     icon: '👑',
     cssClass: 'level-legende',
-    description: 'Du bist eine Inspiration fuer andere Betroffene!',
+    description: 'Du bist eine Inspiration für andere Betroffene!',
   },
 ]
 
@@ -67,7 +67,7 @@ export const BADGES: BoxerBadge[] = [
   { id: 'erster_widerspruch', name: 'Erster Widerspruch', description: 'Ersten Widerspruch erstellt', icon: '✊', points: 25 },
   { id: 'forum_held', name: 'Forum-Held', description: '10 Forum-Beitraege geschrieben', icon: '💬', points: 50 },
   { id: 'rechte_kenner', name: 'Rechte-Kenner', description: '20 KI-Fragen gestellt', icon: '📚', points: 30 },
-  { id: 'geld_zurueck', name: 'Geld zurueck!', description: 'Nachzahlung durch Widerspruch erhalten', icon: '💰', points: 100 },
+  { id: 'geld_zurueck', name: 'Geld zurück!', description: 'Nachzahlung durch Widerspruch erhalten', icon: '💰', points: 100 },
   { id: 'helfer', name: 'Helfer', description: 'Beitrag als "Beste Antwort" markiert', icon: '🤝', points: 40 },
   { id: 'scanner_pro', name: 'Scanner-Profi', description: '5 Bescheide gescannt', icon: '📋', points: 50 },
   { id: 'community_star', name: 'Community-Star', description: '50 Upvotes im Forum', icon: '⭐', points: 75 },

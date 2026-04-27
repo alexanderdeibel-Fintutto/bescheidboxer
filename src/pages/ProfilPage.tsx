@@ -329,7 +329,7 @@ export default function ProfilPage() {
                 <div className="flex items-center justify-between py-3">
                   <div>
                     <p className="font-medium">Produkt-Updates</p>
-                    <p className="text-sm text-gray-600">Informationen ueber neue Features und Verbesserungen</p>
+                    <p className="text-sm text-gray-600">Informationen über neue Features und Verbesserungen</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input

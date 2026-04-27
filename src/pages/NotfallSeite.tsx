@@ -41,7 +41,7 @@ const HOTLINES = [
   {
     name: 'Kinder- und Jugendtelefon',
     nummer: '116 111',
-    beschreibung: 'Beratung fuer Kinder und Jugendliche bei Problemen und Sorgen',
+    beschreibung: 'Beratung für Kinder und Jugendliche bei Problemen und Sorgen',
     zeiten: 'Mo-Sa 14-20 Uhr, kostenlos',
     icon: Heart,
     color: 'green',
@@ -53,24 +53,24 @@ const SOFORTHILFE = [
     titel: 'Strom/Gas wird abgestellt',
     schritte: [
       'Sofort beim Jobcenter Antrag auf Uebernahme der Energieschulden stellen (§ 24 Abs. 1 SGB II)',
-      'Energieversorger ueber den Antrag informieren und um Aufschub bitten',
+      'Energieversorger über den Antrag informieren und um Aufschub bitten',
       'Eilantrag beim Sozialgericht stellen wenn das Jobcenter nicht reagiert',
-      'Verbraucherzentrale kontaktieren fuer Beratung zur Stromsperre',
+      'Verbraucherzentrale kontaktieren für Beratung zur Stromsperre',
     ],
   },
   {
     titel: 'Wohnung wird gekuendigt',
     schritte: [
-      'Innerhalb von 2 Monaten nach Kuendigung Widerspruch einlegen',
-      'Jobcenter ueber die Kuendigung informieren - Antrag auf Mietschuldenuebernahme (§ 22 Abs. 8 SGB II)',
+      'Innerhalb von 2 Monaten nach Kündigung Widerspruch einlegen',
+      'Jobcenter über die Kündigung informieren - Antrag auf Mietschuldenuebernahme (§ 22 Abs. 8 SGB II)',
       'Eilantrag beim Sozialgericht bei drohendem Wohnungsverlust',
       'Schuldnerberatung kontaktieren wenn Mietschulden bestehen',
     ],
   },
   {
-    titel: 'Kein Geld fuer Essen',
+    titel: 'Kein Geld für Essen',
     schritte: [
-      'Tafel in deiner Naehe aufsuchen (www.tafel.de)',
+      'Tafel in deiner Nähe aufsuchen (www.tafel.de)',
       'Beim Jobcenter Vorschuss/Abschlagszahlung beantragen',
       'Kirchengemeinden bieten oft Soforthilfe an',
       'Eilantrag beim Sozialgericht wenn Jobcenter nicht zahlt',
@@ -81,15 +81,15 @@ const SOFORTHILFE = [
     schritte: [
       'Sofort Widerspruch einlegen (Frist: 1 Monat!)',
       'Eilantrag beim Sozialgericht auf einstweilige Anordnung',
-      'Beratungsstelle oder Anwalt fuer Sozialrecht aufsuchen',
-      'Prozesskostenhilfe beantragen wenn kein Geld fuer Anwalt',
+      'Beratungsstelle oder Anwalt für Sozialrecht aufsuchen',
+      'Prozesskostenhilfe beantragen wenn kein Geld für Anwalt',
     ],
   },
   {
     titel: 'Obdachlosigkeit droht',
     schritte: [
       'Ordnungsamt/Sozialamt kontaktieren - Pflicht zur Notunterbringung!',
-      'Jobcenter ueber drohende Obdachlosigkeit informieren',
+      'Jobcenter über drohende Obdachlosigkeit informieren',
       'Notunterkuenfte und Waermestuben in deiner Stadt aufsuchen',
       'Diakonie oder Caritas Beratungsstelle aufsuchen',
     ],
@@ -100,7 +100,7 @@ const BERATUNGSSTELLEN = [
   { name: 'Erwerbslosenvereine', url: 'https://www.erwerbslos.de', beschreibung: 'Bundesweite Uebersicht von Erwerbsloseninitiativen' },
   { name: 'Sozialverband VdK', url: 'https://www.vdk.de', beschreibung: 'Sozialrechtsberatung und Vertretung vor Gericht' },
   { name: 'Sozialverband SoVD', url: 'https://www.sovd.de', beschreibung: 'Beratung im Sozialrecht, Mitgliedschaft ab 6 EUR/Monat' },
-  { name: 'Pro Asyl', url: 'https://www.proasyl.de', beschreibung: 'Beratung fuer Gefluechtete zu Sozialleistungen' },
+  { name: 'Pro Asyl', url: 'https://www.proasyl.de', beschreibung: 'Beratung für Gefluechtete zu Sozialleistungen' },
   { name: 'Tacheles e.V.', url: 'https://www.tacheles-sozialhilfe.de', beschreibung: 'Online-Beratung und Wissensportal zu SGB II' },
 ]
 
@@ -127,7 +127,7 @@ export default function NotfallSeite() {
             <h1 className="text-3xl font-bold">Notfall-Hilfe</h1>
           </div>
           <p className="text-red-100 text-lg">
-            Du bist in einer Notlage? Hier findest du sofortige Hilfe, kostenlose Hotlines und konkrete Schritte fuer akute Probleme.
+            Du bist in einer Notlage? Hier findest du sofortige Hilfe, kostenlose Hotlines und konkrete Schritte für akute Probleme.
           </p>
           <div className="mt-4 p-4 bg-white/10 rounded-lg">
             <p className="font-semibold flex items-center gap-2">
@@ -244,11 +244,11 @@ export default function NotfallSeite() {
               </li>
               <li className="flex items-start gap-2">
                 <Scale className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span><strong>Prozesskostenhilfe</strong> (§ 114 ZPO): Fuer gerichtliche Verfahren steht dir PKH zu, wenn du die Kosten nicht tragen kannst. Auch fuer Anwaltskosten!</span>
+                <span><strong>Prozesskostenhilfe</strong> (§ 114 ZPO): Fuer gerichtliche Verfahren steht dir PKH zu, wenn du die Kosten nicht tragen kannst. Auch für Anwaltskosten!</span>
               </li>
               <li className="flex items-start gap-2">
                 <Scale className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span><strong>Vorschuss/Abschlagszahlung</strong> (§ 42 SGB I): Das Jobcenter muss dir einen Vorschuss zahlen, wenn ueber deinen Antrag nicht rechtzeitig entschieden wird.</span>
+                <span><strong>Vorschuss/Abschlagszahlung</strong> (§ 42 SGB I): Das Jobcenter muss dir einen Vorschuss zahlen, wenn über deinen Antrag nicht rechtzeitig entschieden wird.</span>
               </li>
               <li className="flex items-start gap-2">
                 <Scale className="h-4 w-4 mt-0.5 flex-shrink-0" />
@@ -273,7 +273,7 @@ export default function NotfallSeite() {
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:border-amber-300 transition-colors text-center">
                 <Clock className="h-8 w-8 text-amber-600 mx-auto mb-2" />
                 <p className="font-semibold">Fristen-Rechner</p>
-                <p className="text-xs text-gray-500">Widerspruchsfrist pruefen</p>
+                <p className="text-xs text-gray-500">Widerspruchsfrist prüfen</p>
               </div>
             </Link>
             <Link to="/chat">

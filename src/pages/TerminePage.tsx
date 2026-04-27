@@ -656,7 +656,7 @@ export default function TerminePage() {
                   </p>
                   <p className="text-xs text-amber-700">
                     Folgen bei Nichterscheinen ohne wichtigen Grund: 10% Minderung des
-                    Regelbedarfs fuer einen Monat (ss 31a Abs. 1 SGB II). Bei wiederholten
+                    Regelbedarfs für einen Monat (ss 31a Abs. 1 SGB II). Bei wiederholten
                     Verstoessen erhoehen sich die Sanktionen stufenweise.
                   </p>
                 </div>
@@ -782,7 +782,7 @@ export default function TerminePage() {
                 <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <p className="text-xs font-medium text-blue-700 mb-2 flex items-center gap-1">
                     <Info className="w-3.5 h-3.5" />
-                    Empfohlene Vorbereitung fuer {TERMIN_ART_MAP[form.art].label}:
+                    Empfohlene Vorbereitung für {TERMIN_ART_MAP[form.art].label}:
                   </p>
                   <ul className="text-xs text-blue-800 space-y-1">
                     {currentChecklist.map((item) => (
@@ -855,7 +855,7 @@ export default function TerminePage() {
               Noch keine Termine vorhanden
             </h3>
             <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
-              Erfassen Sie hier Ihre Jobcenter-Termine, um den Ueberblick zu
+              Erfassen Sie hier Ihre Jobcenter-Termine, um den Überblick zu
               behalten und sich optimal vorzubereiten.
             </p>
             <Button

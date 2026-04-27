@@ -21,8 +21,8 @@ const TOTAL_STEPS = 4
 
 const SITUATION_OPTIONS = [
   { id: 'bescheid', label: 'Bescheid erhalten & unsicher', icon: ScanSearch },
-  { id: 'sanktion', label: 'Sanktion oder Kuerzung', icon: Shield },
-  { id: 'umzug', label: 'Umzug geplant oder noetig', icon: ClipboardList },
+  { id: 'sanktion', label: 'Sanktion oder Kürzung', icon: Shield },
+  { id: 'umzug', label: 'Umzug geplant oder nötig', icon: ClipboardList },
   { id: 'erstausstattung', label: 'Erstausstattung beantragen', icon: FileText },
 ]
 
@@ -39,7 +39,7 @@ const FEATURE_CARDS = [
     to: '/chat',
     icon: MessageCircle,
     title: 'KI-Rechtsberater',
-    description: 'Stelle Fragen zu Buergergeld, Sanktionen, KdU und mehr.',
+    description: 'Stelle Fragen zu Bürgergeld, Sanktionen, KdU und mehr.',
     color: 'text-green-500',
     bg: 'bg-green-500/10',
   },
@@ -47,7 +47,7 @@ const FEATURE_CARDS = [
     to: '/rechner',
     icon: Calculator,
     title: 'Rechner-Suite',
-    description: '10 Rechner fuer Buergergeld, Mehrbedarf, Fristen und mehr.',
+    description: '10 Rechner für Bürgergeld, Mehrbedarf, Fristen und mehr.',
     color: 'text-orange-500',
     bg: 'bg-orange-500/10',
   },
@@ -55,7 +55,7 @@ const FEATURE_CARDS = [
     to: '/musterschreiben',
     icon: Swords,
     title: 'Musterschreiben',
-    description: 'Widersprueche, Antraege und Schreiben per Klick erstellen.',
+    description: 'Widersprüche, Anträge und Schreiben per Klick erstellen.',
     color: 'text-red-500',
     bg: 'bg-red-500/10',
   },
@@ -63,7 +63,7 @@ const FEATURE_CARDS = [
     to: '/tracker',
     icon: ClipboardList,
     title: 'Widerspruch-Tracker',
-    description: 'Behalte Fristen und den Status deiner Widersprueche im Blick.',
+    description: 'Behalte Fristen und den Status deiner Widersprüche im Blick.',
     color: 'text-indigo-500',
     bg: 'bg-indigo-500/10',
   },
@@ -73,7 +73,7 @@ export default function OnboardingPage() {
   const navigate = useNavigate()
   const [step, setStep] = useState(0)
   const [name, setName] = useState('')
-  const [receivesBuergergeld, setReceivesBuergergeld] = useState<boolean | null>(null)
+  const [receivesBürgergeld, setReceivesBürgergeld] = useState<boolean | null>(null)
   const [situations, setSituations] = useState<string[]>([])
 
   const handleNext = () => {
@@ -145,7 +145,7 @@ export default function OnboardingPage() {
                   Willkommen bei BescheidBoxer!
                 </h1>
                 <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mx-auto">
-                  Dein KI-Assistent fuer Buergergeld &amp; Sozialrecht.
+                  Dein KI-Assistent für Bürgergeld &amp; Sozialrecht.
                   Wir helfen dir, deine Rechte durchzusetzen.
                 </p>
               </div>
@@ -155,7 +155,7 @@ export default function OnboardingPage() {
                   { icon: MessageCircle, label: 'KI-Berater', desc: 'Fragen beantworten' },
                   { icon: ScanSearch, label: 'BescheidScan', desc: 'Fehler finden' },
                   { icon: Calculator, label: 'Rechner', desc: 'Ansprueche berechnen' },
-                  { icon: FileText, label: 'Musterschreiben', desc: 'Widersprueche erstellen' },
+                  { icon: FileText, label: 'Musterschreiben', desc: 'Widersprüche erstellen' },
                 ].map((feature) => (
                   <div
                     key={feature.label}
@@ -217,16 +217,16 @@ export default function OnboardingPage() {
               </div>
 
               <div className="space-y-6">
-                {/* Buergergeld question */}
+                {/* Bürgergeld question */}
                 <div>
                   <p className="text-sm font-medium mb-3">
-                    Beziehst du aktuell Buergergeld (SGB II)?
+                    Beziehst du aktuell Bürgergeld (SGB II)?
                   </p>
                   <div className="flex gap-3">
                     <button
-                      onClick={() => setReceivesBuergergeld(true)}
+                      onClick={() => setReceivesBürgergeld(true)}
                       className={`flex-1 p-4 rounded-xl border-2 text-center font-medium transition-all ${
-                        receivesBuergergeld === true
+                        receivesBürgergeld === true
                           ? 'border-primary bg-primary/5 text-primary'
                           : 'border-border hover:border-primary/40'
                       }`}
@@ -234,9 +234,9 @@ export default function OnboardingPage() {
                       Ja
                     </button>
                     <button
-                      onClick={() => setReceivesBuergergeld(false)}
+                      onClick={() => setReceivesBürgergeld(false)}
                       className={`flex-1 p-4 rounded-xl border-2 text-center font-medium transition-all ${
-                        receivesBuergergeld === false
+                        receivesBürgergeld === false
                           ? 'border-primary bg-primary/5 text-primary'
                           : 'border-border hover:border-primary/40'
                       }`}
@@ -417,7 +417,7 @@ export default function OnboardingPage() {
             className="gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurueck
+            Zurück
           </Button>
 
           {step < TOTAL_STEPS - 1 ? (

@@ -1,9 +1,9 @@
 /**
- * Frontend-Helper fuer Stripe Checkout.
+ * Frontend-Helper für Stripe Checkout.
  *
- * Verantwortlich fuer:
+ * Verantwortlich für:
  * - Login-Gate (wer nicht eingeloggt ist, wird auf /login umgeleitet
- *   und nach erfolgreichem Login zurueck auf /preise)
+ *   und nach erfolgreichem Login zurück auf /preise)
  * - Aufruf der serverlosen Route /api/amt-checkout
  * - Redirect zur Stripe-Hosted-Checkout-Seite
  */
@@ -36,7 +36,7 @@ export async function startCheckout({
   navigate,
 }: StartCheckoutArgs): Promise<void> {
   if (!user) {
-    // Nach dem Login zurueck zur Preisseite
+    // Nach dem Login zurück zur Preisseite
     navigate('/login?next=/preise')
     return
   }

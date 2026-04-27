@@ -357,7 +357,7 @@ export default function BewerbungsTracker() {
       }))
 
     generateRechnerPdf(
-      'Bewerbungsuebersicht - Eigenbemuehungen',
+      'Bewerbungsuebersicht - Eigenbemühungen',
       sections,
       { label: 'Bewerbungen gesamt', value: String(bewerbungen.length) }
     )
@@ -387,7 +387,7 @@ export default function BewerbungsTracker() {
             <h1 className="text-2xl font-bold tracking-tight">Bewerbungs-Tracker</h1>
           </div>
           <p className="text-muted-foreground text-sm">
-            Dokumentiere deine Eigenbemuehungen fuer das Jobcenter
+            Dokumentiere deine Eigenbemühungen für das Jobcenter
           </p>
         </div>
       </div>
@@ -475,7 +475,7 @@ export default function BewerbungsTracker() {
               <Info className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" />
               <div className="space-y-2 text-sm">
                 <h3 className="font-semibold text-blue-900 dark:text-blue-200">
-                  Bewerbungspflicht &amp; Eigenbemuehungen
+                  Bewerbungspflicht &amp; Eigenbemühungen
                 </h3>
                 <ul className="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
                   <li>
@@ -487,7 +487,7 @@ export default function BewerbungsTracker() {
                     (haeufig 5-10 Bewerbungen/Monat).
                   </li>
                   <li>
-                    <strong>Gueltige Eigenbemuehungen:</strong> Online-Bewerbungen, E-Mail-Bewerbungen,
+                    <strong>Gueltige Eigenbemühungen:</strong> Online-Bewerbungen, E-Mail-Bewerbungen,
                     postalische Bewerbungen, persoenliche Vorstellungen, Initiativbewerbungen, Kontakt
                     mit Zeitarbeitsfirmen.
                   </li>
@@ -958,7 +958,7 @@ export default function BewerbungsTracker() {
             <Search className="h-10 w-10 text-muted-foreground mx-auto mb-3" />
             <h3 className="font-semibold text-lg mb-1">Keine Ergebnisse</h3>
             <p className="text-muted-foreground text-sm">
-              Keine Bewerbungen gefunden fuer deine Suchkriterien.
+              Keine Bewerbungen gefunden für deine Suchkriterien.
             </p>
             <Button
               variant="outline"
@@ -978,7 +978,7 @@ export default function BewerbungsTracker() {
             <Briefcase className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="font-semibold text-lg mb-2">Noch keine Bewerbungen eingetragen</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Trage deine Bewerbungen ein, um deine Eigenbemuehungen gegenueber dem Jobcenter
+              Trage deine Bewerbungen ein, um deine Eigenbemühungen gegenueber dem Jobcenter
               lueckenlos zu dokumentieren.
             </p>
             <Button onClick={openAddForm} className="gap-2">

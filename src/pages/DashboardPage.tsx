@@ -44,7 +44,7 @@ import {
 } from '@/lib/gamification'
 
 // ---------------------------------------------------------------------------
-// Defaults fuer NEUE User (vor erster Nutzung). Werden ggf. spaeter durch
+// Defaults für NEUE User (vor erster Nutzung). Werden ggf. spaeter durch
 // echte bb_user_state / bb_credit_transactions / bescheid_scans-Daten ersetzt.
 // ---------------------------------------------------------------------------
 
@@ -238,7 +238,7 @@ function TrackerPreview() {
   if (aktive.length === 0) {
     return (
       <div className="text-center py-4">
-        <p className="text-sm text-muted-foreground mb-3">Noch keine Widersprueche erfasst</p>
+        <p className="text-sm text-muted-foreground mb-3">Noch keine Widersprüche erfasst</p>
         <div className="flex gap-2 justify-center">
           <Link to="/tracker">
             <Button size="sm" variant="outline" className="gap-1">
@@ -319,7 +319,7 @@ export default function DashboardPage() {
             </h1>
           </div>
           <p className="text-muted-foreground text-sm">
-            Willkommen zurueck! Hier siehst du alles auf einen Blick.
+            Willkommen zurück! Hier siehst du alles auf einen Blick.
           </p>
         </div>
       </div>
@@ -410,13 +410,13 @@ export default function DashboardPage() {
                 {formatEur(DEMO_MONEY_RECOVERED)} EUR
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                Durch Widersprueche und korrigierte Bescheide — weiter so!
+                Durch Widersprüche und korrigierte Bescheide — weiter so!
               </p>
             </div>
             <Link to="/scan">
               <Button className="gap-2">
                 <ScanSearch className="h-4 w-4" />
-                Neuen Bescheid pruefen
+                Neuen Bescheid prüfen
               </Button>
             </Link>
           </CardContent>
@@ -620,14 +620,14 @@ export default function DashboardPage() {
             </Card>
 
             {/* -------------------------------------------------------------- */}
-            {/* Recent Letters / Widersprueche                                 */}
+            {/* Recent Letters / Widersprüche                                 */}
             {/* -------------------------------------------------------------- */}
             <Card>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="flex items-center gap-2 text-base">
                     <Swords className="h-4 w-4 text-green-500" />
-                    Letzte Schreiben &amp; Widersprueche
+                    Letzte Schreiben &amp; Widersprüche
                   </CardTitle>
                   <Link to="/generator">
                     <Button variant="ghost" size="sm" className="gap-1 text-xs">
@@ -955,7 +955,7 @@ export default function DashboardPage() {
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-base">
                   <ExternalLink className="h-4 w-4" />
-                  Fintutto Oekosystem
+                  Fintutto Ökosystem
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">

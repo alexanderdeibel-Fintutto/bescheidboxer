@@ -99,7 +99,7 @@ export default function MietspiegelRechner() {
     setErgebnis(null)
 
     if (!gewaehlteStadt) {
-      setFehler('Bitte waehle eine Stadt aus der Liste.')
+      setFehler('Bitte wähle eine Stadt aus der Liste.')
       return
     }
 
@@ -312,7 +312,7 @@ export default function MietspiegelRechner() {
               onClick={handleBerechnen}
               className="w-full gradient-boxer text-white font-semibold py-3 rounded-lg"
             >
-              <Search className="w-4 h-4 mr-2" /> Mietspiegel pruefen
+              <Search className="w-4 h-4 mr-2" /> Mietspiegel prüfen
             </Button>
           </CardContent>
         </Card>
@@ -345,7 +345,7 @@ export default function MietspiegelRechner() {
                   )}
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                      {ergebnis.angemessen ? 'Angemessen' : 'Ueber der Angemessenheitsgrenze'}
+                      {ergebnis.angemessen ? 'Angemessen' : 'Über der Angemessenheitsgrenze'}
                     </h2>
                     <p className="text-gray-700 dark:text-gray-300">
                       {ergebnis.angemessen
@@ -412,7 +412,7 @@ export default function MietspiegelRechner() {
                       </p>
                       <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2 list-disc list-inside">
                         <li>Pruefe die Kostensenkungsaufforderung genau - ist sie formal korrekt?</li>
-                        <li>Dokumentiere alle Bemuehungen zur Wohnungssuche</li>
+                        <li>Dokumentiere alle Bemühungen zur Wohnungssuche</li>
                         <li>Fehlende Verfuegbarkeit guenstigerer Wohnungen kann ein Gegenargument sein</li>
                         <li>Widerspruch ist innerhalb eines Monats moeglich</li>
                       </ul>
@@ -440,8 +440,8 @@ export default function MietspiegelRechner() {
                         Alles im gruenen Bereich
                       </h3>
                       <p className="text-gray-700 dark:text-gray-300 text-sm">
-                        Deine Bruttokaltmiete liegt innerhalb der Angemessenheitsgrenze fuer {ergebnis.stadt}.
-                        Das Jobcenter sollte deine Kosten der Unterkunft in voller Hoehe uebernehmen.
+                        Deine Bruttokaltmiete liegt innerhalb der Angemessenheitsgrenze für {ergebnis.stadt}.
+                        Das Jobcenter sollte deine Kosten der Unterkunft in voller Höhe uebernehmen.
                         Heizkosten werden in der Regel zusaetzlich uebernommen, sofern sie nicht unangemessen hoch sind.
                       </p>
                     </div>
@@ -454,8 +454,8 @@ export default function MietspiegelRechner() {
             <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">
               <Info className="w-4 h-4 mt-0.5 flex-shrink-0" />
               <span>
-                Rechtsgrundlage: <strong>§ 22 Abs. 1 SGB II</strong> - Bedarfe fuer Unterkunft und Heizung
-                werden in Hoehe der tatsaechlichen Aufwendungen anerkannt, soweit diese angemessen sind.
+                Rechtsgrundlage: <strong>§ 22 Abs. 1 SGB II</strong> - Bedarfe für Unterkunft und Heizung
+                werden in Höhe der tatsaechlichen Aufwendungen anerkannt, soweit diese angemessen sind.
               </span>
             </div>
 
@@ -463,7 +463,7 @@ export default function MietspiegelRechner() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 onClick={() => {
-                  generateRechnerPdf('Mietspiegel-Pruefung (§ 22 SGB II)', [
+                  generateRechnerPdf('Mietspiegel-Prüfung (§ 22 SGB II)', [
                     { label: 'Stadt', value: ergebnis.stadt },
                     { label: 'Bundesland', value: ergebnis.bundesland },
                     { label: 'Haushaltgroesse', value: `${haushaltsgroesse} Person${haushaltsgroesse > 1 ? 'en' : ''}` },
@@ -473,12 +473,12 @@ export default function MietspiegelRechner() {
                     { label: 'Angemessenheitsgrenze', value: `${ergebnis.grenze} EUR` },
                     { label: 'Heizkosten', value: `${heizkosten || '0'} EUR` },
                     { label: 'Gesamtmiete', value: `${ergebnis.gesamtmiete.toFixed(2)} EUR` },
-                    { label: 'Ergebnis', value: ergebnis.angemessen ? 'Angemessen' : `Ueber Grenze (+${Math.abs(ergebnis.differenz).toFixed(2)} EUR)`, highlight: !ergebnis.angemessen },
+                    { label: 'Ergebnis', value: ergebnis.angemessen ? 'Angemessen' : `Über Grenze (+${Math.abs(ergebnis.differenz).toFixed(2)} EUR)`, highlight: !ergebnis.angemessen },
                   ], {
                     label: 'Ergebnis',
                     value: ergebnis.angemessen
                       ? 'Angemessen - Bruttokaltmiete innerhalb der Grenze'
-                      : `Ueber Grenze - Differenz ${Math.abs(ergebnis.differenz).toFixed(2)} EUR`,
+                      : `Über Grenze - Differenz ${Math.abs(ergebnis.differenz).toFixed(2)} EUR`,
                   })
                 }}
                 className="flex-1 bg-amber-600 hover:bg-amber-700 text-white"
@@ -488,8 +488,8 @@ export default function MietspiegelRechner() {
               <Button
                 onClick={() =>
                   shareResult({
-                    title: 'Mietspiegel-Pruefung',
-                    text: `Mietspiegel-Rechner: Bruttokaltmiete ${ergebnis.bruttokaltmiete.toFixed(2)} EUR vs. Grenze ${ergebnis.grenze} EUR in ${ergebnis.stadt} - ${ergebnis.angemessen ? 'Angemessen' : 'Ueber Grenze'}`,
+                    title: 'Mietspiegel-Prüfung',
+                    text: `Mietspiegel-Rechner: Bruttokaltmiete ${ergebnis.bruttokaltmiete.toFixed(2)} EUR vs. Grenze ${ergebnis.grenze} EUR in ${ergebnis.stadt} - ${ergebnis.angemessen ? 'Angemessen' : 'Über Grenze'}`,
                     url: window.location.href,
                   })
                 }
@@ -543,7 +543,7 @@ export default function MietspiegelRechner() {
               <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                 Die Bruttokaltmiete setzt sich zusammen aus der Kaltmiete (Grundmiete) und den
                 kalten Nebenkosten (z.B. Wasser, Muellabfuhr, Hausmeister). Die Heizkosten werden
-                getrennt betrachtet. Beim Buergergeld prueft das Jobcenter, ob die Bruttokaltmiete
+                getrennt betrachtet. Beim Bürgergeld prüft das Jobcenter, ob die Bruttokaltmiete
                 innerhalb der oertlichen Angemessenheitsgrenze liegt.
               </p>
             </CardContent>
@@ -570,9 +570,9 @@ export default function MietspiegelRechner() {
               </h3>
               <ul className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed space-y-2 list-disc list-inside">
                 <li>Pruefe, ob die Kostensenkungsaufforderung formal korrekt ist</li>
-                <li>Dokumentiere aktiv deine Bemuehungen, eine guenstigere Wohnung zu finden</li>
-                <li>Lege Widerspruch ein, wenn du die Berechnung fuer fehlerhaft haeltst</li>
-                <li>Nutze die 6-monatige Uebernahmezeit, um Alternativen zu pruefen</li>
+                <li>Dokumentiere aktiv deine Bemühungen, eine guenstigere Wohnung zu finden</li>
+                <li>Lege Widerspruch ein, wenn du die Berechnung für fehlerhaft haeltst</li>
+                <li>Nutze die 6-monatige Uebernahmezeit, um Alternativen zu prüfen</li>
                 <li>Lass dich durch unseren KI-Berater individuell beraten</li>
               </ul>
             </CardContent>

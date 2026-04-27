@@ -70,7 +70,7 @@ const SYSTEM_NOTIFICATIONS: Notification[] = [
     severity: 'info',
     title: 'Willkommen bei BescheidBoxer!',
     description:
-      'Erfahre in unserem Wissensbereich alles ueber deine Rechte bei Buergergeld, Widerspruch und Klage.',
+      'Erfahre in unserem Wissensbereich alles über deine Rechte bei Bürgergeld, Widerspruch und Klage.',
     timestamp: new Date('2026-01-01T10:00:00'),
     actionLink: '/wissen',
     actionLabel: 'Zum Wissensbereich',
@@ -241,11 +241,11 @@ function buildFristNotifications(entries: WiderspruchEntry[]): Notification[] {
     if (days < 0) {
       severity = 'urgent'
       title = `Frist abgelaufen: ${entry.betreff}`
-      description = `Die Frist fuer deinen ${TYP_LABELS[entry.typ]} ist seit ${Math.abs(days)} ${Math.abs(days) === 1 ? 'Tag' : 'Tagen'} ueberschritten. Pruefe dringend, ob du noch handeln kannst.`
+      description = `Die Frist für deinen ${TYP_LABELS[entry.typ]} ist seit ${Math.abs(days)} ${Math.abs(days) === 1 ? 'Tag' : 'Tagen'} ueberschritten. Pruefe dringend, ob du noch handeln kannst.`
     } else if (days <= 3) {
       severity = 'urgent'
       title = `Frist in ${days} ${days === 1 ? 'Tag' : 'Tagen'}: ${entry.betreff}`
-      description = `Dein ${TYP_LABELS[entry.typ]} laeuft am ${formatDate(new Date(entry.fristende))} ab. Handele jetzt!`
+      description = `Dein ${TYP_LABELS[entry.typ]} läuft am ${formatDate(new Date(entry.fristende))} ab. Handele jetzt!`
     } else if (days <= 7) {
       severity = 'warning'
       title = `Frist in ${days} Tagen: ${entry.betreff}`
@@ -253,7 +253,7 @@ function buildFristNotifications(entries: WiderspruchEntry[]): Notification[] {
     } else {
       severity = 'info'
       title = `Frist in ${days} Tagen: ${entry.betreff}`
-      description = `Der ${TYP_LABELS[entry.typ]} laeuft am ${formatDate(new Date(entry.fristende))} ab.${entry.aktenzeichen ? ` Az: ${entry.aktenzeichen}` : ''}`
+      description = `Der ${TYP_LABELS[entry.typ]} läuft am ${formatDate(new Date(entry.fristende))} ab.${entry.aktenzeichen ? ` Az: ${entry.aktenzeichen}` : ''}`
     }
 
     // Use fristende as approximate timestamp for sorting
@@ -291,7 +291,7 @@ function buildTippNotifications(): Notification[] {
         severity: 'info',
         title: 'Tipp: Nutze den KI-Rechtsberater',
         description:
-          'Stelle dem KI-Berater Fragen zu deinem Bescheid, Widerspruch oder Buergergeld-Anspruch — kostenlos im Schnupperer-Tarif.',
+          'Stelle dem KI-Berater Fragen zu deinem Bescheid, Widerspruch oder Bürgergeld-Anspruch — kostenlos im Schnupperer-Tarif.',
         timestamp: new Date(),
         actionLink: '/chat',
         actionLabel: 'Chat starten',
@@ -311,7 +311,7 @@ function buildTippNotifications(): Notification[] {
         severity: 'info',
         title: 'Tipp: Behalte Fristen im Blick',
         description:
-          'Erfasse deine laufenden Widersprueche und Klagen im Tracker, damit du keine Frist verpasst.',
+          'Erfasse deine laufenden Widersprüche und Klagen im Tracker, damit du keine Frist verpasst.',
         timestamp: new Date(),
         actionLink: '/tracker',
         actionLabel: 'Tracker oeffnen',
@@ -331,7 +331,7 @@ function buildTippNotifications(): Notification[] {
         severity: 'info',
         title: 'Tipp: Berechne deinen Anspruch',
         description:
-          'Mit unseren 10 Rechnern kannst du pruefen, ob dir mehr Buergergeld, Mehrbedarf oder Erstausstattung zusteht.',
+          'Mit unseren 10 Rechnern kannst du prüfen, ob dir mehr Bürgergeld, Mehrbedarf oder Erstausstattung zusteht.',
         timestamp: new Date(),
         actionLink: '/rechner',
         actionLabel: 'Rechner ansehen',

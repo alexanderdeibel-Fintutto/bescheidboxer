@@ -390,7 +390,7 @@ export default function PkhRechner() {
           onClick={handleCalculate}
           className="w-full mb-6 bg-blue-700 hover:bg-blue-800 text-white py-3"
         >
-          <Scale className="w-5 h-5 mr-2" />PKH-Anspruch pruefen
+          <Scale className="w-5 h-5 mr-2" />PKH-Anspruch prüfen
         </Button>
 
         {/* Results */}
@@ -429,7 +429,7 @@ export default function PkhRechner() {
                   }>
                     {result.status === 'bewilligt' && 'Du hast voraussichtlich Anspruch auf volle Prozesskostenhilfe. Die Anwaltskosten werden vollstaendig uebernommen.'}
                     {result.status === 'raten' && `Du hast voraussichtlich Anspruch auf PKH, musst aber monatliche Raten zahlen: ${formatEuro(result.monatlicherRate)} / Monat.`}
-                    {result.status === 'unwahrscheinlich' && 'Nach dieser Berechnung ist PKH voraussichtlich nicht moeglich. Eine individuelle Pruefung kann aber zu einem anderen Ergebnis fuehren.'}
+                    {result.status === 'unwahrscheinlich' && 'Nach dieser Berechnung ist PKH voraussichtlich nicht moeglich. Eine individuelle Prüfung kann aber zu einem anderen Ergebnis fuehren.'}
                   </p>
                 </div>
               </div>
@@ -556,7 +556,7 @@ export default function PkhRechner() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold mt-0.5">4.</span>
-                  <span>Beratungshilfe (beim Amtsgericht) gibt es fuer die aussergerichtliche Phase.</span>
+                  <span>Beratungshilfe (beim Amtsgericht) gibt es für die aussergerichtliche Phase.</span>
                 </li>
               </ul>
             </div>
@@ -624,7 +624,7 @@ export default function PkhRechner() {
           <h3 className="text-xl font-bold mb-4">Rechtliche Grundlagen</h3>
           <div className="space-y-6">
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">Voraussetzungen fuer PKH (SS 114 ZPO)</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">Voraussetzungen für PKH (SS 114 ZPO)</h4>
               <ul className="text-sm text-gray-700 space-y-1 ml-4">
                 <li>1. Die Partei kann die Prozesskosten nicht aus Einkommen/Vermoegen aufbringen</li>
                 <li>2. Die Rechtsverfolgung hat hinreichende Aussicht auf Erfolg</li>

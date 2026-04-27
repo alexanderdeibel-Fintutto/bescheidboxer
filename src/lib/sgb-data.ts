@@ -1,9 +1,9 @@
 /**
- * Aktuelle Regelsaetze und Daten fuer das Sozialrecht (Stand 2026)
+ * Aktuelle Regelsaetze und Daten für das Sozialrecht (Stand 2026)
  */
 
 // =============================================
-// Buergergeld Regelsaetze 2026 (SGB II)
+// Bürgergeld Regelsaetze 2026 (SGB II)
 // =============================================
 export const REGELSAETZE_2026 = {
   rs1: { stufe: 'Regelbedarfsstufe 1', beschreibung: 'Alleinstehende / Alleinerziehende', betrag: 563 },
@@ -30,9 +30,9 @@ export const MEHRBEDARFE = {
     titel: 'Mehrbedarf Alleinerziehende',
     staffelung: [
       { kinder: '1 Kind unter 7', prozent: 36 },
-      { kinder: '1 Kind ueber 7', prozent: 12 },
+      { kinder: '1 Kind über 7', prozent: 12 },
       { kinder: '2 Kinder unter 16', prozent: 36 },
-      { kinder: '2 Kinder, davon 1 ueber 16', prozent: 24 },
+      { kinder: '2 Kinder, davon 1 über 16', prozent: 24 },
       { kinder: '3 Kinder', prozent: 36 },
       { kinder: '4 Kinder', prozent: 48 },
       { kinder: '5+ Kinder', prozent: 60 },
@@ -48,7 +48,7 @@ export const MEHRBEDARFE = {
   ernaehrung: {
     paragraph: '§ 21 Abs. 5 SGB II',
     titel: 'Mehrbedarf kostenaufwaendige Ernaehrung',
-    beschreibung: 'Bei Krankheit die besondere Ernaehrung erfordert (aerztliches Attest noetig)',
+    beschreibung: 'Bei Krankheit die besondere Ernaehrung erfordert (aerztliches Attest nötig)',
     beispiele: [
       { krankheit: 'Niereninsuffizienz (Dialyse)', betrag: '10% des RS' },
       { krankheit: 'Zoeliakei', betrag: 'individuell' },
@@ -59,7 +59,7 @@ export const MEHRBEDARFE = {
   warmwasser: {
     paragraph: '§ 21 Abs. 7 SGB II',
     titel: 'Mehrbedarf dezentrale Warmwassererzeugung',
-    beschreibung: 'Wenn Warmwasser nicht ueber die Heizung, sondern z.B. Durchlauferhitzer erzeugt wird',
+    beschreibung: 'Wenn Warmwasser nicht über die Heizung, sondern z.B. Durchlauferhitzer erzeugt wird',
     prozent_rs1: 2.3,
     prozent_rs2: 2.3,
     prozent_rs3: 2.3,
@@ -70,7 +70,7 @@ export const MEHRBEDARFE = {
   unabweisbar: {
     paragraph: '§ 21 Abs. 6 SGB II',
     titel: 'Unabweisbarer laufender Mehrbedarf',
-    beschreibung: 'Auffangtatbestand fuer besondere laufende Bedarfe die nicht vom Regelsatz gedeckt werden',
+    beschreibung: 'Auffangtatbestand für besondere laufende Bedarfe die nicht vom Regelsatz gedeckt werden',
     beispiele: [
       'Hygieneartikel bei Inkontinenz',
       'Putz-/Haushaltshilfe bei Behinderung',
@@ -81,16 +81,16 @@ export const MEHRBEDARFE = {
 }
 
 // =============================================
-// Sanktionsregeln (seit Buergergeld 2023)
+// Sanktionsregeln (seit Bürgergeld 2023)
 // =============================================
 export const SANKTIONEN = {
   maxKuerzung: 30, // Prozent des Regelsatzes
-  kduSchutz: true, // KdU darf nicht gekuerzt werden
+  kduSchutz: true, // KdU darf nicht gekürzt werden
   dauer: {
-    erstePflichtverletzung: '1 Monat, 10% Kuerzung',
-    zweitePflichtverletzung: '2 Monate, 20% Kuerzung',
-    drittePflichtverletzung: '3 Monate, 30% Kuerzung',
-    meldeversaeumnis: '1 Monat, 10% Kuerzung',
+    erstePflichtverletzung: '1 Monat, 10% Kürzung',
+    zweitePflichtverletzung: '2 Monate, 20% Kürzung',
+    drittePflichtverletzung: '3 Monate, 30% Kürzung',
+    meldeversaeumnis: '1 Monat, 10% Kürzung',
   },
   wichtigeGruende: [
     'Krankheit (eigene oder Angehoeriger)',
@@ -100,7 +100,7 @@ export const SANKTIONEN = {
     'Unzumutbare Arbeitsbedingungen',
     'Sittenwidrig niedrige Entlohnung',
     'Gewissensgruende (z.B. Ruestungsindustrie)',
-    'Fehlende Kinderbetreuung fuer unter 3-Jaehrige',
+    'Fehlende Kinderbetreuung für unter 3-Jaehrige',
   ],
   karenzzeit: '6 Monate - in den ersten 6 Monaten des Leistungsbezugs keine Sanktionen',
 }
@@ -170,14 +170,14 @@ export const ALG1_INFO = {
     arbeitsablehnung: '3-12 Wochen (je nach Schwere)',
     massnahme_abbruch: '3-12 Wochen',
     meldeversaeumnis: '1 Woche',
-    verspätete_meldung: 'Kein Anspruch fuer verspaetete Tage (§ 38 SGB III: Fruehzeitige Meldung 3 Monate vor Ende)',
+    verspätete_meldung: 'Kein Anspruch für verspaetete Tage (§ 38 SGB III: Fruehzeitige Meldung 3 Monate vor Ende)',
   },
   wichtigeGruendeSperrzeit: [
     'Mobbing / Diskriminierung am Arbeitsplatz',
     'Gesundheitliche Gruende (aerztliches Attest)',
     'Umzug zum Partner (bei eingetragener Partnerschaft)',
     'Unzumutbare Arbeitsbedingungen',
-    'Aufhebungsvertrag zur Vermeidung betriebsbedingter Kuendigung',
+    'Aufhebungsvertrag zur Vermeidung betriebsbedingter Kündigung',
   ],
 }
 

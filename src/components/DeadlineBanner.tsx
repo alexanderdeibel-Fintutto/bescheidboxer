@@ -2,7 +2,7 @@
  * DeadlineBanner — globaler Frist-Warn-Banner.
  *
  * Liest dieselbe localStorage-Quelle wie FristAlarm
- * (`bescheidboxer_widersprueche`) und zeigt einen prominenten Banner ueber
+ * (`bescheidboxer_widersprueche`) und zeigt einen prominenten Banner über
  * dem Layout, sobald eine Frist <= 7 Tage entfernt oder ueberschritten ist.
  *
  * Dismiss-Status wird in sessionStorage gehalten — nach Tab-Reload taucht
@@ -127,7 +127,7 @@ export default function DeadlineBanner() {
           {isOverdue
             ? `Frist ueberschritten: ${mostUrgent.label}`
             : mostUrgent.daysLeft === 0
-              ? `Frist laeuft heute ab: ${mostUrgent.label}`
+              ? `Frist läuft heute ab: ${mostUrgent.label}`
               : `Noch ${mostUrgent.daysLeft} ${mostUrgent.daysLeft === 1 ? 'Tag' : 'Tage'}: ${mostUrgent.label}`
           }
           {urgent.length > 1 && (

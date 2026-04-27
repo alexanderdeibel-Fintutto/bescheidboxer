@@ -44,7 +44,7 @@ const planMeta: Record<
       '10 Credits monatlich inklusive',
       'Forum lesen, posten & limitierter Chat',
     ],
-    cta: 'Starter waehlen',
+    cta: 'Starter wählen',
   },
   kaempfer: {
     icon: Swords,
@@ -57,7 +57,7 @@ const planMeta: Record<
       'Voller Forum-Zugang inkl. Chat',
       'MieterApp Basic inklusive',
     ],
-    cta: 'Kaempfer waehlen',
+    cta: 'Kaempfer wählen',
   },
   vollschutz: {
     icon: Crown,
@@ -70,18 +70,18 @@ const planMeta: Record<
       'VIP-Forum mit Priority-Support',
       'MieterApp Premium inklusive',
     ],
-    cta: 'Vollschutz waehlen',
+    cta: 'Vollschutz wählen',
   },
 }
 
 const faqItems = [
   {
     q: 'Was genau sind Credits und wofuer brauche ich sie?',
-    a: 'Credits sind die Waehrung im BescheidBoxer. Du kannst sie fuer Detail-Analysen von Bescheiden, Postversand, personalisierte Schreiben und mehr einsetzen. Jeder Tarif enthaelt ein monatliches Credit-Guthaben \u2013 brauchst du mehr, kannst du jederzeit Pakete nachkaufen.',
+    a: 'Credits sind die Waehrung im BescheidBoxer. Du kannst sie für Detail-Analysen von Bescheiden, Postversand, personalisierte Schreiben und mehr einsetzen. Jeder Tarif enthaelt ein monatliches Credit-Guthaben \u2013 brauchst du mehr, kannst du jederzeit Pakete nachkaufen.',
   },
   {
     q: 'Was bedeutet "Bescheid-Scan" genau?',
-    a: 'Mit dem Bescheid-Scan fotografierst oder laedst du deinen Bescheid hoch. Unsere KI prueft ihn automatisch auf Fehler, falsche Berechnungen und fehlende Positionen. Im Schnupperer-Tarif bekommst du 1 Scan pro Monat \u2013 ab Kaempfer sind Scans unbegrenzt.',
+    a: 'Mit dem Bescheid-Scan fotografierst oder laedst du deinen Bescheid hoch. Unsere KI prüft ihn automatisch auf Fehler, falsche Berechnungen und fehlende Positionen. Im Schnupperer-Tarif bekommst du 1 Scan pro Monat \u2013 ab Kaempfer sind Scans unbegrenzt.',
   },
   {
     q: 'Kann ich jederzeit kuendigen oder den Tarif wechseln?',
@@ -104,8 +104,8 @@ const faqItems = [
     a: 'Die Fintutto MieterApp hilft bei Problemen rund um Miete, Nebenkostenabrechnung und Kosten der Unterkunft (KdU). Ab dem Kaempfer-Tarif ist sie in der Basic-Version inklusive, im Vollschutz sogar als Premium \u2013 ohne zusaetzliche Kosten.',
   },
   {
-    q: 'Funktioniert BescheidBoxer auch fuer ALG I und Sozialhilfe?',
-    a: 'Ja! Unser KI-Berater kennt SGB II (Buergergeld), SGB III (ALG I), SGB XII (Sozialhilfe) und SGB X (Verwaltungsrecht). Die Musterschreiben und Bescheid-Scans decken alle relevanten Bereiche ab.',
+    q: 'Funktioniert BescheidBoxer auch für ALG I und Sozialhilfe?',
+    a: 'Ja! Unser KI-Berater kennt SGB II (Bürgergeld), SGB III (ALG I), SGB XII (Sozialhilfe) und SGB X (Verwaltungsrecht). Die Musterschreiben und Bescheid-Scans decken alle relevanten Bereiche ab.',
   },
 ]
 
@@ -208,11 +208,11 @@ export default function PricingPage() {
           <Swords className="h-7 w-7" />
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Faire Preise fuer faire Rechte
+          Faire Preise für faire Rechte
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
           Starte kostenlos mit dem Schnupperer-Tarif und upgrade, wenn du mehr brauchst.
-          Keine versteckten Kosten, jederzeit kuendbar.
+          Keine versteckten Kosten, jederzeit kündbar.
         </p>
       </div>
 
@@ -223,7 +223,7 @@ export default function PricingPage() {
         </p>
         <p className="text-xs text-red-600 dark:text-red-400 mt-1">
           Unbegrenzte Scans, unbegrenzter Chat, 3 Schreiben - ohne Risiko.
-          Jederzeit kuendbar.
+          Jederzeit kündbar.
         </p>
       </div>
 
@@ -423,7 +423,7 @@ export default function PricingPage() {
                 ['Postversand inkl.', '\u2013', '\u2013', '1/Monat', '3/Monat'],
                 ['MieterApp', '\u2013', '\u2013', 'Basic', 'Premium'],
                 ['Priority-Support', '\u2013', '\u2013', '\u2713', '\u2713'],
-              ].map(([feature, schnupperer, starter, kaempfer, vollschutz]) => (
+              ].map(([feature, schnupperer, starter, kämpfer, vollschutz]) => (
                 <tr
                   key={feature}
                   className="border-b border-border/50"
@@ -436,7 +436,7 @@ export default function PricingPage() {
                     {starter}
                   </td>
                   <td className="py-3 px-4 text-center font-medium text-red-600">
-                    {kaempfer}
+                    {kämpfer}
                   </td>
                   <td className="py-3 px-4 text-center font-medium text-amber-600">
                     {vollschutz}

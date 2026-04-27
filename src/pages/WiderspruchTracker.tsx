@@ -334,14 +334,14 @@ export default function WiderspruchTracker() {
             className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurueck zum Dashboard
+            Zurück zum Dashboard
           </Link>
           <div className="flex items-center gap-3 mb-1">
             <FileText className="h-6 w-6 text-primary" />
             <h1 className="text-2xl font-bold tracking-tight">Widerspruch-Tracker</h1>
           </div>
           <p className="text-muted-foreground text-sm">
-            Behalte den Ueberblick ueber deine laufenden Verfahren
+            Behalte den Überblick über deine laufenden Verfahren
           </p>
         </div>
       </div>
@@ -712,7 +712,7 @@ export default function WiderspruchTracker() {
           /* Empty State */
           <div className="text-center py-16">
             <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="font-semibold text-lg mb-2">Noch keine Widersprueche eingetragen</h3>
+            <h3 className="font-semibold text-lg mb-2">Noch keine Widersprüche eingetragen</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
               Trage deine laufenden Verfahren ein, um Fristen im Blick zu behalten. Oder erstelle
               zuerst ein Musterschreiben.

@@ -59,7 +59,7 @@ interface AktenzeichenData {
 const STORAGE_KEY = 'bescheidboxer_aktenzeichen'
 
 const ART_LABELS: Record<AktenzeichenArt, string> = {
-  buergergeld: 'Buergergeld',
+  buergergeld: 'Bürgergeld',
   widerspruch: 'Widerspruch',
   klage: 'Klage',
   sonstiges: 'Sonstiges',
@@ -467,7 +467,7 @@ export default function AktenzeichenPage() {
           <div className="text-sm text-blue-800">
             <p className="font-semibold mb-1">Tipp: Aktenzeichen immer griffbereit</p>
             <p>
-              Notiere hier alle Aktenzeichen deiner Bescheide, Widersprueche und Klagen.
+              Notiere hier alle Aktenzeichen deiner Bescheide, Widersprüche und Klagen.
               So hast du sie bei Telefonaten, Terminen und Schreiben sofort zur Hand.
               Du kannst sie mit einem Klick in die Zwischenablage kopieren.
             </p>
@@ -577,7 +577,7 @@ export default function AktenzeichenPage() {
                   Noch keine Aktenzeichen gespeichert
                 </h3>
                 <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
-                  Speichere hier deine Aktenzeichen von Bescheiden, Widerspruechen
+                  Speichere hier deine Aktenzeichen von Bescheiden, Widersprüchen
                   und Klagen, damit du sie immer schnell zur Hand hast.
                 </p>
                 <Button className="gap-2" onClick={() => setShowAzForm(true)}>

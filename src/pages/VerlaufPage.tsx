@@ -184,7 +184,7 @@ function buildActivities(): ActivityItem[] {
     })
   }
 
-  // --- Widersprueche ---
+  // --- Widersprüche ---
   const widersprueche = loadWidersprueche()
   for (const w of widersprueche) {
     const timestamp = new Date(w.eingereichtAm)
@@ -304,7 +304,7 @@ export default function VerlaufPage() {
           </div>
           <p className="text-muted-foreground text-sm max-w-2xl">
             Hier siehst du deine bisherigen Aktivitaeten auf BescheidBoxer — Chat-Nachrichten,
-            Widersprueche, Rechner-Ergebnisse und mehr. Alles wird lokal in deinem Browser
+            Widersprüche, Rechner-Ergebnisse und mehr. Alles wird lokal in deinem Browser
             gespeichert.
           </p>
         </div>

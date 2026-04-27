@@ -173,7 +173,7 @@ export default function SanktionsTracker() {
             <ShieldAlert className="h-6 w-6 text-red-500" />
             <h1 className="text-2xl font-bold tracking-tight">Sanktions-Tracker</h1>
           </div>
-          <p className="text-muted-foreground text-sm">Behalte den Ueberblick ueber deine Sanktionen und wehr dich gegen unrechtmaessige Kuerzungen</p>
+          <p className="text-muted-foreground text-sm">Behalte den Überblick über deine Sanktionen und wehr dich gegen unrechtmaessige Kürzungen</p>
         </div>
       </div>
 
@@ -225,11 +225,11 @@ export default function SanktionsTracker() {
                   <Input type="date" value={formBescheidDatum} onChange={(e) => setFormBescheidDatum(e.target.value)} max={todayISO()} />
                 </div>
                 <div>
-                  <Label className="block mb-1"><Calendar className="inline h-3.5 w-3.5 mr-1" />Start-Datum (Beginn Kuerzung) *</Label>
+                  <Label className="block mb-1"><Calendar className="inline h-3.5 w-3.5 mr-1" />Start-Datum (Beginn Kürzung) *</Label>
                   <Input type="date" value={formStartDatum} onChange={(e) => setFormStartDatum(e.target.value)} />
                 </div>
                 <div>
-                  <Label className="block mb-1">Kuerzung</Label>
+                  <Label className="block mb-1">Kürzung</Label>
                   <div className="flex gap-4 mt-1">
                     <label className="flex items-center gap-2 cursor-pointer">
                       <input type="radio" name="kuerzung" checked={formKuerzung === 10} onChange={() => setFormKuerzung(10)} className="accent-primary" />
@@ -260,7 +260,7 @@ export default function SanktionsTracker() {
                     <Calendar className="h-4 w-4" />Ende: <span className="font-medium text-foreground">{fmtDate(addMonths(formStartDatum, 3))}</span>
                   </span>
                   <span className="flex items-center gap-1 text-muted-foreground">
-                    <Euro className="h-4 w-4" />Kuerzung: <span className="font-medium text-red-600 dark:text-red-400">{fmtEur(previewBetrag)} &euro;/Monat</span>
+                    <Euro className="h-4 w-4" />Kürzung: <span className="font-medium text-red-600 dark:text-red-400">{fmtEur(previewBetrag)} &euro;/Monat</span>
                   </span>
                 </div>
               )}
@@ -364,7 +364,7 @@ export default function SanktionsTracker() {
             <ShieldAlert className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="font-semibold text-lg mb-2">Keine Sanktionen erfasst</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Trage deine Sanktionen ein, um den Ueberblick zu behalten und dich gezielt zu wehren. Hoffentlich bleibt diese Liste fuer immer leer!
+              Trage deine Sanktionen ein, um den Überblick zu behalten und dich gezielt zu wehren. Hoffentlich bleibt diese Liste für immer leer!
             </p>
             <Button onClick={() => setShowForm(true)} className="gap-2"><Plus className="h-4 w-4" />Sanktion erfassen</Button>
           </div>
@@ -413,9 +413,9 @@ export default function SanktionsTracker() {
               <div className="space-y-2 text-sm">
                 <h3 className="font-semibold flex items-center gap-1 text-amber-900 dark:text-amber-200"><Ban className="h-4 w-4" />Sanktionshoehe nach &sect; 31a SGB II</h3>
                 <ul className="list-disc list-inside space-y-1 text-amber-800 dark:text-amber-300">
-                  <li><strong>10% Kuerzung</strong> bei Meldeversaeumnis (Termin beim Jobcenter versaeumt) nach &sect; 32 SGB II</li>
-                  <li><strong>30% Kuerzung</strong> bei Pflichtverletzung (Arbeit abgelehnt, Massnahme abgebrochen, Mitwirkung verweigert) nach &sect; 31 SGB II</li>
-                  <li>Sanktionsdauer: <strong>3 Monate</strong> (seit BVerfG-Urteil 2019 maximal 30% Kuerzung)</li>
+                  <li><strong>10% Kürzung</strong> bei Meldeversaeumnis (Termin beim Jobcenter versaeumt) nach &sect; 32 SGB II</li>
+                  <li><strong>30% Kürzung</strong> bei Pflichtverletzung (Arbeit abgelehnt, Massnahme abgebrochen, Mitwirkung verweigert) nach &sect; 31 SGB II</li>
+                  <li>Sanktionsdauer: <strong>3 Monate</strong> (seit BVerfG-Urteil 2019 maximal 30% Kürzung)</li>
                 </ul>
               </div>
               <div className="space-y-2 text-sm">
@@ -423,7 +423,7 @@ export default function SanktionsTracker() {
                 <ul className="list-disc list-inside space-y-1 text-amber-800 dark:text-amber-300">
                   <li>Bei <strong>aussergewoehnlicher Haerte</strong> kann die Sanktion reduziert oder aufgehoben werden (&sect; 31a Abs. 3 SGB II)</li>
                   <li>Kinder im Haushalt, Schwangerschaft oder Behinderung koennen als Haertefall gelten</li>
-                  <li>Recht auf <strong>Sachleistungen</strong> (Lebensmittelgutscheine) bei Kuerzungen (&sect; 31a Abs. 3 SGB II)</li>
+                  <li>Recht auf <strong>Sachleistungen</strong> (Lebensmittelgutscheine) bei Kürzungen (&sect; 31a Abs. 3 SGB II)</li>
                 </ul>
               </div>
             </div>
@@ -432,7 +432,7 @@ export default function SanktionsTracker() {
                 <Info className="h-4 w-4 text-amber-700 dark:text-amber-400 mt-0.5 shrink-0" />
                 <div className="text-amber-800 dark:text-amber-300">
                   <p className="font-semibold mb-1">Widerspruchsfrist beachten!</p>
-                  <p>Gegen einen Sanktionsbescheid kannst du innerhalb von <strong>einem Monat</strong> nach Zustellung Widerspruch einlegen. Der Widerspruch hat <strong>keine aufschiebende Wirkung</strong> -- die Kuerzung gilt ab sofort, aber du kannst einen Eilantrag beim Sozialgericht stellen.</p>
+                  <p>Gegen einen Sanktionsbescheid kannst du innerhalb von <strong>einem Monat</strong> nach Zustellung Widerspruch einlegen. Der Widerspruch hat <strong>keine aufschiebende Wirkung</strong> -- die Kürzung gilt ab sofort, aber du kannst einen Eilantrag beim Sozialgericht stellen.</p>
                 </div>
               </div>
             </div>

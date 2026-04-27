@@ -28,7 +28,7 @@ export default function DatenschutzPage() {
             Allgemeine Hinweise
           </h3>
           <p className="text-gray-600">
-            Die folgenden Hinweise geben einen einfachen Ueberblick darueber,
+            Die folgenden Hinweise geben einen einfachen Überblick darueber,
             was mit Ihren personenbezogenen Daten passiert, wenn Sie diese
             Website besuchen. Personenbezogene Daten sind alle Daten, mit denen
             Sie persoenlich identifiziert werden koennen. Ausfuehrliche
@@ -65,7 +65,7 @@ export default function DatenschutzPage() {
           </div>
           <p className="text-gray-600 mt-3">
             Verantwortliche Stelle ist die natuerliche oder juristische Person,
-            die allein oder gemeinsam mit anderen ueber die Zwecke und Mittel
+            die allein oder gemeinsam mit anderen über die Zwecke und Mittel
             der Verarbeitung von personenbezogenen Daten (z.&nbsp;B. Namen,
             E-Mail-Adressen o.&nbsp;Ae.) entscheidet.
           </p>
@@ -104,7 +104,7 @@ export default function DatenschutzPage() {
                 </li>
               </ul>
               <p className="text-gray-600 mt-2">
-                Die Rechtsgrundlage fuer die Datenverarbeitung ist Art. 6 Abs. 1
+                Die Rechtsgrundlage für die Datenverarbeitung ist Art. 6 Abs. 1
                 lit. f DSGVO. Die Verarbeitung dient der Gewaehrleistung eines
                 reibungslosen Verbindungsaufbaus der Website, einer komfortablen
                 Nutzung unserer Website, der Auswertung der Systemsicherheit und
@@ -118,7 +118,7 @@ export default function DatenschutzPage() {
               </h3>
               <p className="text-gray-600">
                 Bei Fragen jeglicher Art bieten wir Ihnen die Moeglichkeit, mit
-                uns ueber ein auf der Website bereitgestelltes Formular oder per
+                uns über ein auf der Website bereitgestelltes Formular oder per
                 E-Mail Kontakt aufzunehmen. Dabei ist die Angabe einer
                 gueltigen E-Mail-Adresse erforderlich, damit wir wissen, von
                 wem die Anfrage stammt und um diese beantworten zu koennen. Die
@@ -135,8 +135,8 @@ export default function DatenschutzPage() {
               <p className="text-gray-600">
                 Wenn Sie ein Benutzerkonto erstellen, erheben wir Ihre
                 E-Mail-Adresse und ein verschluesseltes Passwort. Die
-                Authentifizierung erfolgt ueber Supabase Auth. Ihr Passwort wird
-                ausschliesslich in gehashter Form gespeichert und ist fuer uns
+                Authentifizierung erfolgt über Supabase Auth. Ihr Passwort wird
+                ausschliesslich in gehashter Form gespeichert und ist für uns
                 nicht einsehbar. Die Rechtsgrundlage ist Art. 6 Abs. 1 lit. b
                 DSGVO (Vertragsdurchfuehrung).
               </p>
@@ -198,7 +198,7 @@ export default function DatenschutzPage() {
                 Anthropic / OpenAI
               </strong>{' '}
               &ndash; KI-Funktionen (BescheidScan, KI-Chat). Es werden nur die
-              fuer die Analyse notwendigen Daten uebermittelt.
+              für die Analyse notwendigen Daten uebermittelt.
             </li>
           </ul>
           <p className="text-gray-600 mt-3">
@@ -214,12 +214,12 @@ export default function DatenschutzPage() {
           <p className="text-gray-600">
             Wir verwenden auf unserer Website ausschliesslich technisch
             notwendige Cookies. Ein technisch notwendiges Cookie wird gesetzt,
-            um den Supabase Auth Token zu speichern, der fuer die
+            um den Supabase Auth Token zu speichern, der für die
             Authentifizierung und Aufrechterhaltung Ihrer Sitzung erforderlich
-            ist. Dieses Cookie ist fuer den Betrieb der Website unbedingt
+            ist. Dieses Cookie ist für den Betrieb der Website unbedingt
             erforderlich und kann nicht deaktiviert werden. Es werden keine
             Tracking-Cookies oder Cookies zu Werbezwecken eingesetzt. Die
-            Rechtsgrundlage fuer die Verwendung technisch notwendiger Cookies
+            Rechtsgrundlage für die Verwendung technisch notwendiger Cookies
             ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
           </p>
         </section>
@@ -254,7 +254,7 @@ export default function DatenschutzPage() {
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
             <li>
               <strong className="text-gray-900">Recht auf Auskunft</strong>{' '}
-              (Art. 15 DSGVO) &ndash; Sie haben das Recht, Auskunft ueber Ihre
+              (Art. 15 DSGVO) &ndash; Sie haben das Recht, Auskunft über Ihre
               von uns verarbeiteten personenbezogenen Daten zu verlangen.
             </li>
             <li>
@@ -348,7 +348,7 @@ export default function DatenschutzPage() {
             Impressum
           </Link>
           <Link to="/agb" className="text-primary hover:underline text-sm">
-            Allgemeine Geschaeftsbedingungen
+            Allgemeine Geschäftsbedingungen
           </Link>
         </div>
       </div>

@@ -63,7 +63,7 @@ const STORAGE_KEY = 'bescheidboxer_erinnerungen'
 const TYP_LABELS: Record<ErinnerungTyp, string> = {
   widerspruchsfrist: 'Widerspruchsfrist',
   klagefrist: 'Klagefrist',
-  abgabefrist: 'Abgabefrist fuer Unterlagen',
+  abgabefrist: 'Abgabefrist für Unterlagen',
   termin: 'Termin beim Jobcenter',
   weiterbewilligungsantrag: 'Weiterbewilligungsantrag',
   meldetermin: 'Meldetermin',
@@ -341,7 +341,7 @@ function generateDemoData(): Erinnerung[] {
     {
       id: generateId(),
       titel: 'Widerspruch gegen Aufhebungsbescheid',
-      beschreibung: 'Bescheid vom Jobcenter zur Aufhebung der Leistungen erhalten. Widerspruchsfrist laeuft!',
+      beschreibung: 'Bescheid vom Jobcenter zur Aufhebung der Leistungen erhalten. Widerspruchsfrist läuft!',
       typ: 'widerspruchsfrist',
       fristDatum: relativeDate(5),
       erinnerungsDatum: relativeDate(5 - 14),
@@ -836,7 +836,7 @@ export default function ErinnerungenPage() {
                     </p>
                     <p className="text-sm text-red-700">
                       Benachrichtigungen wurden in den Browser-Einstellungen blockiert.
-                      Um keine Frist zu verpassen, aktiviere Benachrichtigungen fuer diese
+                      Um keine Frist zu verpassen, aktiviere Benachrichtigungen für diese
                       Seite in den Browser-Einstellungen (Klick auf das Schloss-Symbol
                       in der Adressleiste).
                     </p>
@@ -1128,7 +1128,7 @@ export default function ErinnerungenPage() {
           <CardContent>
             <p className="text-sm text-gray-600 mb-4">
               Gib das Datum auf dem Bescheid ein und erhalte automatisch das Fristende
-              fuer deinen Widerspruch.
+              für deinen Widerspruch.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-end mb-4">
               <div className="space-y-1.5 flex-1 w-full sm:w-auto">
@@ -1521,7 +1521,7 @@ export default function ErinnerungenPage() {
               Keine Erinnerungen eingerichtet
             </h3>
             <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
-              Erstelle Erinnerungen fuer wichtige Fristen wie Widerspruchsfristen,
+              Erstelle Erinnerungen für wichtige Fristen wie Widerspruchsfristen,
               Klagetermine oder den Weiterbewilligungsantrag. So verpasst du
               keine Deadline mehr.
             </p>
@@ -1544,7 +1544,7 @@ export default function ErinnerungenPage() {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg text-blue-800">
               <Info className="w-5 h-5" />
-              Wichtige Fristen im Ueberblick
+              Wichtige Fristen im Überblick
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1586,7 +1586,7 @@ export default function ErinnerungenPage() {
                   <p className="font-semibold text-gray-900">Meldetermine</p>
                   <p className="text-gray-600">
                     Unentschuldigtes Fehlen kann zu Sanktionen fuehren (10% Minderung
-                    des Regelbedarfs fuer 1 Monat gem. ss 31a Abs. 1 SGB II).
+                    des Regelbedarfs für 1 Monat gem. ss 31a Abs. 1 SGB II).
                     Bei Verhinderung rechtzeitig absagen!
                   </p>
                 </div>
@@ -1602,7 +1602,7 @@ export default function ErinnerungenPage() {
           Deine Erinnerungen werden lokal in deinem Browser gespeichert und nicht an
           unsere Server uebertragen. Alle Fristberechnungen sind Richtwerte und ersetzen
           keine Rechtsberatung. Im Zweifel konsultiere eine Beratungsstelle oder einen
-          Anwalt fuer Sozialrecht.
+          Anwalt für Sozialrecht.
         </p>
       </div>
 
@@ -1694,7 +1694,7 @@ export default function ErinnerungenPage() {
                   })}
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  Empfohlener Vorlauf fuer {TYP_LABELS[form.typ]}:{' '}
+                  Empfohlener Vorlauf für {TYP_LABELS[form.typ]}:{' '}
                   <strong>{DEFAULT_VORLAUF[form.typ]} Tage</strong>
                 </p>
               </div>

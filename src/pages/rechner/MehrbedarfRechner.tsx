@@ -138,7 +138,7 @@ export default function MehrbedarfRechner() {
               {kostenaufwaendigeErnaehrung && (
                 <div className="ml-6 mt-3">
                   <select value={ernaehrungstyp} onChange={(e) => setErnaehrungstyp(e.target.value)} className="w-full border border-gray-300 rounded-md px-3 py-2">
-                    <option value="">Bitte waehlen...</option>
+                    <option value="">Bitte wählen...</option>
                     <option value="niereninsuffizienz">Niereninsuffizienz</option>
                     <option value="zoeliakie">Zoeliakie</option>
                     <option value="colitis">Colitis ulcerosa / Morbus Crohn</option>
@@ -202,7 +202,7 @@ export default function MehrbedarfRechner() {
                       <Info className="w-5 h-5 text-yellow-600 mr-3 flex-shrink-0 mt-0.5" />
                       <div className="text-sm text-yellow-800">
                         <p className="font-medium">Hinweis zu Diabetes</p>
-                        <p className="mt-1">Seit 2014 wird fuer Diabetes in der Regel kein Mehrbedarf mehr gewaehrt (BSG-Rechtsprechung).</p>
+                        <p className="mt-1">Seit 2014 wird für Diabetes in der Regel kein Mehrbedarf mehr gewaehrt (BSG-Rechtsprechung).</p>
                       </div>
                     </div>
                   </div>
@@ -231,7 +231,7 @@ export default function MehrbedarfRechner() {
                   >
                     <Share2 className="w-4 h-4 mr-2" />Teilen
                   </Button>
-                  <Link to="/scan" className="flex-1"><Button variant="outline" className="w-full"><Heart className="w-4 h-4 mr-2" />Bescheid pruefen</Button></Link>
+                  <Link to="/scan" className="flex-1"><Button variant="outline" className="w-full"><Heart className="w-4 h-4 mr-2" />Bescheid prüfen</Button></Link>
                   <Link to="/rechner" className="flex-1"><Button variant="outline" className="w-full">Alle Rechner</Button></Link>
                   <SaveCalculationButton
                     toolId="mehrbedarf"
@@ -256,7 +256,7 @@ export default function MehrbedarfRechner() {
         )}
 
         {/* === SEO-CONTENT-BLOCK ============================================
-             Optimiert fuer Domain mehrbedarf-rechner.de.
+             Optimiert für Domain mehrbedarf-rechner.de.
              ============================================================== */}
         <article className="mt-12 space-y-8 max-w-3xl mx-auto">
 
@@ -274,7 +274,7 @@ export default function MehrbedarfRechner() {
             <h3 className="font-semibold text-xl mb-3 text-gray-900">Was sind Mehrbedarfe nach § 21 SGB II?</h3>
             <p className="text-gray-700 leading-relaxed mb-3">
               <strong>Mehrbedarfe</strong> sind Zuschlaege zum normalen Regelsatz, die das
-              Buergergeld in besonderen Lebenslagen ergaenzen — weil bestimmte Personengruppen
+              Bürgergeld in besonderen Lebenslagen ergaenzen — weil bestimmte Personengruppen
               regelmaessig hoehere Kosten haben als der Regelsatz abdeckt.
             </p>
             <p className="text-gray-700 leading-relaxed">
@@ -299,7 +299,7 @@ export default function MehrbedarfRechner() {
                 je nach Erkrankung. Aerztliches Attest zwingend.
               </li>
               <li>
-                <strong>Behinderung mit Erwerbsminderung</strong> (§ 21 Abs. 4 SGB II) — 35% Aufschlag fuer
+                <strong>Behinderung mit Erwerbsminderung</strong> (§ 21 Abs. 4 SGB II) — 35% Aufschlag für
                 Personen, die wegen Behinderung an Massnahmen zur Eingliederung in Arbeit teilnehmen.
               </li>
               <li>
@@ -315,11 +315,11 @@ export default function MehrbedarfRechner() {
             </h3>
             <p className="text-gray-800 leading-relaxed mb-3">
               In der Praxis fehlen Mehrbedarfe in <strong>fast jedem dritten Bescheid</strong>.
-              Das Jobcenter prueft sie nicht aktiv. Wenn dein Bescheid weniger zeigt als unser Rechner ergibt,
+              Das Jobcenter prüft sie nicht aktiv. Wenn dein Bescheid weniger zeigt als unser Rechner ergibt,
               gibt's gute Chancen mit einem Widerspruch oder Ueberpruefungsantrag — der geht bis zu 1 Jahr rueckwirkend.
             </p>
             <Link to="/scan">
-              <Button variant="amt" size="lg" className="gap-2">Bescheid pruefen lassen</Button>
+              <Button variant="amt" size="lg" className="gap-2">Bescheid prüfen lassen</Button>
             </Link>
           </section>
 
@@ -338,7 +338,7 @@ export default function MehrbedarfRechner() {
                 <h4 className="font-medium text-gray-900 mb-1">Werden Mehrbedarfe rueckwirkend gezahlt?</h4>
                 <p className="text-sm text-gray-700">
                   Ja — ab dem Monat der Antragstellung. Beim <strong>Ueberpruefungsantrag</strong> nach § 44 SGB X
-                  sogar bis zu <strong>1 Jahr rueckwirkend</strong>, wenn der Mehrbedarf von Anfang an haette beruecksichtigt werden muessen.
+                  sogar bis zu <strong>1 Jahr rueckwirkend</strong>, wenn der Mehrbedarf von Anfang an hätte beruecksichtigt werden muessen.
                 </p>
               </div>
               <div>
@@ -363,12 +363,12 @@ export default function MehrbedarfRechner() {
             <h3 className="font-semibold text-xl mb-4 text-gray-900">Verwandte Rechner</h3>
             <div className="grid sm:grid-cols-2 gap-3">
               <Link to="/rechner/buergergeld" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
-                <div className="font-medium text-gray-900">Buergergeld-Rechner</div>
+                <div className="font-medium text-gray-900">Bürgergeld-Rechner</div>
                 <div className="text-xs text-muted-foreground">Komplette Anspruchsberechnung</div>
               </Link>
               <Link to="/rechner/kdu" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
                 <div className="font-medium text-gray-900">KdU-Rechner</div>
-                <div className="text-xs text-muted-foreground">Wohnkosten-Pruefung</div>
+                <div className="text-xs text-muted-foreground">Wohnkosten-Prüfung</div>
               </Link>
               <Link to="/rechner/freibetrag" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
                 <div className="font-medium text-gray-900">Freibetrags-Rechner</div>

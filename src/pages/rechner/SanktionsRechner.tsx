@@ -109,7 +109,7 @@ export default function SanktionsRechner() {
 
               <div className="text-center mb-6">
                 <div className="text-5xl font-bold text-red-600 mb-2">-{ergebnis.kuerzungBetrag} EUR</div>
-                <div className="text-2xl text-gray-600 mb-4">Kuerzung: {ergebnis.kuerzungProzent}% fuer {ergebnis.dauer}</div>
+                <div className="text-2xl text-gray-600 mb-4">Kürzung: {ergebnis.kuerzungProzent}% für {ergebnis.dauer}</div>
                 <div className="text-xl text-gray-700">Neuer Regelsatz: <span className="font-semibold">{regelsatz - ergebnis.kuerzungBetrag} EUR</span></div>
               </div>
 
@@ -118,14 +118,14 @@ export default function SanktionsRechner() {
                   <Shield className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-bold text-green-900 text-lg mb-1">Deine Miete ist geschuetzt!</h3>
-                    <p className="text-green-800">KdU duerfen seit 2023 NICHT mehr gekuerzt werden. Deine Miete wird weiterhin voll uebernommen.</p>
+                    <p className="text-green-800">KdU duerfen seit 2023 NICHT mehr gekürzt werden. Deine Miete wird weiterhin voll uebernommen.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Info className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-bold text-blue-900 text-lg mb-1">Maximum: 30% Kuerzung</h3>
-                    <p className="text-blue-800">Seit dem Buergergeld-Gesetz liegt die maximale Kuerzung bei 30% des Regelsatzes.</p>
+                    <h3 className="font-bold text-blue-900 text-lg mb-1">Maximum: 30% Kürzung</h3>
+                    <p className="text-blue-800">Seit dem Bürgergeld-Gesetz liegt die maximale Kürzung bei 30% des Regelsatzes.</p>
                   </div>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function SanktionsRechner() {
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2"><Scale className="w-6 h-6 text-blue-600" />Dein Recht auf Widerspruch</h2>
                 <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6"><p className="text-gray-800">{ergebnis.widerspruchTipp}</p></div>
-                <h3 className="font-semibold text-lg mb-3">Haeufige Gruende fuer erfolgreichen Widerspruch:</h3>
+                <h3 className="font-semibold text-lg mb-3">Haeufige Gruende für erfolgreichen Widerspruch:</h3>
                 <ul className="space-y-2 mb-6">
                   {widerspruchGruende.map((g, i) => (
                     <li key={i} className="flex items-start gap-2"><span className="text-green-600 font-bold mt-1">✓</span><span className="text-gray-700">{g}</span></li>
@@ -147,11 +147,11 @@ export default function SanktionsRechner() {
                       generateRechnerPdf('Sanktions-Berechnung (§§ 31-32 SGB II)', [
                         { label: 'Regelsatz', value: `${regelsatz} EUR` },
                         { label: 'Art der Sanktion', value: art },
-                        { label: 'Kuerzung', value: `${ergebnis.kuerzungProzent}%`, highlight: true },
+                        { label: 'Kürzung', value: `${ergebnis.kuerzungProzent}%`, highlight: true },
                         { label: 'Kuerzungsbetrag', value: `${ergebnis.kuerzungBetrag} EUR`, highlight: true },
                         { label: 'Dauer', value: ergebnis.dauer },
                         { label: 'Neuer Regelsatz', value: `${regelsatz - ergebnis.kuerzungBetrag} EUR` },
-                      ], { label: 'Monatliche Kuerzung', value: `-${ergebnis.kuerzungBetrag} EUR` })
+                      ], { label: 'Monatliche Kürzung', value: `-${ergebnis.kuerzungBetrag} EUR` })
                     }}
                     className="bg-amber-600 hover:bg-amber-700 text-white"
                   >
@@ -160,7 +160,7 @@ export default function SanktionsRechner() {
                   <Button
                     onClick={() => shareResult({
                       title: 'Sanktions-Berechnung',
-                      text: `Sanktions-Rechner: ${ergebnis.kuerzungProzent}% Kuerzung = -${ergebnis.kuerzungBetrag} EUR / Monat (${ergebnis.dauer})`,
+                      text: `Sanktions-Rechner: ${ergebnis.kuerzungProzent}% Kürzung = -${ergebnis.kuerzungBetrag} EUR / Monat (${ergebnis.dauer})`,
                       url: window.location.href,
                     })}
                     variant="outline"
@@ -193,12 +193,12 @@ export default function SanktionsRechner() {
           <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2"><Info className="w-6 h-6 text-blue-600" />Wichtige Informationen</h2>
           <div className="space-y-4 text-gray-700">
             <div>
-              <h3 className="font-semibold text-lg mb-2">Seit dem Buergergeld-Gesetz 2023</h3>
-              <p>Die maximale Kuerzung betraegt 30% des Regelsatzes. Kosten der Unterkunft werden nicht mehr gekuerzt.</p>
+              <h3 className="font-semibold text-lg mb-2">Seit dem Bürgergeld-Gesetz 2023</h3>
+              <p>Die maximale Kürzung betraegt 30% des Regelsatzes. Kosten der Unterkunft werden nicht mehr gekürzt.</p>
             </div>
             <div>
               <h3 className="font-semibold text-lg mb-2">BVerfG-Urteil 2019</h3>
-              <p>Das Bundesverfassungsgericht hat entschieden, dass Sanktionen ueber 30% verfassungswidrig sind.</p>
+              <p>Das Bundesverfassungsgericht hat entschieden, dass Sanktionen über 30% verfassungswidrig sind.</p>
             </div>
             <div className="bg-blue-50 p-4 rounded-lg">
               <h3 className="font-semibold text-lg mb-2">Rechtliche Grundlagen</h3>
@@ -211,7 +211,7 @@ export default function SanktionsRechner() {
           </div>
         </div>
 
-        {/* === SEO-CONTENT-BLOCK fuer buergergeld-sanktion.de ============ */}
+        {/* === SEO-CONTENT-BLOCK für buergergeld-sanktion.de ============ */}
         <article className="mt-12 space-y-8 max-w-3xl mx-auto">
           <header className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
@@ -224,12 +224,12 @@ export default function SanktionsRechner() {
           </header>
 
           <section className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="font-semibold text-xl mb-3">Was sind Buergergeld-Sanktionen?</h3>
+            <h3 className="font-semibold text-xl mb-3">Was sind Bürgergeld-Sanktionen?</h3>
             <p className="text-gray-700 leading-relaxed">
-              Sanktionen sind <strong>Kuerzungen des Regelsatzes</strong>, die das Jobcenter bei
+              Sanktionen sind <strong>Kürzungen des Regelsatzes</strong>, die das Jobcenter bei
               Pflichtverletzungen verhaengen kann (§ 31 SGB II). Seit der Reform 2023 ist die maximale
-              Kuerzung auf <strong>30%</strong> begrenzt — frueher waren bis zu 100% moeglich.
-              Die Kosten der Unterkunft (KdU) duerfen nicht mehr gekuerzt werden.
+              Kürzung auf <strong>30%</strong> begrenzt — frueher waren bis zu 100% moeglich.
+              Die Kosten der Unterkunft (KdU) duerfen nicht mehr gekürzt werden.
             </p>
           </section>
 
@@ -255,10 +255,10 @@ export default function SanktionsRechner() {
                 </p>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900 mb-1">Bekomme ich Geld zurueck wenn ich Widerspruch einlege?</h4>
+                <h4 className="font-medium text-gray-900 mb-1">Bekomme ich Geld zurück wenn ich Widerspruch einlege?</h4>
                 <p className="text-sm text-gray-700">
                   Ein Widerspruch hat <strong>keine aufschiebende Wirkung</strong> — du musst ggf. einen
-                  Eilantrag beim Sozialgericht stellen. Bei Erfolg wird die Sanktion rueckwirkend zurueckgenommen
+                  Eilantrag beim Sozialgericht stellen. Bei Erfolg wird die Sanktion rueckwirkend zurückgenommen
                   und das Geld nachgezahlt.
                 </p>
               </div>
@@ -267,13 +267,13 @@ export default function SanktionsRechner() {
                 <p className="text-sm text-gray-700">
                   Du musst zu allen Terminen erscheinen, zu denen das Jobcenter dich vorlaedt — z.B.
                   Beratungsgespraeche, Massnahmen-Termine. Versaeumst du einen Termin ohne wichtigen Grund,
-                  drohen 10% Kuerzung fuer einen Monat (§ 32 SGB II).
+                  drohen 10% Kürzung für einen Monat (§ 32 SGB II).
                 </p>
               </div>
               <div>
                 <h4 className="font-medium text-gray-900 mb-1">Verstoesst eine Sanktion gegen die Verfassung?</h4>
                 <p className="text-sm text-gray-700">
-                  Das BVerfG hat 2019 (1 BvL 7/16) entschieden: Sanktionen <strong>ueber 30%</strong> sind
+                  Das BVerfG hat 2019 (1 BvL 7/16) entschieden: Sanktionen <strong>über 30%</strong> sind
                   verfassungswidrig. Die Reform 2023 hat das gesetzlich umgesetzt. Volle Streichung
                   des Existenzminimums ist nicht mehr moeglich.
                 </p>
@@ -284,13 +284,13 @@ export default function SanktionsRechner() {
           <section className="rounded-lg p-6 gradient-boxer text-white">
             <h3 className="text-xl font-bold mb-2">Sanktionsbescheid erhalten?</h3>
             <p className="opacity-90 mb-4">
-              Lade ihn zur KI-Pruefung hoch — wir zeigen dir in unter einer Minute, ob die Sanktion
+              Lade ihn zur KI-Prüfung hoch — wir zeigen dir in unter einer Minute, ob die Sanktion
               rechtmaessig ist und erstellen dir den Widerspruch.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link to="/scan">
                 <Button size="lg" className="bg-white text-red-700 hover:bg-white/90">
-                  Sanktionsbescheid pruefen
+                  Sanktionsbescheid prüfen
                 </Button>
               </Link>
               <Link to="/generator/widerspruch_sanktion">

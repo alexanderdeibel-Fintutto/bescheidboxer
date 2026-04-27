@@ -313,7 +313,7 @@ function useStatistikData() {
     const tipps: string[] = []
     if (rechnerVerlauf.length === 0) {
       tipps.push(
-        'Du hast noch keinen Rechner genutzt. Probiere den Buergergeld-Rechner aus, um deine Ansprueche zu pruefen!'
+        'Du hast noch keinen Rechner genutzt. Probiere den Bürgergeld-Rechner aus, um deine Ansprueche zu prüfen!'
       )
     }
     if (widersprueche.length === 0 && rechnerVerlauf.length > 0) {
@@ -333,7 +333,7 @@ function useStatistikData() {
     }
     if (widersprueche.filter((w) => w.status === 'eingereicht').length > 0) {
       tipps.push(
-        'Du hast offene Widersprueche. Pruefe regelmaessig den Status und halte Fristen im Blick.'
+        'Du hast offene Widersprüche. Pruefe regelmaessig den Status und halte Fristen im Blick.'
       )
     }
     if (checklistenCompleted > 0) {
@@ -538,7 +538,7 @@ export default function StatistikenPage() {
               Noch keine Statistiken vorhanden
             </h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Sobald du Rechner nutzt, Widersprueche erfasst, den Chat verwendest
+              Sobald du Rechner nutzt, Widersprüche erfasst, den Chat verwendest
               oder Dokumente ablegst, erscheinen hier deine Auswertungen.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -583,7 +583,7 @@ export default function StatistikenPage() {
                 />
                 <StatCard
                   icon={FileText}
-                  label="Widersprueche"
+                  label="Widersprüche"
                   value={widersprueche.length}
                   color="text-blue-500"
                 />
@@ -705,14 +705,14 @@ export default function StatistikenPage() {
                           })}
                       </div>
                       <p className="text-xs text-muted-foreground">
-                        Gesamt: {widersprueche.length} Widersprueche erfasst
+                        Gesamt: {widersprueche.length} Widersprüche erfasst
                       </p>
                     </div>
                   ) : (
                     <div className="text-center py-6">
                       <FileText className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground">
-                        Noch keine Widersprueche erfasst
+                        Noch keine Widersprüche erfasst
                       </p>
                       <Link to="/tracker">
                         <Button variant="outline" size="sm" className="mt-3 gap-1">
@@ -870,7 +870,7 @@ export default function StatistikenPage() {
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-base text-blue-900">
                   <Info className="h-4 w-4 text-blue-600" />
-                  Tipps fuer dich
+                  Tipps für dich
                 </CardTitle>
               </CardHeader>
               <CardContent>

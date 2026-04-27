@@ -5,7 +5,7 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 if (!supabaseUrl || !supabaseAnonKey || supabaseAnonKey.includes('placeholder')) {
   console.warn(
-    '[BescheidBoxer] Supabase ist nicht konfiguriert. Die App laeuft im Demo-Modus. ' +
+    '[BescheidBoxer] Supabase ist nicht konfiguriert. Die App läuft im Demo-Modus. ' +
     'Setze VITE_SUPABASE_URL und VITE_SUPABASE_ANON_KEY in deiner .env-Datei.'
   )
 }

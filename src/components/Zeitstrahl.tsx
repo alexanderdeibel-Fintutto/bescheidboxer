@@ -240,7 +240,7 @@ function truncate(text: string, maxLen: number): string {
 function ladeEreignisse(): ZeitstrahlEreignis[] {
   const ereignisse: ZeitstrahlEreignis[] = [];
 
-  // Widersprueche
+  // Widersprüche
   const widersprueche = safeParse<WiderspruchEntry>(
     "bescheidboxer_widersprueche"
   );
@@ -335,7 +335,7 @@ function ladeEreignisse(): ZeitstrahlEreignis[] {
       id: `sanktion-${s.id}`,
       typ: "sanktion",
       titel: `Sanktion: ${s.grund || "Unbekannt"}`,
-      beschreibung: `${s.kuerzungProzent}% Kuerzung (${s.kuerzungBetrag} EUR) — ${s.status || "aktiv"}`,
+      beschreibung: `${s.kuerzungProzent}% Kürzung (${s.kuerzungBetrag} EUR) — ${s.status || "aktiv"}`,
       datum,
     });
   });

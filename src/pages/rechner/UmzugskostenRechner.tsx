@@ -234,7 +234,7 @@ export default function UmzugskostenRechner() {
 
             {totals.count === 0 && !doppelmiete && !kaution ? (
               <p className="text-sm text-gray-600">
-                Waehle Kostenposten aus und gib individuelle Betraege ein, um deinen Anspruch zu berechnen.
+                Wähle Kostenposten aus und gib individuelle Betraege ein, um deinen Anspruch zu berechnen.
               </p>
             ) : (
               <div className="space-y-4">

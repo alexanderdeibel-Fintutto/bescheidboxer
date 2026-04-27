@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Calculator, Plus, Trash2, ArrowLeft, ArrowRight, Info, AlertTriangle, CheckCircle, Download, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { berechneBuergergeld, BgMitglied, BuergergeldErgebnis } from '@/lib/rechner-logik'
+import { berechneBürgergeld, BgMitglied, BürgergeldErgebnis } from '@/lib/rechner-logik'
 import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
@@ -36,7 +36,7 @@ export default function BuergergeldRechner() {
   const [plz, setPlz] = useState<string>('')
 
   // Ergebnis
-  const [ergebnis, setErgebnis] = useState<BuergergeldErgebnis | null>(null)
+  const [ergebnis, setErgebnis] = useState<BürgergeldErgebnis | null>(null)
 
   const hasPartner = () => mitglieder.some((m) => m.typ === 'partner')
   const getKinder = () => mitglieder.filter((m) => m.typ === 'kind')
@@ -92,7 +92,7 @@ export default function BuergergeldRechner() {
     if (step === 3) {
       // Strip _id before passing to calculation
       const bgMitglieder: BgMitglied[] = mitglieder.map(({ _id, ...rest }) => rest)
-      const result = berechneBuergergeld({
+      const result = berechneBürgergeld({
         mitglieder: bgMitglieder,
         kaltmiete,
         nebenkosten,
@@ -101,7 +101,7 @@ export default function BuergergeldRechner() {
       })
       setErgebnis(result)
       if (result) {
-        saveRechnerErgebnis('Buergergeld-Rechner', 'buergergeld', {
+        saveRechnerErgebnis('Bürgergeld-Rechner', 'buergergeld', {
           anspruch: result.anspruch,
           regelbedarf: result.regelbedarfGesamt,
           kdu: result.kduGesamt,
@@ -144,11 +144,11 @@ export default function BuergergeldRechner() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <div className="bg-white border-b shadow-sm">
         <div className="container mx-auto px-4 py-6">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Buergergeld-Rechner' }]} className="mb-4" />
+          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Bürgergeld-Rechner' }]} className="mb-4" />
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-100 rounded-xl"><Calculator className="w-8 h-8 text-blue-600" /></div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Buergergeld-Rechner</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Bürgergeld-Rechner</h1>
               <p className="text-gray-600">Berechne deinen monatlichen Anspruch nach SGB II</p>
             </div>
           </div>
@@ -412,7 +412,7 @@ export default function BuergergeldRechner() {
                   <h2 className="text-2xl font-bold">Dein monatlicher Anspruch</h2>
                 </div>
                 <div className="text-6xl font-bold mb-2">{formatEuro(ergebnis.anspruch)}</div>
-                <p className="text-lg opacity-90">{ergebnis.anspruch > 0 ? 'Buergergeld nach SGB II' : 'Kein Leistungsanspruch'}</p>
+                <p className="text-lg opacity-90">{ergebnis.anspruch > 0 ? 'Bürgergeld nach SGB II' : 'Kein Leistungsanspruch'}</p>
               </div>
             </div>
 
@@ -581,7 +581,7 @@ export default function BuergergeldRechner() {
                     sections.push({ label: 'Anrechenbares Einkommen', value: `- ${formatEuro(ergebnis.einkommenAnrechenbar)}` })
                   }
                   generateRechnerPdf(
-                    'Buergergeld-Berechnung (SGB II)',
+                    'Bürgergeld-Berechnung (SGB II)',
                     sections,
                     { label: 'Monatlicher Anspruch', value: formatEuro(ergebnis.anspruch) },
                   )
@@ -594,8 +594,8 @@ export default function BuergergeldRechner() {
                 onClick={() => {
                   const formatEuro2 = (v: number) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(v)
                   shareResult({
-                    title: 'Buergergeld-Berechnung',
-                    text: `Mein Buergergeld-Anspruch: ${formatEuro2(ergebnis.anspruch)} / Monat (Regelbedarf: ${formatEuro2(ergebnis.regelbedarfGesamt)}, KdU: ${formatEuro2(ergebnis.kduGesamt)})`,
+                    title: 'Bürgergeld-Berechnung',
+                    text: `Mein Bürgergeld-Anspruch: ${formatEuro2(ergebnis.anspruch)} / Monat (Regelbedarf: ${formatEuro2(ergebnis.regelbedarfGesamt)}, KdU: ${formatEuro2(ergebnis.kduGesamt)})`,
                     url: window.location.href,
                   })
                 }}
@@ -639,7 +639,7 @@ export default function BuergergeldRechner() {
         {step < 4 && (
           <div className="flex justify-between mt-8">
             <Button onClick={goBack} disabled={step === 1} variant="outline" className="px-6 py-6 text-base disabled:opacity-50">
-              <ArrowLeft className="w-5 h-5 mr-2" />Zurueck
+              <ArrowLeft className="w-5 h-5 mr-2" />Zurück
             </Button>
             <Button onClick={goNext} disabled={!canGoNext()} className="px-6 py-6 text-base bg-blue-600 hover:bg-blue-700 disabled:opacity-50">
               {step === 3 ? 'Berechnen' : 'Weiter'}<ArrowRight className="w-5 h-5 ml-2" />
@@ -648,24 +648,24 @@ export default function BuergergeldRechner() {
         )}
 
         {/* === SEO-CONTENT-BLOCK ============================================
-             Optimiert fuer Domain buergergeld-rechner.net.
+             Optimiert für Domain buergergeld-rechner.net.
              ============================================================== */}
         <article className="mt-12 space-y-8 max-w-3xl mx-auto">
 
           <header className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              Buergergeld-Rechner — wie viel steht dir zu?
+              Bürgergeld-Rechner — wie viel steht dir zu?
             </h2>
             <p className="text-lg text-gray-600">
-              Berechne in 2 Minuten deinen Buergergeld-Anspruch nach SGB II — Regelsatz, Mehrbedarfe,
+              Berechne in 2 Minuten deinen Bürgergeld-Anspruch nach SGB II — Regelsatz, Mehrbedarfe,
               KdU, Einkommens-Anrechnung und Freibetraege auf einen Blick.
             </p>
           </header>
 
           <section className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="font-semibold text-xl mb-3 text-gray-900">Wer hat Anspruch auf Buergergeld?</h3>
+            <h3 className="font-semibold text-xl mb-3 text-gray-900">Wer hat Anspruch auf Bürgergeld?</h3>
             <p className="text-gray-700 leading-relaxed">
-              Anspruch auf <strong>Buergergeld nach SGB II</strong> hat, wer das 15. Lebensjahr vollendet hat
+              Anspruch auf <strong>Bürgergeld nach SGB II</strong> hat, wer das 15. Lebensjahr vollendet hat
               und die Regelaltersgrenze noch nicht erreicht hat, erwerbsfaehig ist (mindestens 3 Stunden taeglich
               arbeiten kann), hilfebeduerftig ist und seinen gewoehnlichen Aufenthalt in Deutschland hat.
               Hilfebeduerftig bedeutet: Du kannst deinen Lebensunterhalt nicht oder nicht ausreichend aus
@@ -675,12 +675,12 @@ export default function BuergergeldRechner() {
 
           <section className="bg-white rounded-lg border border-gray-200 p-6">
             <h3 className="font-semibold text-xl mb-3 text-gray-900">
-              Aus welchen Bestandteilen setzt sich Buergergeld zusammen?
+              Aus welchen Bestandteilen setzt sich Bürgergeld zusammen?
             </h3>
             <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              <li><strong>Regelbedarf</strong> — Stufe 1: 563 EUR (Alleinstehende), Stufe 2: 506 EUR/Person (Paare), gestaffelt fuer Kinder</li>
-              <li><strong>Mehrbedarfe</strong> nach § 21 SGB II — z.B. fuer Alleinerziehende, Schwangere, Behinderte, kostenaufwaendige Ernaehrung</li>
-              <li><strong>Kosten der Unterkunft (KdU)</strong> nach § 22 SGB II — Kaltmiete, Nebenkosten, Heizung in angemessener Hoehe</li>
+              <li><strong>Regelbedarf</strong> — Stufe 1: 563 EUR (Alleinstehende), Stufe 2: 506 EUR/Person (Paare), gestaffelt für Kinder</li>
+              <li><strong>Mehrbedarfe</strong> nach § 21 SGB II — z.B. für Alleinerziehende, Schwangere, Behinderte, kostenaufwaendige Ernaehrung</li>
+              <li><strong>Kosten der Unterkunft (KdU)</strong> nach § 22 SGB II — Kaltmiete, Nebenkosten, Heizung in angemessener Höhe</li>
               <li><strong>Einmalige Leistungen</strong> — z.B. Erstausstattung Wohnung, Schwangerschaftsbekleidung, mehrtaegige Klassenfahrten</li>
               <li><strong>Sozialversicherungsbeitraege</strong> — Kranken-, Pflege- und Rentenversicherung</li>
             </ul>
@@ -719,17 +719,17 @@ export default function BuergergeldRechner() {
                 </p>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900 mb-1">Wie hoch ist das Schonvermoegen?</h4>
+                <h4 className="font-medium text-gray-900 mb-1">Wie hoch ist das Schonvermögen?</h4>
                 <p className="text-sm text-gray-700">
-                  In den ersten 12 Monaten (Karenzzeit) gilt erhoehtes Schonvermoegen: <strong>40.000 EUR</strong>
-                  fuer die antragstellende Person plus 15.000 EUR fuer jede weitere BG-Person.
+                  In den ersten 12 Monaten (Karenzzeit) gilt erhoehtes Schonvermögen: <strong>40.000 EUR</strong>
+                  für die antragstellende Person plus 15.000 EUR für jede weitere BG-Person.
                   Nach der Karenz: 15.000 EUR pro Person.
                 </p>
               </div>
               <div>
                 <h4 className="font-medium text-gray-900 mb-1">Was passiert bei Sanktionen?</h4>
                 <p className="text-sm text-gray-700">
-                  Bei Pflichtverletzungen kann das Jobcenter den Regelsatz um 10-30% kuerzen.
+                  Bei Pflichtverletzungen kann das Jobcenter den Regelsatz um 10-30% kürzen.
                   Sanktionen sind oft anfechtbar — z.B. wenn keine Anhoerung stattfand oder ein wichtiger Grund vorlag.
                 </p>
               </div>
@@ -737,7 +737,7 @@ export default function BuergergeldRechner() {
                 <h4 className="font-medium text-gray-900 mb-1">Welche Bescheide sind besonders fehleranfaellig?</h4>
                 <p className="text-sm text-gray-700">
                   Erfahrungsgemaess am haeufigsten Fehler bei: Mehrbedarfe (oft vergessen),
-                  Heizkosten-Kuerzungen ohne schluessiges Konzept, falsche Einkommensanrechnung
+                  Heizkosten-Kürzungen ohne schluessiges Konzept, falsche Einkommensanrechnung
                   bei selbststaendigem Nebeneinkommen, fehlende Berechnung der Karenzzeit.
                 </p>
               </div>
@@ -757,10 +757,10 @@ export default function BuergergeldRechner() {
               </Link>
               <Link to="/rechner/sanktion" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
                 <div className="font-medium text-gray-900">Sanktions-Rechner</div>
-                <div className="text-xs text-muted-foreground">Kuerzung bei Pflichtversaeumnis</div>
+                <div className="text-xs text-muted-foreground">Kürzung bei Pflichtversaeumnis</div>
               </Link>
               <Link to="/rechner/schonvermoegen" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
-                <div className="font-medium text-gray-900">Schonvermoegens-Rechner</div>
+                <div className="font-medium text-gray-900">Schonvermögens-Rechner</div>
                 <div className="text-xs text-muted-foreground">Wie viel Vermoegen darfst du haben?</div>
               </Link>
             </div>
@@ -769,7 +769,7 @@ export default function BuergergeldRechner() {
           <section className="rounded-lg p-6 gradient-boxer text-white">
             <h3 className="text-xl font-bold mb-2">Bekommst du laut Bescheid weniger als hier berechnet?</h3>
             <p className="opacity-90 mb-4">
-              Lade deinen Bescheid hoch — unsere KI prueft in unter einer Minute, was fehlt
+              Lade deinen Bescheid hoch — unsere KI prüft in unter einer Minute, was fehlt
               und erstellt dir den passenden Widerspruch.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PiggyBank, Info, CheckCircle, AlertTriangle, Home as HomeIcon, Car, Download, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { berechneSchonvermoegen, SchonvermoegensErgebnis } from '@/lib/rechner-logik'
+import { berechneSchonvermögen, SchonvermögensErgebnis } from '@/lib/rechner-logik'
 import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
@@ -19,10 +19,10 @@ export default function SchonvermoegensRechner() {
   const [immobilieQm, setImmobilieQm] = useState(0)
   const [hatAltersvorsorge, setHatAltersvorsorge] = useState(false)
   const [altersvorsorge, setAltersvorsorge] = useState(0)
-  const [result, setResult] = useState<SchonvermoegensErgebnis | null>(null)
+  const [result, setResult] = useState<SchonvermögensErgebnis | null>(null)
 
   const handleCalculate = () => {
-    const r = berechneSchonvermoegen({
+    const r = berechneSchonvermögen({
       alter,
       bgGroesse,
       vermoegen,
@@ -32,7 +32,7 @@ export default function SchonvermoegensRechner() {
       altersvorsorgeGeschuetzt: hatAltersvorsorge ? altersvorsorge : undefined,
     })
     setResult(r)
-    saveRechnerErgebnis('Schonvermoegens-Rechner', 'schonvermoegen', {
+    saveRechnerErgebnis('Schonvermögens-Rechner', 'schonvermoegen', {
       anspruch: r.anspruch ? 'Ja' : 'Nein',
       freibetragGesamt: r.freibetragGesamt,
       vermoegenAnrechenbar: r.vermoegenAnrechenbar,
@@ -44,11 +44,11 @@ export default function SchonvermoegensRechner() {
     <div className="min-h-screen bg-gray-50 pb-20">
       <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-8 px-4">
         <div className="max-w-4xl mx-auto">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Schonvermoegens-Rechner' }]} className="mb-4 [&_a]:text-white/90 [&_a:hover]:text-white [&_span]:text-white [&_svg]:text-white/70" />
+          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Schonvermögens-Rechner' }]} className="mb-4 [&_a]:text-white/90 [&_a:hover]:text-white [&_span]:text-white [&_svg]:text-white/70" />
           <div className="flex items-start gap-4">
             <div className="bg-white/20 p-3 rounded-lg"><PiggyBank className="w-8 h-8" /></div>
             <div>
-              <h1 className="text-3xl font-bold mb-2">Schonvermoegens-Rechner</h1>
+              <h1 className="text-3xl font-bold mb-2">Schonvermögens-Rechner</h1>
               <p className="text-green-100 text-lg">Pruefe, ob dein Vermoegen geschuetzt ist</p>
             </div>
           </div>
@@ -139,12 +139,12 @@ export default function SchonvermoegensRechner() {
                 {result.anspruch ? <CheckCircle className="w-12 h-12 text-green-600 flex-shrink-0" /> : <AlertTriangle className="w-12 h-12 text-red-600 flex-shrink-0" />}
                 <div>
                   <h3 className={`text-2xl font-bold mb-2 ${result.anspruch ? 'text-green-900' : 'text-red-900'}`}>
-                    {result.anspruch ? 'Dein Vermoegen ist geschuetzt!' : 'Vermoegen ueber dem Freibetrag'}
+                    {result.anspruch ? 'Dein Vermoegen ist geschuetzt!' : 'Vermoegen über dem Freibetrag'}
                   </h3>
                   <p className={result.anspruch ? 'text-green-800' : 'text-red-800'}>
                     {result.anspruch
-                      ? 'Du hast Anspruch auf Buergergeld. Dein Vermoegen liegt innerhalb der Schutzgrenzen.'
-                      : `Dein Vermoegen liegt ${result.vermoegenAnrechenbar.toLocaleString('de-DE')} EUR ueber dem Freibetrag.`}
+                      ? 'Du hast Anspruch auf Bürgergeld. Dein Vermoegen liegt innerhalb der Schutzgrenzen.'
+                      : `Dein Vermoegen liegt ${result.vermoegenAnrechenbar.toLocaleString('de-DE')} EUR über dem Freibetrag.`}
                   </p>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function SchonvermoegensRechner() {
                   <div className={`p-3 rounded-lg ${autoWert <= result.autoFreibetrag ? 'bg-green-50' : 'bg-orange-50'}`}>
                     <div className="flex items-center gap-2">
                       <Car className={`w-4 h-4 ${autoWert <= result.autoFreibetrag ? 'text-green-600' : 'text-orange-600'}`} />
-                      <span className="text-sm font-medium">Auto ({autoWert.toLocaleString('de-DE')} EUR): {autoWert <= result.autoFreibetrag ? 'Geschuetzt' : 'Ueber Freibetrag'}</span>
+                      <span className="text-sm font-medium">Auto ({autoWert.toLocaleString('de-DE')} EUR): {autoWert <= result.autoFreibetrag ? 'Geschuetzt' : 'Über Freibetrag'}</span>
                     </div>
                   </div>
                 )}
@@ -208,9 +208,9 @@ export default function SchonvermoegensRechner() {
                   const sections: RechnerSection[] = [
                     ...result.details.map(d => ({ label: d.label, value: `${d.betrag.toLocaleString('de-DE')} EUR` })),
                     { label: 'Barvermögen', value: `${vermoegen.toLocaleString('de-DE')} EUR` },
-                    { label: 'Ergebnis', value: result.anspruch ? 'Geschuetzt' : 'Ueber Freibetrag', highlight: true },
+                    { label: 'Ergebnis', value: result.anspruch ? 'Geschuetzt' : 'Über Freibetrag', highlight: true },
                   ]
-                  generateRechnerPdf('Schonvermoegens-Pruefung (§ 12 SGB II)', sections,
+                  generateRechnerPdf('Schonvermögens-Prüfung (§ 12 SGB II)', sections,
                     { label: 'Freibetrag gesamt', value: `${result.freibetragGesamt.toLocaleString('de-DE')} EUR` },
                   )
                 }}
@@ -220,8 +220,8 @@ export default function SchonvermoegensRechner() {
               </Button>
               <Button
                 onClick={() => shareResult({
-                  title: 'Schonvermoegens-Pruefung',
-                  text: `Schonvermoegens-Pruefung: Freibetrag ${result.freibetragGesamt.toLocaleString('de-DE')} EUR - ${result.anspruch ? 'Vermoegen geschuetzt' : 'Ueber Freibetrag'}`,
+                  title: 'Schonvermögens-Prüfung',
+                  text: `Schonvermögens-Prüfung: Freibetrag ${result.freibetragGesamt.toLocaleString('de-DE')} EUR - ${result.anspruch ? 'Vermoegen geschuetzt' : 'Über Freibetrag'}`,
                   url: window.location.href,
                 })}
                 variant="outline"
@@ -229,7 +229,7 @@ export default function SchonvermoegensRechner() {
               >
                 <Share2 className="w-4 h-4 mr-2" />Teilen
               </Button>
-              <Link to="/rechner/buergergeld"><Button variant="outline" className="w-full">Buergergeld berechnen</Button></Link>
+              <Link to="/rechner/buergergeld"><Button variant="outline" className="w-full">Bürgergeld berechnen</Button></Link>
               <Link to="/chat"><Button variant="outline" className="w-full">KI-Berater fragen</Button></Link>
               <Link to="/rechner"><Button variant="outline" className="w-full">Alle Rechner</Button></Link>
               {result && (

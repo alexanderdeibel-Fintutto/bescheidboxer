@@ -25,7 +25,7 @@ function ThemeToggle() {
     <button
       onClick={cycle}
       className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
-      title={theme === 'light' ? 'Hell (klick fuer Dunkel)' : theme === 'dark' ? 'Dunkel (klick fuer System)' : 'System (klick fuer Hell)'}
+      title={theme === 'light' ? 'Hell (klick für Dunkel)' : theme === 'dark' ? 'Dunkel (klick für System)' : 'System (klick für Hell)'}
     >
       {theme === 'light' && <Sun className="h-4 w-4" />}
       {theme === 'dark' && <Moon className="h-4 w-4" />}

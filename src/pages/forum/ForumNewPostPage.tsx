@@ -10,7 +10,7 @@ import { useCreditsContext } from '@/contexts/CreditsContext'
 import { type SgbCategory } from '@/lib/sgb-knowledge'
 
 const CATEGORY_OPTIONS: { id: SgbCategory; label: string }[] = [
-  { id: 'sgb2', label: 'Buergergeld (SGB II)' },
+  { id: 'sgb2', label: 'Bürgergeld (SGB II)' },
   { id: 'sgb3', label: 'ALG I (SGB III)' },
   { id: 'kdu', label: 'Kosten der Unterkunft' },
   { id: 'sgb10', label: 'Widerspruch & Verwaltung' },
@@ -70,7 +70,7 @@ export default function ForumNewPostPage() {
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
-        Zurueck zum Forum
+        Zurück zum Forum
       </Link>
 
       <h1 className="text-2xl font-bold mb-6">Neuen Beitrag schreiben</h1>
@@ -175,8 +175,8 @@ export default function ForumNewPostPage() {
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="p-4">
               <p className="text-xs text-muted-foreground">
-                <strong>Tipp:</strong> Nutze zuerst den KI-Berater fuer eine schnelle Einschaetzung
-                und poste dann im Forum fuer Erfahrungswerte anderer.
+                <strong>Tipp:</strong> Nutze zuerst den KI-Berater für eine schnelle Einschaetzung
+                und poste dann im Forum für Erfahrungswerte anderer.
               </p>
               <Button variant="outline" size="sm" className="w-full mt-3" asChild>
                 <Link to="/chat">KI-Berater fragen</Link>

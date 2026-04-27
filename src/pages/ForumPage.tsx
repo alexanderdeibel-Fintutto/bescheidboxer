@@ -49,8 +49,8 @@ const DEMO_POSTS: ForumPost[] = [
   },
   {
     id: '2',
-    title: 'KdU Kuerzung - Amt sagt Miete ist zu hoch. Was tun?',
-    excerpt: 'Mein Jobcenter hat meine Miete als unangemessen eingestuft und will kuerzen. Ich finde aber keine billigere Wohnung in meiner Stadt...',
+    title: 'KdU Kürzung - Amt sagt Miete ist zu hoch. Was tun?',
+    excerpt: 'Mein Jobcenter hat meine Miete als unangemessen eingestuft und will kürzen. Ich finde aber keine billigere Wohnung in meiner Stadt...',
     author: 'Marco K.',
     category: 'kdu',
     createdAt: '2026-02-05T10:15:00',
@@ -63,7 +63,7 @@ const DEMO_POSTS: ForumPost[] = [
   {
     id: '3',
     title: 'Ueberpruefungsantrag - 1.800 EUR Nachzahlung bekommen!',
-    excerpt: 'Habe alte Bescheide pruefen lassen und tatsaechlich wurde mein Mehrbedarf als Alleinerziehende 2 Jahre lang nicht berechnet...',
+    excerpt: 'Habe alte Bescheide prüfen lassen und tatsaechlich wurde mein Mehrbedarf als Alleinerziehende 2 Jahre lang nicht berechnet...',
     author: 'Sandra L.',
     category: 'sgb10',
     createdAt: '2026-02-04T18:00:00',
@@ -102,7 +102,7 @@ const DEMO_POSTS: ForumPost[] = [
   {
     id: '6',
     title: 'Eilantrag beim Sozialgericht - Wie schnell geht das?',
-    excerpt: 'Mein Antrag wird seit 3 Monaten nicht bearbeitet, habe kein Geld mehr. Will einen Eilantrag stellen. Wie laeuft das ab?',
+    excerpt: 'Mein Antrag wird seit 3 Monaten nicht bearbeitet, habe kein Geld mehr. Will einen Eilantrag stellen. Wie läuft das ab?',
     author: 'Ralf D.',
     category: 'sgb10',
     createdAt: '2026-02-03T11:00:00',
@@ -128,7 +128,7 @@ const DEMO_POSTS: ForumPost[] = [
   {
     id: '8',
     title: 'Tipp: So bekommt ihr Akteneinsicht beim Jobcenter',
-    excerpt: 'Viele wissen nicht dass man ein Recht auf komplette Akteneinsicht hat. Hier erklaere ich Schritt fuer Schritt wie es geht...',
+    excerpt: 'Viele wissen nicht dass man ein Recht auf komplette Akteneinsicht hat. Hier erklaere ich Schritt für Schritt wie es geht...',
     author: 'Carsten W.',
     category: 'sgb10',
     createdAt: '2026-02-01T20:00:00',
@@ -142,7 +142,7 @@ const DEMO_POSTS: ForumPost[] = [
 
 const CATEGORY_TABS = [
   { id: 'all', label: 'Alle Beitraege' },
-  { id: 'sgb2', label: 'Buergergeld' },
+  { id: 'sgb2', label: 'Bürgergeld' },
   { id: 'sgb3', label: 'ALG I' },
   { id: 'kdu', label: 'Miete (KdU)' },
   { id: 'sgb10', label: 'Widerspruch & Klage' },
@@ -292,7 +292,7 @@ export default function ForumPage() {
                       <Pin className="h-3.5 w-3.5 text-primary" />
                     )}
                     <Badge variant={post.category as 'sgb2' | 'sgb3' | 'kdu' | 'sgb10'} className="text-[10px]">
-                      {post.category === 'sgb2' ? 'Buergergeld' :
+                      {post.category === 'sgb2' ? 'Bürgergeld' :
                        post.category === 'sgb3' ? 'ALG I' :
                        post.category === 'kdu' ? 'KdU' : 'Verwaltung'}
                     </Badge>

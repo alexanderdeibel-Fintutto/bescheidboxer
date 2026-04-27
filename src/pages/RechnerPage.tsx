@@ -24,9 +24,9 @@ import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 const calculators = [
   {
     id: 'buergergeld',
-    title: 'Buergergeld-Rechner',
+    title: 'Bürgergeld-Rechner',
     description:
-      'Berechne deinen vollen Buergergeld-Anspruch inkl. Regelbedarf, KdU und Mehrbedarf',
+      'Berechne deinen vollen Bürgergeld-Anspruch inkl. Regelbedarf, KdU und Mehrbedarf',
     icon: Calculator,
     route: '/rechner/buergergeld',
     color: 'text-blue-600',
@@ -36,7 +36,7 @@ const calculators = [
     id: 'kdu',
     title: 'KdU-Rechner',
     description:
-      'Pruefe ob deine Mietkosten angemessen sind - fuer deine Stadt',
+      'Pruefe ob deine Mietkosten angemessen sind - für deine Stadt',
     icon: Home,
     route: '/rechner/kdu',
     color: 'text-emerald-600',
@@ -56,7 +56,7 @@ const calculators = [
     id: 'freibetrag',
     title: 'Freibetrags-Rechner',
     description:
-      'Wieviel darfst du verdienen ohne Kuerzung? Berechne deine Freibetraege',
+      'Wieviel darfst du verdienen ohne Kürzung? Berechne deine Freibetraege',
     icon: TrendingUp,
     route: '/rechner/freibetrag',
     color: 'text-green-600',
@@ -74,7 +74,7 @@ const calculators = [
   },
   {
     id: 'schonvermoegen',
-    title: 'Schonvermoegens-Rechner',
+    title: 'Schonvermögens-Rechner',
     description:
       'Wieviel Vermoegen darfst du behalten? Pruefe deine Freibetraege',
     icon: PiggyBank,
@@ -86,7 +86,7 @@ const calculators = [
     id: 'fristen',
     title: 'Fristenrechner',
     description:
-      'Wann laeuft deine Frist ab? Widerspruch, Klage, Anhoerung - berechne dein Fristende',
+      'Wann läuft deine Frist ab? Widerspruch, Klage, Anhoerung - berechne dein Fristende',
     icon: Clock,
     route: '/rechner/fristen',
     color: 'text-purple-600',
@@ -136,7 +136,7 @@ const calculators = [
     id: 'einkommen',
     title: 'Einkommens-Uebersicht',
     description:
-      'Erfasse dein monatliches Einkommen und sieh, wie viel davon auf dein Buergergeld angerechnet wird',
+      'Erfasse dein monatliches Einkommen und sieh, wie viel davon auf dein Bürgergeld angerechnet wird',
     icon: Wallet,
     route: '/rechner/einkommen',
     color: 'text-teal-600',
@@ -146,7 +146,7 @@ const calculators = [
     id: 'haushalt',
     title: 'Haushalts-Planer',
     description:
-      'Plane dein monatliches Budget: Einnahmen und Ausgaben im Ueberblick mit Spar-Tipps',
+      'Plane dein monatliches Budget: Einnahmen und Ausgaben im Überblick mit Spar-Tipps',
     icon: Home,
     route: '/rechner/haushalt',
     color: 'text-violet-600',
@@ -156,7 +156,7 @@ const calculators = [
     id: 'mietspiegel',
     title: 'Mietspiegel-Rechner',
     description:
-      'Ist deine Miete angemessen? Pruefe die KdU-Grenzen fuer deine Stadt nach § 22 SGB II',
+      'Ist deine Miete angemessen? Pruefe die KdU-Grenzen für deine Stadt nach § 22 SGB II',
     icon: MapPin,
     route: '/rechner/mietspiegel',
     color: 'text-sky-600',
@@ -229,7 +229,7 @@ export default function RechnerPage() {
               </h2>
               <p className="text-muted-foreground mb-6">
                 Unsere KI-Rechtsberatung beantwortet deine individuellen Fragen
-                zu Buergergeld, Widerspruch und mehr.
+                zu Bürgergeld, Widerspruch und mehr.
               </p>
               <Button
                 size="lg"

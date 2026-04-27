@@ -26,7 +26,7 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Anrechenbares Einkommen',
     legalRef: '\u00a7 11 SGB II',
     explanation:
-      'Alle Einnahmen in Geld, die Ihnen zufliessen, gelten grundsaetzlich als Einkommen und werden auf das Buergergeld angerechnet. Dazu zaehlen Lohn, Kindergeld, Unterhalt und Renten. Bestimmte Einnahmen sind jedoch privilegiert oder es gelten Freibetraege, sodass nicht alles vollstaendig angerechnet wird.',
+      'Alle Einnahmen in Geld, die Ihnen zufliessen, gelten grundsaetzlich als Einkommen und werden auf das Bürgergeld angerechnet. Dazu zaehlen Lohn, Kindergeld, Unterhalt und Renten. Bestimmte Einnahmen sind jedoch privilegiert oder es gelten Freibetraege, sodass nicht alles vollstaendig angerechnet wird.',
     link: { label: 'Zum Freibetrags-Rechner', to: '/rechner/freibetrag' },
   },
   {
@@ -34,7 +34,7 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Aufhebungsbescheid',
     legalRef: '\u00a7\u00a7 45, 48 SGB X',
     explanation:
-      'Mit einem Aufhebungsbescheid hebt das Jobcenter eine fruehere Leistungsbewilligung ganz oder teilweise auf. Das kann rueckwirkend geschehen (z.B. wenn Einkommen nicht gemeldet wurde) oder fuer die Zukunft. Gegen einen Aufhebungsbescheid koennen und sollten Sie innerhalb eines Monats Widerspruch einlegen.',
+      'Mit einem Aufhebungsbescheid hebt das Jobcenter eine fruehere Leistungsbewilligung ganz oder teilweise auf. Das kann rueckwirkend geschehen (z.B. wenn Einkommen nicht gemeldet wurde) oder für die Zukunft. Gegen einen Aufhebungsbescheid koennen und sollten Sie innerhalb eines Monats Widerspruch einlegen.',
     link: { label: 'Widerspruch einlegen', to: '/musterschreiben' },
   },
   {
@@ -43,14 +43,14 @@ const glossarEntries: GlossarEntry[] = [
     legalRef: '\u00a7 7 Abs. 3 SGB II',
     explanation:
       'Die Bedarfsgemeinschaft (BG) umfasst alle Personen, die zusammen leben und wirtschaften. Dazu gehoeren Sie als Antragsteller, Ihr Partner (Ehe, Lebenspartnerschaft oder eheaehnliche Gemeinschaft) und Ihre unverheirateten Kinder unter 25 Jahren. Das Einkommen und Vermoegen aller BG-Mitglieder wird bei der Berechnung beruecksichtigt.',
-    link: { label: 'Zum Buergergeld-Rechner', to: '/rechner/buergergeld' },
+    link: { label: 'Zum Bürgergeld-Rechner', to: '/rechner/buergergeld' },
   },
   {
     id: 'beratungshilfe',
     term: 'Beratungshilfe',
     legalRef: '\u00a7 1 BerHG',
     explanation:
-      'Beratungshilfe ermoeglicht es Ihnen, sich aussergerichtlich anwaltlich beraten zu lassen, ohne die Kosten selbst tragen zu muessen. Beantragen Sie einen Beratungshilfeschein beim Amtsgericht. Die Eigengebuehr betraegt 15 EUR und kann erlassen werden. Als Buergergeld-Empfaenger haben Sie in der Regel Anspruch darauf.',
+      'Beratungshilfe ermoeglicht es Ihnen, sich aussergerichtlich anwaltlich beraten zu lassen, ohne die Kosten selbst tragen zu muessen. Beantragen Sie einen Beratungshilfeschein beim Amtsgericht. Die Eigengebuehr betraegt 15 EUR und kann erlassen werden. Als Bürgergeld-Empfaenger haben Sie in der Regel Anspruch darauf.',
   },
   {
     id: 'bescheid',
@@ -58,22 +58,22 @@ const glossarEntries: GlossarEntry[] = [
     legalRef: '\u00a7 31 SGB X',
     explanation:
       'Ein Bescheid ist ein schriftlicher Verwaltungsakt des Jobcenters, der Ihre Leistungsansprueche regelt. Er enthaelt die Berechnung Ihrer Leistungen, den Bewilligungszeitraum und eine Rechtsbehelfsbelehrung. Pruefen Sie jeden Bescheid sorgfaeltig - etwa 40-50% aller Bescheide enthalten Fehler.',
-    link: { label: 'Bescheid pruefen lassen', to: '/scan' },
+    link: { label: 'Bescheid prüfen lassen', to: '/scan' },
   },
   {
     id: 'buergergeld',
-    term: 'Buergergeld',
+    term: 'Bürgergeld',
     legalRef: '\u00a7\u00a7 1 ff. SGB II',
     explanation:
-      'Das Buergergeld ist seit dem 01.01.2023 die Grundsicherung fuer erwerbsfaehige Leistungsberechtigte und hat Hartz IV abgeloest. Es sichert das Existenzminimum und umfasst den Regelbedarf, Kosten der Unterkunft sowie eventuelle Mehrbedarfe. Der Antrag wird beim oertlichen Jobcenter gestellt.',
-    link: { label: 'Zum Buergergeld-Rechner', to: '/rechner/buergergeld' },
+      'Das Bürgergeld ist seit dem 01.01.2023 die Grundsicherung für erwerbsfaehige Leistungsberechtigte und hat Hartz IV abgeloest. Es sichert das Existenzminimum und umfasst den Regelbedarf, Kosten der Unterkunft sowie eventuelle Mehrbedarfe. Der Antrag wird beim oertlichen Jobcenter gestellt.',
+    link: { label: 'Zum Bürgergeld-Rechner', to: '/rechner/buergergeld' },
   },
   {
     id: 'eingliederungsvereinbarung',
     term: 'Eingliederungsvereinbarung',
     legalRef: '\u00a7 15 SGB II',
     explanation:
-      'Die Eingliederungsvereinbarung wurde mit dem Buergergeld durch den Kooperationsplan ersetzt. Dieser wird gemeinsam zwischen Ihnen und Ihrem Ansprechpartner im Jobcenter erstellt und legt Ihre Eingliederungsziele, Massnahmen und Eigenbemuehungen fest. Sie muessen nichts unterschreiben, was Sie fuer unzumutbar halten.',
+      'Die Eingliederungsvereinbarung wurde mit dem Bürgergeld durch den Kooperationsplan ersetzt. Dieser wird gemeinsam zwischen Ihnen und Ihrem Ansprechpartner im Jobcenter erstellt und legt Ihre Eingliederungsziele, Massnahmen und Eigenbemühungen fest. Sie muessen nichts unterschreiben, was Sie für unzumutbar halten.',
     link: { label: 'Mehr im Ratgeber', to: '/wissen' },
   },
   {
@@ -96,7 +96,7 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Freibetrag',
     legalRef: '\u00a7 11b SGB II',
     explanation:
-      'Freibetraege schuetzen einen Teil Ihres Erwerbseinkommens vor der Anrechnung auf das Buergergeld. Es gilt ein Grundfreibetrag von 100 EUR, dazu 20% vom Einkommen zwischen 100-520 EUR und 10% zwischen 520-1.000 EUR. So lohnt sich Arbeit neben dem Buergergeld finanziell.',
+      'Freibetraege schuetzen einen Teil Ihres Erwerbseinkommens vor der Anrechnung auf das Bürgergeld. Es gilt ein Grundfreibetrag von 100 EUR, dazu 20% vom Einkommen zwischen 100-520 EUR und 10% zwischen 520-1.000 EUR. So lohnt sich Arbeit neben dem Bürgergeld finanziell.',
     link: { label: 'Zum Freibetrags-Rechner', to: '/rechner/freibetrag' },
   },
   {
@@ -104,8 +104,8 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Karenzzeit',
     legalRef: '\u00a7 12 Abs. 3, \u00a7 22 Abs. 1 SGB II',
     explanation:
-      'In den ersten 12 Monaten des Leistungsbezugs gelten erleichterte Bedingungen. Vermoegen wird nur beruecksichtigt, wenn es erheblich ist (ueber 40.000 EUR fuer die erste Person). Ausserdem werden die tatsaechlichen Mietkosten uebernommen, auch wenn sie ueber der Angemessenheitsgrenze liegen.',
-    link: { label: 'Zum Schonvermoegen-Rechner', to: '/rechner/schonvermoegen' },
+      'In den ersten 12 Monaten des Leistungsbezugs gelten erleichterte Bedingungen. Vermoegen wird nur beruecksichtigt, wenn es erheblich ist (über 40.000 EUR für die erste Person). Ausserdem werden die tatsaechlichen Mietkosten uebernommen, auch wenn sie über der Angemessenheitsgrenze liegen.',
+    link: { label: 'Zum Schonvermögen-Rechner', to: '/rechner/schonvermoegen' },
   },
   {
     id: 'kooperationsplan',
@@ -119,7 +119,7 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Kosten der Unterkunft (KdU)',
     legalRef: '\u00a7 22 SGB II',
     explanation:
-      'Neben dem Regelbedarf uebernimmt das Jobcenter die tatsaechlichen Kosten fuer Miete und Heizung, sofern diese angemessen sind. Die Angemessenheitsgrenze richtet sich nach dem oertlichen Mietspiegel und der Haushaltsgroesse. In der Karenzzeit (12 Monate) werden auch unangemessene Kosten voll uebernommen.',
+      'Neben dem Regelbedarf uebernimmt das Jobcenter die tatsaechlichen Kosten für Miete und Heizung, sofern diese angemessen sind. Die Angemessenheitsgrenze richtet sich nach dem oertlichen Mietspiegel und der Haushaltsgroesse. In der Karenzzeit (12 Monate) werden auch unangemessene Kosten voll uebernommen.',
     link: { label: 'Zum KdU-Rechner', to: '/rechner/kdu' },
   },
   {
@@ -135,7 +135,7 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Mehrbedarf',
     legalRef: '\u00a7 21 SGB II',
     explanation:
-      'Neben dem Regelsatz koennen Sie zusaetzliche Leistungen fuer besondere Lebenslagen erhalten. Mehrbedarfe gibt es z.B. fuer Schwangere (17%), Alleinerziehende (12-60%), Menschen mit Behinderung (35%) oder bei kostenaufwaendiger Ernaehrung. Der Mehrbedarf muss beim Jobcenter beantragt werden.',
+      'Neben dem Regelsatz koennen Sie zusaetzliche Leistungen für besondere Lebenslagen erhalten. Mehrbedarfe gibt es z.B. für Schwangere (17%), Alleinerziehende (12-60%), Menschen mit Behinderung (35%) oder bei kostenaufwaendiger Ernaehrung. Der Mehrbedarf muss beim Jobcenter beantragt werden.',
     link: { label: 'Zum Mehrbedarf-Rechner', to: '/rechner/mehrbedarf' },
   },
   {
@@ -143,7 +143,7 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Mitwirkungspflicht',
     legalRef: '\u00a7\u00a7 60 ff. SGB I',
     explanation:
-      'Als Buergergeld-Empfaenger sind Sie verpflichtet, an der Aufklaerung Ihres Falles mitzuwirken. Dazu gehoert das Erscheinen zu Meldeterminen, die Vorlage von Unterlagen und die Mitteilung von Aenderungen (z.B. neues Einkommen, Umzug). Bei Verstoss koennen Leistungen versagt oder gemindert werden.',
+      'Als Bürgergeld-Empfaenger sind Sie verpflichtet, an der Aufklaerung Ihres Falles mitzuwirken. Dazu gehoert das Erscheinen zu Meldeterminen, die Vorlage von Unterlagen und die Mitteilung von Aenderungen (z.B. neues Einkommen, Umzug). Bei Verstoss koennen Leistungen versagt oder gemindert werden.',
   },
   {
     id: 'ortsabwesenheit',
@@ -157,7 +157,7 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Prozesskostenhilfe (PKH)',
     legalRef: '\u00a7 73a SGG i.V.m. \u00a7\u00a7 114 ff. ZPO',
     explanation:
-      'PKH uebernimmt die Kosten fuer einen Rechtsanwalt bei Klagen vor dem Sozialgericht. Als Buergergeld-Empfaenger haben Sie in der Regel Anspruch, wenn Ihre Klage hinreichende Aussicht auf Erfolg hat. Das Verfahren vor dem Sozialgericht selbst ist fuer Leistungsempfaenger ohnehin gerichtskostenfrei.',
+      'PKH uebernimmt die Kosten für einen Rechtsanwalt bei Klagen vor dem Sozialgericht. Als Bürgergeld-Empfaenger haben Sie in der Regel Anspruch, wenn Ihre Klage hinreichende Aussicht auf Erfolg hat. Das Verfahren vor dem Sozialgericht selbst ist für Leistungsempfaenger ohnehin gerichtskostenfrei.',
     link: { label: 'Zum PKH-Rechner', to: '/rechner/pkh' },
   },
   {
@@ -165,15 +165,15 @@ const glossarEntries: GlossarEntry[] = [
     term: 'Regelbedarf',
     legalRef: '\u00a7 20 SGB II',
     explanation:
-      'Der Regelbedarf ist der monatliche Pauschalbetrag zur Deckung des Lebensunterhalts. Er umfasst Ernaehrung, Kleidung, Koerperpflege, Hausrat, Strom und Teilhabe am gesellschaftlichen Leben. Die Hoehe richtet sich nach der Regelbedarfsstufe und wird jaehrlich angepasst. 2025 betraegt er fuer Alleinstehende 563 EUR.',
-    link: { label: 'Zum Buergergeld-Rechner', to: '/rechner/buergergeld' },
+      'Der Regelbedarf ist der monatliche Pauschalbetrag zur Deckung des Lebensunterhalts. Er umfasst Ernaehrung, Kleidung, Koerperpflege, Hausrat, Strom und Teilhabe am gesellschaftlichen Leben. Die Höhe richtet sich nach der Regelbedarfsstufe und wird jaehrlich angepasst. 2025 betraegt er für Alleinstehende 563 EUR.',
+    link: { label: 'Zum Bürgergeld-Rechner', to: '/rechner/buergergeld' },
   },
   {
     id: 'regelsatz',
     term: 'Regelsatz',
     legalRef: '\u00a7 20 SGB II',
     explanation:
-      'Der Regelsatz ist der umgangssprachliche Begriff fuer den Regelbedarf. Er bezeichnet den monatlichen Geldbetrag, den Sie fuer den taeglichen Lebensunterhalt erhalten. Es gibt 6 Regelbedarfsstufen, die sich nach Alter und Stellung in der Bedarfsgemeinschaft richten.',
+      'Der Regelsatz ist der umgangssprachliche Begriff für den Regelbedarf. Er bezeichnet den monatlichen Geldbetrag, den Sie für den taeglichen Lebensunterhalt erhalten. Es gibt 6 Regelbedarfsstufen, die sich nach Alter und Stellung in der Bedarfsgemeinschaft richten.',
   },
   {
     id: 'rueckforderung',
@@ -181,37 +181,37 @@ const glossarEntries: GlossarEntry[] = [
     legalRef: '\u00a7 50 SGB X',
     explanation:
       'Hat das Jobcenter Ihnen zu viel Leistungen gezahlt (z.B. weil Einkommen nicht gemeldet wurde oder ein Fehler des Amtes vorlag), kann es den ueberzahlten Betrag zurueckfordern. Pruefen Sie Rueckforderungsbescheide genau - haeufig sind die Berechnungen fehlerhaft oder die Fristen nicht eingehalten.',
-    link: { label: 'Bescheid pruefen lassen', to: '/scan' },
+    link: { label: 'Bescheid prüfen lassen', to: '/scan' },
   },
   {
     id: 'sanktion',
     term: 'Sanktion',
     legalRef: '\u00a7\u00a7 31-32 SGB II',
     explanation:
-      'Sanktionen (Leistungsminderungen) sind Kuerzungen des Buergergeldes bei Pflichtverletzungen, z.B. wenn Sie einen Meldetermin ohne wichtigen Grund versaeumen oder eine zumutbare Arbeit ablehnen. Seit der Buergergeld-Reform sind maximal 30% Kuerzung zulaessig. Legen Sie bei jeder Sanktion Widerspruch ein.',
+      'Sanktionen (Leistungsminderungen) sind Kürzungen des Bürgergeldes bei Pflichtverletzungen, z.B. wenn Sie einen Meldetermin ohne wichtigen Grund versaeumen oder eine zumutbare Arbeit ablehnen. Seit der Bürgergeld-Reform sind maximal 30% Kürzung zulaessig. Legen Sie bei jeder Sanktion Widerspruch ein.',
     link: { label: 'Zum Sanktions-Rechner', to: '/rechner/sanktion' },
   },
   {
     id: 'schonvermoegen',
-    term: 'Schonvermoegen',
+    term: 'Schonvermögen',
     legalRef: '\u00a7 12 SGB II',
     explanation:
-      'Schonvermoegen ist der Teil Ihres Vermoegens, der nicht auf das Buergergeld angerechnet wird. Nach der Karenzzeit betraegt es 15.000 EUR pro Person in der Bedarfsgemeinschaft. Auch eine angemessene Immobilie, ein Kfz pro erwerbsfaehigem BG-Mitglied und Riester-Rente sind geschuetzt.',
-    link: { label: 'Zum Schonvermoegen-Rechner', to: '/rechner/schonvermoegen' },
+      'Schonvermögen ist der Teil Ihres Vermoegens, der nicht auf das Bürgergeld angerechnet wird. Nach der Karenzzeit betraegt es 15.000 EUR pro Person in der Bedarfsgemeinschaft. Auch eine angemessene Immobilie, ein Kfz pro erwerbsfaehigem BG-Mitglied und Riester-Rente sind geschuetzt.',
+    link: { label: 'Zum Schonvermögen-Rechner', to: '/rechner/schonvermoegen' },
   },
   {
     id: 'sozialgericht',
     term: 'Sozialgericht',
     legalRef: '\u00a7\u00a7 1, 51 SGG',
     explanation:
-      'Das Sozialgericht ist die erste Instanz fuer Klagen gegen Entscheidungen des Jobcenters. Wenn Ihr Widerspruch abgelehnt wurde, koennen Sie innerhalb eines Monats Klage erheben. Das Verfahren ist fuer Leistungsempfaenger kostenfrei - es entstehen keine Gerichtsgebuehren, auch nicht bei Verlust des Prozesses.',
+      'Das Sozialgericht ist die erste Instanz für Klagen gegen Entscheidungen des Jobcenters. Wenn Ihr Widerspruch abgelehnt wurde, koennen Sie innerhalb eines Monats Klage erheben. Das Verfahren ist für Leistungsempfaenger kostenfrei - es entstehen keine Gerichtsgebuehren, auch nicht bei Verlust des Prozesses.',
   },
   {
     id: 'uebergangsgeld',
     term: 'Uebergangsgeld',
     legalRef: '\u00a7 20 SGB VI',
     explanation:
-      'Uebergangsgeld ist eine Leistung der Rentenversicherung, die waehrend einer medizinischen oder beruflichen Rehabilitation gezahlt wird. Es ersetzt das bisherige Einkommen teilweise und wird auf das Buergergeld als Einkommen angerechnet. Die Hoehe richtet sich nach dem letzten Nettoeinkommen.',
+      'Uebergangsgeld ist eine Leistung der Rentenversicherung, die waehrend einer medizinischen oder beruflichen Rehabilitation gezahlt wird. Es ersetzt das bisherige Einkommen teilweise und wird auf das Bürgergeld als Einkommen angerechnet. Die Höhe richtet sich nach dem letzten Nettoeinkommen.',
   },
   {
     id: 'ueberpruefungsantrag',
@@ -339,7 +339,7 @@ export default function GlossarPage() {
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Die wichtigsten Begriffe aus dem SGB II und Sozialrecht - einfach und
-            verstaendlich erklaert. Von Anhoerung bis Zusicherung.
+            verständlich erklärt. Von Anhoerung bis Zusicherung.
           </p>
           <p className="text-sm text-gray-500 mt-2">
             {glossarEntries.length} Begriffe &middot; Alphabetisch sortiert
@@ -384,7 +384,7 @@ export default function GlossarPage() {
           <p className="text-sm text-gray-500 mb-6">
             {filteredEntries.length}{' '}
             {filteredEntries.length === 1 ? 'Begriff' : 'Begriffe'} gefunden
-            fuer{' '}
+            für{' '}
             <span className="font-medium text-gray-700">
               &quot;{searchQuery}&quot;
             </span>
@@ -498,8 +498,8 @@ export default function GlossarPage() {
             Begriff nicht gefunden?
           </h3>
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Stellen Sie Ihre Frage direkt unserem KI-Assistenten - er erklaert
-            Ihnen jeden Fachbegriff aus dem Sozialrecht verstaendlich und mit
+            Stellen Sie Ihre Frage direkt unserem KI-Assistenten - er erklärt
+            Ihnen jeden Fachbegriff aus dem Sozialrecht verständlich und mit
             Paragraphen-Verweis.
           </p>
           <Link to="/chat">
@@ -516,9 +516,9 @@ export default function GlossarPage() {
 
         {/* Disclaimer */}
         <p className="text-xs text-gray-400 text-center mt-8 max-w-2xl mx-auto leading-relaxed">
-          Hinweis: Die Erklaerungen in diesem Glossar dienen der allgemeinen
+          Hinweis: Die Erklärungen in diesem Glossar dienen der allgemeinen
           Orientierung und ersetzen keine individuelle Rechtsberatung. Fuer eine
-          verbindliche Auskunft wenden Sie sich bitte an einen Anwalt fuer
+          verbindliche Auskunft wenden Sie sich bitte an einen Anwalt für
           Sozialrecht, Ihren oertlichen Sozialverband (VdK, SoVD) oder eine
           Beratungsstelle. Stand: 2025. Alle Angaben ohne Gewaehr.
         </p>

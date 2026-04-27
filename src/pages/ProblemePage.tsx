@@ -21,7 +21,7 @@ export default function ProblemePage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Haeufige Probleme mit dem Amt</h1>
         <p className="text-muted-foreground max-w-2xl">
-          Finde schnell die richtige Loesung fuer dein Problem. Jedes Thema mit Erklaerung,
+          Finde schnell die richtige Loesung für dein Problem. Jedes Thema mit Erklärung,
           passenden Musterschreiben und praktischen Tipps.
         </p>
       </div>
@@ -139,7 +139,7 @@ export default function ProblemePage() {
                   <span className="font-medium">0,8-2,3%</span>
                 </li>
                 <li className="text-muted-foreground">
-                  + Kostenaufwaendige Ernaehrung (individuell, Attest noetig)
+                  + Kostenaufwaendige Ernaehrung (individuell, Attest nötig)
                 </li>
                 <li className="text-muted-foreground">
                   + Unabweisbarer Mehrbedarf § 21 Abs. 6 (individuell)
@@ -160,29 +160,29 @@ export default function ProblemePage() {
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-warning" />
-          Sanktionsregeln (seit Buergergeld 2023)
+          Sanktionsregeln (seit Bürgergeld 2023)
         </h2>
         <Card>
           <CardContent className="p-5">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="font-semibold text-sm mb-2 text-destructive">Maximal {SANKTIONEN.maxKuerzung}% Kuerzung!</h3>
+                <h3 className="font-semibold text-sm mb-2 text-destructive">Maximal {SANKTIONEN.maxKuerzung}% Kürzung!</h3>
                 <ul className="space-y-1.5 text-sm">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-3.5 w-3.5 text-primary mt-0.5" />
-                    <span>1. Pflichtverletzung: 10% fuer 1 Monat</span>
+                    <span>1. Pflichtverletzung: 10% für 1 Monat</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-3.5 w-3.5 text-primary mt-0.5" />
-                    <span>2. Pflichtverletzung: 20% fuer 2 Monate</span>
+                    <span>2. Pflichtverletzung: 20% für 2 Monate</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-3.5 w-3.5 text-primary mt-0.5" />
-                    <span>3. Pflichtverletzung: 30% fuer 3 Monate (Maximum!)</span>
+                    <span>3. Pflichtverletzung: 30% für 3 Monate (Maximum!)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-3.5 w-3.5 text-success mt-0.5" />
-                    <span className="font-medium">Miete (KdU) darf NICHT gekuerzt werden!</span>
+                    <span className="font-medium">Miete (KdU) darf NICHT gekürzt werden!</span>
                   </li>
                 </ul>
               </div>

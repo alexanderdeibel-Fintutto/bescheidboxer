@@ -72,10 +72,10 @@ export default function ImpressumPage() {
           <p className="text-gray-600">[Wird nach Eintragung ergaenzt]</p>
         </section>
 
-        {/* Verantwortlich fuer den Inhalt */}
+        {/* Verantwortlich für den Inhalt */}
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Verantwortlich fuer den Inhalt nach &sect; 18 Abs. 2 MStV
+            Verantwortlich für den Inhalt nach &sect; 18 Abs. 2 MStV
           </h2>
           <p className="text-gray-600">[Wird ergaenzt]</p>
         </section>
@@ -113,10 +113,10 @@ export default function ImpressumPage() {
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Haftung fuer Inhalte
+                Haftung für Inhalte
               </h3>
               <p className="text-gray-600">
-                Als Diensteanbieter sind wir gemaess &sect; 7 Abs. 1 TMG fuer
+                Als Diensteanbieter sind wir gemaess &sect; 7 Abs. 1 TMG für
                 eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
                 verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als
                 Diensteanbieter jedoch nicht verpflichtet, uebermittelte oder
@@ -133,16 +133,16 @@ export default function ImpressumPage() {
 
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Haftung fuer Links
+                Haftung für Links
               </h3>
               <p className="text-gray-600">
                 Unser Angebot enthaelt Links zu externen Websites Dritter, auf
                 deren Inhalte wir keinen Einfluss haben. Deshalb koennen wir
-                fuer diese fremden Inhalte auch keine Gewaehr uebernehmen. Fuer
+                für diese fremden Inhalte auch keine Gewaehr uebernehmen. Fuer
                 die Inhalte der verlinkten Seiten ist stets der jeweilige
                 Anbieter oder Betreiber der Seiten verantwortlich. Die
                 verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf
-                moegliche Rechtsverstoesse ueberprueft. Rechtswidrige Inhalte
+                moegliche Rechtsverstoesse überprüft. Rechtswidrige Inhalte
                 waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine
                 permanente inhaltliche Kontrolle der verlinkten Seiten ist
                 jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht
@@ -161,7 +161,7 @@ export default function ImpressumPage() {
                 Vervielfaeltigung, Bearbeitung, Verbreitung und jede Art der
                 Verwertung ausserhalb der Grenzen des Urheberrechtes beduerfen
                 der schriftlichen Zustimmung des jeweiligen Autors bzw.
-                Erstellers. Downloads und Kopien dieser Seite sind nur fuer den
+                Erstellers. Downloads und Kopien dieser Seite sind nur für den
                 privaten, nicht kommerziellen Gebrauch gestattet. Soweit die
                 Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden,
                 werden die Urheberrechte Dritter beachtet. Insbesondere werden
@@ -198,7 +198,7 @@ export default function ImpressumPage() {
             Datenschutzerklaerung
           </Link>
           <Link to="/agb" className="text-primary hover:underline text-sm">
-            Allgemeine Geschaeftsbedingungen
+            Allgemeine Geschäftsbedingungen
           </Link>
         </div>
       </div>

@@ -61,14 +61,14 @@ const anbieterListe: Anbieter[] = [
     name: 'Sozialverband VdK',
     typ: 'verband',
     beschreibung:
-      'Deutschlands groesster Sozialverband mit ueber 2,2 Millionen Mitgliedern. Der VdK vertritt Ihre Interessen im Sozialrecht und bietet umfassende Rechtsberatung und -vertretung bei Problemen mit dem Jobcenter, Rentenversicherung und anderen Sozialleistungstraegern.',
+      'Deutschlands groesster Sozialverband mit über 2,2 Millionen Mitgliedern. Der VdK vertritt Ihre Interessen im Sozialrecht und bietet umfassende Rechtsberatung und -vertretung bei Problemen mit dem Jobcenter, Rentenversicherung und anderen Sozialleistungstraegern.',
     leistungen: [
       'Rechtsberatung im Sozialrecht',
       'Vertretung vor Sozialgerichten',
       'Widerspruchsverfahren gegen Bescheide',
       'Begleitung zu Terminen beim Jobcenter',
-      'Pruefung von Buergergeld-Bescheiden',
-      'Hilfe bei Antraegen und Formularen',
+      'Prüfung von Bürgergeld-Bescheiden',
+      'Hilfe bei Anträgen und Formularen',
     ],
     kosten: 'Mitgliedsbeitrag ab ca. 6 EUR/Monat (je nach Landesverband)',
     website: 'https://www.vdk.de',
@@ -85,27 +85,27 @@ const anbieterListe: Anbieter[] = [
     leistungen: [
       'Rechtsberatung und -vertretung im SGB II',
       'Vertretung vor Sozialgerichten',
-      'Pruefung und Widerspruch bei fehlerhaften Bescheiden',
+      'Prüfung und Widerspruch bei fehlerhaften Bescheiden',
       'Beratung zu Rente und Schwerbehinderung',
-      'Hilfe bei Antraegen auf Buergergeld',
-      'Unterstuetzung bei Sanktionen und Kuerzungen',
+      'Hilfe bei Anträgen auf Bürgergeld',
+      'Unterstuetzung bei Sanktionen und Kürzungen',
     ],
     kosten: 'Mitgliedsbeitrag variiert je nach Landesverband (ca. 4-8 EUR/Monat)',
     website: 'https://www.sovd.de',
     bundesweit: true,
     vertretungVorGericht: true,
     mitgliedsbeitrag: 'Ca. 4-8 EUR/Monat (je nach Landesverband)',
-    tipp: 'Der SoVD bietet aehnliche Leistungen wie der VdK. Vergleichen Sie die Beitraege Ihrer regionalen Landesverbaende - in manchen Bundeslaendern ist der SoVD guenstiger. Beide Verbaende haben eine hohe Erfolgsquote bei Widerspruechen und Klagen.',
+    tipp: 'Der SoVD bietet aehnliche Leistungen wie der VdK. Vergleichen Sie die Beitraege Ihrer regionalen Landesverbaende - in manchen Bundeslaendern ist der SoVD guenstiger. Beide Verbaende haben eine hohe Erfolgsquote bei Widersprüchen und Klagen.',
   },
   {
     name: 'Tacheles e.V.',
     typ: 'verein',
     beschreibung:
-      'Tacheles e.V. ist ein gemeinnuetziger Verein, der sich fuer die Rechte von Erwerbslosen und Sozialhilfeempfaengern einsetzt. Bekannt fuer seine umfangreiche Online-Wissensdatenbank und das Beratungsforum, in dem Experten kostenlos Fragen beantworten.',
+      'Tacheles e.V. ist ein gemeinnuetziger Verein, der sich für die Rechte von Erwerbslosen und Sozialhilfeempfaengern einsetzt. Bekannt für seine umfangreiche Online-Wissensdatenbank und das Beratungsforum, in dem Experten kostenlos Fragen beantworten.',
     leistungen: [
       'Kostenloses Online-Beratungsforum',
       'Umfangreiche Wissensdatenbank zum SGB II',
-      'Mustervorlagen fuer Widersprueche',
+      'Mustervorlagen für Widersprüche',
       'Aktuelle Informationen zu Rechtsaenderungen',
       'Tipps zur Durchsetzung von Anspruechen',
       'Vernetzung mit anderen Betroffenen',
@@ -114,8 +114,8 @@ const anbieterListe: Anbieter[] = [
     website: 'https://www.tacheles-sozialhilfe.de',
     bundesweit: true,
     vertretungVorGericht: false,
-    mitgliedsbeitrag: 'Keine Mitgliedschaft noetig',
-    tipp: 'Tacheles ist die erste Anlaufstelle fuer schnelle, kostenlose Online-Hilfe. Nutzen Sie das Forum, um Ihre Fragen zu stellen - erfahrene Berater antworten oft innerhalb weniger Stunden. Die Wissensdatenbank ist ideal, um sich selbst ueber Ihre Rechte zu informieren.',
+    mitgliedsbeitrag: 'Keine Mitgliedschaft nötig',
+    tipp: 'Tacheles ist die erste Anlaufstelle für schnelle, kostenlose Online-Hilfe. Nutzen Sie das Forum, um Ihre Fragen zu stellen - erfahrene Berater antworten oft innerhalb weniger Stunden. Die Wissensdatenbank ist ideal, um sich selbst über Ihre Rechte zu informieren.',
   },
   {
     name: 'Erwerbslosenvereine (lokal)',
@@ -124,7 +124,7 @@ const anbieterListe: Anbieter[] = [
       'In vielen Staedten gibt es lokale Erwerbslosenvereine und -initiativen, die praktische Hilfe im Alltag bieten. Sie kennen die oertlichen Gegebenheiten und begleiten Sie bei Behoerdengaengen. Die Beratung ist in der Regel kostenlos und niedrigschwellig.',
     leistungen: [
       'Persoenliche Begleitung zum Jobcenter',
-      'Hilfe beim Ausfuellen von Antraegen',
+      'Hilfe beim Ausfuellen von Anträgen',
       'Gemeinsames Pruefen von Bescheiden',
       'Erfahrungsaustausch mit anderen Betroffenen',
       'Weiterleitung an spezialisierte Beratungsstellen',
@@ -135,16 +135,16 @@ const anbieterListe: Anbieter[] = [
     bundesweit: false,
     vertretungVorGericht: false,
     mitgliedsbeitrag: 'Meist kostenlos oder freiwilliger Beitrag',
-    tipp: 'Lokale Erwerbslosenvereine sind besonders wertvoll fuer die persoenliche Begleitung zum Jobcenter. Wenn Sie sich bei Terminen unsicher fuehlen oder Angst vor dem Amt haben, kann ein Beistand einen grossen Unterschied machen. Sie duerfen zu jedem Termin eine Person Ihres Vertrauens mitnehmen (\u00a7 13 SGB X).',
+    tipp: 'Lokale Erwerbslosenvereine sind besonders wertvoll für die persoenliche Begleitung zum Jobcenter. Wenn Sie sich bei Terminen unsicher fuehlen oder Angst vor dem Amt haben, kann ein Beistand einen grossen Unterschied machen. Sie duerfen zu jedem Termin eine Person Ihres Vertrauens mitnehmen (\u00a7 13 SGB X).',
   },
   {
     name: 'Caritas / Diakonie',
     typ: 'beratung',
     beschreibung:
-      'Die kirchlichen Wohlfahrtsverbaende Caritas (katholisch) und Diakonie (evangelisch) bieten bundesweit kostenlose Sozialberatung an. Sie helfen bei allen Fragen rund um Buergergeld, Wohnen, Schulden und persoenlichen Krisen - unabhaengig von der Religionszugehoerigkeit.',
+      'Die kirchlichen Wohlfahrtsverbaende Caritas (katholisch) und Diakonie (evangelisch) bieten bundesweit kostenlose Sozialberatung an. Sie helfen bei allen Fragen rund um Bürgergeld, Wohnen, Schulden und persoenlichen Krisen - unabhaengig von der Religionszugehoerigkeit.',
     leistungen: [
       'Allgemeine Sozialberatung',
-      'Hilfe bei Antraegen und Formularen',
+      'Hilfe bei Anträgen und Formularen',
       'Schuldnerberatung',
       'Migrationsberatung',
       'Suchtberatung und psychosoziale Hilfe',
@@ -154,28 +154,28 @@ const anbieterListe: Anbieter[] = [
     website: 'https://www.caritas.de/hilfeundberatung',
     bundesweit: true,
     vertretungVorGericht: false,
-    mitgliedsbeitrag: 'Keine Mitgliedschaft noetig',
-    tipp: 'Caritas und Diakonie sind ideal als erste Anlaufstelle, wenn Sie nicht genau wissen, wo Sie Hilfe bekommen. Die Berater kennen das gesamte Hilfesystem und koennen Sie an die richtige Stelle weiterleiten. Besonders hilfreich bei mehreren Problemen gleichzeitig (z.B. Schulden + Buergergeld).',
+    mitgliedsbeitrag: 'Keine Mitgliedschaft nötig',
+    tipp: 'Caritas und Diakonie sind ideal als erste Anlaufstelle, wenn Sie nicht genau wissen, wo Sie Hilfe bekommen. Die Berater kennen das gesamte Hilfesystem und koennen Sie an die richtige Stelle weiterleiten. Besonders hilfreich bei mehreren Problemen gleichzeitig (z.B. Schulden + Bürgergeld).',
   },
   {
     name: 'AWO Beratungsstellen',
     typ: 'beratung',
     beschreibung:
-      'Die Arbeiterwohlfahrt (AWO) betreibt in vielen Regionen Beratungsstellen fuer Menschen in sozialen Notlagen. Die Beratung ist kostenlos und umfasst Hilfe bei Buergergeld-Problemen, Wohnungssuche, Schuldenregulierung und Integration.',
+      'Die Arbeiterwohlfahrt (AWO) betreibt in vielen Regionen Beratungsstellen für Menschen in sozialen Notlagen. Die Beratung ist kostenlos und umfasst Hilfe bei Bürgergeld-Problemen, Wohnungssuche, Schuldenregulierung und Integration.',
     leistungen: [
-      'Sozialberatung fuer Buergergeld-Empfaenger',
+      'Sozialberatung für Bürgergeld-Empfaenger',
       'Hilfe bei Problemen mit dem Jobcenter',
       'Schuldnerberatung',
       'Wohnungsnotfallhilfe',
-      'Beratung fuer Familien und Alleinerziehende',
+      'Beratung für Familien und Alleinerziehende',
       'Integrationsberatung',
     ],
     kosten: 'Kostenlos',
     website: 'https://www.awo.org',
     bundesweit: false,
     vertretungVorGericht: false,
-    mitgliedsbeitrag: 'Keine Mitgliedschaft noetig',
-    tipp: 'Die AWO ist besonders stark in der Beratung fuer Familien und Alleinerziehende. Wenn Sie Kinder haben und Probleme mit dem Jobcenter, finden Sie hier oft spezialisierte Berater, die Ihre besondere Situation verstehen und passende Hilfsangebote kennen.',
+    mitgliedsbeitrag: 'Keine Mitgliedschaft nötig',
+    tipp: 'Die AWO ist besonders stark in der Beratung für Familien und Alleinerziehende. Wenn Sie Kinder haben und Probleme mit dem Jobcenter, finden Sie hier oft spezialisierte Berater, die Ihre besondere Situation verstehen und passende Hilfsangebote kennen.',
   },
   {
     name: 'Gewerkschaften (DGB)',
@@ -183,11 +183,11 @@ const anbieterListe: Anbieter[] = [
     beschreibung:
       'Die Gewerkschaften des Deutschen Gewerkschaftsbundes (DGB) bieten ihren Mitgliedern umfassenden Rechtsschutz, auch im Sozialrecht. Wenn Sie vor Ihrer Erwerbslosigkeit Gewerkschaftsmitglied waren, koennen Sie den Rechtsschutz oft weiter nutzen.',
     leistungen: [
-      'Rechtsschutz im Sozialrecht fuer Mitglieder',
+      'Rechtsschutz im Sozialrecht für Mitglieder',
       'Vertretung vor Arbeits- und Sozialgerichten',
-      'Beratung bei Kuendigung und Arbeitslosigkeit',
-      'Pruefung von Sperrzeiten und Sanktionen',
-      'Hilfe beim Uebergang ALG I zu Buergergeld',
+      'Beratung bei Kündigung und Arbeitslosigkeit',
+      'Prüfung von Sperrzeiten und Sanktionen',
+      'Hilfe beim Uebergang ALG I zu Bürgergeld',
       'Unterstuetzung bei Weiterbildung und Umschulung',
     ],
     kosten: 'Fuer Gewerkschaftsmitglieder im Beitrag enthalten',
@@ -195,7 +195,7 @@ const anbieterListe: Anbieter[] = [
     bundesweit: true,
     vertretungVorGericht: true,
     mitgliedsbeitrag: 'Ca. 1% des Bruttoeinkommens (reduziert bei Erwerbslosigkeit)',
-    tipp: 'Wenn Sie bereits Gewerkschaftsmitglied sind, nutzen Sie unbedingt den enthaltenen Rechtsschutz! Auch bei Erwerbslosigkeit besteht der Rechtsschutz fort, oft zu einem reduzierten Beitrag. Der gewerkschaftliche Rechtsschutz ist qualitativ gleichwertig mit einem Anwalt und fuer Mitglieder kostenlos.',
+    tipp: 'Wenn Sie bereits Gewerkschaftsmitglied sind, nutzen Sie unbedingt den enthaltenen Rechtsschutz! Auch bei Erwerbslosigkeit besteht der Rechtsschutz fort, oft zu einem reduzierten Beitrag. Der gewerkschaftliche Rechtsschutz ist qualitativ gleichwertig mit einem Anwalt und für Mitglieder kostenlos.',
   },
   {
     name: 'Anwaltliche Erstberatung',
@@ -205,7 +205,7 @@ const anbieterListe: Anbieter[] = [
     leistungen: [
       'Individuelle Rechtspruefung Ihres Falles',
       'Einschaetzung der Erfolgsaussichten',
-      'Formulierung von Widerspruechen und Klagen',
+      'Formulierung von Widersprüchen und Klagen',
       'Vertretung vor dem Sozialgericht (mit PKH)',
       'Beratung zu allen Bereichen des Sozialrechts',
       'Durchsetzung von Nachzahlungsanspruechen',
@@ -215,7 +215,7 @@ const anbieterListe: Anbieter[] = [
     bundesweit: true,
     vertretungVorGericht: true,
     mitgliedsbeitrag: 'Keine Mitgliedschaft - Beratungshilfeschein beim Amtsgericht beantragen',
-    tipp: 'Den Beratungshilfeschein erhalten Sie beim Amtsgericht Ihres Wohnortes. Als Buergergeld-Empfaenger haben Sie in der Regel Anspruch darauf. Bringen Sie Ihren aktuellen Leistungsbescheid und den strittigen Bescheid mit. Viele Anwaelte akzeptieren auch eine nachtraegliche Beantragung.',
+    tipp: 'Den Beratungshilfeschein erhalten Sie beim Amtsgericht Ihres Wohnortes. Als Bürgergeld-Empfaenger haben Sie in der Regel Anspruch darauf. Bringen Sie Ihren aktuellen Leistungsbescheid und den strittigen Bescheid mit. Viele Anwälte akzeptieren auch eine nachtraegliche Beantragung.',
   },
 ]
 
@@ -268,7 +268,7 @@ export default function AnbieterVergleich() {
             Beratungsstellen-Vergleich
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Finden Sie die passende Beratungsstelle fuer Ihr Anliegen. Ob
+            Finden Sie die passende Beratungsstelle für Ihr Anliegen. Ob
             Sozialverband, Erwerbslosenverein oder Anwalt mit
             Beratungshilfeschein - hier finden Sie kostenlose und guenstige Hilfe
             bei Problemen mit dem Jobcenter.
@@ -396,7 +396,7 @@ export default function AnbieterVergleich() {
             gefunden
             {searchQuery && (
               <>
-                {' '}fuer <span className="font-medium text-gray-700">&quot;{searchQuery}&quot;</span>
+                {' '}für <span className="font-medium text-gray-700">&quot;{searchQuery}&quot;</span>
               </>
             )}
           </p>
@@ -652,7 +652,7 @@ export default function AnbieterVergleich() {
                 Tipp: Beratungshilfeschein (&sect; 1 BerHG)
               </h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Als Buergergeld-Empfaenger haben Sie Anspruch auf einen{' '}
+                Als Bürgergeld-Empfaenger haben Sie Anspruch auf einen{' '}
                 <strong>Beratungshilfeschein</strong>. Damit koennen Sie sich{' '}
                 <strong>kostenlos</strong> von einem Rechtsanwalt in Sozialrechtsfragen
                 beraten lassen. Den Schein erhalten Sie beim Amtsgericht Ihres
@@ -671,7 +671,7 @@ export default function AnbieterVergleich() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-amber-700 flex-shrink-0">2.</span>
-                      Bringen Sie Ihren Buergergeld-Bescheid und Personalausweis mit
+                      Bringen Sie Ihren Bürgergeld-Bescheid und Personalausweis mit
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-amber-700 flex-shrink-0">3.</span>
@@ -680,7 +680,7 @@ export default function AnbieterVergleich() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-amber-700 flex-shrink-0">4.</span>
-                      Suchen Sie sich einen Anwalt fuer Sozialrecht und legen Sie den
+                      Suchen Sie sich einen Anwalt für Sozialrecht und legen Sie den
                       Schein vor
                     </li>
                   </ol>
@@ -701,7 +701,7 @@ export default function AnbieterVergleich() {
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                      Gilt fuer aussergericht&shy;liche Beratung und einfache Schreiben
+                      Gilt für aussergericht&shy;liche Beratung und einfache Schreiben
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -748,8 +748,8 @@ export default function AnbieterVergleich() {
                 Sie suchen schnelle, kostenlose Hilfe?
               </h4>
               <p className="text-sm text-green-700 mb-2">
-                Tacheles e.V. Online-Forum fuer sofortige Antworten. Caritas
-                oder Diakonie fuer persoenliche Beratung vor Ort.
+                Tacheles e.V. Online-Forum für sofortige Antworten. Caritas
+                oder Diakonie für persoenliche Beratung vor Ort.
               </p>
               <div className="flex items-center gap-1 text-xs text-green-600">
                 <Euro className="w-3.5 h-3.5" />
@@ -763,7 +763,7 @@ export default function AnbieterVergleich() {
               </h4>
               <p className="text-sm text-purple-700 mb-2">
                 Pruefen Sie, ob Ihre Gewerkschaftsmitgliedschaft noch besteht.
-                DGB-Rechtsschutz ist fuer Mitglieder kostenlos.
+                DGB-Rechtsschutz ist für Mitglieder kostenlos.
               </p>
               <div className="flex items-center gap-1 text-xs text-purple-600">
                 <Building className="w-3.5 h-3.5" />
@@ -776,10 +776,10 @@ export default function AnbieterVergleich() {
         {/* CTA */}
         <div className="bg-gradient-boxer rounded-2xl text-white p-8 text-center">
           <h3 className="text-2xl font-bold mb-3">
-            Bescheid schon geprueft?
+            Bescheid schon geprüft?
           </h3>
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Bevor Sie eine Beratungsstelle aufsuchen, pruefen Sie Ihren Bescheid
+            Bevor Sie eine Beratungsstelle aufsuchen, prüfen Sie Ihren Bescheid
             mit unserem KI-Bescheid-Scanner. So koennen Sie vorab einschaetzen,
             ob sich ein Widerspruch lohnt.
           </p>
@@ -791,7 +791,7 @@ export default function AnbieterVergleich() {
                 className="bg-white text-red-600 hover:bg-gray-100"
               >
                 <Shield className="w-5 h-5 mr-2" />
-                Bescheid pruefen
+                Bescheid prüfen
               </Button>
             </Link>
             <Link to="/chat">
@@ -813,7 +813,7 @@ export default function AnbieterVergleich() {
           dienen der allgemeinen Orientierung und ersetzen keine individuelle
           Rechtsberatung. Beitraege und Leistungsumfang koennen je nach
           Landesverband oder oertlicher Stelle variieren. Bitte informieren Sie
-          sich direkt bei der jeweiligen Organisation ueber aktuelle Konditionen.
+          sich direkt bei der jeweiligen Organisation über aktuelle Konditionen.
           Stand: 2025.
         </p>
       </div>

@@ -3,7 +3,7 @@
  * kann sie loeschen, mit Notizen versehen, oder zum Rechner zurueckspringen.
  *
  * Speicher: localStorage via savedCalculations.ts. Tier-Limits werden in
- * SaveCalculationButton geprueft, hier nur Anzeige + Verwaltung.
+ * SaveCalculationButton geprüft, hier nur Anzeige + Verwaltung.
  */
 import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'

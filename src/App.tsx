@@ -172,7 +172,7 @@ function App() {
                 <Route path="erinnerungen" element={<ErinnerungenPage />} />
                 <Route path="meine-berechnungen" element={<MeineBerechnungenPage />} />
 
-                {/* Admin (nur fuer role='admin' oder 'support') */}
+                {/* Admin (nur für role='admin' oder 'support') */}
                 <Route
                   path="admin"
                   element={

@@ -1,5 +1,5 @@
 /**
- * WiderspruchJobcenterPage — SEO-Landingpage fuer Domain widerspruchjobcenter.de.
+ * WiderspruchJobcenterPage — SEO-Landingpage für Domain widerspruchjobcenter.de.
  *
  * Route: /widerspruch/jobcenter
  *
@@ -39,14 +39,14 @@ export default function WiderspruchJobcenterPage() {
             <strong>Jeder zweite Bescheid ist fehlerhaft.</strong>
           </p>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Lass deinen Bescheid in 60 Sekunden von KI pruefen. Wir finden den Fehler, du erhebst Widerspruch
+            Lass deinen Bescheid in 60 Sekunden von KI prüfen. Wir finden den Fehler, du erhebst Widerspruch
             mit unserer rechtssicheren Vorlage.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
             <Link to="/scan">
               <Button size="xl" className="gradient-boxer text-white border-0 hover:opacity-90">
                 <ScanSearch className="mr-2 h-5 w-5" />
-                Bescheid pruefen lassen
+                Bescheid prüfen lassen
               </Button>
             </Link>
             <Link to="/musterschreiben">
@@ -57,7 +57,7 @@ export default function WiderspruchJobcenterPage() {
             </Link>
           </div>
           <p className="text-sm text-gray-500 mt-4">
-            2 kostenlose Scans &middot; kein Account noetig
+            2 kostenlose Scans &middot; kein Account nötig
           </p>
         </header>
 
@@ -86,12 +86,12 @@ export default function WiderspruchJobcenterPage() {
           <section className="bg-white rounded-lg border border-gray-200 p-6">
             <h2 className="text-2xl font-bold mb-3">Wann lohnt sich ein Widerspruch?</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Statistisch gesehen sind <strong>40-50 % der Buergergeld-Bescheide fehlerhaft</strong>.
+              Statistisch gesehen sind <strong>40-50 % der Bürgergeld-Bescheide fehlerhaft</strong>.
               Die haeufigsten Fehler:
             </p>
             <ul className="list-disc pl-6 text-gray-700 space-y-2">
               <li><strong>Mehrbedarfe nicht beruecksichtigt</strong> (Alleinerziehend, Schwanger, Behinderung)</li>
-              <li><strong>Heizkosten gekuerzt</strong> ohne schluessiges Konzept (§ 22 SGB II)</li>
+              <li><strong>Heizkosten gekürzt</strong> ohne schluessiges Konzept (§ 22 SGB II)</li>
               <li><strong>Einkommen falsch angerechnet</strong> (Grundfreibetrag vergessen, falsche Stufe)</li>
               <li><strong>Sanktion ohne Anhoerung</strong> — fast immer rechtswidrig (§ 24 SGB X)</li>
               <li><strong>Aufhebungs-/Erstattungsbescheid</strong> ohne Verschulden — § 45 vs. § 48 SGB X falsch angewandt</li>
@@ -99,14 +99,14 @@ export default function WiderspruchJobcenterPage() {
           </section>
 
           <section className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-2xl font-bold mb-3">So legst du Widerspruch ein — Schritt fuer Schritt</h2>
+            <h2 className="text-2xl font-bold mb-3">So legst du Widerspruch ein — Schritt für Schritt</h2>
             <ol className="list-decimal pl-6 text-gray-700 space-y-3">
               <li>
-                <strong>Bescheid pruefen lassen</strong> — KI-Scan zeigt dir in 60 Sekunden, was fehlt.
+                <strong>Bescheid prüfen lassen</strong> — KI-Scan zeigt dir in 60 Sekunden, was fehlt.
                 <Link to="/scan" className="text-primary hover:underline ml-1">→ Scan starten</Link>
               </li>
               <li>
-                <strong>Frist berechnen</strong> — wann genau laeuft die Widerspruchsfrist ab?
+                <strong>Frist berechnen</strong> — wann genau läuft die Widerspruchsfrist ab?
                 <Link to="/rechner/fristen" className="text-primary hover:underline ml-1">→ Fristen-Rechner</Link>
               </li>
               <li>
@@ -125,7 +125,7 @@ export default function WiderspruchJobcenterPage() {
                 dann ausfuehrliche Begruendung.
               </li>
               <li>
-                <strong>Bescheid abwarten</strong> — das Jobcenter hat 3 Monate Zeit, ueber den Widerspruch
+                <strong>Bescheid abwarten</strong> — das Jobcenter hat 3 Monate Zeit, über den Widerspruch
                 zu entscheiden. Bei Untaetigkeit: <strong>Untaetigkeitsklage</strong> moeglich.
               </li>
             </ol>
@@ -203,7 +203,7 @@ export default function WiderspruchJobcenterPage() {
                 <p className="text-sm text-gray-700">
                   Wenn die <strong>1-Monats-Frist abgelaufen</strong> ist, kannst du noch einen
                   Ueberpruefungsantrag nach § 44 SGB X stellen — <strong>bis zu 1 Jahr rueckwirkend</strong>,
-                  fuer manche Faelle sogar 4 Jahre.
+                  für manche Faelle sogar 4 Jahre.
                 </p>
               </div>
             </div>
@@ -217,14 +217,14 @@ export default function WiderspruchJobcenterPage() {
                   <ScanSearch className="h-5 w-5 text-primary" />
                   <div className="font-medium">Bescheid-Scan</div>
                 </div>
-                <div className="text-xs text-muted-foreground">KI prueft deinen Bescheid in 60 Sekunden</div>
+                <div className="text-xs text-muted-foreground">KI prüft deinen Bescheid in 60 Sekunden</div>
               </Link>
               <Link to="/rechner/fristen" className="block p-4 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
                 <div className="flex items-center gap-2 mb-1">
                   <Clock className="h-5 w-5 text-primary" />
                   <div className="font-medium">Fristen-Rechner</div>
                 </div>
-                <div className="text-xs text-muted-foreground">Wann genau laeuft deine Frist ab?</div>
+                <div className="text-xs text-muted-foreground">Wann genau läuft deine Frist ab?</div>
               </Link>
               <Link to="/musterschreiben" className="block p-4 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
                 <div className="flex items-center gap-2 mb-1">
@@ -245,7 +245,7 @@ export default function WiderspruchJobcenterPage() {
 
           {/* Final CTA */}
           <section className="rounded-lg p-8 gradient-boxer text-white text-center">
-            <h2 className="text-2xl font-bold mb-3">Lass deinen Bescheid in 60 Sekunden pruefen</h2>
+            <h2 className="text-2xl font-bold mb-3">Lass deinen Bescheid in 60 Sekunden prüfen</h2>
             <p className="opacity-90 mb-6 max-w-xl mx-auto">
               Kein Lesen, kein Recherchieren — die KI findet jeden Fehler.
               Und schreibt dir den Widerspruch gleich mit.
@@ -253,13 +253,13 @@ export default function WiderspruchJobcenterPage() {
             <Link to="/scan">
               <Button size="xl" className="bg-white text-red-700 hover:bg-white/90">
                 <ScanSearch className="mr-2 h-5 w-5" />
-                Bescheid jetzt pruefen
+                Bescheid jetzt prüfen
               </Button>
             </Link>
           </section>
 
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-600 text-center">
-            Rechtsgrundlagen: § 84 SGG (Widerspruchsfrist), § 37 SGB X (Bekanntgabe), § 24 SGB X (Anhoerung), § 44 SGB X (Ueberpruefung)
+            Rechtsgrundlagen: § 84 SGG (Widerspruchsfrist), § 37 SGB X (Bekanntgabe), § 24 SGB X (Anhoerung), § 44 SGB X (Überprüfung)
           </div>
         </article>
       </div>

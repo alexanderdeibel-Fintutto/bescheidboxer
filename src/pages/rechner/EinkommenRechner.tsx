@@ -306,7 +306,7 @@ export default function EinkommenRechner() {
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Einkommens-Uebersicht</h1>
               <p className="text-gray-600 mt-1">
-                Erfasse deine monatlichen Einnahmen und sieh, wie viel auf dein Buergergeld angerechnet wird (§ 11b SGB II).
+                Erfasse deine monatlichen Einnahmen und sieh, wie viel auf dein Bürgergeld angerechnet wird (§ 11b SGB II).
               </p>
             </div>
           </div>
@@ -319,7 +319,7 @@ export default function EinkommenRechner() {
           <CardContent className="pt-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Monat auswaehlen</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Monat auswählen</label>
                 <select
                   value={aktuellerMonat}
                   onChange={(e) => setAktuellerMonat(e.target.value)}
@@ -599,7 +599,7 @@ export default function EinkommenRechner() {
                       </td>
                     </tr>
                     <tr className="bg-red-50 font-semibold">
-                      <td className="px-4 py-3 text-sm text-gray-900">Wird auf Buergergeld angerechnet</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">Wird auf Bürgergeld angerechnet</td>
                       <td className="px-4 py-3 text-sm text-red-600 text-right">
                         - {formatEuro(ergebnis.anrechnebaresEinkommen)}
                       </td>
@@ -723,7 +723,7 @@ export default function EinkommenRechner() {
                   <p>
                     <strong>Kindergeld</strong> wird nicht als Einkommen der Eltern gewertet.
                     Es mindert stattdessen den Bedarf des Kindes. In der Praxis bedeutet das:
-                    Kindergeld wird separat verrechnet und reduziert nicht direkt dein Buergergeld.
+                    Kindergeld wird separat verrechnet und reduziert nicht direkt dein Bürgergeld.
                   </p>
                 </div>
 
@@ -734,7 +734,7 @@ export default function EinkommenRechner() {
                   </h3>
                   <p>
                     Einkommen wie Unterhalt, Wohngeld, Rente oder sonstige Einnahmen werden
-                    <strong> voll auf das Buergergeld angerechnet</strong> - es gibt hier keine
+                    <strong> voll auf das Bürgergeld angerechnet</strong> - es gibt hier keine
                     Erwerbstaetigen-Freibetraege. Nur die Versicherungspauschale (30 EUR) kann
                     ggf. abgezogen werden.
                   </p>
@@ -746,7 +746,7 @@ export default function EinkommenRechner() {
                     Die tatsaechliche Anrechnung kann abweichen, z.B. durch individuelle SV-Beitraege,
                     Werbungskosten oder besondere Lebenssituationen. Nutze unseren{' '}
                     <Link to="/rechner/freibetrag" className="underline font-medium">Freibetrags-Rechner</Link>{' '}
-                    fuer eine detailliertere Berechnung.
+                    für eine detailliertere Berechnung.
                   </p>
                 </div>
               </div>
@@ -766,7 +766,7 @@ export default function EinkommenRechner() {
               </Link>
               <Link to="/rechner/buergergeld">
                 <Button variant="outline" className="w-full justify-start">
-                  <Euro className="h-4 w-4 mr-2" />Buergergeld-Rechner
+                  <Euro className="h-4 w-4 mr-2" />Bürgergeld-Rechner
                 </Button>
               </Link>
               <Link to="/rechner">

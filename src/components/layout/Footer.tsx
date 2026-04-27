@@ -25,7 +25,7 @@ const footerLinks = {
     { name: 'Erinnerungen', href: '/erinnerungen' },
   ],
   themen: [
-    { name: 'Buergergeld (SGB II)', href: '/musterschreiben?kategorie=sgb2' },
+    { name: 'Bürgergeld (SGB II)', href: '/musterschreiben?kategorie=sgb2' },
     { name: 'ALG I (SGB III)', href: '/musterschreiben?kategorie=sgb3' },
     { name: 'Kosten der Unterkunft', href: '/musterschreiben?kategorie=kdu' },
     { name: 'Widerspruch & Klage', href: '/musterschreiben?kategorie=sgb10' },
@@ -133,7 +133,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Oekosystem */}
+          {/* Ökosystem */}
           <div>
             <h3 className="font-semibold mb-3">Fintutto</h3>
             <ul className="space-y-2">

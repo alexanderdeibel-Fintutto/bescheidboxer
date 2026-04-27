@@ -17,8 +17,8 @@ interface SearchItem {
 const SEARCH_ITEMS: SearchItem[] = [
   // Rechner (10 total)
   {
-    title: 'Buergergeld-Rechner',
-    description: 'Berechne deinen Buergergeld-Anspruch und Regelsatz',
+    title: 'Bürgergeld-Rechner',
+    description: 'Berechne deinen Bürgergeld-Anspruch und Regelsatz',
     category: 'rechner',
     href: '/rechner/buergergeld',
     keywords: ['regelsatz', 'berechnung', 'anspruch']
@@ -46,13 +46,13 @@ const SEARCH_ITEMS: SearchItem[] = [
   },
   {
     title: 'Sanktions-Rechner',
-    description: 'Berechne die Hoehe von Sanktionen',
+    description: 'Berechne die Höhe von Sanktionen',
     category: 'rechner',
     href: '/rechner/sanktion',
     keywords: ['kuerzung', 'pflichtverletzung', 'termin']
   },
   {
-    title: 'Schonvermoegens-Rechner',
+    title: 'Schonvermögens-Rechner',
     description: 'Pruefe dein anrechnungsfreies Vermoegen',
     category: 'rechner',
     href: '/rechner/schonvermoegen',
@@ -95,7 +95,7 @@ const SEARCH_ITEMS: SearchItem[] = [
     keywords: ['bescheid', 'fehler']
   },
   {
-    title: 'Widerspruch KdU-Kuerzung',
+    title: 'Widerspruch KdU-Kürzung',
     description: 'Widersprich einer unrechtmaessigen Mietkuerzung',
     category: 'musterschreiben',
     href: '/generator/widerspruch_kdu',
@@ -110,7 +110,7 @@ const SEARCH_ITEMS: SearchItem[] = [
   },
   {
     title: 'Ueberpruefungsantrag',
-    description: 'Beantrage Ueberpruefung alter Bescheide',
+    description: 'Beantrage Überprüfung alter Bescheide',
     category: 'musterschreiben',
     href: '/generator/ueberpruefungsantrag',
     keywords: ['alt', 'nachzahlung']
@@ -124,14 +124,14 @@ const SEARCH_ITEMS: SearchItem[] = [
   },
   {
     title: 'Antrag einmalige Leistung',
-    description: 'Beantrage einmalige Leistungen fuer Haushaltsgeraete',
+    description: 'Beantrage einmalige Leistungen für Haushaltsgeraete',
     category: 'musterschreiben',
     href: '/generator/antrag_einmalige_leistung',
     keywords: ['waschmaschine', 'moebel']
   },
   {
     title: 'Antrag Umzug',
-    description: 'Beantrage Genehmigung und Kostenuebernahme fuer Umzug',
+    description: 'Beantrage Genehmigung und Kostenuebernahme für Umzug',
     category: 'musterschreiben',
     href: '/generator/antrag_umzug',
     keywords: ['umzug', 'wohnung']
@@ -149,18 +149,18 @@ const SEARCH_ITEMS: SearchItem[] = [
     description: 'Lade deinen Bescheid hoch und pruefe auf Fehler',
     category: 'tool',
     href: '/scan',
-    keywords: ['bescheid', 'pruefen', 'fehler', 'upload']
+    keywords: ['bescheid', 'prüfen', 'fehler', 'upload']
   },
   {
     title: 'KI-Rechtsberater',
-    description: 'Stelle deine Fragen zum Buergergeld',
+    description: 'Stelle deine Fragen zum Bürgergeld',
     category: 'tool',
     href: '/chat',
     keywords: ['frage', 'beratung', 'hilfe']
   },
   {
     title: 'Widerspruch-Tracker',
-    description: 'Verfolge den Status deiner Widersprueche',
+    description: 'Verfolge den Status deiner Widersprüche',
     category: 'tool',
     href: '/tracker',
     keywords: ['widerspruch', 'status', 'frist']
@@ -174,7 +174,7 @@ const SEARCH_ITEMS: SearchItem[] = [
   },
   {
     title: 'Haeufige Probleme',
-    description: 'Loesungen fuer typische Probleme mit dem Jobcenter',
+    description: 'Loesungen für typische Probleme mit dem Jobcenter',
     category: 'hilfe',
     href: '/probleme',
     keywords: ['probleme', 'guide']

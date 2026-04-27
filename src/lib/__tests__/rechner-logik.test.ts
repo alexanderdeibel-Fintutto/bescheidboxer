@@ -2,13 +2,13 @@ import { describe, it, expect } from 'vitest'
 import {
   REGELSAETZE_2025,
   REGELSAETZE_2026,
-  berechneBuergergeld,
+  berechneBürgergeld,
   berechneFreibetrag,
   berechneMehrbedarf,
   berechneSanktion,
-  berechneSchonvermoegen,
+  berechneSchonvermögen,
   berechneAnrechenbaresEinkommen,
-  type BuergergeldInput,
+  type BürgergeldInput,
   type FreibetragsInput,
   type MehrbedarfInput,
 } from '../rechner-logik'
@@ -35,22 +35,22 @@ describe('REGELSAETZE_2026', () => {
   })
 })
 
-describe('berechneBuergergeld - Regelbedarf', () => {
+describe('berechneBürgergeld - Regelbedarf', () => {
   it('should calculate Regelbedarf for single person', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller' }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     expect(result.regelbedarfGesamt).toBe(563)
     expect(result.regelbedarfDetails).toHaveLength(1)
     expect(result.regelbedarfDetails[0].betrag).toBe(563)
   })
 
   it('should calculate Regelbedarf for couple', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'antragsteller' },
         { typ: 'partner' },
@@ -59,12 +59,12 @@ describe('berechneBuergergeld - Regelbedarf', () => {
       nebenkosten: 150,
       heizkosten: 100,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     expect(result.regelbedarfGesamt).toBe(1012) // 506 + 506
   })
 
   it('should calculate Regelbedarf for single parent with children', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'antragsteller', alleinerziehend: true },
         { typ: 'kind', alter: 8 },
@@ -74,13 +74,13 @@ describe('berechneBuergergeld - Regelbedarf', () => {
       nebenkosten: 150,
       heizkosten: 120,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     // RS1 (563) + RS5 (390) + RS6 (357)
     expect(result.regelbedarfGesamt).toBe(1310)
   })
 
   it('should calculate correct Regelbedarf for teenager', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'antragsteller' },
         { typ: 'kind', alter: 15 },
@@ -89,13 +89,13 @@ describe('berechneBuergergeld - Regelbedarf', () => {
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     // RS1 for single parent (563) + RS4 for teenager (471)
     expect(result.regelbedarfGesamt).toBe(1034)
   })
 
   it('should calculate Regelbedarf for toddler under 6', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'kind', alter: 2 },
       ],
@@ -103,20 +103,20 @@ describe('berechneBuergergeld - Regelbedarf', () => {
       nebenkosten: 80,
       heizkosten: 50,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     expect(result.regelbedarfGesamt).toBe(357) // RS6
   })
 })
 
-describe('berechneBuergergeld - Mehrbedarf', () => {
+describe('berechneBürgergeld - Mehrbedarf', () => {
   it('should calculate Mehrbedarf for pregnancy', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller', schwanger: true }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const expectedMehrbedarf = Math.round(563 * 0.17)
     expect(result.mehrbedarfGesamt).toBe(expectedMehrbedarf)
     expect(result.mehrbedarfDetails[0].label).toContain('Schwangerschaft')
@@ -124,7 +124,7 @@ describe('berechneBuergergeld - Mehrbedarf', () => {
   })
 
   it('should calculate Mehrbedarf for single parent with 1 child under 7', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'antragsteller', alleinerziehend: true },
         { typ: 'kind', alter: 5 },
@@ -133,13 +133,13 @@ describe('berechneBuergergeld - Mehrbedarf', () => {
       nebenkosten: 120,
       heizkosten: 100,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const expectedMehrbedarf = Math.round(563 * 0.36) // 36% for 1 child under 7
     expect(result.mehrbedarfGesamt).toBe(expectedMehrbedarf)
   })
 
   it('should calculate Mehrbedarf for single parent with 2 children', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'antragsteller', alleinerziehend: true },
         { typ: 'kind', alter: 12 },
@@ -149,13 +149,13 @@ describe('berechneBuergergeld - Mehrbedarf', () => {
       nebenkosten: 150,
       heizkosten: 120,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const expectedMehrbedarf = Math.round(563 * 0.36) // 36% for 2 children
     expect(result.mehrbedarfGesamt).toBe(expectedMehrbedarf)
   })
 
   it('should calculate Mehrbedarf for single parent with 3+ children', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'antragsteller', alleinerziehend: true },
         { typ: 'kind', alter: 14 },
@@ -166,38 +166,38 @@ describe('berechneBuergergeld - Mehrbedarf', () => {
       nebenkosten: 180,
       heizkosten: 150,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const expectedMehrbedarf = Math.round(563 * 0.36) // 36% for 3+ children
     expect(result.mehrbedarfGesamt).toBe(expectedMehrbedarf)
   })
 
   it('should calculate Mehrbedarf for disability/Erwerbsminderung', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller', behindert: true }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const expectedMehrbedarf = Math.round(563 * 0.35)
     expect(result.mehrbedarfGesamt).toBe(expectedMehrbedarf)
     expect(result.mehrbedarfDetails[0].paragraph).toBe('§ 21 Abs. 4 SGB II')
   })
 
   it('should calculate Mehrbedarf for expensive diet', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller', kostenaufwaendigeErnaehrung: true }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     expect(result.mehrbedarfGesamt).toBe(86)
     expect(result.mehrbedarfDetails[0].paragraph).toBe('§ 21 Abs. 5 SGB II')
   })
 
   it('should combine multiple Mehrbedarf items', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [
         { typ: 'antragsteller', schwanger: true, behindert: true },
       ],
@@ -205,7 +205,7 @@ describe('berechneBuergergeld - Mehrbedarf', () => {
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const schwangerschaft = Math.round(563 * 0.17)
     const behinderung = Math.round(563 * 0.35)
     expect(result.mehrbedarfGesamt).toBe(schwangerschaft + behinderung)
@@ -213,67 +213,67 @@ describe('berechneBuergergeld - Mehrbedarf', () => {
   })
 })
 
-describe('berechneBuergergeld - Freibetrag Calculation', () => {
+describe('berechneBürgergeld - Freibetrag Calculation', () => {
   it('should apply income deduction correctly', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller', einkommen: 400 }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     expect(result.einkommenAnrechenbar).toBeGreaterThan(0)
     expect(result.einkommenAnrechenbar).toBeLessThan(400)
   })
 
   it('should calculate correct Anspruch (benefit request)', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller' }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const expectedBedarfGesamt = 563 + 500 + 100 + 80
     expect(result.bedarfGesamt).toBe(expectedBedarfGesamt)
     expect(result.anspruch).toBe(expectedBedarfGesamt) // No income
   })
 
   it('should reduce Anspruch when income is present', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller', einkommen: 300 }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     expect(result.anspruch).toBeLessThan(1243) // 563 + 500 + 100 + 80
     expect(result.anspruch).toBeGreaterThan(0)
   })
 
   it('should return 0 Anspruch when income exceeds need', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller', einkommen: 2000 }],
       kaltmiete: 500,
       nebenkosten: 100,
       heizkosten: 80,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     // With Freibetrag deductions, there may still be a small remaining Anspruch
     // The actual logic deducts Freibetrag from income before calculating
     expect(result.anspruch).toBeLessThan(100)
   })
 })
 
-describe('berechneBuergergeld - KdU (Housing Costs)', () => {
+describe('berechneBürgergeld - KdU (Housing Costs)', () => {
   it('should include all KdU components', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller' }],
       kaltmiete: 600,
       nebenkosten: 150,
       heizkosten: 100,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     expect(result.kduGesamt).toBe(850)
     expect(result.kduDetails.kaltmiete).toBe(600)
     expect(result.kduDetails.nebenkosten).toBe(150)
@@ -281,13 +281,13 @@ describe('berechneBuergergeld - KdU (Housing Costs)', () => {
   })
 
   it('should calculate total need correctly with KdU', () => {
-    const input: BuergergeldInput = {
+    const input: BürgergeldInput = {
       mitglieder: [{ typ: 'antragsteller' }],
       kaltmiete: 600,
       nebenkosten: 150,
       heizkosten: 100,
     }
-    const result = berechneBuergergeld(input)
+    const result = berechneBürgergeld(input)
     const expectedBedarf = 563 + 600 + 150 + 100
     expect(result.bedarfGesamt).toBe(expectedBedarf)
   })
@@ -519,7 +519,7 @@ describe('berechneSanktion', () => {
     expect(result3.kuerzungProzent).toBe(30)
   })
 
-  it('should cap sanctions at 30% (Buergergeld law 2023)', () => {
+  it('should cap sanctions at 30% (Bürgergeld law 2023)', () => {
     const result = berechneSanktion({
       regelsatz: 563,
       pflichtverletzungNr: 5,
@@ -551,9 +551,9 @@ describe('berechneSanktion', () => {
   })
 })
 
-describe('berechneSchonvermoegen', () => {
+describe('berechneSchonvermögen', () => {
   it('should calculate correct Freibetrag per person', () => {
-    const result = berechneSchonvermoegen({
+    const result = berechneSchonvermögen({
       alter: 30,
       bgGroesse: 1,
       vermoegen: 5000,
@@ -562,7 +562,7 @@ describe('berechneSchonvermoegen', () => {
   })
 
   it('should calculate total Freibetrag for multiple household members', () => {
-    const result = berechneSchonvermoegen({
+    const result = berechneSchonvermögen({
       alter: 30,
       bgGroesse: 3,
       vermoegen: 30000,
@@ -571,7 +571,7 @@ describe('berechneSchonvermoegen', () => {
   })
 
   it('should identify anrechenbares Vermoegen', () => {
-    const result = berechneSchonvermoegen({
+    const result = berechneSchonvermögen({
       alter: 30,
       bgGroesse: 1,
       vermoegen: 20000,
@@ -580,7 +580,7 @@ describe('berechneSchonvermoegen', () => {
   })
 
   it('should allow claim when Vermoegen under Freibetrag', () => {
-    const result = berechneSchonvermoegen({
+    const result = berechneSchonvermögen({
       alter: 30,
       bgGroesse: 1,
       vermoegen: 10000,
@@ -589,7 +589,7 @@ describe('berechneSchonvermoegen', () => {
   })
 
   it('should protect car value under 15000 EUR', () => {
-    const result = berechneSchonvermoegen({
+    const result = berechneSchonvermögen({
       alter: 30,
       bgGroesse: 1,
       vermoegen: 5000,
@@ -599,7 +599,7 @@ describe('berechneSchonvermoegen', () => {
   })
 
   it('should handle car value over 15000 EUR', () => {
-    const result = berechneSchonvermoegen({
+    const result = berechneSchonvermögen({
       alter: 30,
       bgGroesse: 1,
       vermoegen: 5000,

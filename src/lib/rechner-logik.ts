@@ -1,4 +1,4 @@
-// AmtsRechner - Berechnungslogik fuer alle SGB-Rechner
+// AmtsRechner - Berechnungslogik für alle SGB-Rechner
 // Stand: 2025/2026
 
 import { findKduByPlz, checkKduAngemessenheit } from './kdu-tabellen'
@@ -40,7 +40,7 @@ export interface BgMitglied {
   sonstigesEinkommen?: number
 }
 
-export interface BuergergeldInput {
+export interface BürgergeldInput {
   mitglieder: BgMitglied[]
   kaltmiete: number
   nebenkosten: number
@@ -48,7 +48,7 @@ export interface BuergergeldInput {
   plz?: string
 }
 
-export interface BuergergeldErgebnis {
+export interface BürgergeldErgebnis {
   regelbedarfGesamt: number
   regelbedarfDetails: { label: string; betrag: number }[]
   mehrbedarfGesamt: number
@@ -76,7 +76,7 @@ function getRegelsatz(mitglied: BgMitglied, bgGroesse: number, hatPartner: boole
   if (mitglied.typ === 'partner') {
     return REGELSAETZE_2025.RS2
   }
-  // Erwachsene im HH (z.B. ueber 25 im Elternhaus)
+  // Erwachsene im HH (z.B. über 25 im Elternhaus)
   if (bgGroesse > 1) return REGELSAETZE_2025.RS3
   return REGELSAETZE_2025.RS1
 }
@@ -93,7 +93,7 @@ function getRegelsatzLabel(mitglied: BgMitglied, hatPartner: boolean): string {
   return 'Partner - RS2'
 }
 
-export function berechneBuergergeld(input: BuergergeldInput): BuergergeldErgebnis {
+export function berechneBürgergeld(input: BürgergeldInput): BürgergeldErgebnis {
   const hatPartner = input.mitglieder.some(m => m.typ === 'partner')
   const kinder = input.mitglieder.filter(m => m.typ === 'kind')
   const bgGroesse = input.mitglieder.length
@@ -147,7 +147,7 @@ export function berechneBuergergeld(input: BuergergeldInput): BuergergeldErgebni
     heizkosten: input.heizkosten,
   }
 
-  // KdU-Angemessenheit pruefen
+  // KdU-Angemessenheit prüfen
   let kduAngemessen = true
   let kduHinweis: string | undefined
 
@@ -155,7 +155,7 @@ export function berechneBuergergeld(input: BuergergeldInput): BuergergeldErgebni
     const kduCheck = checkKduAngemessenheit(input.plz, bgGroesse, input.kaltmiete)
     if (kduCheck && !kduCheck.angemessen) {
       kduAngemessen = false
-      kduHinweis = `Deine Kaltmiete liegt ${kduCheck.differenz} EUR ueber der Angemessenheitsgrenze in ${kduCheck.stadt} (${kduCheck.grenze} EUR). Das Jobcenter koennte nach 6 Monaten die Kosten kuerzen.`
+      kduHinweis = `Deine Kaltmiete liegt ${kduCheck.differenz} EUR über der Angemessenheitsgrenze in ${kduCheck.stadt} (${kduCheck.grenze} EUR). Das Jobcenter koennte nach 6 Monaten die Kosten kürzen.`
     }
   }
 
@@ -237,7 +237,7 @@ export interface FreibetragsInput {
   hatKind: boolean
   // Sozialversicherungsbeitraege (pauschal 21.15% oder tatsaechlich)
   svBeitraege?: number
-  // Werbungskosten (Pauschale: 15.33€/Monat fuer Fahrkosten etc.)
+  // Werbungskosten (Pauschale: 15.33€/Monat für Fahrkosten etc.)
   werbungskosten?: number
   // Private Versicherungen (z.B. KFZ-Haftpflicht, pauschal 30€)
   versicherungsPauschale?: number
@@ -313,7 +313,7 @@ export function berechneFreibetrag(input: FreibetragsInput): FreibetragsErgebnis
   }
 }
 
-// Vereinfachte Version fuer BuergergeldRechner
+// Vereinfachte Version für BuergergeldRechner
 export function berechneAnrechenbaresEinkommen(brutto: number): number {
   return berechneFreibetrag({ bruttoEinkommen: brutto, hatKind: false }).anrechenbaresEinkommen
 }
@@ -387,14 +387,14 @@ export function berechneMehrbedarf(input: MehrbedarfInput): MehrbedarfErgebnis {
         paragraph: '§ 21 Abs. 5 SGB II',
         erklaerung: input.ernaehrungArt === 'diabetes'
           ? 'Hinweis: Fuer Diabetes Typ 2 wird seit 2014 kein Mehrbedarf mehr anerkannt (BSG-Rechtsprechung).'
-          : `Pauschalierter Mehrbedarf nach DV-Empfehlungen fuer ${input.ernaehrungArt || 'medizinische Ernaehrung'}.`,
+          : `Pauschalierter Mehrbedarf nach DV-Empfehlungen für ${input.ernaehrungArt || 'medizinische Ernaehrung'}.`,
       })
     } else if (input.ernaehrungArt === 'diabetes') {
       details.push({
         label: 'Diabetes - KEIN Mehrbedarf',
         betrag: 0,
         paragraph: '§ 21 Abs. 5 SGB II',
-        erklaerung: 'Seit BSG-Urteil 2014 wird Diabetes Typ 2 nicht mehr als Grund fuer kostenaufwaendige Ernaehrung anerkannt. Pruefe ggf. individuelle Situation.',
+        erklaerung: 'Seit BSG-Urteil 2014 wird Diabetes Typ 2 nicht mehr als Grund für kostenaufwaendige Ernaehrung anerkannt. Pruefe ggf. individuelle Situation.',
       })
     }
   }
@@ -406,7 +406,7 @@ export function berechneMehrbedarf(input: MehrbedarfInput): MehrbedarfErgebnis {
       label: 'Dezentrale Warmwassererzeugung',
       betrag: Math.round(betrag),
       paragraph: '§ 21 Abs. 7 SGB II',
-      erklaerung: '2,3% des Regelsatzes, wenn Warmwasser nicht zentral (ueber Heizung) erzeugt wird.',
+      erklaerung: '2,3% des Regelsatzes, wenn Warmwasser nicht zentral (über Heizung) erzeugt wird.',
     })
   }
 
@@ -455,7 +455,7 @@ export function berechneSanktion(input: SanktionsInput): SanktionsErgebnis {
   const kduGeschuetzt = true // Seit 2023 immer KdU-geschuetzt
 
   if (input.art === 'meldeversaeumnis') {
-    // § 32 SGB II: 10% fuer 1 Monat
+    // § 32 SGB II: 10% für 1 Monat
     kuerzungProzent = 10
     dauer = '1 Monat'
     hinweis = 'Meldeversaeumnis: Hast du einen wichtigen Grund? Arztbesuch, Krankheit, Behoerdengang - alles kann entschuldigen!'
@@ -471,7 +471,7 @@ export function berechneSanktion(input: SanktionsInput): SanktionsErgebnis {
       kuerzungProzent = 30
       dauer = '3 Monate'
     }
-    hinweis = 'Pflichtversaeumnis: Maximal 30% Kuerzung. KdU (Miete) darf NICHT gekuerzt werden!'
+    hinweis = 'Pflichtversaeumnis: Maximal 30% Kürzung. KdU (Miete) darf NICHT gekürzt werden!'
   } else {
     // Arbeitsverweigerung
     if (input.pflichtverletzungNr === 1) {
@@ -487,7 +487,7 @@ export function berechneSanktion(input: SanktionsInput): SanktionsErgebnis {
     hinweis = 'War die angebotene Arbeit zumutbar? Pruefe: Anfahrt, Gesundheit, Kinderbetreuung. Unzumutbare Arbeit muss nicht angenommen werden!'
   }
 
-  // Max 30% (seit Buergergeld-Gesetz 2023)
+  // Max 30% (seit Bürgergeld-Gesetz 2023)
   kuerzungProzent = Math.min(30, kuerzungProzent)
 
   const kuerzungBetrag = Math.round(input.regelsatz * kuerzungProzent / 100)
@@ -512,7 +512,7 @@ function getWiderspruchTipp(art: string): string {
 
 // === SCHONVERMOEGENS-RECHNER ===
 
-export interface SchonvermoegensInput {
+export interface SchonvermögensInput {
   alter: number
   bgGroesse: number
   vermoegen: number // Gesamtvermoegen (Barvermögen, Konten, Depot)
@@ -523,7 +523,7 @@ export interface SchonvermoegensInput {
   altersvorsorgeGeschuetzt?: number // Riester etc.
 }
 
-export interface SchonvermoegensErgebnis {
+export interface SchonvermögensErgebnis {
   freibetragProPerson: number
   freibetragGesamt: number
   autoFreibetrag: number
@@ -535,9 +535,9 @@ export interface SchonvermoegensErgebnis {
   details: { label: string; betrag: number; erklaerung: string }[]
 }
 
-export function berechneSchonvermoegen(input: SchonvermoegensInput): SchonvermoegensErgebnis {
+export function berechneSchonvermögen(input: SchonvermögensInput): SchonvermögensErgebnis {
   // § 12 SGB II: Freibetraege
-  // Seit Buergergeld (2023): 15.000 EUR pro Person in BG (Karenzzeit 1 Jahr)
+  // Seit Bürgergeld (2023): 15.000 EUR pro Person in BG (Karenzzeit 1 Jahr)
   // Nach Karenzzeit: 15.000 EUR pro Person weiterhin (vereinfachte Vermoegenspruefung)
   const freibetragProPerson = 15000
   const freibetragGesamt = freibetragProPerson * input.bgGroesse
@@ -548,7 +548,7 @@ export function berechneSchonvermoegen(input: SchonvermoegensInput): Schonvermoe
   // Altersvorsorge: geschuetzt wenn Verwertung unwirtschaftlich (Riester immer)
   const altersvorsorge = input.altersvorsorgeGeschuetzt || 0
 
-  // Immobilie: angemessen bis 130 qm (Haus) / 120 qm (Wohnung) fuer 4 Personen
+  // Immobilie: angemessen bis 130 qm (Haus) / 120 qm (Wohnung) für 4 Personen
   // + 20 qm pro weitere Person
   const immobilie = input.immobilieEigentum || false
   const qmGrenze = 130 + Math.max(0, input.bgGroesse - 4) * 20
@@ -556,7 +556,7 @@ export function berechneSchonvermoegen(input: SchonvermoegensInput): Schonvermoe
   const immobilieHinweis = immobilie
     ? (immobilieGeschuetzt
       ? `Selbstgenutztes Eigentum bis ${qmGrenze} qm ist geschuetzt.`
-      : `Immobilie ueber ${qmGrenze} qm koennte als verwertbar gelten. Beratung empfohlen!`)
+      : `Immobilie über ${qmGrenze} qm koennte als verwertbar gelten. Beratung empfohlen!`)
     : ''
 
   const details: { label: string; betrag: number; erklaerung: string }[] = [
@@ -583,7 +583,7 @@ export function berechneSchonvermoegen(input: SchonvermoegensInput): Schonvermoe
     })
   }
 
-  // Vermoegen pruefen
+  // Vermoegen prüfen
   let relevantesVermoegen = input.vermoegen
   if (input.autoWert && input.autoWert > autoFreibetrag) {
     relevantesVermoegen += (input.autoWert - autoFreibetrag)
@@ -652,13 +652,13 @@ export function berechneKdu(input: KduRechnerInput): KduRechnerErgebnis | null {
 
   const hinweise: string[] = []
   if (!kaltmieteAngemessen) {
-    hinweise.push(`Kaltmiete ${input.kaltmiete - kaltmieteGrenze} EUR ueber der Grenze. Nach 6 Monaten droht Kuerzung!`)
+    hinweise.push(`Kaltmiete ${input.kaltmiete - kaltmieteGrenze} EUR über der Grenze. Nach 6 Monaten droht Kürzung!`)
   }
   if (!qmAngemessen) {
-    hinweise.push(`Wohnung ${input.qm - qmGrenze} qm zu gross. Relevant fuer Kostensenkungsaufforderung.`)
+    hinweise.push(`Wohnung ${input.qm - qmGrenze} qm zu gross. Relevant für Kostensenkungsaufforderung.`)
   }
   if (!heizkostenAngemessen) {
-    hinweise.push(`Heizkosten ${input.heizkosten - heizkostenGrenze} EUR ueber dem Richtwert.`)
+    hinweise.push(`Heizkosten ${input.heizkosten - heizkostenGrenze} EUR über dem Richtwert.`)
   }
   if (!kdu.schluessigesKonzept) {
     hinweise.push('WICHTIG: Kein schluessiges Konzept vorhanden! Tatsaechliche Kosten koennen gefordert werden (§ 22 SGB II + BSG-Rechtsprechung).')

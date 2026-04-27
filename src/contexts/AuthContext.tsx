@@ -26,7 +26,7 @@ export type UserRole =
 
 interface UserProfile {
   id: string                  // profiles.id = auth.users.id (kein separater PK mehr)
-  authId: string              // fuer Rueckwaerts-Kompatibilitaet == id
+  authId: string              // für Rueckwaerts-Kompatibilitaet == id
   email: string
   name: string | null
   plan: PlanType
@@ -179,7 +179,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
    *   - bb_user_state    : BescheidBoxer-spezifischer State
    *                        (Plan, Credits, Verbrauch)
    *
-   * Beide Tabellen sind ueber profiles.id = bb_user_state.user_id
+   * Beide Tabellen sind über profiles.id = bb_user_state.user_id
    * verknuepft. Der Trigger handle_new_user() auf auth.users legt
    * die profiles-Zeile an; ein Trigger auf profiles legt bei
    * app_source='bescheidboxer' automatisch eine bb_user_state-Zeile

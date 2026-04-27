@@ -10,7 +10,6 @@ import {
   Swords,
   Clock,
   Calculator,
-  TrendingUp,
   Shield,
   ExternalLink,
   ClipboardList,
@@ -25,14 +24,13 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { COMMON_PROBLEMS } from '@/lib/sgb-knowledge'
 import { PLANS, type PlanConfig } from '@/lib/credits'
-import AnimatedCounter from '@/components/AnimatedCounter'
 
 const features = [
   {
     icon: ScanSearch,
     title: 'BescheidScan',
     description:
-      'Fotografiere deinen Bescheid und unsere KI findet in Sekunden jeden Fehler. Regelsatz, Mehrbedarf, KdU - nichts wird uebersehen.',
+      'Fotografiere deinen Bescheid und unsere KI findet in Sekunden jeden Fehler. Regelsatz, Mehrbedarf, KdU - nichts wird übersehen.',
     href: '/scan',
     color: 'text-red-600',
     bgColor: 'bg-red-50',
@@ -50,7 +48,7 @@ const features = [
     icon: Calculator,
     title: '9 Rechner',
     description:
-      'Buergergeld, KdU, Mehrbedarf, Freibetrag, Sanktion, Schonvermoegen, Fristen, PKH und mehr. Sofort berechnen.',
+      'Bürgergeld, KdU, Mehrbedarf, Freibetrag, Sanktion, Schonvermögen, Fristen, PKH und mehr. Sofort berechnen.',
     href: '/rechner',
     color: 'text-orange-600',
     bgColor: 'bg-orange-50',
@@ -59,7 +57,7 @@ const features = [
     icon: FileText,
     title: 'Dokumenten-Werkstatt',
     description:
-      '20+ Vorlagen fuer Widersprueche, Antraege und Beschwerden. Personalisiert, rechtskonform, als PDF exportierbar.',
+      '20+ Vorlagen für Widersprüche, Anträge und Beschwerden. Personalisiert, rechtskonform, als PDF exportierbar.',
     href: '/musterschreiben',
     color: 'text-blue-600',
     bgColor: 'bg-blue-50',
@@ -68,7 +66,7 @@ const features = [
     icon: ClipboardList,
     title: 'Widerspruch-Tracker',
     description:
-      'Behalte den Ueberblick ueber all deine laufenden Widersprueche, Klagen und Fristen - mit automatischer Warnung.',
+      'Behalte den Überblick über all deine laufenden Widersprüche, Klagen und Fristen - mit automatischer Warnung.',
     href: '/tracker',
     color: 'text-indigo-600',
     bgColor: 'bg-indigo-50',
@@ -77,7 +75,7 @@ const features = [
     icon: Users,
     title: 'Community-Forum',
     description:
-      'Tausche dich mit anderen Betroffenen aus. Erfahrungen teilen, Tipps geben, gemeinsam staerker sein.',
+      'Tausche dich mit anderen Betroffenen aus. Erfahrungen teilen, Tipps geben, gemeinsam stärker sein.',
     href: '/forum',
     color: 'text-purple-600',
     bgColor: 'bg-purple-50',
@@ -85,9 +83,9 @@ const features = [
 ]
 
 const stats = [
-  { value: '500.000+', label: 'Widersprueche/Jahr in DE' },
+  { value: '500.000+', label: 'Widersprüche/Jahr in DE' },
   { value: 'Jeder 2.', label: 'Bescheid fehlerhaft' },
-  { value: '1/3', label: 'Widersprueche erfolgreich' },
+  { value: '1/3', label: 'Widersprüche erfolgreich' },
   { value: '0 EUR', label: 'Einstieg' },
 ]
 
@@ -117,7 +115,7 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto text-center">
             <Badge className="mb-4 text-sm px-4 py-1 bg-red-100 text-red-800 border-red-200">
               <Swords className="mr-1.5 h-3.5 w-3.5" />
-              Kaempfe fuer dein Recht
+              Kämpfe für dein Recht
             </Badge>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
               Dein Bescheid ist falsch?{' '}
@@ -130,7 +128,7 @@ export default function HomePage() {
               BescheidBoxer scannt deinen Bescheid mit KI, findet jeden Fehler
               und erstellt dir den passenden Widerspruch.
               <br />
-              <strong className="text-foreground">Blitzschnell. Verstaendlich. Rechtssicher.</strong>
+              <strong className="text-foreground">Blitzschnell. Verständlich. Rechtssicher.</strong>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="xl" className="gradient-boxer text-white border-0 hover:opacity-90" asChild>
@@ -147,7 +145,7 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="text-sm text-muted-foreground mt-4">
-              2 kostenlose Scans &middot; 5 Fragen/Tag &middot; Kein Account noetig
+              2 kostenlose Scans &middot; 5 Fragen/Tag &middot; Kein Account nötig
             </p>
           </div>
         </div>
@@ -172,25 +170,42 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 3. LIVE COUNTER                                               */}
+      {/* 3. BETA-PIONIER-KARTE                                         */}
       {/* ============================================================= */}
       <section className="container py-10">
-        <div className="max-w-2xl mx-auto">
-          <Card className="border-2 border-red-200 bg-red-50/50 dark:bg-red-950/20 dark:border-red-900/40">
-            <CardContent className="p-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl gradient-boxer text-white flex-shrink-0">
-                <TrendingUp className="h-7 w-7" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-muted-foreground mb-1">
-                  BescheidBoxer-User haben schon
-                </p>
-                <p className="text-3xl md:text-4xl font-extrabold gradient-text-boxer">
-                  127.340 EUR
-                </p>
-                <p className="text-sm font-medium text-muted-foreground">
-                  zurueckgeholt!
-                </p>
+        <div className="max-w-3xl mx-auto">
+          <Card className="border-2 border-orange-300 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/20 dark:border-orange-900/50">
+            <CardContent className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl gradient-boxer text-white flex-shrink-0">
+                  <Swords className="h-7 w-7" />
+                </div>
+                <div className="flex-1">
+                  <Badge className="mb-2 bg-orange-600 text-white border-orange-600">
+                    Beta-Phase
+                  </Badge>
+                  <h3 className="text-2xl md:text-3xl font-extrabold mb-2">
+                    Werde Pionier — 50&nbsp;% lebenslang
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    BescheidBoxer ist neu. Hilf uns, die KI besser zu machen,
+                    den Boxer stärker — und zahle dafür <strong className="text-foreground">die Hälfte. Für immer.</strong>
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                    <div className="flex items-center gap-2 bg-background border-2 border-dashed border-orange-400 rounded-lg px-4 py-2 font-mono text-base font-bold text-orange-700 dark:text-orange-300">
+                      PIONIER50
+                    </div>
+                    <Button asChild className="gradient-boxer text-white border-0 hover:opacity-90">
+                      <Link to="/preise">
+                        Plan wählen
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-3">
+                    Code an der Kasse einlösen · Gilt für alle bezahlten Pläne · Solange die Beta läuft
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -243,7 +258,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Welches Problem hast du?</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Waehle dein Problem und wir zeigen dir sofort die passenden
+              Wähle dein Problem und wir zeigen dir sofort die passenden
               Musterschreiben und Tipps.
             </p>
           </div>
@@ -313,7 +328,7 @@ export default function HomePage() {
               icon: Swords,
               title: 'Fehler erkennen',
               description:
-                'BescheidBoxer prueft Regelsatz, Mehrbedarf, KdU und zeigt dir jeden Fehler mit Paragraphen.',
+                'BescheidBoxer prüft Regelsatz, Mehrbedarf, KdU und zeigt dir jeden Fehler mit Paragraphen.',
             },
             {
               step: '3',
@@ -351,7 +366,7 @@ export default function HomePage() {
       <section className="bg-muted/30 py-16">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Faire Preise fuer jeden Kampf</h2>
+            <h2 className="text-3xl font-bold mb-4">Faire Preise für jeden Kampf</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
               Starte kostenlos als Schnupperer. Upgrade wenn du mehr Power brauchst.
             </p>
@@ -473,7 +488,7 @@ export default function HomePage() {
                       <Link to={key === 'schnupperer' ? '/scan' : '/preise'}>
                         {key === 'schnupperer'
                           ? 'Kostenlos starten'
-                          : 'Plan waehlen'}
+                          : 'Plan wählen'}
                       </Link>
                     </Button>
                   </CardContent>
@@ -482,7 +497,7 @@ export default function HomePage() {
             })}
           </div>
           <p className="text-center text-sm text-muted-foreground mt-6">
-            Alle Preise inkl. MwSt. &middot; Jederzeit kuendbar &middot;{' '}
+            Alle Preise inkl. MwSt. &middot; Jederzeit kündbar &middot;{' '}
             <Link to="/preise" className="text-primary hover:underline">
               Alle Details vergleichen
             </Link>
@@ -491,106 +506,78 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 8. TESTIMONIALS                                               */}
+      {/* 8. TRUST + PIONIERE-CALL                                      */}
       {/* ============================================================= */}
       <section className="container py-16">
-        {/* Live Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-extrabold text-blue-600">
-              <AnimatedCounter end={12847} suffix="" />
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Bescheide geprueft</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-extrabold text-red-600">
-              <AnimatedCounter end={4231} />
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Widersprueche erstellt</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-extrabold text-green-600">
-              <AnimatedCounter end={2.1} prefix="€ " suffix=" Mio." decimals={1} />
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Nachzahlungen erkaempft</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-extrabold text-amber-600">
-              <AnimatedCounter end={93} suffix="%" />
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Erfolgsquote</div>
-          </div>
-        </div>
-
-        {/* Trust Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-          <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-2 text-sm text-green-800">
+        {/* Trust Badges - nur was wirklich stimmt */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+          <div className="flex items-center gap-2 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-full px-4 py-2 text-sm text-green-800 dark:text-green-200">
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
             DSGVO-konform
           </div>
-          <div className="flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2 text-sm text-blue-800">
+          <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-full px-4 py-2 text-sm text-blue-800 dark:text-blue-200">
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
-            SSL-verschluesselt
+            SSL-verschlüsselt
           </div>
-          <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-2 text-sm text-amber-800">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-            4.8/5 Bewertung
+          <div className="flex items-center gap-2 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 rounded-full px-4 py-2 text-sm text-orange-800 dark:text-orange-200">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
+            Beta · seit April 2026
           </div>
-          <div className="flex items-center gap-2 bg-purple-50 border border-purple-200 rounded-full px-4 py-2 text-sm text-purple-800">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-            5.000+ aktive Nutzer
+          <div className="flex items-center gap-2 bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded-full px-4 py-2 text-sm text-purple-800 dark:text-purple-200">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 4 5v6c0 5 3 9 8 11 5-2 8-6 8-11V5l-8-3z" /></svg>
+            Hosted in Deutschland
           </div>
         </div>
 
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Das sagen unsere Nutzer</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Tausende Betroffene haben mit BescheidBoxer ihr Recht durchgesetzt.
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Sei einer der ersten Boxer</h2>
+          <p className="text-muted-foreground mb-8 text-lg">
+            BescheidBoxer ist gerade live gegangen. Statt erfundener Zahlen
+            sagen wir dir lieber die Wahrheit:{' '}
+            <strong className="text-foreground">
+              Wir bauen das hier gerade zusammen mit dir auf.
+            </strong>
           </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[
-            {
-              name: 'Sandra M.',
-              location: 'Berlin',
-              text: 'BescheidBoxer hat 3 Fehler in meinem Bescheid gefunden, die ich nie bemerkt haette. 127 EUR mehr im Monat! Der Widerspruch war in 10 Minuten fertig.',
-              amount: '127 EUR/Monat',
-            },
-            {
-              name: 'Thorsten K.',
-              location: 'Dortmund',
-              text: 'Mein Jobcenter hat die Heizkosten gekuerzt. Der KI-Berater hat mir genau erklaert warum das rechtswidrig war. Widerspruch eingereicht, Geld zurueck!',
-              amount: '840 EUR Nachzahlung',
-            },
-            {
-              name: 'Fatima A.',
-              location: 'Hamburg',
-              text: 'Als Alleinerziehende wusste ich nicht, dass mir Mehrbedarf zusteht. Der Rechner hat es sofort gezeigt. Danke BescheidBoxer!',
-              amount: '67 EUR/Monat',
-            },
-          ].map((testimonial) => (
-            <Card key={testimonial.name} className="h-full">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-3">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-yellow-400 text-lg">&#9733;</span>
-                  ))}
+          <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8 text-left">
+            <Card>
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                  <h3 className="font-semibold">Was du bekommst</h3>
                 </div>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                  &ldquo;{testimonial.text}&rdquo;
+                <p className="text-sm text-muted-foreground">
+                  Eine ehrliche KI, die jeden Bescheid prüft, alle Rechner,
+                  Vorlagen und 50 % Pionier-Rabatt für immer.
                 </p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground">{testimonial.location}</p>
-                  </div>
-                  <Badge className="bg-green-100 text-green-800 border-green-200">
-                    +{testimonial.amount}
-                  </Badge>
-                </div>
               </CardContent>
             </Card>
-          ))}
+            <Card>
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <Swords className="h-5 w-5 text-red-600" />
+                  <h3 className="font-semibold">Was wir uns wünschen</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Dein Feedback. Sag uns, wo der Boxer noch zu schwach ist —
+                  wir machen ihn stärker. Im Forum, per Mail, direkt im Chat.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="gradient-boxer text-white border-0 hover:opacity-90" asChild>
+              <Link to="/scan">
+                <ScanSearch className="mr-2 h-5 w-5" />
+                Jetzt mitmachen — kostenlos starten
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link to="/forum">
+                <Users className="mr-2 h-5 w-5" />
+                Zum Pionier-Forum
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -600,7 +587,7 @@ export default function HomePage() {
       <section className="container py-16">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-4">
-            Teil des Fintutto-Oekosystems
+            Teil des Fintutto-Ökosystems
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             BescheidBoxer ist nur der Anfang. Entdecke weitere Tools, die dir im
@@ -615,7 +602,7 @@ export default function HomePage() {
                 <Badge variant="kdu">KdU</Badge>
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Das Amt zahlt nicht die volle Miete? Der Mieter-Checker prueft,
+                Das Amt zahlt nicht die volle Miete? Der Mieter-Checker prüft,
                 ob deine Miete angemessen ist - und erstellt dir den passenden
                 Widerspruch.
               </p>
@@ -665,7 +652,7 @@ export default function HomePage() {
               <h3 className="text-xl font-bold text-red-900">Notfall-Hilfe</h3>
             </div>
             <p className="text-sm text-red-800 mb-4 flex-1">
-              Strom abgestellt? Kuendigung erhalten? Kein Geld fuer Essen? Hier findest du sofortige Hilfe, kostenlose Hotlines und konkrete Schritte.
+              Strom abgestellt? Kündigung erhalten? Kein Geld für Essen? Hier findest du sofortige Hilfe, kostenlose Hotlines und konkrete Schritte.
             </p>
             <div className="flex gap-3">
               <Button asChild className="bg-red-600 hover:bg-red-700 text-white">
@@ -686,7 +673,7 @@ export default function HomePage() {
               <h3 className="text-xl font-bold text-purple-900">Bewerbungs-Tracker</h3>
             </div>
             <p className="text-sm text-purple-800 mb-4 flex-1">
-              Dokumentiere deine Eigenbemuehungen fuer die Eingliederungsvereinbarung. Behalte den Ueberblick ueber alle Bewerbungen und Fristen.
+              Dokumentiere deine Eigenbemühungen für die Eingliederungsvereinbarung. Behalte den Überblick über alle Bewerbungen und Fristen.
             </p>
             <div className="flex gap-3">
               <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
@@ -713,7 +700,7 @@ export default function HomePage() {
               <h3 className="text-xl font-bold text-teal-900 dark:text-teal-100">Lernbereich</h3>
             </div>
             <p className="text-sm text-teal-800 dark:text-teal-200 mb-4 flex-1">
-              Verstehe deine Rechte Schritt fuer Schritt. 8 Module zu Buergergeld, Widerspruch, KdU, Sanktionen und mehr.
+              Verstehe deine Rechte Schritt für Schritt. 8 Module zu Bürgergeld, Widerspruch, KdU, Sanktionen und mehr.
             </p>
             <div className="flex gap-3">
               <Button asChild className="bg-teal-600 hover:bg-teal-700 text-white">
@@ -733,7 +720,7 @@ export default function HomePage() {
               <h3 className="text-xl font-bold text-blue-900 dark:text-blue-100">Anwaltssuche</h3>
             </div>
             <p className="text-sm text-blue-800 dark:text-blue-200 mb-4 flex-1">
-              Finde Fachanwaelte fuer Sozialrecht in deiner Naehe. Filtere nach PKH, kostenloser Erstberatung und Fachgebiet.
+              Finde Fachanwälte für Sozialrecht in deiner Nähe. Filtere nach PKH, kostenloser Erstberatung und Fachgebiet.
             </p>
             <div className="flex gap-3">
               <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
@@ -753,9 +740,9 @@ export default function HomePage() {
       <section className="gradient-amt text-white py-16">
         <div className="container text-center">
           <Clock className="h-12 w-12 mx-auto mb-4 opacity-80" />
-          <h2 className="text-3xl font-bold mb-4">Widerspruchsfrist laeuft?</h2>
+          <h2 className="text-3xl font-bold mb-4">Widerspruchsfrist läuft?</h2>
           <p className="text-lg opacity-90 mb-8 max-w-xl mx-auto">
-            Du hast nur <strong>1 Monat</strong> Zeit fuer einen Widerspruch.
+            Du hast nur <strong>1 Monat</strong> Zeit für einen Widerspruch.
             Starte jetzt - BescheidBoxer findet Fehler in Minuten, nicht Wochen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

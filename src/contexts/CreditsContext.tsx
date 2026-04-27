@@ -24,7 +24,7 @@ interface CreditsContextType {
 const CreditsContext = createContext<CreditsContextType | undefined>(undefined)
 
 /**
- * Default fuer Besucher ohne eingeloggten Account (Schnupperer).
+ * Default für Besucher ohne eingeloggten Account (Schnupperer).
  * Wird genutzt, solange AuthContext.profile === null ist.
  */
 const GUEST_CREDITS: UserCredits = {
@@ -66,7 +66,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   const checkScan = () => canScanBescheid(credits)
   const checkForum = () => canPostInForum()
 
-  // Hinweis: Die eigentliche Buchhaltung laeuft DB-seitig.
+  // Hinweis: Die eigentliche Buchhaltung läuft DB-seitig.
   // Nach erfolgreichem Increment laden wir das Profil neu, damit
   // die UI den Stand aus der DB spiegelt.
   const consumeQuestion = async () => {

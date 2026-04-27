@@ -54,7 +54,7 @@ interface QuickAction {
 
 const QUICK_ACTIONS: QuickAction[] = [
   {
-    label: 'Bescheid pruefen lassen',
+    label: 'Bescheid prüfen lassen',
     emoji: '\uD83D\uDD0D',
     type: 'link',
     to: '/scan',
@@ -69,13 +69,13 @@ const QUICK_ACTIONS: QuickAction[] = [
     label: 'Berechnen was mir zusteht',
     emoji: '\uD83E\uDDEE',
     type: 'chat',
-    chatMessage: 'Ich moechte berechnen, was mir an Buergergeld zusteht.',
+    chatMessage: 'Ich moechte berechnen, was mir an Bürgergeld zusteht.',
   },
   {
-    label: 'Frage zum Buergergeld',
+    label: 'Frage zum Bürgergeld',
     emoji: '\u2753',
     type: 'chat',
-    chatMessage: 'Ich habe eine allgemeine Frage zum Buergergeld.',
+    chatMessage: 'Ich habe eine allgemeine Frage zum Bürgergeld.',
   },
   {
     label: 'Ich wurde sanktioniert!',
@@ -84,7 +84,7 @@ const QUICK_ACTIONS: QuickAction[] = [
     chatMessage: 'Ich wurde sanktioniert und brauche Hilfe!',
   },
   {
-    label: 'Meine Miete wird gekuerzt',
+    label: 'Meine Miete wird gekürzt',
     emoji: '\uD83C\uDFE0',
     type: 'chat',
     chatMessage: 'Das Jobcenter zahlt nicht meine volle Miete. Was kann ich tun?',
@@ -100,11 +100,11 @@ const OPENING_MESSAGE: ChatMessage = {
   role: 'assistant',
   content: `**Hey! Ich bin dein BescheidBoxer-Assistent.** \uD83E\uDD4A
 
-Ich kenne mich mit Buergergeld-Recht aus und bin auf **DEINER** Seite.
+Ich kenne mich mit Bürgergeld-Recht aus und bin auf **DEINER** Seite.
 
 Egal ob falscher Bescheid, Sanktion oder Mietkuerzung \u2013 ich helfe dir, deine Rechte zu verstehen **und** durchzusetzen. Kein Amtsdeutsch, keine Angst.
 
-**Wie kann ich dir helfen?** Waehle unten eine Option oder schreib mir einfach dein Anliegen.`,
+**Wie kann ich dir helfen?** Wähle unten eine Option oder schreib mir einfach dein Anliegen.`,
   timestamp: new Date(),
 }
 
@@ -121,25 +121,25 @@ function generateDemoResponse(question: string): ChatMessage {
 
   // ---- Bescheid falsch / berechnen ----
   if (
-    (q.includes('bescheid') && (q.includes('falsch') || q.includes('berechnung') || q.includes('pruefen'))) ||
+    (q.includes('bescheid') && (q.includes('falsch') || q.includes('berechnung') || q.includes('prüfen'))) ||
     q.includes('berechnen') ||
     q.includes('zusteht')
   ) {
-    content = `**Das klingt so, als haette das Jobcenter sich verrechnet \u2013 und das passiert leider oefter, als man denkt.** Gut, dass du das pruefen willst!
+    content = `**Das klingt so, als hätte das Jobcenter sich verrechnet \u2013 und das passiert leider oefter, als man denkt.** Gut, dass du das prüfen willst!
 
 Hier ist dein Fahrplan:
 
-**1. Frist pruefen**
-Du hast **1 Monat** nach Zugang des Bescheids Zeit fuer einen Widerspruch (\u00A7 84 SGG). Noch innerhalb der Frist? Dann schnell handeln!
+**1. Frist prüfen**
+Du hast **1 Monat** nach Zugang des Bescheids Zeit für einen Widerspruch (\u00A7 84 SGG). Noch innerhalb der Frist? Dann schnell handeln!
 
-**2. Was du pruefen solltest:**
-- **Regelsatz** \u2013 2024/2025: 563 EUR fuer Alleinstehende (\u00A7 20 SGB II)
+**2. Was du prüfen solltest:**
+- **Regelsatz** \u2013 2024/2025: 563 EUR für Alleinstehende (\u00A7 20 SGB II)
 - **Mehrbedarf** \u2013 Alleinerziehend? Schwanger? Krank? (\u00A7 21 SGB II)
 - **Einkommensanrechnung** \u2013 Wurde korrekt abgezogen? (\u00A7 11 SGB II)
 - **Kosten der Unterkunft** \u2013 Wird die volle Miete gezahlt? (\u00A7 22 SGB II)
 
 **3. Frist verpasst? Kein Problem!**
-Mit dem **Ueberpruefungsantrag nach \u00A7 44 SGB X** kannst du Bescheide der letzten **4 Jahre** pruefen lassen \u2013 und dir Nachzahlungen sichern.
+Mit dem **Ueberpruefungsantrag nach \u00A7 44 SGB X** kannst du Bescheide der letzten **4 Jahre** prüfen lassen \u2013 und dir Nachzahlungen sichern.
 
 **Dein naechster Schritt:** Lade deinen Bescheid in unseren **BescheidScan** hoch \u2013 die KI findet Fehler in Sekunden. Oder erstelle direkt deinen Widerspruch in der **Dokumenten-Werkstatt**.
 
@@ -149,7 +149,7 @@ Mit dem **Ueberpruefungsantrag nach \u00A7 44 SGB X** kannst du Bescheide der le
     crossSell = [
       {
         label: 'BescheidScan',
-        description: 'Lade deinen Bescheid hoch und lass ihn automatisch pruefen.',
+        description: 'Lade deinen Bescheid hoch und lass ihn automatisch prüfen.',
         to: '/scan',
         icon: 'scan',
       },
@@ -162,13 +162,13 @@ Mit dem **Ueberpruefungsantrag nach \u00A7 44 SGB X** kannst du Bescheide der le
     ]
   }
   // ---- Sanktion ----
-  else if (q.includes('sanktion') || q.includes('sanktioniert') || q.includes('gekuerzt') || q.includes('pflichtverletzung')) {
-    content = `**Das tut mir leid \u2013 Sanktionen sind fuer viele eine echte Belastung.** Aber: Du bist dem nicht hilflos ausgeliefert. Viele Sanktionen sind angreifbar!
+  else if (q.includes('sanktion') || q.includes('sanktioniert') || q.includes('gekürzt') || q.includes('pflichtverletzung')) {
+    content = `**Das tut mir leid \u2013 Sanktionen sind für viele eine echte Belastung.** Aber: Du bist dem nicht hilflos ausgeliefert. Viele Sanktionen sind angreifbar!
 
-**Deine Rechte seit dem Buergergeld-Gesetz (2023):**
+**Deine Rechte seit dem Bürgergeld-Gesetz (2023):**
 - Sanktionen duerfen **maximal 30 %** des Regelsatzes betragen (\u00A7 31a SGB II)
-- Die alten 60 %- und 100 %-Kuerzungen sind **abgeschafft**
-- Kosten der Unterkunft (Miete) duerfen **NICHT** gekuerzt werden
+- Die alten 60 %- und 100 %-Kürzungen sind **abgeschafft**
+- Kosten der Unterkunft (Miete) duerfen **NICHT** gekürzt werden
 - Bei einem **wichtigen Grund** (Krankheit, Kinderbetreuung, Brief nicht erhalten) darf gar nicht sanktioniert werden (\u00A7 31 Abs. 1 S. 2 SGB II)
 
 **Was du JETZT tun solltest:**
@@ -200,15 +200,15 @@ Mit dem **Ueberpruefungsantrag nach \u00A7 44 SGB X** kannst du Bescheide der le
 In den ersten 12 Monaten des Leistungsbezugs (Karenzzeit) muss das Amt die **tatsaechlichen** Kosten uebernehmen \u2013 egal wie hoch.
 
 **2. Schluessiges Konzept**
-Das Amt braucht ein sog. "schluessiges Konzept" fuer die Mietobergrenze. Viele Jobcenter haben das **nicht** \u2013 dann gelten deine tatsaechlichen Kosten!
+Das Amt braucht ein sog. "schluessiges Konzept" für die Mietobergrenze. Viele Jobcenter haben das **nicht** \u2013 dann gelten deine tatsaechlichen Kosten!
 
 **3. Kostensenkungsaufforderung**
-Bevor das Amt kuerzen darf, muss es dich schriftlich auffordern, die Kosten zu senken \u2013 und dir angemessene Zeit geben (i.d.R. 6 Monate).
+Bevor das Amt kürzen darf, muss es dich schriftlich auffordern, die Kosten zu senken \u2013 und dir angemessene Zeit geben (i.d.R. 6 Monate).
 
 **4. Kein guenstigerer Wohnraum verfuegbar?**
 Wenn du nachweisen kannst, dass es in deiner Stadt nichts Guenstigeres gibt, muss das Amt die hoehere Miete weiterzahlen (BSG, Urteil v. 19.02.2009 \u2013 B 4 AS 30/08 R).
 
-**Dein naechster Schritt:** Lade deinen Bescheid in den **BescheidScan** hoch \u2013 wir pruefen automatisch, ob die KdU korrekt berechnet wurde. Oder erstelle direkt einen Widerspruch.
+**Dein naechster Schritt:** Lade deinen Bescheid in den **BescheidScan** hoch \u2013 wir prüfen automatisch, ob die KdU korrekt berechnet wurde. Oder erstelle direkt einen Widerspruch.
 
 [TEMPLATE:widerspruch_kdu]`
     suggestedTemplates = ['widerspruch_kdu', 'antrag_umzug']
@@ -216,7 +216,7 @@ Wenn du nachweisen kannst, dass es in deiner Stadt nichts Guenstigeres gibt, mus
     crossSell = [
       {
         label: 'BescheidScan',
-        description: 'Automatisch pruefen, ob deine Mietkosten korrekt berechnet wurden.',
+        description: 'Automatisch prüfen, ob deine Mietkosten korrekt berechnet wurden.',
         to: '/scan',
         icon: 'scan',
       },
@@ -228,9 +228,9 @@ Wenn du nachweisen kannst, dass es in deiner Stadt nichts Guenstigeres gibt, mus
       },
     ]
   }
-  // ---- Allgemeine Frage Buergergeld ----
+  // ---- Allgemeine Frage Bürgergeld ----
   else if (q.includes('allgemeine frage') || q.includes('frage zum buergergeld') || q.includes('buergergeld')) {
-    content = `**Klar, frag mich alles zum Buergergeld \u2013 dafuer bin ich da!**
+    content = `**Klar, frag mich alles zum Bürgergeld \u2013 dafuer bin ich da!**
 
 Hier ein paar Sachen, bei denen ich dir sofort helfen kann:
 
@@ -253,32 +253,32 @@ Hier ein paar Sachen, bei denen ich dir sofort helfen kann:
     crossSell = [
       {
         label: 'BescheidScan',
-        description: 'Bescheid hochladen und automatisch auf Fehler pruefen lassen.',
+        description: 'Bescheid hochladen und automatisch auf Fehler prüfen lassen.',
         to: '/scan',
         icon: 'scan',
       },
     ]
   }
-  // ---- Alte Bescheide / Ueberpruefung ----
+  // ---- Alte Bescheide / Überprüfung ----
   else if (q.includes('alte bescheide') || q.includes('ueberpruefung') || q.includes('nachtraeglich') || q.includes('nachzahlung')) {
-    content = `**Gute Nachricht: Auch alte Bescheide koennen nochmal geprueft werden \u2013 bis zu 4 Jahre zurueck!**
+    content = `**Gute Nachricht: Auch alte Bescheide koennen nochmal geprüft werden \u2013 bis zu 4 Jahre zurück!**
 
 Der **Ueberpruefungsantrag nach \u00A7 44 SGB X** ist eines der staerksten Instrumente, das die wenigsten kennen:
 
 **So funktioniert es:**
 1. Du stellst einen formellen Antrag beim Jobcenter
-2. Das Amt muss den alten Bescheid nochmal pruefen
+2. Das Amt muss den alten Bescheid nochmal prüfen
 3. War er rechtswidrig? Dann muss das Amt aendern und **nachzahlen**!
-4. Das gilt fuer bis zu **4 Jahre** zurueck (\u00A7 44 Abs. 4 SGB X)
+4. Das gilt für bis zu **4 Jahre** zurück (\u00A7 44 Abs. 4 SGB X)
 
 **Typische Fehler, die Nachzahlungen bringen:**
 - Regelsatz war zu niedrig angesetzt
 - Mehrbedarf wurde nicht anerkannt (z.B. Alleinerziehend)
-- KdU (Miete) wurde unrechtmaessig gekuerzt
+- KdU (Miete) wurde unrechtmaessig gekürzt
 - Einkommen wurde falsch berechnet
 - Sanktionen waren rechtswidrig
 
-**Erfahrungswert:** Bei vielen Betroffenen kommen so **mehrere hundert bis ueber tausend Euro** Nachzahlung zusammen.
+**Erfahrungswert:** Bei vielen Betroffenen kommen so **mehrere hundert bis über tausend Euro** Nachzahlung zusammen.
 
 **Dein naechster Schritt:** Lade deine alten Bescheide in den **BescheidScan** hoch \u2013 die KI findet Fehler sofort. Dann erstelle den Ueberpruefungsantrag in der **Dokumenten-Werkstatt**.
 
@@ -304,19 +304,19 @@ Der **Ueberpruefungsantrag nach \u00A7 44 SGB X** ist eines der staerksten Instr
   else if (q.includes('waschmaschine') || q.includes('moebel') || q.includes('erstausstattung') || q.includes('kaputt')) {
     content = `**Wenn die Waschmaschine den Geist aufgibt, ist das natuerlich Stress \u2013 besonders wenn das Geld eh schon knapp ist.** Aber es gibt Hilfe!
 
-Nach **\u00A7 24 Abs. 3 SGB II** hast du Anspruch auf **einmalige Leistungen** fuer:
+Nach **\u00A7 24 Abs. 3 SGB II** hast du Anspruch auf **einmalige Leistungen** für:
 - Erstausstattung der Wohnung (Moebel, Haushaltsgeraete)
 - Erstausstattung Bekleidung
 - Schwangerschaftsbekleidung / Babyausstattung
 
-**Wichtig:** Auch ein **Ersatz** fuer kaputte Geraete kann als einmalige Leistung beantragt werden, wenn du es nicht aus dem Regelsatz bezahlen kannst.
+**Wichtig:** Auch ein **Ersatz** für kaputte Geraete kann als einmalige Leistung beantragt werden, wenn du es nicht aus dem Regelsatz bezahlen kannst.
 
 **So gehst du vor:**
 1. Stelle einen **schriftlichen Antrag** auf einmalige Leistungen
 2. Begruende, warum du die Anschaffung brauchst
 3. Fuege Nachweise bei (Fotos vom defekten Geraet, Kostenvoranschlag)
 
-**Typische Betraege:** 100\u2013250 EUR fuer eine Waschmaschine (je nach Kommune). Du kannst aber auch einen hoeheren Betrag beantragen.
+**Typische Betraege:** 100\u2013250 EUR für eine Waschmaschine (je nach Kommune). Du kannst aber auch einen hoeheren Betrag beantragen.
 
 **Dein naechster Schritt:** Erstelle den Antrag in der **Dokumenten-Werkstatt** \u2013 dauert nur 5 Minuten und ist rechtssicher formuliert.
 
@@ -339,7 +339,7 @@ Nach **\u00A7 24 Abs. 3 SGB II** hast du Anspruch auf **einmalige Leistungen** f
 Du hast ein **Recht auf respektvolle Behandlung** (\u00A7 14 SGB I \u2013 Beratungspflicht). Hier sind deine Optionen:
 
 **1. Dienstaufsichtsbeschwerde** (Art. 17 GG)
-- Formelle Beschwerde an die Teamleitung / Geschaeftsfuehrung
+- Formelle Beschwerde an die Teamleitung / Geschäftsfuehrung
 - Das Amt **muss** reagieren
 - Beschreibe den Vorfall sachlich mit Datum, Uhrzeit, Zeugen
 
@@ -379,17 +379,17 @@ Damit ich dir die bestmoegliche Auskunft geben kann, beschreib mir dein Anliegen
 - "Mein Bescheid ist falsch berechnet"
 - "Ich wurde sanktioniert und hatte einen wichtigen Grund"
 - "Das Amt zahlt nicht meine volle Miete"
-- "Ich brauche Geld fuer eine Erstausstattung"
+- "Ich brauche Geld für eine Erstausstattung"
 - "Mein Sachbearbeiter behandelt mich schlecht"
 
-Ich kenne mich aus mit **SGB II** (Buergergeld), **SGB III** (ALG I), **SGB X** (Widerspruch & Ueberpruefung) und **SGB XII** (Sozialhilfe) \u2013 inklusive aller relevanten Paragraphen und aktueller Rechtsprechung.
+Ich kenne mich aus mit **SGB II** (Bürgergeld), **SGB III** (ALG I), **SGB X** (Widerspruch & Überprüfung) und **SGB XII** (Sozialhilfe) \u2013 inklusive aller relevanten Paragraphen und aktueller Rechtsprechung.
 
 **Tipp:** Wenn du einen konkreten Bescheid hast, lade ihn in unseren **BescheidScan** hoch. Die KI findet Fehler sofort und du sparst dir langes Suchen.`
     relatedCategories = ['sgb2', 'sgb3', 'sgb10']
     crossSell = [
       {
         label: 'BescheidScan',
-        description: 'Bescheid hochladen und automatisch pruefen lassen.',
+        description: 'Bescheid hochladen und automatisch prüfen lassen.',
         to: '/scan',
         icon: 'scan',
       },
@@ -573,7 +573,7 @@ export default function ChatPage() {
           content: `**Tageslimit erreicht**\n\n${check.reason}\n\nAber keine Sorge \u2013 du kannst trotzdem deinen **BescheidScan** nutzen oder Schreiben in der **Dokumenten-Werkstatt** erstellen.`,
           timestamp: new Date(),
           crossSell: [
-            { label: 'BescheidScan', description: 'Bescheid automatisch pruefen.', to: '/scan', icon: 'scan' as const },
+            { label: 'BescheidScan', description: 'Bescheid automatisch prüfen.', to: '/scan', icon: 'scan' as const },
             { label: 'Dokumenten-Werkstatt', description: 'Musterschreiben erstellen.', to: '/musterschreiben', icon: 'werkstatt' as const },
           ],
         },

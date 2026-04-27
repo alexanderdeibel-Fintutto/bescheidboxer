@@ -140,7 +140,7 @@ export default function FristAlarm() {
                       }`}
                     >
                       {alarm.daysLeft === 0
-                        ? 'Frist laeuft HEUTE ab!'
+                        ? 'Frist läuft HEUTE ab!'
                         : alarm.daysLeft === 1
                           ? 'Noch 1 Tag'
                           : `Noch ${alarm.daysLeft} Tage`}
@@ -157,7 +157,7 @@ export default function FristAlarm() {
               className="flex items-center justify-center gap-1.5 text-xs text-primary hover:underline py-1.5"
               onClick={() => setOpen(false)}
             >
-              Alle Widersprueche anzeigen
+              Alle Widersprüche anzeigen
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>

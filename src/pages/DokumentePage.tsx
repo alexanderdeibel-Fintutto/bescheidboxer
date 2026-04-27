@@ -31,7 +31,7 @@ interface Dokument {
 
 type Kategorie =
   | 'Bescheide'
-  | 'Widersprueche'
+  | 'Widersprüche'
   | 'Nachweise (Einkommen)'
   | 'Mietvertrag/KdU'
   | 'Aerztliche Atteste'
@@ -45,7 +45,7 @@ const STORAGE_KEY = 'bescheidboxer_dokumente'
 
 const KATEGORIEN: { label: Kategorie; icon: React.ElementType; color: string; bg: string }[] = [
   { label: 'Bescheide', icon: FileText, color: 'text-red-600', bg: 'bg-red-50' },
-  { label: 'Widersprueche', icon: FileCheck, color: 'text-amber-600', bg: 'bg-amber-50' },
+  { label: 'Widersprüche', icon: FileCheck, color: 'text-amber-600', bg: 'bg-amber-50' },
   { label: 'Nachweise (Einkommen)', icon: Receipt, color: 'text-emerald-600', bg: 'bg-emerald-50' },
   { label: 'Mietvertrag/KdU', icon: File, color: 'text-blue-600', bg: 'bg-blue-50' },
   { label: 'Aerztliche Atteste', icon: Stethoscope, color: 'text-purple-600', bg: 'bg-purple-50' },
@@ -256,7 +256,7 @@ export default function DokumentePage() {
               {/* Upload button */}
               <Button className="gap-2" onClick={handleUploadClick}>
                 <Upload className="h-4 w-4" />
-                Datei auswaehlen
+                Datei auswählen
               </Button>
 
               {/* Hidden file input */}
@@ -334,7 +334,7 @@ export default function DokumentePage() {
             </h3>
             <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
               Legen Sie hier Ihre wichtigen Unterlagen ab: Bescheide vom Jobcenter,
-              Widersprueche, Einkommensnachweise, Mietvertraege und aerztliche Atteste.
+              Widersprüche, Einkommensnachweise, Mietvertraege und aerztliche Atteste.
               So haben Sie alles griffbereit, wenn Sie es brauchen.
             </p>
             <Button className="gap-2" onClick={handleUploadClick}>
@@ -352,7 +352,7 @@ export default function DokumentePage() {
               Keine Dokumente gefunden
             </h3>
             <p className="text-sm text-gray-500">
-              Versuchen Sie einen anderen Suchbegriff oder waehlen Sie eine andere Kategorie.
+              Versuchen Sie einen anderen Suchbegriff oder wählen Sie eine andere Kategorie.
             </p>
           </div>
         )}

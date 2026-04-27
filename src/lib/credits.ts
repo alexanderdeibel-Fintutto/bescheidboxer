@@ -106,7 +106,7 @@ export const CREDIT_COSTS = {
  *
  * Die stripePriceId wird zur Laufzeit aus VITE_STRIPE_PRICE_CREDITS_*
  * gelesen, damit Test-Mode vs Production-Mode ohne Code-Change
- * umschaltbar sind. Setze die ENV-Variablen in Vercel fuer Preview
+ * umschaltbar sind. Setze die ENV-Variablen in Vercel für Preview
  * und Production jeweils auf die richtige price_*-ID.
  *
  * Fallback auf leeren String, wenn ENV nicht gesetzt ist -> Buttons
@@ -156,12 +156,12 @@ export function canAskQuestion(credits: UserCredits): { allowed: boolean; reason
     if (credits.plan === 'schnupperer') {
       return {
         allowed: false,
-        reason: 'Du hast deine 5 kostenlosen Nachrichten fuer heute aufgebraucht. Upgrade auf Starter fuer 10/Tag oder Kaempfer fuer unbegrenzt.',
+        reason: 'Du hast deine 5 kostenlosen Nachrichten für heute aufgebraucht. Upgrade auf Starter für 10/Tag oder Kaempfer für unbegrenzt.',
       }
     }
     return {
       allowed: false,
-      reason: `Tageslimit von ${plan.chatMessagesPerDay} Nachrichten erreicht. Upgrade auf Kaempfer fuer unbegrenzten Chat.`,
+      reason: `Tageslimit von ${plan.chatMessagesPerDay} Nachrichten erreicht. Upgrade auf Kaempfer für unbegrenzten Chat.`,
     }
   }
   return { allowed: true }
@@ -178,7 +178,7 @@ export function canGenerateLetter(credits: UserCredits): { allowed: boolean; rea
     return {
       allowed: true,
       cost: plan.letterPrice,
-      reason: 'Einzelkauf: Personalisiertes Schreiben fuer dich erstellt.',
+      reason: 'Einzelkauf: Personalisiertes Schreiben für dich erstellt.',
     }
   }
 
@@ -201,7 +201,7 @@ export function canScanBescheid(credits: UserCredits): { allowed: boolean; reaso
   if (credits.scansThisMonth >= plan.bescheidScansPerMonth) {
     return {
       allowed: false,
-      reason: `Scan-Limit (${plan.bescheidScansPerMonth}/Monat) erreicht. Upgrade fuer mehr Scans.`,
+      reason: `Scan-Limit (${plan.bescheidScansPerMonth}/Monat) erreicht. Upgrade für mehr Scans.`,
     }
   }
   return { allowed: true }

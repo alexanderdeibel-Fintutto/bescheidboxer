@@ -157,11 +157,11 @@ hiermit lege ich fristgerecht Widerspruch gegen Ihren Bewilligungsbescheid vom $
 
 Begruendung:
 
-Die Berechnung des Regelbedarfs in dem genannten Bescheid ist fehlerhaft. Mir wurde ein Regelbedarf in Hoehe von ${ist} EUR monatlich bewilligt. Nach § 20 SGB II steht mir jedoch ein Regelbedarf in Hoehe von ${soll} EUR monatlich zu.
+Die Berechnung des Regelbedarfs in dem genannten Bescheid ist fehlerhaft. Mir wurde ein Regelbedarf in Höhe von ${ist} EUR monatlich bewilligt. Nach § 20 SGB II steht mir jedoch ein Regelbedarf in Höhe von ${soll} EUR monatlich zu.
 
 ${grund ? `Im Einzelnen: ${grund}` : ''}
 
-Gemaess § 20 Abs. 2 SGB II betraegt der Regelbedarf fuer alleinstehende und alleinerziehende Leistungsberechtigte monatlich den in der Anlage zu § 28 SGB XII festgesetzten Betrag. Die in meinem Bescheid zugrunde gelegte Berechnung entspricht nicht den gesetzlichen Vorgaben.
+Gemaess § 20 Abs. 2 SGB II betraegt der Regelbedarf für alleinstehende und alleinerziehende Leistungsberechtigte monatlich den in der Anlage zu § 28 SGB XII festgesetzten Betrag. Die in meinem Bescheid zugrunde gelegte Berechnung entspricht nicht den gesetzlichen Vorgaben.
 
 Ich fordere Sie auf, den Bescheid zu ueberpruefen und meinen Regelbedarf entsprechend den gesetzlichen Bestimmungen korrekt zu berechnen und nachzuzahlen.
 
@@ -215,17 +215,17 @@ Betreff: Widerspruch gegen den Bescheid vom ${datum} - Kosten der Unterkunft und
 
 Sehr geehrte Damen und Herren,
 
-hiermit lege ich fristgerecht Widerspruch gegen Ihren Bescheid vom ${datum}, Aktenzeichen ${az}, ein, soweit darin die Kosten der Unterkunft und Heizung nicht in tatsaechlicher Hoehe uebernommen werden.
+hiermit lege ich fristgerecht Widerspruch gegen Ihren Bescheid vom ${datum}, Aktenzeichen ${az}, ein, soweit darin die Kosten der Unterkunft und Heizung nicht in tatsaechlicher Höhe uebernommen werden.
 
 Begruendung:
 
 Meine tatsaechlichen Kosten der Unterkunft und Heizung betragen ${mieteReal} EUR monatlich. In dem angefochtenen Bescheid wurden jedoch lediglich ${mieteBewilligt} EUR monatlich beruecksichtigt. Die Differenz von ${Number(mieteReal) && Number(mieteBewilligt) ? (Number(mieteReal) - Number(mieteBewilligt)).toFixed(2) : '[DIFFERENZ]'} EUR monatlich wird mir ohne rechtmaessige Grundlage verweigert.
 
-Gemaess § 22 Abs. 1 S. 1 SGB II werden Bedarfe fuer Unterkunft und Heizung in Hoehe der tatsaechlichen Aufwendungen anerkannt, soweit diese angemessen sind. Meine Wohnung hat eine Groesse von ${groesse} qm und wird von ${personen} Person(en) bewohnt. Die Kosten sind nach dem oertlichen Mietspiegel bzw. den Richtwerten als angemessen anzusehen.
+Gemaess § 22 Abs. 1 S. 1 SGB II werden Bedarfe für Unterkunft und Heizung in Höhe der tatsaechlichen Aufwendungen anerkannt, soweit diese angemessen sind. Meine Wohnung hat eine Groesse von ${groesse} qm und wird von ${personen} Person(en) bewohnt. Die Kosten sind nach dem oertlichen Mietspiegel bzw. den Richtwerten als angemessen anzusehen.
 
-Selbst wenn die Kosten als unangemessen angesehen werden sollten, sind diese gemaess § 22 Abs. 1 S. 3 SGB II fuer einen Zeitraum von in der Regel sechs Monaten in tatsaechlicher Hoehe zu uebernehmen. Eine ordnungsgemaesse Kostensenkungsaufforderung mit konkreten Senkungsmoeglichkeiten ist mir nicht zugegangen bzw. die genannte Frist ist noch nicht abgelaufen.
+Selbst wenn die Kosten als unangemessen angesehen werden sollten, sind diese gemaess § 22 Abs. 1 S. 3 SGB II für einen Zeitraum von in der Regel sechs Monaten in tatsaechlicher Höhe zu uebernehmen. Eine ordnungsgemaesse Kostensenkungsaufforderung mit konkreten Senkungsmoeglichkeiten ist mir nicht zugegangen bzw. die genannte Frist ist noch nicht abgelaufen.
 
-Ich fordere Sie daher auf, meinen Bescheid abzuaendern und die tatsaechlichen Kosten der Unterkunft und Heizung in voller Hoehe zu uebernehmen.
+Ich fordere Sie daher auf, meinen Bescheid abzuaendern und die tatsaechlichen Kosten der Unterkunft und Heizung in voller Höhe zu uebernehmen.
 
 Sollte meinem Widerspruch nicht abgeholfen werden, behalte ich mir weitere Rechtsmittel vor.
 
@@ -248,7 +248,7 @@ ${name}`
     fields: [
       ...COMMON_FIELDS,
       { key: 'sanktionsgrund', label: 'Genannter Sanktionsgrund', placeholder: 'z.B. Nichterscheinen zum Termin am 15.01.2026', type: 'text' },
-      { key: 'kuerzungsBetrag', label: 'Hoehe der Kuerzung (EUR/Prozent)', placeholder: 'z.B. 10% des Regelbedarfs', type: 'text' },
+      { key: 'kuerzungsBetrag', label: 'Höhe der Kürzung (EUR/Prozent)', placeholder: 'z.B. 10% des Regelbedarfs', type: 'text' },
       { key: 'wichtigerGrund', label: 'Ihr wichtiger Grund (warum unverschuldet)', placeholder: 'z.B. Erkrankung, Einladung nicht erhalten', type: 'text' },
     ],
     generateLetter: (v) => {
@@ -277,20 +277,20 @@ Sehr geehrte Damen und Herren,
 
 hiermit lege ich fristgerecht Widerspruch gegen Ihren Sanktionsbescheid vom ${datum}, Aktenzeichen ${az}, ein.
 
-In dem genannten Bescheid wird mir eine Leistungsminderung in Hoehe von ${kuerzung} auferlegt. Als Begruendung wird angefuehrt: ${grund}.
+In dem genannten Bescheid wird mir eine Leistungsminderung in Höhe von ${kuerzung} auferlegt. Als Begruendung wird angefuehrt: ${grund}.
 
 Begruendung meines Widerspruchs:
 
 1. Wichtiger Grund gemaess § 31 Abs. 1 S. 2 SGB II
 Fuer die mir vorgeworfene Pflichtverletzung lag ein wichtiger Grund vor: ${wichtig}.
 
-Gemaess § 31 Abs. 1 S. 2 SGB II tritt eine Pflichtverletzung nicht ein, wenn der erwerbsfaehige Leistungsberechtigte fuer sein Verhalten einen wichtigen Grund nachweist. Diesen wichtigen Grund mache ich hiermit geltend.
+Gemaess § 31 Abs. 1 S. 2 SGB II tritt eine Pflichtverletzung nicht ein, wenn der erwerbsfaehige Leistungsberechtigte für sein Verhalten einen wichtigen Grund nachweist. Diesen wichtigen Grund mache ich hiermit geltend.
 
 2. Verhaeltnismaessigkeit
-Die verhaengte Sanktion ist in meinem Fall unverhaeltnismaessig. Das Bundesverfassungsgericht hat mit Urteil vom 05.11.2019 (Az. 1 BvL 7/16) klargestellt, dass Sanktionen verhaeltnismaessig sein muessen und das Existenzminimum nicht unterschritten werden darf.
+Die verhaengte Sanktion ist in meinem Fall unverhaeltnismaessig. Das Bundesverfassungsgericht hat mit Urteil vom 05.11.2019 (Az. 1 BvL 7/16) klargestellt, dass Sanktionen verhältnismäßig sein muessen und das Existenzminimum nicht unterschritten werden darf.
 
 3. Formelle Fehler
-Ich ruege vorsorglich auch formelle Fehler des Sanktionsbescheids. Eine ordnungsgemaesse Rechtsfolgenbelehrung ist Voraussetzung fuer die Wirksamkeit einer Sanktion (§ 31 Abs. 1 SGB II). Sofern diese fehlerhaft oder unzureichend war, ist der Sanktionsbescheid rechtswidrig.
+Ich ruege vorsorglich auch formelle Fehler des Sanktionsbescheids. Eine ordnungsgemaesse Rechtsfolgenbelehrung ist Voraussetzung für die Wirksamkeit einer Sanktion (§ 31 Abs. 1 SGB II). Sofern diese fehlerhaft oder unzureichend war, ist der Sanktionsbescheid rechtswidrig.
 
 Ich fordere Sie auf, den Sanktionsbescheid aufzuheben und die volle Leistung wiederherzustellen.
 
@@ -310,7 +310,7 @@ ${name}`
     category: 'mehrbedarf',
     title: 'Widerspruch gegen Ablehnung von Mehrbedarf',
     description:
-      'Verwenden Sie diese Vorlage, wenn ein beantragter Mehrbedarf (z.B. fuer Alleinerziehende, Schwangere, kostenaufwaendige Ernaehrung oder dezentrale Warmwassererzeugung) abgelehnt wurde.',
+      'Verwenden Sie diese Vorlage, wenn ein beantragter Mehrbedarf (z.B. für Alleinerziehende, Schwangere, kostenaufwaendige Ernaehrung oder dezentrale Warmwassererzeugung) abgelehnt wurde.',
     legalBasis: ['§ 21 SGB II', '§ 21 Abs. 2-7 SGB II', '§ 84 SGG'],
     fields: [
       ...COMMON_FIELDS,
@@ -348,7 +348,7 @@ Begruendung:
 
 Ich habe einen Mehrbedarf wegen ${art} beantragt. Dieser wurde in dem angefochtenen Bescheid ohne ausreichende Begruendung abgelehnt.
 
-Gemaess § 21 SGB II werden bei Vorliegen der gesetzlichen Voraussetzungen Mehrbedarfe neben dem Regelbedarf anerkannt. In meinem Fall liegt ein Anspruch auf einen Mehrbedarf in Hoehe von ${betrag} EUR monatlich vor.
+Gemaess § 21 SGB II werden bei Vorliegen der gesetzlichen Voraussetzungen Mehrbedarfe neben dem Regelbedarf anerkannt. In meinem Fall liegt ein Anspruch auf einen Mehrbedarf in Höhe von ${betrag} EUR monatlich vor.
 
 Folgende Nachweise habe ich bereits vorgelegt bzw. lege ich diesem Widerspruch bei: ${nachweis}.
 
@@ -372,7 +372,7 @@ ${name}`
     category: 'erstausstattung',
     title: 'Widerspruch gegen Ablehnung der Erstausstattung',
     description:
-      'Verwenden Sie diese Vorlage, wenn Ihr Antrag auf Erstausstattung fuer die Wohnung, Bekleidung oder bei Schwangerschaft und Geburt abgelehnt wurde.',
+      'Verwenden Sie diese Vorlage, wenn Ihr Antrag auf Erstausstattung für die Wohnung, Bekleidung oder bei Schwangerschaft und Geburt abgelehnt wurde.',
     legalBasis: ['§ 24 Abs. 3 SGB II', '§ 31 SGB XII', '§ 84 SGG'],
     fields: [
       ...COMMON_FIELDS,
@@ -408,11 +408,11 @@ hiermit lege ich fristgerecht Widerspruch gegen Ihren Bescheid vom ${datum}, Akt
 
 Begruendung:
 
-Gemaess § 24 Abs. 3 Nr. 1 und 2 SGB II werden Leistungen fuer Erstausstattungen fuer die Wohnung einschliesslich Haushaltsgeraeten sowie fuer Bekleidung gesondert erbracht. Der Anlass fuer meinen Antrag ist: ${anlass}.
+Gemaess § 24 Abs. 3 Nr. 1 und 2 SGB II werden Leistungen für Erstausstattungen für die Wohnung einschliesslich Haushaltsgeraeten sowie für Bekleidung gesondert erbracht. Der Anlass für meinen Antrag ist: ${anlass}.
 
 Es handelt sich bei den beantragten Gegenstaenden um eine Erstausstattung und nicht um eine Ersatzbeschaffung. Die beantragten Leistungen umfassen: ${gegenstaende}.
 
-Ich verfuege ueber keine anderweitigen Mittel, um die benoetigten Gegenstaende zu beschaffen. Die Ablehnung meines Antrags ist daher rechtswidrig und verletzt mein Recht auf Sicherung des Existenzminimums.
+Ich verfuege über keine anderweitigen Mittel, um die benoetigten Gegenstaende zu beschaffen. Die Ablehnung meines Antrags ist daher rechtswidrig und verletzt mein Recht auf Sicherung des Existenzminimums.
 
 Das Bundessozialgericht hat in staendiger Rechtsprechung klargestellt, dass ein Anspruch auf Erstausstattung auch dann besteht, wenn ein Bedarf erstmals oder nach laengerer Zeit erneut auftritt (vgl. BSG, Urteil vom 19.09.2008, B 14 AS 64/07 R).
 
@@ -434,7 +434,7 @@ ${name}`
     category: 'aufhebung',
     title: 'Widerspruch gegen Aufhebungs- und Erstattungsbescheid',
     description:
-      'Verwenden Sie diese Vorlage, wenn Ihre Leistungen fuer die Vergangenheit aufgehoben und eine Erstattung verlangt wird, z.B. wegen angeblicher Einkommenserhoehung oder Aenderung der Verhaeltnisse.',
+      'Verwenden Sie diese Vorlage, wenn Ihre Leistungen für die Vergangenheit aufgehoben und eine Erstattung verlangt wird, z.B. wegen angeblicher Einkommenserhoehung oder Aenderung der Verhaeltnisse.',
     legalBasis: ['§ 45 SGB X', '§ 48 SGB X', '§ 50 SGB X', '§ 84 SGG'],
     fields: [
       ...COMMON_FIELDS,
@@ -468,22 +468,22 @@ Sehr geehrte Damen und Herren,
 
 hiermit lege ich fristgerecht Widerspruch gegen Ihren Aufhebungs- und Erstattungsbescheid vom ${datum}, Aktenzeichen ${az}, ein.
 
-In dem genannten Bescheid heben Sie die Leistungsbewilligung fuer den Zeitraum ${zeitraum} auf und fordern einen Betrag in Hoehe von ${betrag} EUR zurueck. Als Begruendung fuehren Sie an: ${grund}.
+In dem genannten Bescheid heben Sie die Leistungsbewilligung für den Zeitraum ${zeitraum} auf und fordern einen Betrag in Höhe von ${betrag} EUR zurück. Als Begruendung fuehren Sie an: ${grund}.
 
 Begruendung meines Widerspruchs:
 
 1. Formelle Rechtswidrigkeit
-Die Aufhebung ist formell rechtswidrig. Gemaess § 24 SGB X haette mir vor Erlass des belastenden Verwaltungsaktes Gelegenheit zur Anhoerung gegeben werden muessen. Eine ordnungsgemaesse Anhoerung ist nicht erfolgt (bzw. war unzureichend).
+Die Aufhebung ist formell rechtswidrig. Gemaess § 24 SGB X hätte mir vor Erlass des belastenden Verwaltungsaktes Gelegenheit zur Anhoerung gegeben werden muessen. Eine ordnungsgemaesse Anhoerung ist nicht erfolgt (bzw. war unzureichend).
 
 2. Materielle Rechtswidrigkeit
-Die Voraussetzungen fuer eine Aufhebung nach § 45 SGB X (rechtswidriger beguenstigender Verwaltungsakt) bzw. § 48 SGB X (Aenderung der Verhaeltnisse) liegen nicht vor.
+Die Voraussetzungen für eine Aufhebung nach § 45 SGB X (rechtswidriger beguenstigender Verwaltungsakt) bzw. § 48 SGB X (Aenderung der Verhaeltnisse) liegen nicht vor.
 
-Gemaess § 45 Abs. 2 SGB X darf ein rechtswidriger beguenstigender Verwaltungsakt nur unter den dort genannten engen Voraussetzungen zurueckgenommen werden. Insbesondere muss geprueft werden, ob ich auf den Bestand des Verwaltungsaktes vertraut habe und mein Vertrauen schutzwuerdig ist.
+Gemaess § 45 Abs. 2 SGB X darf ein rechtswidriger beguenstigender Verwaltungsakt nur unter den dort genannten engen Voraussetzungen zurückgenommen werden. Insbesondere muss geprüft werden, ob ich auf den Bestand des Verwaltungsaktes vertraut habe und mein Vertrauen schutzwuerdig ist.
 
 Gemaess § 48 SGB X ist eine Aufhebung wegen Aenderung der Verhaeltnisse nur zulaessig, wenn sich die tatsaechlichen oder rechtlichen Verhaeltnisse, die beim Erlass des Verwaltungsaktes vorgelegen haben, wesentlich geaendert haben. Dies ist in meinem Fall nicht der Fall.
 
 3. Erstattungsforderung
-Die Erstattungsforderung nach § 50 SGB X ist ebenfalls rechtswidrig, da die zugrundeliegende Aufhebung rechtswidrig ist. Zudem ist die Hoehe des Erstattungsbetrags nicht nachvollziehbar berechnet.
+Die Erstattungsforderung nach § 50 SGB X ist ebenfalls rechtswidrig, da die zugrundeliegende Aufhebung rechtswidrig ist. Zudem ist die Höhe des Erstattungsbetrags nicht nachvollziehbar berechnet.
 
 Ich fordere Sie auf, den Aufhebungs- und Erstattungsbescheid vollstaendig aufzuheben.
 
@@ -533,17 +533,17 @@ Betreff: Widerspruch gegen den Erstattungsbescheid vom ${datum}
 
 Sehr geehrte Damen und Herren,
 
-hiermit lege ich fristgerecht Widerspruch gegen Ihren Erstattungsbescheid vom ${datum}, Aktenzeichen ${az}, ein, mit dem Sie eine Rueckforderung in Hoehe von ${betrag} EUR geltend machen.
+hiermit lege ich fristgerecht Widerspruch gegen Ihren Erstattungsbescheid vom ${datum}, Aktenzeichen ${az}, ein, mit dem Sie eine Rueckforderung in Höhe von ${betrag} EUR geltend machen.
 
 Als Begruendung wird angefuehrt: ${grund}.
 
 Begruendung meines Widerspruchs:
 
-1. Die Erstattungsforderung nach § 50 SGB X setzt voraus, dass der zugrundeliegende Bewilligungsbescheid rechtmaessig aufgehoben oder zurueckgenommen wurde. Die Voraussetzungen hierfuer liegen nach meiner Auffassung nicht vor.
+1. Die Erstattungsforderung nach § 50 SGB X setzt voraus, dass der zugrundeliegende Bewilligungsbescheid rechtmaessig aufgehoben oder zurückgenommen wurde. Die Voraussetzungen hierfuer liegen nach meiner Auffassung nicht vor.
 
-2. Selbst wenn eine Aufhebung dem Grunde nach moeglich waere, ist die Hoehe der Erstattungsforderung nicht nachvollziehbar. Ich bitte um eine detaillierte Berechnung, aus der sich ergibt, wie der geforderte Betrag von ${betrag} EUR zustande kommt.
+2. Selbst wenn eine Aufhebung dem Grunde nach moeglich waere, ist die Höhe der Erstattungsforderung nicht nachvollziehbar. Ich bitte um eine detaillierte Berechnung, aus der sich ergibt, wie der geforderte Betrag von ${betrag} EUR zustande kommt.
 
-3. Gemaess § 45 Abs. 2 S. 3 SGB X kann sich der Betroffene auf Vertrauensschutz berufen, wenn er die Leistungen verbraucht hat und die Ruecknahme des Verwaltungsaktes zu einer unbilligen Haerte fuehren wuerde. Dies ist in meinem Fall gegeben, da ich die Leistungen fuer meinen Lebensunterhalt verbraucht habe und ueber keinerlei Vermoegen verfuege.
+3. Gemaess § 45 Abs. 2 S. 3 SGB X kann sich der Betroffene auf Vertrauensschutz berufen, wenn er die Leistungen verbraucht hat und die Ruecknahme des Verwaltungsaktes zu einer unbilligen Haerte fuehren wuerde. Dies ist in meinem Fall gegeben, da ich die Leistungen für meinen Lebensunterhalt verbraucht habe und über keinerlei Vermoegen verfuege.
 
 4. Vorsorglich beantrage ich die Niederschlagung der Forderung nach § 44 SGB II bzw. die Gewaehrung einer Ratenzahlung, sollte die Erstattungsforderung wider Erwarten rechtmaessig sein.
 
@@ -563,7 +563,7 @@ ${name}`
     category: 'allgemein',
     title: 'Allgemeiner Widerspruch (Universalvorlage)',
     description:
-      'Verwenden Sie diese universelle Vorlage fuer jeden Widerspruch gegen einen Bescheid des Jobcenters, der Agentur fuer Arbeit oder des Sozialamts. Sie koennen den Text individuell anpassen.',
+      'Verwenden Sie diese universelle Vorlage für jeden Widerspruch gegen einen Bescheid des Jobcenters, der Agentur für Arbeit oder des Sozialamts. Sie koennen den Text individuell anpassen.',
     legalBasis: ['§ 83 SGG', '§ 84 SGG', '§ 78 SGG'],
     fields: [
       ...COMMON_FIELDS,
@@ -595,11 +595,11 @@ Sehr geehrte Damen und Herren,
 
 hiermit lege ich fristgerecht gemaess § 83 SGG Widerspruch gegen Ihren ${art} vom ${datum}, Aktenzeichen ${az}, ein.
 
-Ich halte den genannten Bescheid fuer rechtswidrig und begruende meinen Widerspruch wie folgt:
+Ich halte den genannten Bescheid für rechtswidrig und begruende meinen Widerspruch wie folgt:
 
 ${grund}
 
-Ich bitte um eine vollstaendige Ueberpruefung des Bescheids in tatsaechlicher und rechtlicher Hinsicht und fordere Sie auf, den Bescheid abzuaendern bzw. aufzuheben.
+Ich bitte um eine vollstaendige Überprüfung des Bescheids in tatsaechlicher und rechtlicher Hinsicht und fordere Sie auf, den Bescheid abzuaendern bzw. aufzuheben.
 
 Eine ausfuehrliche Begruendung behalte ich mir nach Akteneinsicht gemaess § 25 SGB X vor. Ich beantrage hiermit gleichzeitig Einsicht in meine vollstaendige Verwaltungsakte.
 
@@ -778,7 +778,7 @@ export default function WiderspruchVorlagen() {
           {/* Back button */}
           <Button variant="outline" size="sm" onClick={handleBack} className="mb-6 gap-2">
             <ArrowRight className="h-4 w-4 rotate-180" />
-            Zurueck zur Uebersicht
+            Zurück zur Uebersicht
           </Button>
 
           {/* Template title card */}
@@ -875,13 +875,13 @@ export default function WiderspruchVorlagen() {
             <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
             <div className="text-sm">
               <p className="font-semibold text-amber-800 dark:text-amber-300 mb-1">
-                Vor dem Absenden pruefen
+                Vor dem Absenden prüfen
               </p>
               <ul className="text-amber-700 dark:text-amber-400 space-y-1 list-disc list-inside">
                 <li>Alle Felder mit Ihren korrekten Daten ausgefuellt?</li>
                 <li>Widerspruchsfrist noch nicht abgelaufen? (1 Monat ab Zugang, § 84 SGG)</li>
                 <li>Per Einschreiben versenden oder persoenlich mit Empfangsbestaetigung abgeben</li>
-                <li>Kopie fuer Ihre Unterlagen aufbewahren</li>
+                <li>Kopie für Ihre Unterlagen aufbewahren</li>
               </ul>
             </div>
           </div>
@@ -983,7 +983,7 @@ export default function WiderspruchVorlagen() {
               <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="font-semibold mb-2">Keine Vorlagen gefunden</h3>
               <p className="text-muted-foreground mb-4">
-                Versuchen Sie einen anderen Suchbegriff oder waehlen Sie eine andere Kategorie.
+                Versuchen Sie einen anderen Suchbegriff oder wählen Sie eine andere Kategorie.
               </p>
               <Button
                 variant="outline"

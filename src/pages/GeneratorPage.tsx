@@ -41,7 +41,7 @@ export default function GeneratorPage() {
         <Button variant="outline" asChild>
           <Link to="/musterschreiben">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Zurueck zu Musterschreiben
+            Zurück zu Musterschreiben
           </Link>
         </Button>
       </div>
@@ -77,7 +77,7 @@ export default function GeneratorPage() {
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
-        Zurueck zu Musterschreiben
+        Zurück zu Musterschreiben
       </Link>
 
       {/* Header */}
@@ -126,7 +126,7 @@ export default function GeneratorPage() {
                         onChange={(e) => handleFieldChange(field.id, e.target.value)}
                         className="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm"
                       >
-                        <option value="">Bitte waehlen...</option>
+                        <option value="">Bitte wählen...</option>
                         {field.options?.map((opt) => (
                           <option key={opt.value} value={opt.value}>{opt.label}</option>
                         ))}
@@ -329,7 +329,7 @@ ein.
 Begruendung:
 ${data.grund || '[Deine Begruendung wird hier eingefuegt]'}
 
-Ich bitte um Ueberpruefung des Bescheids und um Erlass eines rechtsmittelfaehigen Widerspruchsbescheids fuer den Fall, dass meinem Widerspruch nicht abgeholfen wird.
+Ich bitte um Überprüfung des Bescheids und um Erlass eines rechtsmittelfaehigen Widerspruchsbescheids für den Fall, dass meinem Widerspruch nicht abgeholfen wird.
 
 Vorsorglich beantrage ich die Aussetzung der sofortigen Vollziehung gemaess § 86a SGG.
 
@@ -373,7 +373,7 @@ ${data.wichtiger_grund || '[Begruendung]'}
 
 Ich hatte einen wichtigen Grund im Sinne des § 31 Abs. 1 Satz 2 SGB II, der die Pflichtverletzung entschuldigt.
 
-Ich weise darauf hin, dass nach der aktuellen Rechtslage (Buergergeld-Gesetz) Sanktionen auf maximal 30% des Regelsatzes begrenzt sind und die Kosten der Unterkunft nicht gekuerzt werden duerfen.
+Ich weise darauf hin, dass nach der aktuellen Rechtslage (Bürgergeld-Gesetz) Sanktionen auf maximal 30% des Regelsatzes begrenzt sind und die Kosten der Unterkunft nicht gekürzt werden duerfen.
 
 Ich beantrage:
 1. Aufhebung des Sanktionsbescheids
@@ -404,15 +404,15 @@ Bewilligungszeitraum: ${data.zeitraum || '[Zeitraum]'}
 
 Sehr geehrte Damen und Herren,
 
-hiermit beantrage ich gemaess § 44 SGB X die Ueberpruefung Ihres Bescheids vom ${bescheidDatum} fuer den Bewilligungszeitraum ${data.zeitraum || '[Zeitraum]'}.
+hiermit beantrage ich gemaess § 44 SGB X die Überprüfung Ihres Bescheids vom ${bescheidDatum} für den Bewilligungszeitraum ${data.zeitraum || '[Zeitraum]'}.
 
 Der Bescheid ist rechtswidrig:
 ${data.grund || '[Begruendung]'}
 
 Ich beantrage:
-1. Ueberpruefung des genannten Bescheids
+1. Überprüfung des genannten Bescheids
 2. Abänderung zugunsten des Antragstellers
-3. Nachzahlung der zu Unrecht vorenthaltenen Leistungen fuer den gesamten Zeitraum (bis zu 4 Jahre, § 44 Abs. 4 SGB X)
+3. Nachzahlung der zu Unrecht vorenthaltenen Leistungen für den gesamten Zeitraum (bis zu 4 Jahre, § 44 Abs. 4 SGB X)
 
 Mit freundlichen Gruessen
 
@@ -443,22 +443,22 @@ hiermit lege ich gegen Ihren Bescheid vom ${bescheidDatum} fristgerecht
 
                     WIDERSPRUCH
 
-ein, soweit die Kosten der Unterkunft und Heizung nicht in tatsaechlicher Hoehe uebernommen werden.
+ein, soweit die Kosten der Unterkunft und Heizung nicht in tatsaechlicher Höhe uebernommen werden.
 
 Meine tatsaechlichen Unterkunftskosten betragen ${tatsaechlich} EUR monatlich (warm). In Ihrem Bescheid werden jedoch nur ${anerkannt} EUR anerkannt. Dies ergibt eine monatliche Unterdeckung von ${differenz > 0 ? differenz.toFixed(2) : '[...]'} EUR.
 
-Die Kuerzung ist rechtswidrig:
+Die Kürzung ist rechtswidrig:
 
-1. Gemaess § 22 Abs. 1 Satz 1 SGB II sind die tatsaechlichen Aufwendungen fuer Unterkunft und Heizung zu uebernehmen, soweit sie angemessen sind.
+1. Gemaess § 22 Abs. 1 Satz 1 SGB II sind die tatsaechlichen Aufwendungen für Unterkunft und Heizung zu uebernehmen, soweit sie angemessen sind.
 
-2. Sofern die Kosten als unangemessen angesehen werden, sind die tatsaechlichen Kosten gemaess § 22 Abs. 1 Satz 3 SGB II solange zu uebernehmen, wie eine Senkung nicht moeglich oder zumutbar ist, laengstens jedoch fuer 6 Monate.
+2. Sofern die Kosten als unangemessen angesehen werden, sind die tatsaechlichen Kosten gemaess § 22 Abs. 1 Satz 3 SGB II solange zu uebernehmen, wie eine Senkung nicht moeglich oder zumutbar ist, laengstens jedoch für 6 Monate.
 
 3. Das von Ihnen herangezogene Konzept zur Bestimmung der Angemessenheitsgrenze in ${data.wohnort || '[Wohnort]'} ist nicht schluessig im Sinne der Rechtsprechung des BSG (B 4 AS 18/09 R). Ohne schluessiges Konzept gelten die tatsaechlichen Kosten als Obergrenze.
 
 4. Darueber hinaus ist auf dem aktuellen Wohnungsmarkt keine guenstigere vergleichbare Wohnung verfuegbar. Eine Kostensenkung ist daher nicht moeglich.
 
 Ich beantrage:
-1. Uebernahme der tatsaechlichen Kosten der Unterkunft und Heizung in Hoehe von ${tatsaechlich} EUR
+1. Uebernahme der tatsaechlichen Kosten der Unterkunft und Heizung in Höhe von ${tatsaechlich} EUR
 2. Nachzahlung des einbehaltenen Differenzbetrags
 
 Mit freundlichen Gruessen
@@ -489,7 +489,7 @@ hiermit lege ich gegen Ihren Aufhebungs- und Erstattungsbescheid vom ${bescheidD
 
 ein.
 
-Die Aufhebung und die Erstattungsforderung in Hoehe von ${data.rueckforderung_hoehe || '[Betrag]'} EUR sind rechtswidrig:
+Die Aufhebung und die Erstattungsforderung in Höhe von ${data.rueckforderung_hoehe || '[Betrag]'} EUR sind rechtswidrig:
 
 ${data.grund || '[Begruendung]'}
 
@@ -501,7 +501,7 @@ Ich mache insbesondere geltend:
 
 3. Die Jahresfrist des § 45 Abs. 4 Satz 2 SGB X wurde nicht eingehalten.
 
-4. Hilfsweise beantrage ich den Erlass der Erstattungsforderung gemaess § 44 SGB II, da die Einziehung fuer mich eine besondere Haerte darstellen wuerde.
+4. Hilfsweise beantrage ich den Erlass der Erstattungsforderung gemaess § 44 SGB II, da die Einziehung für mich eine besondere Haerte darstellen wuerde.
 
 Vorsorglich beantrage ich die Aussetzung der sofortigen Vollziehung.
 
@@ -527,7 +527,7 @@ Erstattungsforderung: ${data.forderung_hoehe || '[Betrag]'} EUR
 
 Sehr geehrte Damen und Herren,
 
-hiermit lege ich gegen Ihren Erstattungsbescheid vom ${bescheidDatum} ueber ${data.forderung_hoehe || '[Betrag]'} EUR fristgerecht
+hiermit lege ich gegen Ihren Erstattungsbescheid vom ${bescheidDatum} über ${data.forderung_hoehe || '[Betrag]'} EUR fristgerecht
 
                     WIDERSPRUCH
 
@@ -542,7 +542,7 @@ Ich beanstande insbesondere:
 1. Der zugrundeliegende Aufhebungsbescheid ist selbst rechtswidrig (siehe oben).
 2. Die Berechnung der Erstattungsforderung ist fehlerhaft.
 3. Hilfsweise beantrage ich den vollstaendigen Erlass der Erstattungsforderung gemaess § 44 SGB II, da die Einziehung eine besondere Haerte darstellt.
-4. Hoechst hilfsweise beantrage ich eine Ratenzahlung in Hoehe von maximal 10% des Regelsatzes.
+4. Hoechst hilfsweise beantrage ich eine Ratenzahlung in Höhe von maximal 10% des Regelsatzes.
 
 Ich weise darauf hin, dass eine Aufrechnung mit laufenden Leistungen gemaess § 43 SGB II maximal 30% des Regelsatzes betragen darf.
 
@@ -600,8 +600,8 @@ ${name}`
 
     case 'antrag_einmalige_leistung': {
       const leistungMap: Record<string, string> = {
-        erstausstattung_wohnung: 'Erstausstattung fuer die Wohnung (§ 24 Abs. 3 Nr. 1 SGB II)',
-        erstausstattung_kleidung: 'Erstausstattung fuer Bekleidung (§ 24 Abs. 3 Nr. 2 SGB II)',
+        erstausstattung_wohnung: 'Erstausstattung für die Wohnung (§ 24 Abs. 3 Nr. 1 SGB II)',
+        erstausstattung_kleidung: 'Erstausstattung für Bekleidung (§ 24 Abs. 3 Nr. 2 SGB II)',
         erstausstattung_schwangerschaft: 'Erstausstattung bei Schwangerschaft/Geburt (§ 24 Abs. 3 Nr. 2 SGB II)',
         reparatur: 'Ersatzbeschaffung/Reparatur notwendiger Geraete',
         klassenfahrt: 'Klassenfahrt/Schulausflug (§ 28 Abs. 2 SGB II)',
@@ -631,7 +631,7 @@ Art: ${leistungText}
 Begruendung:
 ${data.begruendung || '[Was wird benoetigt und warum]'}
 
-Die Anschaffung kann nicht aus dem Regelsatz finanziert werden, da dieser nur den laufenden Lebensbedarf deckt und keine Ansparmoeglichkeit fuer groessere Anschaffungen bietet (BSG, Urteil vom 20.08.2009, B 14 AS 45/08 R).
+Die Anschaffung kann nicht aus dem Regelsatz finanziert werden, da dieser nur den laufenden Lebensbedarf deckt und keine Ansparmoeglichkeit für groessere Anschaffungen bietet (BSG, Urteil vom 20.08.2009, B 14 AS 45/08 R).
 
 Ich bitte um Gewaehrung als Geldleistung gemaess § 24 Abs. 3 Satz 5 SGB II, da ich die Anschaffung selbst guenstiger taetigen kann.
 
@@ -696,7 +696,7 @@ Antragsgegner: ${data.jobcenter || '[Jobcenter]'}, [Adresse]
 
 Ich beantrage,
 
-den Antragsgegner im Wege der einstweiligen Anordnung zu verpflichten, mir vorlaeufig Leistungen zur Sicherung des Lebensunterhalts nach dem SGB II in gesetzlicher Hoehe zu gewaehren.
+den Antragsgegner im Wege der einstweiligen Anordnung zu verpflichten, mir vorlaeufig Leistungen zur Sicherung des Lebensunterhalts nach dem SGB II in gesetzlicher Höhe zu gewaehren.
 
 I. Sachverhalt:
 
@@ -720,7 +720,7 @@ Anlagen:
 - Ablehnungsbescheid / streitiger Bescheid
 - Widerspruch (falls eingelegt)
 - Nachweis der Notlage
-- PKH-Erklaerung ueber die persoenlichen und wirtschaftlichen Verhaeltnisse
+- PKH-Erklärung über die persoenlichen und wirtschaftlichen Verhaeltnisse
 
 ${name}`
       break
@@ -760,7 +760,7 @@ ${name}`
 [PLZ Ort]
 
 ${jobcenter}
-- Geschaeftsfuehrung / Teamleitung -
+- Geschäftsfuehrung / Teamleitung -
 [Adresse des Jobcenters]
 [PLZ Ort]
 
@@ -772,12 +772,12 @@ ${data.sachbearbeiter ? `Betroffener Sachbearbeiter: ${data.sachbearbeiter}` : '
 
 Sehr geehrte Damen und Herren,
 
-hiermit erhebe ich Dienstaufsichtsbeschwerde gemaess Art. 17 GG (Petitionsrecht) ueber folgenden Vorfall:
+hiermit erhebe ich Dienstaufsichtsbeschwerde gemaess Art. 17 GG (Petitionsrecht) über folgenden Vorfall:
 
 ${data.vorfall || '[Beschreibung des Vorfalls]'}
 
 Ich bitte um:
-1. Pruefung des Sachverhalts
+1. Prüfung des Sachverhalts
 2. Schriftliche Stellungnahme zu meiner Beschwerde
 3. Ggf. Sicherstellung, dass sich ein derartiger Vorfall nicht wiederholt
 
@@ -790,7 +790,7 @@ Mit freundlichen Gruessen
 ${name}`
       break
 
-    case 'fristverlängerung':
+    case 'fristverlaengerung':
       letterBody = `${name}
 [Deine Adresse]
 [PLZ Ort]
@@ -823,7 +823,7 @@ ${name}`
     case 'antrag_umzug': {
       const umzugsgrundMap: Record<string, string> = {
         aufforderung: 'Kostensenkungsaufforderung durch das Jobcenter',
-        kuendigung: 'Kuendigung durch den Vermieter',
+        kündigung: 'Kündigung durch den Vermieter',
         gesundheit: 'Gesundheitliche Gruende',
         familie: 'Familiaere Gruende (z.B. Nachwuchs)',
         arbeit: 'Arbeitsaufnahme in anderer Stadt',
@@ -842,13 +842,13 @@ ${jobcenter}
 
 ${today}
 
-Betreff: Antrag auf Zusicherung der Kostenuebernahme fuer eine neue Wohnung gemaess § 22 Abs. 4 SGB II
+Betreff: Antrag auf Zusicherung der Kostenuebernahme für eine neue Wohnung gemaess § 22 Abs. 4 SGB II
 sowie Antrag auf Uebernahme der Umzugskosten gemaess § 22 Abs. 6 SGB II
 BG-Nummer: ${bgNummer}
 
 Sehr geehrte Damen und Herren,
 
-hiermit beantrage ich die Zusicherung zur Uebernahme der Aufwendungen fuer die nachfolgend bezeichnete Wohnung sowie die Uebernahme der Umzugskosten.
+hiermit beantrage ich die Zusicherung zur Uebernahme der Aufwendungen für die nachfolgend bezeichnete Wohnung sowie die Uebernahme der Umzugskosten.
 
 Neue Wohnung:
 Adresse: ${data.neue_adresse || '[Adresse]'}
@@ -859,7 +859,7 @@ Grund des Umzugs: ${grund}
 Der Umzug ist notwendig und die Kosten der neuen Unterkunft sind angemessen im Sinne des § 22 SGB II.
 
 Ich beantrage:
-1. Zusicherung der Uebernahme der Mietkosten fuer die neue Wohnung
+1. Zusicherung der Uebernahme der Mietkosten für die neue Wohnung
 2. Uebernahme der Umzugskosten (Umzugswagen, Helfer)
 3. Uebernahme einer ggf. anfallenden Mietkaution als Darlehen gemaess § 22 Abs. 6 SGB II
 

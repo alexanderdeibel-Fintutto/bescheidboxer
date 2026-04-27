@@ -130,7 +130,7 @@ export default function ErstausstattungsRechner() {
                   <li>Schwangerschaft und Geburt eines Kindes</li>
                 </ul>
                 <p className="text-xs text-gray-600 mt-3">
-                  Waehle die Gegenstaende aus, die du benoetigst. Die angegebenen Betraege sind Richtwerte
+                  Wähle die Gegenstaende aus, die du benoetigst. Die angegebenen Betraege sind Richtwerte
                   und koennen je nach Kommune abweichen.
                 </p>
               </div>
@@ -192,7 +192,7 @@ export default function ErstausstattungsRechner() {
 
             {totals.count === 0 ? (
               <p className="text-sm text-gray-600">
-                Waehle Gegenstaende aus, um deinen Anspruch zu berechnen.
+                Wähle Gegenstaende aus, um deinen Anspruch zu berechnen.
               </p>
             ) : (
               <div className="space-y-4">
@@ -249,7 +249,7 @@ export default function ErstausstattungsRechner() {
                   <Button
                     onClick={() => shareResult({
                       title: 'Erstausstattungs-Berechnung',
-                      text: `Erstausstattungs-Rechner: ca. ${totals.avgTotal} EUR fuer ${totals.count} Posten (${totals.minTotal}-${totals.maxTotal} EUR)`,
+                      text: `Erstausstattungs-Rechner: ca. ${totals.avgTotal} EUR für ${totals.count} Posten (${totals.minTotal}-${totals.maxTotal} EUR)`,
                       url: window.location.href,
                     })}
                     variant="outline"

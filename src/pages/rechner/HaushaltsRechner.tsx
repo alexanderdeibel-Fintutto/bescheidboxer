@@ -70,8 +70,8 @@ const SPARTIPPS = [
     titel: 'Lebensmittel',
     icon: 'cart' as const,
     tipps: [
-      'Die Tafel bietet Lebensmittel fuer sehr kleine Betraege oder kostenlos an.',
-      'Angebote vergleichen und Wochenplaene fuer Mahlzeiten erstellen.',
+      'Die Tafel bietet Lebensmittel für sehr kleine Betraege oder kostenlos an.',
+      'Angebote vergleichen und Wochenplaene für Mahlzeiten erstellen.',
       'Saison-Gemuese und -Obst kaufen, das ist meist guenstiger.',
       'Apps wie "Too Good To Go" bieten guenstige Lebensmittel-Restposten.',
     ],
@@ -81,8 +81,8 @@ const SPARTIPPS = [
     icon: 'cart' as const,
     tipps: [
       'Sozialkaufhaeuser und Kleiderkammern bieten guenstige Second-Hand-Ware.',
-      'Online-Flohmaerkte (eBay Kleinanzeigen, Vinted) fuer guenstige Angebote nutzen.',
-      'In vielen Staedten gibt es "Umsonstlaeden" fuer kostenlose Gegenstaende.',
+      'Online-Flohmaerkte (eBay Kleinanzeigen, Vinted) für guenstige Angebote nutzen.',
+      'In vielen Staedten gibt es "Umsonstlaeden" für kostenlose Gegenstaende.',
     ],
   },
   {
@@ -90,7 +90,7 @@ const SPARTIPPS = [
     icon: 'bus' as const,
     tipps: [
       'Sozialticket / Deutschlandticket-Ermaessigung beim Jobcenter beantragen.',
-      'Viele Kommunen bieten ermaessigte Monatstickets fuer Buergergeld-Empfaenger.',
+      'Viele Kommunen bieten ermaessigte Monatstickets für Bürgergeld-Empfaenger.',
       'Fahrrad als Alternative: Manche Projekte verschenken reparierte Fahrraeder.',
     ],
   },
@@ -100,7 +100,7 @@ const SPARTIPPS = [
     tipps: [
       'Stromanbieter vergleichen und jaehrlich wechseln (Vergleichsportale nutzen).',
       'LED-Lampen und Steckerleisten mit Schalter verwenden.',
-      'Energieberatung der Verbraucherzentrale ist oft kostenlos fuer Buergergeld-Empfaenger.',
+      'Energieberatung der Verbraucherzentrale ist oft kostenlos für Bürgergeld-Empfaenger.',
       'Bei Stromnachzahlungen: Darlehen beim Jobcenter nach § 24 Abs. 1 SGB II beantragen.',
     ],
   },
@@ -108,9 +108,9 @@ const SPARTIPPS = [
     titel: 'Telefon & Internet',
     icon: 'phone' as const,
     tipps: [
-      'Sozialtarife der Telekom und anderer Anbieter pruefen.',
+      'Sozialtarife der Telekom und anderer Anbieter prüfen.',
       'Prepaid-Tarife sind oft guenstiger als Vertraege.',
-      'WLAN-Sharing oder Bibliotheks-Internet fuer Zusatzbedarf nutzen.',
+      'WLAN-Sharing oder Bibliotheks-Internet für Zusatzbedarf nutzen.',
     ],
   },
   {
@@ -118,7 +118,7 @@ const SPARTIPPS = [
     icon: 'heart' as const,
     tipps: [
       'Befreiung von Zuzahlungen bei der Krankenkasse beantragen (Belastungsgrenze 2% des Regelbedarfs).',
-      'Mehrbedarf fuer kostenaufwaendige Ernaehrung nach § 21 Abs. 5 SGB II pruefen.',
+      'Mehrbedarf für kostenaufwaendige Ernaehrung nach § 21 Abs. 5 SGB II prüfen.',
       'Generika statt Markenmedikamente erfragen.',
     ],
   },
@@ -127,9 +127,9 @@ const SPARTIPPS = [
     icon: 'piggy' as const,
     tipps: [
       'Viele Museen und Kultureinrichtungen bieten freien Eintritt mit Sozialausweis.',
-      'Bildung und Teilhabe (BuT) fuer Kinder beantragen (§ 28 SGB II).',
+      'Bildung und Teilhabe (BuT) für Kinder beantragen (§ 28 SGB II).',
       'Stadtbibliotheken bieten kostenlos Buecher, Filme und Internet-Zugang.',
-      'Volkshochschulen bieten ermaessigte Kurse fuer Buergergeld-Empfaenger.',
+      'Volkshochschulen bieten ermaessigte Kurse für Bürgergeld-Empfaenger.',
     ],
   },
 ]
@@ -258,7 +258,7 @@ export default function HaushaltsRechner() {
     ]
 
     generateRechnerPdf(
-      'Monatlicher Haushaltsplan - Buergergeld',
+      'Monatlicher Haushaltsplan - Bürgergeld',
       sections,
       {
         label: differenz >= 0 ? 'Ueberschuss' : 'Defizit',
@@ -309,7 +309,7 @@ export default function HaushaltsRechner() {
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Haushaltsplan-Rechner</h1>
               <p className="text-gray-600 mt-1">
-                Plane dein monatliches Budget als Buergergeld-Empfaenger
+                Plane dein monatliches Budget als Bürgergeld-Empfaenger
               </p>
             </div>
           </div>
@@ -327,8 +327,8 @@ export default function HaushaltsRechner() {
                   Warum ein Haushaltsplan wichtig ist
                 </p>
                 <p>
-                  Mit Buergergeld muss jeder Euro sitzen. Ein Haushaltsplan hilft dir,
-                  den Ueberblick ueber deine Einnahmen und Ausgaben zu behalten und
+                  Mit Bürgergeld muss jeder Euro sitzen. Ein Haushaltsplan hilft dir,
+                  den Überblick über deine Einnahmen und Ausgaben zu behalten und
                   moegliche Einsparungen zu erkennen. Trage deine monatlichen Betraege
                   ein, um zu sehen, ob dein Budget aufgeht.
                 </p>
@@ -540,11 +540,11 @@ export default function HaushaltsRechner() {
                     </p>
                     <ul className="list-disc list-inside text-gray-700 space-y-1 ml-1">
                       <li>
-                        <strong>Mehrbedarf</strong> nach § 21 SGB II (z.B. fuer Alleinerziehende,
+                        <strong>Mehrbedarf</strong> nach § 21 SGB II (z.B. für Alleinerziehende,
                         Schwangere, kostenaufwaendige Ernaehrung)
                       </li>
                       <li>
-                        <strong>Sonderbedarf</strong> nach § 21 Abs. 6 SGB II fuer laufende
+                        <strong>Sonderbedarf</strong> nach § 21 Abs. 6 SGB II für laufende
                         besondere Bedarfe
                       </li>
                       <li>
@@ -574,10 +574,10 @@ export default function HaushaltsRechner() {
                       Dir bleiben monatlich {formatEuro(differenz)} EUR uebrig.
                     </p>
                     <p className="text-gray-700">
-                      Beachte: Buergergeld-Empfaenger duerfen Vermoegen bis zur
-                      Karenzzeit-Grenze (40.000 EUR fuer die erste Person, 15.000 EUR je
+                      Beachte: Bürgergeld-Empfaenger duerfen Vermoegen bis zur
+                      Karenzzeit-Grenze (40.000 EUR für die erste Person, 15.000 EUR je
                       weitere Person im ersten Jahr) behalten. Danach gelten niedrigere
-                      Schonvermoegengrenzen. Informiere dich ueber die aktuellen Freibetraege.
+                      Schonvermögengrenzen. Informiere dich über die aktuellen Freibetraege.
                     </p>
                   </div>
                 </div>
@@ -632,7 +632,7 @@ export default function HaushaltsRechner() {
             >
               <div className="flex items-center gap-2">
                 <PiggyBank className="h-5 w-5 text-amber-600" />
-                <h2 className="text-lg font-semibold text-gray-900">Spartipps fuer Buergergeld-Empfaenger</h2>
+                <h2 className="text-lg font-semibold text-gray-900">Spartipps für Bürgergeld-Empfaenger</h2>
               </div>
               <span className="text-sm text-gray-500">
                 {showSpartipps ? 'Ausblenden' : 'Anzeigen'}
@@ -664,10 +664,10 @@ export default function HaushaltsRechner() {
                     <div className="text-sm text-gray-700 space-y-1">
                       <p className="font-medium text-gray-900">Weitere Hilfsangebote</p>
                       <ul className="space-y-1">
-                        <li>&#8226; <strong>Schuldnerberatung</strong>: Kostenlose Beratung bei Schulden ueber Wohlfahrtsverbaende</li>
-                        <li>&#8226; <strong>Sozialberatung</strong>: Hilfe beim Ausfuellen von Antraegen und bei Problemen mit dem Jobcenter</li>
-                        <li>&#8226; <strong>GEZ-Befreiung</strong>: Rundfunkbeitragsbefreiung mit Buergergeld-Bescheid beantragen</li>
-                        <li>&#8226; <strong>Sozialpass / Ehrenamtskarte</strong>: Viele Kommunen bieten Ermaessigungen fuer diverse Angebote</li>
+                        <li>&#8226; <strong>Schuldnerberatung</strong>: Kostenlose Beratung bei Schulden über Wohlfahrtsverbaende</li>
+                        <li>&#8226; <strong>Sozialberatung</strong>: Hilfe beim Ausfuellen von Anträgen und bei Problemen mit dem Jobcenter</li>
+                        <li>&#8226; <strong>GEZ-Befreiung</strong>: Rundfunkbeitragsbefreiung mit Bürgergeld-Bescheid beantragen</li>
+                        <li>&#8226; <strong>Sozialpass / Ehrenamtskarte</strong>: Viele Kommunen bieten Ermaessigungen für diverse Angebote</li>
                       </ul>
                     </div>
                   </div>

@@ -21,7 +21,7 @@ import {
 
 const CATEGORY_FILTERS: { id: SgbCategory | 'all'; label: string }[] = [
   { id: 'all', label: 'Alle' },
-  { id: 'sgb2', label: 'SGB II (Buergergeld)' },
+  { id: 'sgb2', label: 'SGB II (Bürgergeld)' },
   { id: 'sgb3', label: 'SGB III (ALG I)' },
   { id: 'kdu', label: 'KdU (Miete)' },
   { id: 'sgb10', label: 'Verwaltung' },
@@ -88,8 +88,8 @@ export default function MusterschreibenPage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Musterschreiben</h1>
         <p className="text-muted-foreground max-w-2xl">
-          {LETTER_TEMPLATES.length} fertige Vorlagen fuer Widersprueche, Antraege und Beschwerden.
-          Waehle ein Schreiben, fuelle deine Daten ein, und sende es ab.
+          {LETTER_TEMPLATES.length} fertige Vorlagen für Widersprüche, Anträge und Beschwerden.
+          Wähle ein Schreiben, fuelle deine Daten ein, und sende es ab.
         </p>
       </div>
 
@@ -209,7 +209,7 @@ export default function MusterschreibenPage() {
           <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
           <h3 className="font-semibold mb-2">Keine Schreiben gefunden</h3>
           <p className="text-muted-foreground mb-4">
-            Versuche einen anderen Suchbegriff oder waehle eine andere Kategorie.
+            Versuche einen anderen Suchbegriff oder wähle eine andere Kategorie.
           </p>
           <Button variant="outline" onClick={() => { setSearch(''); setActiveCategory('all') }}>
             Filter zuruecksetzen

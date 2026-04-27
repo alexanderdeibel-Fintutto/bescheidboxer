@@ -42,9 +42,9 @@ const STORAGE_KEY = 'bescheidboxer_checklisten'
 const checklists: Checklist[] = [
   {
     id: 'erstantrag',
-    title: 'Erstantrag Buergergeld',
+    title: 'Erstantrag Bürgergeld',
     description:
-      'Alle Unterlagen und Schritte fuer Ihren ersten Buergergeld-Antrag beim Jobcenter.',
+      'Alle Unterlagen und Schritte für Ihren ersten Bürgergeld-Antrag beim Jobcenter.',
     estimatedMinutes: 60,
     icon: FileText,
     color: 'text-blue-600',
@@ -85,13 +85,13 @@ const checklists: Checklist[] = [
         id: 'kuendigung',
         title: 'Kuendigungsschreiben oder Aufhebungsvertrag',
         description:
-          'Nachweis ueber Beendigung des letzten Arbeitsverhaeltnisses. Wichtig fuer die Pruefung einer Sperrzeit.',
+          'Nachweis über Beendigung des letzten Arbeitsverhaeltnisses. Wichtig für die Prüfung einer Sperrzeit.',
       },
       {
         id: 'alg1-bescheid',
         title: 'ALG-I-Bescheid (falls vorhanden)',
         description:
-          'Wenn Sie Arbeitslosengeld I beziehen oder bezogen haben: den aktuellen Bescheid der Agentur fuer Arbeit.',
+          'Wenn Sie Arbeitslosengeld I beziehen oder bezogen haben: den aktuellen Bescheid der Agentur für Arbeit.',
       },
       {
         id: 'krankenversicherung',
@@ -101,22 +101,22 @@ const checklists: Checklist[] = [
       },
       {
         id: 'kinder-nachweise',
-        title: 'Nachweise fuer Kinder (falls zutreffend)',
+        title: 'Nachweise für Kinder (falls zutreffend)',
         description:
-          'Geburtsurkunden, Kindergeldbescheid, Schulbescheinigungen, Nachweise ueber Unterhalt oder Unterhaltsvorschuss.',
+          'Geburtsurkunden, Kindergeldbescheid, Schulbescheinigungen, Nachweise über Unterhalt oder Unterhaltsvorschuss.',
       },
       {
         id: 'vermoegen',
         title: 'Vermoegensaufstellung erstellen',
         description:
-          'Ueberblick ueber Ersparnisse, Wertpapiere, Lebensversicherungen, Fahrzeuge. In der Karenzzeit (12 Monate) gilt ein Schonvermoegen von 40.000 EUR.',
-        link: { label: 'Schonvermoegens-Rechner', to: '/rechner/schonvermoegen' },
+          'Überblick über Ersparnisse, Wertpapiere, Lebensversicherungen, Fahrzeuge. In der Karenzzeit (12 Monate) gilt ein Schonvermögen von 40.000 EUR.',
+        link: { label: 'Schonvermögens-Rechner', to: '/rechner/schonvermoegen' },
       },
       {
         id: 'antrag-stellen',
         title: 'Antrag beim Jobcenter stellen (auch formlos moeglich)',
         description:
-          'Der Antrag wirkt auf den Ersten des Monats zurueck. Stellen Sie ihn so frueh wie moeglich, auch wenn noch Unterlagen fehlen.',
+          'Der Antrag wirkt auf den Ersten des Monats zurück. Stellen Sie ihn so frueh wie moeglich, auch wenn noch Unterlagen fehlen.',
       },
       {
         id: 'eingangsbestaetigung',
@@ -128,9 +128,9 @@ const checklists: Checklist[] = [
   },
   {
     id: 'umzug',
-    title: 'Umzug mit Buergergeld',
+    title: 'Umzug mit Bürgergeld',
     description:
-      'Schritt-fuer-Schritt-Anleitung fuer einen Umzug waehrend des Leistungsbezugs nach SGB II.',
+      'Schritt-für-Schritt-Anleitung für einen Umzug waehrend des Leistungsbezugs nach SGB II.',
     estimatedMinutes: 45,
     icon: Truck,
     color: 'text-emerald-600',
@@ -144,7 +144,7 @@ const checklists: Checklist[] = [
       },
       {
         id: 'neue-kdu',
-        title: 'Neue Mietkosten auf Angemessenheit pruefen',
+        title: 'Neue Mietkosten auf Angemessenheit prüfen',
         description:
           'Die neue Miete muss innerhalb der KdU-Grenze Ihrer neuen Stadt/Gemeinde liegen. Vorab beim neuen Jobcenter anfragen.',
         link: { label: 'KdU-Rechner', to: '/rechner/kdu' },
@@ -153,7 +153,7 @@ const checklists: Checklist[] = [
         id: 'wohnungssuche',
         title: 'Wohnungssuche dokumentieren',
         description:
-          'Alle Bewerbungen, Besichtigungen und Absagen schriftlich festhalten. Dies kann bei Streitigkeiten ueber die Angemessenheit wichtig werden.',
+          'Alle Bewerbungen, Besichtigungen und Absagen schriftlich festhalten. Dies kann bei Streitigkeiten über die Angemessenheit wichtig werden.',
       },
       {
         id: 'mietvertrag-neu',
@@ -193,10 +193,10 @@ const checklists: Checklist[] = [
           'Damit keine Post vom Jobcenter verloren geht. Wichtig, um keine Fristen zu versaeumen.',
       },
       {
-        id: 'erstausstattung-pruefen',
-        title: 'Erstausstattung pruefen (bei Bedarf)',
+        id: 'erstausstattung-prüfen',
+        title: 'Erstausstattung prüfen (bei Bedarf)',
         description:
-          'Bei Erstbezug einer eigenen Wohnung oder nach Trennung besteht ggf. Anspruch auf Erstausstattung fuer die Wohnung.',
+          'Bei Erstbezug einer eigenen Wohnung oder nach Trennung besteht ggf. Anspruch auf Erstausstattung für die Wohnung.',
         link: { label: 'Erstausstattungs-Rechner', to: '/rechner/erstausstattung' },
       },
     ],
@@ -212,8 +212,8 @@ const checklists: Checklist[] = [
     bgColor: 'bg-red-50',
     items: [
       {
-        id: 'bescheid-pruefen',
-        title: 'Bescheid sorgfaeltig pruefen',
+        id: 'bescheid-prüfen',
+        title: 'Bescheid sorgfaeltig prüfen',
         description:
           'Jeden Posten im Bescheid kontrollieren: Regelsatz, KdU, Mehrbedarfe, Einkommensanrechnung, Vermoegen. Unser BescheidScan hilft dabei.',
         link: { label: 'BescheidScan', to: '/scan' },
@@ -259,9 +259,9 @@ const checklists: Checklist[] = [
       },
       {
         id: 'widerspruchsbescheid',
-        title: 'Widerspruchsbescheid pruefen (nach Erhalt)',
+        title: 'Widerspruchsbescheid prüfen (nach Erhalt)',
         description:
-          'Bei Ablehnung: Innerhalb von 1 Monat Klage beim Sozialgericht moeglich. Klagen sind fuer Leistungsempfaenger kostenfrei (ss 183 SGG).',
+          'Bei Ablehnung: Innerhalb von 1 Monat Klage beim Sozialgericht moeglich. Klagen sind für Leistungsempfaenger kostenfrei (ss 183 SGG).',
       },
     ],
   },
@@ -276,8 +276,8 @@ const checklists: Checklist[] = [
     bgColor: 'bg-amber-50',
     items: [
       {
-        id: 'anhoerung-pruefen',
-        title: 'Anhoerungsschreiben pruefen',
+        id: 'anhoerung-prüfen',
+        title: 'Anhoerungsschreiben prüfen',
         description:
           'Vor jeder Sanktion muss das Jobcenter Sie anhoeren (ss 24 SGB X). Pruefen Sie: Wurde eine Anhoerung durchgefuehrt? Stimmen die Vorwuerfe?',
       },
@@ -285,7 +285,7 @@ const checklists: Checklist[] = [
         id: 'anhoerung-beantworten',
         title: 'Anhoerung fristgerecht beantworten',
         description:
-          'Innerhalb der gesetzten Frist (meist 2 Wochen) schriftlich antworten und einen "wichtigen Grund" fuer die Pflichtverletzung vortragen.',
+          'Innerhalb der gesetzten Frist (meist 2 Wochen) schriftlich antworten und einen "wichtigen Grund" für die Pflichtverletzung vortragen.',
         link: { label: 'Musterschreiben', to: '/musterschreiben' },
       },
       {
@@ -296,16 +296,16 @@ const checklists: Checklist[] = [
       },
       {
         id: 'sanktion-hoehe',
-        title: 'Hoehe der Sanktion pruefen',
+        title: 'Höhe der Sanktion prüfen',
         description:
-          'Maximum: 30% des Regelsatzes (BVerfG-Urteil). Erste Pflichtverletzung: 10% fuer 1 Monat, zweite: 20% fuer 2 Monate, dritte: 30% fuer 3 Monate.',
+          'Maximum: 30% des Regelsatzes (BVerfG-Urteil). Erste Pflichtverletzung: 10% für 1 Monat, zweite: 20% für 2 Monate, dritte: 30% für 3 Monate.',
         link: { label: 'Sanktions-Rechner', to: '/rechner/sanktion' },
       },
       {
         id: 'widerspruch-sanktion',
         title: 'Widerspruch gegen Sanktionsbescheid einlegen',
         description:
-          'Innerhalb von 1 Monat Widerspruch einlegen. Etwa 40% aller Widersprueche gegen Sanktionen sind erfolgreich.',
+          'Innerhalb von 1 Monat Widerspruch einlegen. Etwa 40% aller Widersprüche gegen Sanktionen sind erfolgreich.',
         link: { label: 'Musterschreiben', to: '/musterschreiben' },
       },
       {
@@ -318,7 +318,7 @@ const checklists: Checklist[] = [
         id: 'beratung',
         title: 'Sozialberatung aufsuchen',
         description:
-          'Kostenlose Beratung bei Sozialverbaenden (VdK, SoVD), Caritas, Diakonie oder AWO. Alternativ: Beratungshilfe fuer Anwalt beantragen.',
+          'Kostenlose Beratung bei Sozialverbaenden (VdK, SoVD), Caritas, Diakonie oder AWO. Alternativ: Beratungshilfe für Anwalt beantragen.',
       },
       {
         id: 'dokumentation',
@@ -403,8 +403,8 @@ export default function ChecklistenPage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Checklisten</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Interaktive Checklisten fuer die wichtigsten Situationen im
-            Buergergeld-Bezug. Haken Sie erledigte Schritte ab - Ihr Fortschritt
+            Interaktive Checklisten für die wichtigsten Situationen im
+            Bürgergeld-Bezug. Haken Sie erledigte Schritte ab - Ihr Fortschritt
             wird automatisch gespeichert.
           </p>
         </div>
@@ -578,7 +578,7 @@ export default function ChecklistenPage() {
         <p className="text-xs text-gray-400 text-center mt-10 max-w-2xl mx-auto leading-relaxed">
           Hinweis: Diese Checklisten dienen der Orientierung und ersetzen keine
           individuelle Rechtsberatung. Fuer verbindliche Auskuenfte wenden Sie sich
-          an einen Fachanwalt fuer Sozialrecht oder eine Beratungsstelle (VdK, SoVD,
+          an einen Fachanwalt für Sozialrecht oder eine Beratungsstelle (VdK, SoVD,
           Caritas, Diakonie). Alle Angaben ohne Gewaehr.
         </p>
       </div>

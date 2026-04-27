@@ -74,7 +74,7 @@ function berechneFrist(
       paragraph = '\u00a7 44 SGB X'
       tipps = [
         'Ein Ueberpruefungsantrag ist auch moeglich, wenn die Widerspruchsfrist bereits abgelaufen ist.',
-        'Die Leistungen werden rueckwirkend fuer maximal 1 Jahr ab Antragstellung nachgezahlt (\u00a7 44 Abs. 4 SGB X).',
+        'Die Leistungen werden rueckwirkend für maximal 1 Jahr ab Antragstellung nachgezahlt (\u00a7 44 Abs. 4 SGB X).',
         'Stelle den Antrag so frueh wie moeglich, um moeglichst viele Monate abzudecken.',
         'Begruende konkret, welcher Fehler im urspruenglichen Bescheid vorliegt.',
       ]
@@ -106,7 +106,7 @@ function berechneFrist(
       fristDauer = 'Meistens 1-2 Wochen (individuell festgelegt)'
       paragraph = '\u00a7\u00a7 60-67 SGB I'
       tipps = [
-        'Die Frist fuer Mitwirkungspflichten wird individuell vom Jobcenter festgelegt.',
+        'Die Frist für Mitwirkungspflichten wird individuell vom Jobcenter festgelegt.',
         'Wenn du die Unterlagen nicht rechtzeitig beschaffen kannst, bitte schriftlich um Fristverlaengerung.',
         'Bei Nichteinhaltung droht Versagung oder Entziehung der Leistungen (\u00a7 66 SGB I).',
         'Bewahre Nachweise auf, dass du dich um die Mitwirkung bemueht hast.',
@@ -190,7 +190,7 @@ export default function FristenRechner() {
             <h1 className="text-4xl font-bold text-gray-900">Fristenrechner</h1>
           </div>
           <p className="text-lg text-gray-600 mt-2">
-            Berechne, wann deine Frist fuer Widerspruch, Klage oder andere Rechtsbehelfe ablaeuft.
+            Berechne, wann deine Frist für Widerspruch, Klage oder andere Rechtsbehelfe abläuft.
           </p>
         </div>
 
@@ -304,7 +304,7 @@ export default function FristenRechner() {
                     ) : (
                       <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xl font-semibold bg-red-100 text-red-800">
                         <AlertTriangle className="w-6 h-6" />
-                        {ergebnis.tageVerbleibend === 0 ? 'Frist laeuft HEUTE ab!' : `Frist seit ${Math.abs(ergebnis.tageVerbleibend)} ${Math.abs(ergebnis.tageVerbleibend) === 1 ? 'Tag' : 'Tagen'} abgelaufen`}
+                        {ergebnis.tageVerbleibend === 0 ? 'Frist läuft HEUTE ab!' : `Frist seit ${Math.abs(ergebnis.tageVerbleibend)} ${Math.abs(ergebnis.tageVerbleibend) === 1 ? 'Tag' : 'Tagen'} abgelaufen`}
                       </div>
                     )}
                   </div>
@@ -337,7 +337,7 @@ export default function FristenRechner() {
                           <div>
                             <p className="font-semibold text-gray-900">Ueberpruefungsantrag nach \u00a7 44 SGB X</p>
                             <p className="text-sm text-gray-600">
-                              Unabhaengig von der Frist kannst du einen Ueberpruefungsantrag stellen. Das Amt muss pruefen,
+                              Unabhaengig von der Frist kannst du einen Ueberpruefungsantrag stellen. Das Amt muss prüfen,
                               ob der Bescheid rechtswidrig war. Leistungen werden bis zu 1 Jahr rueckwirkend nachgezahlt.
                             </p>
                           </div>
@@ -354,7 +354,7 @@ export default function FristenRechner() {
                         <div>
                           <h3 className="font-semibold text-green-900">Du hast noch genuegend Zeit</h3>
                           <p className="text-sm text-green-800 mt-1">
-                            Nutze die Zeit, um deinen Rechtsbehelf sorgfaeltig vorzubereiten. Wenn noetig, lege
+                            Nutze die Zeit, um deinen Rechtsbehelf sorgfaeltig vorzubereiten. Wenn nötig, lege
                             zuerst fristwahrend einen formlosen Widerspruch ein und reiche die Begruendung nach.
                           </p>
                         </div>
@@ -370,7 +370,7 @@ export default function FristenRechner() {
                         <div>
                           <h3 className="font-semibold text-red-900">Eile geboten!</h3>
                           <p className="text-sm text-red-800 mt-1">
-                            Die Frist laeuft bald ab. Lege sofort einen formlosen Widerspruch ein, um die Frist zu wahren.
+                            Die Frist läuft bald ab. Lege sofort einen formlosen Widerspruch ein, um die Frist zu wahren.
                             Die ausfuehrliche Begruendung kannst du nachreichen.
                           </p>
                         </div>

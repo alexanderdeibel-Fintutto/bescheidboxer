@@ -313,7 +313,7 @@ export default function NotizenPage() {
               Keine Notizen gefunden
             </h3>
             <p className="text-sm text-gray-500">
-              Versuche einen anderen Suchbegriff oder waehle eine andere Kategorie.
+              Versuche einen anderen Suchbegriff oder wähle eine andere Kategorie.
             </p>
           </div>
         )}

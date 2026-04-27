@@ -313,7 +313,7 @@ function generateDemoData(): FinanzEintrag[] {
       wiederkehrend: true,
       intervall: 'monatlich',
       status: m === 0 ? 'offen' : 'bezahlt',
-      notiz: 'Tatsaechliche Miete 50 EUR ueber KdU-Grenze',
+      notiz: 'Tatsaechliche Miete 50 EUR über KdU-Grenze',
       erstelltAm: monthAgo(m, 3),
     })
     entries.push({
@@ -369,7 +369,7 @@ function generateDemoData(): FinanzEintrag[] {
     datum: monthAgo(2, 15),
     wiederkehrend: false,
     status: 'offen',
-    notiz: 'Ratenzahlung vereinbart: 200 EUR/Monat ueber 6 Monate. 2 Raten bereits bezahlt.',
+    notiz: 'Ratenzahlung vereinbart: 200 EUR/Monat über 6 Monate. 2 Raten bereits bezahlt.',
     erstelltAm: monthAgo(2, 15),
   })
 
@@ -900,7 +900,7 @@ export default function KostenUebersichtPage() {
               onChange={(e) => updateField('kategorie', e.target.value)}
               className="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
-              <option value="">-- Kategorie waehlen --</option>
+              <option value="">-- Kategorie wählen --</option>
               {kategorien.map((k) => (
                 <option key={k} value={k}>
                   {k}
@@ -1033,7 +1033,7 @@ export default function KostenUebersichtPage() {
         <Card className="mb-8">
           <CardContent className="py-12 text-center">
             <Filter className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-            <p className="text-gray-500 font-medium">Keine Eintraege fuer diesen Filter</p>
+            <p className="text-gray-500 font-medium">Keine Eintraege für diesen Filter</p>
             <p className="text-sm text-gray-400 mt-1">Aendere den Filter oder den Tab, um Eintraege zu sehen.</p>
           </CardContent>
         </Card>
@@ -1224,7 +1224,7 @@ export default function KostenUebersichtPage() {
             <div className="flex items-start gap-2">
               <Info className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
               <div>
-                <h4 className="text-sm font-medium text-gray-900 mb-1">Miete ueber KdU-Grenze?</h4>
+                <h4 className="text-sm font-medium text-gray-900 mb-1">Miete über KdU-Grenze?</h4>
                 <p className="text-xs text-gray-600">
                   Pruefen Sie, ob Ihre tatsaechliche Miete hoeher als die anerkannten Kosten der Unterkunft (KdU) ist.
                   Falls ja, haben Sie 6 Monate Zeit, die Kosten zu senken (Kostensenkungsverfahren).
@@ -1281,8 +1281,8 @@ export default function KostenUebersichtPage() {
       <Wallet className="h-12 w-12 text-gray-300 mx-auto mb-4" />
       <h3 className="font-semibold text-lg text-gray-900 mb-2">Noch keine Finanzdaten erfasst</h3>
       <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
-        Erfassen Sie hier Ihre Einnahmen, Ausgaben und Forderungen, um den finanziellen Ueberblick ueber Ihr
-        Buergergeld zu behalten.
+        Erfassen Sie hier Ihre Einnahmen, Ausgaben und Forderungen, um den finanziellen Überblick über Ihr
+        Bürgergeld zu behalten.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Button

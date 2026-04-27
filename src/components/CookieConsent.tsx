@@ -119,7 +119,7 @@ export default function CookieConsent() {
                 <div className="flex-1">
                   <h3 className="font-medium">Notwendig</h3>
                   <p className="text-sm text-muted-foreground">
-                    Erforderlich fuer Session und Authentifizierung
+                    Erforderlich für Session und Authentifizierung
                   </p>
                 </div>
                 <div className="flex items-center">

@@ -14,8 +14,8 @@ interface FaqItem {
 const buergergeldFaqs: FaqItem[] = [
   {
     id: 'was-ist-buergergeld',
-    question: 'Was ist Buergergeld?',
-    answer: 'Seit dem 01.01.2023 ist das Buergergeld der Nachfolger von Hartz IV. Es ist im SGB II (Sozialgesetzbuch Zweites Buch) geregelt und bietet eine Grundsicherung fuer Arbeitssuchende. Das Buergergeld soll die Existenz sichern und Menschen dabei unterstuetzen, wieder in Arbeit zu kommen.'
+    question: 'Was ist Bürgergeld?',
+    answer: 'Seit dem 01.01.2023 ist das Bürgergeld der Nachfolger von Hartz IV. Es ist im SGB II (Sozialgesetzbuch Zweites Buch) geregelt und bietet eine Grundsicherung für Arbeitssuchende. Das Bürgergeld soll die Existenz sichern und Menschen dabei unterstuetzen, wieder in Arbeit zu kommen.'
   },
   {
     id: 'regelsatz-2025',
@@ -35,11 +35,11 @@ const buergergeldFaqs: FaqItem[] = [
   {
     id: 'mehrbedarfe',
     question: 'Was sind Mehrbedarfe?',
-    answer: 'Nach §21 SGB II gibt es Mehrbedarfe fuer besondere Lebenslagen: Schwangerschaft (ab 13. Woche), Alleinerziehende (je nach Anzahl und Alter der Kinder), Menschen mit Behinderung und Personen mit kostenaufwaendiger Ernaehrung (z.B. aus medizinischen Gruenden).'
+    answer: 'Nach §21 SGB II gibt es Mehrbedarfe für besondere Lebenslagen: Schwangerschaft (ab 13. Woche), Alleinerziehende (je nach Anzahl und Alter der Kinder), Menschen mit Behinderung und Personen mit kostenaufwaendiger Ernaehrung (z.B. aus medizinischen Gruenden).'
   },
   {
     id: 'widerspruch-frist',
-    question: 'Wie lange habe ich Zeit fuer einen Widerspruch?',
+    question: 'Wie lange habe ich Zeit für einen Widerspruch?',
     answer: 'Sie haben 1 Monat Zeit nach Zugang des Bescheids, um Widerspruch einzulegen (§84 SGG). Bei postalischer Zusendung gilt die Zugangsfiktion: Der Bescheid gilt am 3. Tag nach Absendung als zugegangen. Die Frist beginnt am Tag danach.'
   }
 ]
@@ -48,7 +48,7 @@ const platformFaqs: FaqItem[] = [
   {
     id: 'kosten',
     question: 'Was kostet BescheidBoxer?',
-    answer: 'BescheidBoxer bietet 4 Tarife: Schnupperer (0 EUR - kostenlos), Starter (2,99 EUR/Monat), Kaempfer (4,99 EUR/Monat) und Vollschutz (7,99 EUR/Monat). Jeder Tarif bietet unterschiedliche Kontingente fuer Chat, BescheidScan und Briefgenerator.'
+    answer: 'BescheidBoxer bietet 4 Tarife: Schnupperer (0 EUR - kostenlos), Starter (2,99 EUR/Monat), Kaempfer (4,99 EUR/Monat) und Vollschutz (7,99 EUR/Monat). Jeder Tarif bietet unterschiedliche Kontingente für Chat, BescheidScan und Briefgenerator.'
   },
   {
     id: 'bescheidscan',
@@ -63,12 +63,12 @@ const platformFaqs: FaqItem[] = [
   {
     id: 'rechtsberatung',
     question: 'Ersetzt BescheidBoxer einen Anwalt?',
-    answer: 'Nein, BescheidBoxer bietet eine KI-gestuetzte Ersteinschaetzung, aber keine Rechtsberatung. Fuer individuelle rechtliche Beratung empfehlen wir Sozialverbaende wie VdK, SoVD oder Beratungsstellen der Caritas. Diese bieten oft kostenlose oder guenstige Beratung fuer Leistungsempfaenger.'
+    answer: 'Nein, BescheidBoxer bietet eine KI-gestuetzte Ersteinschaetzung, aber keine Rechtsberatung. Fuer individuelle rechtliche Beratung empfehlen wir Sozialverbaende wie VdK, SoVD oder Beratungsstellen der Caritas. Diese bieten oft kostenlose oder guenstige Beratung für Leistungsempfaenger.'
   },
   {
     id: 'kostenlos-nutzen',
     question: 'Kann ich BescheidBoxer kostenlos nutzen?',
-    answer: 'Ja, der Schnupperer-Tarif ist dauerhaft kostenlos und bietet 3 Chat-Nachrichten pro Tag, 1 BescheidScan pro Monat und 1 Brief pro Monat. So koennen Sie die Plattform in Ruhe testen, bevor Sie sich fuer einen kostenpflichtigen Tarif entscheiden.'
+    answer: 'Ja, der Schnupperer-Tarif ist dauerhaft kostenlos und bietet 3 Chat-Nachrichten pro Tag, 1 BescheidScan pro Monat und 1 Brief pro Monat. So koennen Sie die Plattform in Ruhe testen, bevor Sie sich für einen kostenpflichtigen Tarif entscheiden.'
   }
 ]
 
@@ -81,12 +81,12 @@ const widerspruchFaqs: FaqItem[] = [
   {
     id: 'klage-kosten',
     question: 'Was kostet eine Klage beim Sozialgericht?',
-    answer: 'Klagen beim Sozialgericht sind fuer Leistungsempfaenger grundsaetzlich kostenlos. Es fallen keine Gerichtskosten an. Bei Bedarf koennen Sie Prozesskostenhilfe (PKH) fuer einen Anwalt beantragen. Auch bei Verlust des Verfahrens entstehen Ihnen keine Kosten.'
+    answer: 'Klagen beim Sozialgericht sind für Leistungsempfaenger grundsaetzlich kostenlos. Es fallen keine Gerichtskosten an. Bei Bedarf koennen Sie Prozesskostenhilfe (PKH) für einen Anwalt beantragen. Auch bei Verlust des Verfahrens entstehen Ihnen keine Kosten.'
   },
   {
     id: 'alte-bescheide',
-    question: 'Kann ich alte Bescheide noch pruefen lassen?',
-    answer: 'Ja, Sie koennen einen Ueberpruefungsantrag nach §44 SGB X stellen. Fehler koennen bis zu 4 Jahre zurueck korrigiert werden, und Sie erhalten dann auch Nachzahlungen fuer die Vergangenheit. Laden Sie einfach Ihre alten Bescheide in BescheidBoxer hoch.'
+    question: 'Kann ich alte Bescheide noch prüfen lassen?',
+    answer: 'Ja, Sie koennen einen Ueberpruefungsantrag nach §44 SGB X stellen. Fehler koennen bis zu 4 Jahre zurück korrigiert werden, und Sie erhalten dann auch Nachzahlungen für die Vergangenheit. Laden Sie einfach Ihre alten Bescheide in BescheidBoxer hoch.'
   },
   {
     id: 'sanktion',
@@ -99,7 +99,7 @@ const technischesFaqs: FaqItem[] = [
   {
     id: 'mobile',
     question: 'Funktioniert BescheidBoxer auf dem Handy?',
-    answer: 'Ja, BescheidBoxer ist vollstaendig responsive und fuer mobile Nutzung optimiert. Sie koennen alle Funktionen - Chat, BescheidScan, Rechner und Briefgenerator - bequem auf Ihrem Smartphone oder Tablet nutzen.'
+    answer: 'Ja, BescheidBoxer ist vollstaendig responsive und für mobile Nutzung optimiert. Sie koennen alle Funktionen - Chat, BescheidScan, Rechner und Briefgenerator - bequem auf Ihrem Smartphone oder Tablet nutzen.'
   },
   {
     id: 'daten-export',
@@ -159,17 +159,17 @@ export default function FaqPage() {
             Haeufige Fragen
           </h1>
           <p className="text-lg text-gray-600">
-            Antworten auf die wichtigsten Fragen zu Buergergeld und BescheidBoxer
+            Antworten auf die wichtigsten Fragen zu Bürgergeld und BescheidBoxer
           </p>
           <p className="text-sm text-gray-500 mt-2">
             Tipp: Nutzen Sie Strg+F (Windows) oder Cmd+F (Mac) um nach Stichworten zu suchen
           </p>
         </div>
 
-        {/* Buergergeld & Rechte */}
+        {/* Bürgergeld & Rechte */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-            <span className="gradient-text-boxer">Buergergeld & Rechte</span>
+            <span className="gradient-text-boxer">Bürgergeld & Rechte</span>
           </h2>
           <div className="space-y-3">
             {buergergeldFaqs.map(renderFaqItem)}
@@ -234,7 +234,7 @@ export default function FaqPage() {
                 <ScanSearch className="w-8 h-8 text-red-600 mx-auto mb-3" />
                 <h4 className="font-semibold text-gray-900 mb-2">BescheidScan</h4>
                 <p className="text-sm text-gray-600">
-                  Bescheid pruefen lassen
+                  Bescheid prüfen lassen
                 </p>
               </CardContent>
             </Card>

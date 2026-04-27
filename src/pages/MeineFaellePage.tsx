@@ -276,7 +276,7 @@ export default function MeineFaellePage() {
     termine.length > 0 ||
     dokumente.length > 0
 
-  // Build Fall objects from Widersprueche, linking related data
+  // Build Fall objects from Widersprüche, linking related data
   const faelle: Fall[] = useMemo(() => {
     const usedAktenzeichenIds = new Set<string>()
     const usedTerminIds = new Set<string>()
@@ -424,7 +424,7 @@ export default function MeineFaellePage() {
               Noch keine Faelle vorhanden
             </h1>
             <p className="text-gray-500 dark:text-gray-400 max-w-lg mx-auto mb-8 leading-relaxed">
-              Sobald Sie Widersprueche, Aktenzeichen, Termine oder Dokumente anlegen,
+              Sobald Sie Widersprüche, Aktenzeichen, Termine oder Dokumente anlegen,
               werden diese hier automatisch als Faelle zusammengefuehrt und uebersichtlich
               dargestellt.
             </p>
@@ -788,7 +788,7 @@ export default function MeineFaellePage() {
           <div className="text-center py-12 mb-10">
             <Filter className="h-10 w-10 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
-              Keine Faelle fuer diesen Filter
+              Keine Faelle für diesen Filter
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               Aendern Sie den Filter, um alle Faelle anzuzeigen.
@@ -957,7 +957,7 @@ export default function MeineFaellePage() {
                   Tipp: Faelle verknuepfen sich automatisch
                 </h3>
                 <p className="text-sm text-blue-800 dark:text-blue-300 leading-relaxed">
-                  Diese Uebersicht verknuepft Ihre Widersprueche automatisch mit
+                  Diese Uebersicht verknuepft Ihre Widersprüche automatisch mit
                   passenden Aktenzeichen, Terminen und Dokumenten anhand uebereinstimmender
                   Begriffe. Je aussagekraeftiger Sie Betreff und Notizen formulieren,
                   desto besser funktioniert die Zuordnung. Eintraege ohne Zuordnung

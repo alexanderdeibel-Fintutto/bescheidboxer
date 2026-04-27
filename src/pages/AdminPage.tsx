@@ -55,7 +55,7 @@ export default function AdminPage() {
   const load = async () => {
     setLoading(true)
 
-    // Join ueber die Relationship (bb_user_state.user_id -> profiles.id).
+    // Join über die Relationship (bb_user_state.user_id -> profiles.id).
     // Supabase kann das automatisch, wenn es einen FK gibt.
     const { data, error } = await supabase
       .from('bb_user_state')
@@ -143,7 +143,7 @@ export default function AdminPage() {
           <div>
             <h1 className="text-2xl font-bold">Admin</h1>
             <p className="text-sm text-muted-foreground">
-              Minimal-Interface fuer Plan-Overrides und Credit-Resets.
+              Minimal-Interface für Plan-Overrides und Credit-Resets.
             </p>
           </div>
         </div>

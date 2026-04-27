@@ -10,9 +10,9 @@ interface SearchItem {
 }
 
 const searchItems: SearchItem[] = [
-  { title: 'BescheidScan', href: '/scan', icon: ScanSearch, keywords: ['scan', 'bescheid', 'pruefen'] },
+  { title: 'BescheidScan', href: '/scan', icon: ScanSearch, keywords: ['scan', 'bescheid', 'prüfen'] },
   { title: 'KI-Rechtsberater', href: '/chat', icon: MessageCircle, keywords: ['chat', 'frage', 'beratung'] },
-  { title: 'Buergergeld-Rechner', href: '/rechner/buergergeld', icon: Calculator, keywords: ['rechner', 'buergergeld', 'regelsatz'] },
+  { title: 'Bürgergeld-Rechner', href: '/rechner/buergergeld', icon: Calculator, keywords: ['rechner', 'buergergeld', 'regelsatz'] },
   { title: 'KdU-Rechner', href: '/rechner/kdu', icon: Calculator, keywords: ['miete', 'wohnung', 'heizung'] },
   { title: 'Mehrbedarf-Rechner', href: '/rechner/mehrbedarf', icon: Calculator, keywords: ['schwanger', 'alleinerziehend'] },
   { title: 'Sanktions-Rechner', href: '/rechner/sanktion', icon: Calculator, keywords: ['sanktion', 'kuerzung'] },

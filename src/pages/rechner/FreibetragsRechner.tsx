@@ -83,7 +83,7 @@ export default function FreibetragsRechner() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">SV-Beitraege (EUR)</label>
                   <input type="number" value={svBeitraege} onChange={(e) => setSvBeitraege(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md" placeholder="Wird pauschal berechnet" min="0" step="0.01" />
-                  <p className="text-xs text-gray-500 mt-1">Leer lassen fuer pauschale Berechnung</p>
+                  <p className="text-xs text-gray-500 mt-1">Leer lassen für pauschale Berechnung</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Werbungskosten (EUR)</label>
@@ -222,7 +222,7 @@ export default function FreibetragsRechner() {
                     <td className="px-4 py-3 text-sm text-green-600 text-right">{formatEuro(ergebnis.freibetragGesamt)}</td>
                   </tr>
                   <tr className="bg-red-50 font-semibold">
-                    <td className="px-4 py-3 text-sm text-gray-900">Wird auf Buergergeld angerechnet</td>
+                    <td className="px-4 py-3 text-sm text-gray-900">Wird auf Bürgergeld angerechnet</td>
                     <td className="px-4 py-3 text-sm text-red-600 text-right">- {formatEuro(ergebnis.anrechenbaresEinkommen)}</td>
                   </tr>
                 </tbody>
@@ -277,7 +277,7 @@ export default function FreibetragsRechner() {
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Weitere Rechner</h2>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link to="/rechner/buergergeld"><Button variant="outline" className="w-full justify-start">Buergergeld berechnen</Button></Link>
+            <Link to="/rechner/buergergeld"><Button variant="outline" className="w-full justify-start">Bürgergeld berechnen</Button></Link>
             <Link to="/rechner"><Button variant="outline" className="w-full justify-start">Alle Rechner anzeigen</Button></Link>
           </div>
         </div>

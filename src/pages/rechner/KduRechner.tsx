@@ -32,7 +32,7 @@ export default function KduRechner() {
   const handleBerechnen = () => {
     setFehler('')
     if (!plz) {
-      setFehler('Bitte gib eine PLZ ein oder waehle eine Stadt.')
+      setFehler('Bitte gib eine PLZ ein oder wähle eine Stadt.')
       return
     }
     const result = berechneKdu({ plz, bgGroesse, kaltmiete, nebenkosten, heizkosten, qm: wohnflaeche })
@@ -54,8 +54,8 @@ export default function KduRechner() {
     if (!ergebnis) return null
     const problems = [!ergebnis.kaltmieteAngemessen, !ergebnis.heizkostenAngemessen, !ergebnis.qmAngemessen].filter(Boolean).length
     if (problems === 0) return { color: 'green', icon: CheckCircle, text: 'Alles im gruenen Bereich!', desc: 'Deine Wohnkosten liegen innerhalb der Angemessenheitsgrenzen.' }
-    if (problems >= 2) return { color: 'red', icon: AlertTriangle, text: 'Warnung: Kosten deutlich ueber Angemessenheit', desc: 'Mehrere deiner Wohnkosten uebersteigen die Grenzen.' }
-    return { color: 'yellow', icon: Info, text: 'Achtung: Teilweise ueber den Grenzen', desc: 'Einige deiner Wohnkosten uebersteigen die Angemessenheitsgrenzen.' }
+    if (problems >= 2) return { color: 'red', icon: AlertTriangle, text: 'Warnung: Kosten deutlich über Angemessenheit', desc: 'Mehrere deiner Wohnkosten uebersteigen die Grenzen.' }
+    return { color: 'yellow', icon: Info, text: 'Achtung: Teilweise über den Grenzen', desc: 'Einige deiner Wohnkosten uebersteigen die Angemessenheitsgrenzen.' }
   }
 
   const renderBar = (titel: string, ist: number, grenze: number, einheit: string, ok: boolean) => {
@@ -71,7 +71,7 @@ export default function KduRechner() {
           </div>
           <div className="flex items-center gap-2">
             {ok ? <><CheckCircle className="w-5 h-5 text-green-600" /><span className="text-green-600 font-medium">Angemessen</span></>
-              : <><AlertTriangle className="w-5 h-5 text-red-600" /><span className="text-red-600 font-medium">Ueber Grenzwert</span></>}
+              : <><AlertTriangle className="w-5 h-5 text-red-600" /><span className="text-red-600 font-medium">Über Grenzwert</span></>}
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function KduRechner() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">oder Stadt</label>
               <select onChange={(e) => handleStadtSelect(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                <option value="">Stadt waehlen...</option>
+                <option value="">Stadt wählen...</option>
                 {staedte.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
@@ -181,7 +181,7 @@ export default function KduRechner() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 onClick={() => {
-                  generateRechnerPdf('KdU-Pruefung (§ 22 SGB II)', [
+                  generateRechnerPdf('KdU-Prüfung (§ 22 SGB II)', [
                     { label: 'PLZ / Stadt', value: ergebnis.stadt || plz },
                     { label: 'BG-Groesse', value: `${bgGroesse} Person${bgGroesse > 1 ? 'en' : ''}` },
                     { label: 'Kaltmiete', value: `${kaltmiete} EUR`, highlight: !ergebnis.kaltmieteAngemessen },
@@ -198,8 +198,8 @@ export default function KduRechner() {
               </Button>
               <Button
                 onClick={() => shareResult({
-                  title: 'KdU-Pruefung',
-                  text: `KdU-Pruefung: Gesamt-KdU ${ergebnis.gesamtKdu} EUR, Angemessene KdU ${ergebnis.angemesseneKdu} EUR (${ergebnis.stadt})`,
+                  title: 'KdU-Prüfung',
+                  text: `KdU-Prüfung: Gesamt-KdU ${ergebnis.gesamtKdu} EUR, Angemessene KdU ${ergebnis.angemesseneKdu} EUR (${ergebnis.stadt})`,
                   url: window.location.href,
                 })}
                 variant="outline"
@@ -207,7 +207,7 @@ export default function KduRechner() {
               >
                 <Share2 className="w-4 h-4 mr-2" />Teilen
               </Button>
-              <Link to="/chat" className="flex-1"><Button className="w-full gradient-boxer text-white font-semibold py-3 rounded-lg">Widerspruch pruefen</Button></Link>
+              <Link to="/chat" className="flex-1"><Button className="w-full gradient-boxer text-white font-semibold py-3 rounded-lg">Widerspruch prüfen</Button></Link>
               <SaveCalculationButton
                 toolId="kdu"
                 toolType="rechner"
@@ -229,7 +229,7 @@ export default function KduRechner() {
         )}
 
         {/* === SEO-CONTENT-BLOCK ============================================
-             Optimiert fuer Domains kdu-rechner.de + kosten-der-unterkunft-rechner.de.
+             Optimiert für Domains kdu-rechner.de + kosten-der-unterkunft-rechner.de.
              Long-form Content, FAQ-Schema-tauglich, Internal Links zu verwandten Tools.
              ============================================================== */}
         <article className="mt-12 space-y-8 max-w-3xl mx-auto">
@@ -240,7 +240,7 @@ export default function KduRechner() {
             </h2>
             <p className="text-lg text-gray-600">
               Pruefe in 30 Sekunden, ob das Jobcenter deine Miete und Heizkosten
-              vollstaendig uebernehmen muss. Mit aktuellen Mietspiegeln aus ueber 100 Staedten.
+              vollstaendig uebernehmen muss. Mit aktuellen Mietspiegeln aus über 100 Staedten.
             </p>
           </header>
 
@@ -251,17 +251,17 @@ export default function KduRechner() {
             </h3>
             <p className="text-gray-700 leading-relaxed mb-3">
               Die <strong>Kosten der Unterkunft und Heizung (KdU)</strong> umfassen nach
-              § 22 SGB II alle laufenden Wohnkosten, die das Jobcenter bei Buergergeld-
+              § 22 SGB II alle laufenden Wohnkosten, die das Jobcenter bei Bürgergeld-
               und Sozialhilfe-Empfaengern uebernimmt:
             </p>
             <ul className="list-disc pl-6 text-gray-700 space-y-1">
               <li><strong>Kaltmiete</strong> (Grundmiete ohne Nebenkosten)</li>
               <li><strong>Kalte Betriebskosten</strong> (Wasser, Muell, Hausmeister, etc.)</li>
-              <li><strong>Heizkosten</strong> (Gas, Oel, Fernwaerme, Strom fuer Warmwasser bei dezentraler Erwaermung)</li>
+              <li><strong>Heizkosten</strong> (Gas, Oel, Fernwaerme, Strom für Warmwasser bei dezentraler Erwaermung)</li>
               <li><strong>Nebenkosten-Nachzahlungen</strong> (einmalig)</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mt-3">
-              Stromkosten fuer Beleuchtung und Haushaltsgeraete sind <em>nicht</em> Teil der KdU —
+              Stromkosten für Beleuchtung und Haushaltsgeraete sind <em>nicht</em> Teil der KdU —
               die werden aus dem Regelsatz bezahlt.
             </p>
           </section>
@@ -272,10 +272,10 @@ export default function KduRechner() {
               Wer hat Anspruch auf KdU-Uebernahme?
             </h3>
             <p className="text-gray-700 leading-relaxed">
-              Jeder Buergergeld- oder Sozialhilfe-Empfaenger hat grundsaetzlich Anspruch auf
+              Jeder Bürgergeld- oder Sozialhilfe-Empfaenger hat grundsaetzlich Anspruch auf
               die Uebernahme der <strong>angemessenen</strong> Kosten der Unterkunft.
               „Angemessen" heisst dabei: Die Wohnung muss sowohl in der <strong>Groesse</strong>
-              (z.B. 50 qm fuer Einzelpersonen, 60 qm fuer Paare) als auch im <strong>Mietpreis</strong>
+              (z.B. 50 qm für Einzelpersonen, 60 qm für Paare) als auch im <strong>Mietpreis</strong>
               (orientiert am lokalen Mietspiegel) im akzeptierten Rahmen liegen.
             </p>
           </section>
@@ -283,17 +283,17 @@ export default function KduRechner() {
           {/* Was tun wenn KdU gekürzt wird */}
           <section className="bg-amber-50 border border-amber-200 rounded-lg p-6">
             <h3 className="font-semibold text-xl mb-3 text-amber-900">
-              Das Jobcenter haelt deine Miete fuer „unangemessen"?
+              Das Jobcenter haelt deine Miete für „unangemessen"?
             </h3>
             <p className="text-gray-800 leading-relaxed mb-3">
               In den allermeisten Faellen lohnt sich ein Widerspruch. Drei haeufige Gruende,
-              warum eine Kuerzung rechtswidrig ist:
+              warum eine Kürzung rechtswidrig ist:
             </p>
             <ol className="list-decimal pl-6 text-gray-800 space-y-2">
               <li>
                 <strong>Kein schluessiges Konzept:</strong> Das Jobcenter muss seine
                 Angemessenheits-Tabelle wissenschaftlich begruenden. Viele Konzepte halten
-                gerichtlicher Pruefung nicht stand (BSG-Rechtsprechung).
+                gerichtlicher Prüfung nicht stand (BSG-Rechtsprechung).
               </li>
               <li>
                 <strong>6-Monats-Frist nicht beachtet:</strong> Bei zu hoher Miete musst du
@@ -301,15 +301,15 @@ export default function KduRechner() {
                 werden die vollen Kosten weiter gezahlt (§ 22 Abs. 1 Satz 3 SGB II).
               </li>
               <li>
-                <strong>Heizkosten falsch gekuerzt:</strong> Ein bundesweiter Heizspiegel
-                gilt nur als Pruefmassstab — eine pauschale Kuerzung darunter ist meist
+                <strong>Heizkosten falsch gekürzt:</strong> Ein bundesweiter Heizspiegel
+                gilt nur als Pruefmassstab — eine pauschale Kürzung darunter ist meist
                 rechtswidrig.
               </li>
             </ol>
             <div className="mt-4">
               <Link to="/scan">
                 <Button variant="amt" size="lg" className="gap-2">
-                  Bescheid jetzt pruefen lassen <Info className="h-4 w-4" />
+                  Bescheid jetzt prüfen lassen <Info className="h-4 w-4" />
                 </Button>
               </Link>
             </div>
@@ -334,15 +334,15 @@ export default function KduRechner() {
                   Werden Heizkosten immer voll uebernommen?
                 </h4>
                 <p className="text-sm text-gray-700">
-                  Heizkosten werden in <strong>tatsaechlicher Hoehe</strong> uebernommen, solange sie
+                  Heizkosten werden in <strong>tatsaechlicher Höhe</strong> uebernommen, solange sie
                   angemessen sind. Als Orientierung dient der bundesweite Heizspiegel. Bei Verbrauch
-                  ueber dem Wert der Kategorie „zu hoch" droht eine Kuerzung — du kannst aber Gruende nennen
+                  über dem Wert der Kategorie „zu hoch" droht eine Kürzung — du kannst aber Gruende nennen
                   (z.B. schlechte Daemmung, Krankheit, Familiengroesse).
                 </p>
               </div>
               <div>
                 <h4 className="font-medium text-gray-900 mb-1">
-                  Gilt die KdU-Pruefung auch fuer Wohneigentum?
+                  Gilt die KdU-Prüfung auch für Wohneigentum?
                 </h4>
                 <p className="text-sm text-gray-700">
                   Ja. Bei Wohneigentum werden Hauslasten (Zinsen, Grundsteuer, Versicherungen, Heizung)
@@ -364,7 +364,7 @@ export default function KduRechner() {
                   Wie genau ist dieser KdU-Rechner?
                 </h4>
                 <p className="text-sm text-gray-700">
-                  Der Rechner basiert auf den aktuellen Mietspiegel-Tabellen aus ueber 100 deutschen
+                  Der Rechner basiert auf den aktuellen Mietspiegel-Tabellen aus über 100 deutschen
                   Staedten und den Wohnflaechengrenzen der Wohnraumfoerderungsgesetze.
                   Die Grenzwerte koennen sich kommunal unterscheiden — bei Streitfaellen
                   zaehlt die Tabelle deines Jobcenters.
@@ -378,7 +378,7 @@ export default function KduRechner() {
             <h3 className="font-semibold text-xl mb-4 text-gray-900">Weitere passende Rechner</h3>
             <div className="grid sm:grid-cols-2 gap-3">
               <Link to="/rechner/buergergeld" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
-                <div className="font-medium text-gray-900">Buergergeld-Rechner</div>
+                <div className="font-medium text-gray-900">Bürgergeld-Rechner</div>
                 <div className="text-xs text-muted-foreground">Vollstaendige Anspruchsberechnung mit BG, Einkommen, Mehrbedarfen</div>
               </Link>
               <Link to="/rechner/mehrbedarf" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
@@ -391,7 +391,7 @@ export default function KduRechner() {
               </Link>
               <Link to="/rechner/sanktion" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
                 <div className="font-medium text-gray-900">Sanktions-Rechner</div>
-                <div className="text-xs text-muted-foreground">Kuerzung bei Pflichtversaeumnis berechnen</div>
+                <div className="text-xs text-muted-foreground">Kürzung bei Pflichtversaeumnis berechnen</div>
               </Link>
             </div>
           </section>
@@ -400,7 +400,7 @@ export default function KduRechner() {
           <section className="rounded-lg p-6 gradient-boxer text-white">
             <h3 className="text-xl font-bold mb-2">Du hast einen Bescheid mit gekuerzten KdU?</h3>
             <p className="opacity-90 mb-4">
-              Lade ihn hoch — unsere KI prueft in unter einer Minute, ob die Kuerzung
+              Lade ihn hoch — unsere KI prüft in unter einer Minute, ob die Kürzung
               rechtmaessig ist und erstellt dir den passenden Widerspruch.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
@@ -419,7 +419,7 @@ export default function KduRechner() {
 
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-600 text-center">
             <Info className="w-4 h-4 inline mr-2" />
-            Rechtsgrundlage: § 22 SGB II — Bedarfe fuer Unterkunft und Heizung
+            Rechtsgrundlage: § 22 SGB II — Bedarfe für Unterkunft und Heizung
           </div>
         </article>
       </div>

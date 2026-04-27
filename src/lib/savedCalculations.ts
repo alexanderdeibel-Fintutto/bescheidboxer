@@ -3,8 +3,8 @@
  *
  * Adaptiert von cloud/apps/fintutto-portal/src/lib/savedCalculations.ts.
  * BescheidBoxer-Variante:
- *   - Save-Limits an unsere PlanType (schnupperer/starter/kaempfer/vollschutz)
- *   - localStorage-only fuer den Anfang (Supabase-Sync spaeter)
+ *   - Save-Limits an unsere PlanType (schnupperer/starter/kämpfer/vollschutz)
+ *   - localStorage-only für den Anfang (Supabase-Sync spaeter)
  *   - Tool-Namen der 13 BescheidBoxer-Rechner
  */
 import type { PlanType } from './credits'
@@ -13,7 +13,7 @@ export type ToolType = 'rechner' | 'checker' | 'formular'
 
 export interface SavedCalculation {
   id: string
-  userId?: string         // optional fuer LocalStorage-only-Mode
+  userId?: string         // optional für LocalStorage-only-Mode
   toolId: string
   toolType: ToolType
   toolName: string
@@ -64,7 +64,7 @@ export function canSaveCalculation(
   if (currentSavedCount >= limit) {
     return {
       allowed: false,
-      reason: `Limit von ${limit} gespeicherten Berechnungen erreicht. Upgrade auf den naechsthoeheren Plan fuer mehr Speicherplatz.`,
+      reason: `Limit von ${limit} gespeicherten Berechnungen erreicht. Upgrade auf den naechsthoeheren Plan für mehr Speicherplatz.`,
       limit,
       remaining: 0,
     }
@@ -138,11 +138,11 @@ export function getSavedCalculationsByTool(toolId: string): SavedCalculation[] {
 }
 
 /**
- * Display-Names fuer alle 13 BescheidBoxer-Rechner
+ * Display-Names für alle 13 BescheidBoxer-Rechner
  * (Alignment mit /src/pages/rechner/*.tsx).
  */
 const TOOL_NAMES: Record<string, string> = {
-  buergergeld: 'Buergergeld-Rechner',
+  buergergeld: 'Bürgergeld-Rechner',
   einkommen: 'Einkommens-Anrechnungs-Rechner',
   erstausstattung: 'Erstausstattungs-Rechner',
   freibetrag: 'Freibetrags-Rechner',
@@ -153,7 +153,7 @@ const TOOL_NAMES: Record<string, string> = {
   mietspiegel: 'Mietspiegel-Rechner',
   pkh: 'PKH-Rechner (Prozesskostenhilfe)',
   sanktionen: 'Sanktions-Rechner',
-  schonvermoegen: 'Schonvermoegens-Rechner',
+  schonvermoegen: 'Schonvermögens-Rechner',
   umzugskosten: 'Umzugskosten-Rechner',
 }
 

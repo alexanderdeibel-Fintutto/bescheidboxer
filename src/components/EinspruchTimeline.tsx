@@ -1,9 +1,9 @@
 /**
- * EinspruchTimeline — visuelle Status-Timeline fuer einen Widerspruch.
+ * EinspruchTimeline — visuelle Status-Timeline für einen Widerspruch.
  *
  * Adaptiert von cloud/apps/bescheidboxer/components/EinspruchTimeline.tsx.
  * Standalone-Variante: Status-Strings werden hier inline definiert
- * (kein externes types/bescheid.ts noetig). cn-Helper aus @/lib/utils.
+ * (kein externes types/bescheid.ts nötig). cn-Helper aus @/lib/utils.
  */
 import { CheckCircle2, Circle, Clock, Send, MessageSquare, XCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -70,7 +70,7 @@ export default function EinspruchTimeline({
       <div className="flex items-center gap-3 rounded-lg border border-destructive/20 bg-destructive/5 p-4">
         <XCircle className="h-5 w-5 text-destructive shrink-0" />
         <div>
-          <p className="text-sm font-medium text-destructive">Widerspruch zurueckgenommen</p>
+          <p className="text-sm font-medium text-destructive">Widerspruch zurückgenommen</p>
           <p className="text-xs text-muted-foreground">
             Erstellt am {formatDate(createdAt)}
           </p>

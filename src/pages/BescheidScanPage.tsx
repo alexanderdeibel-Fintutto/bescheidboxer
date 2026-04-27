@@ -75,21 +75,21 @@ function generateDemoScanResult(): ScanResult {
       {
         type: 'fehler',
         title: 'Heizkosten nur teilweise anerkannt',
-        description: 'Die tatsaechlichen Heizkosten von 85 EUR wurden auf 65 EUR gekuerzt. Das Jobcenter muss ein schluessiges Konzept vorlegen. Ohne schluessiges Konzept muessen die tatsaechlichen Kosten uebernommen werden.',
+        description: 'Die tatsaechlichen Heizkosten von 85 EUR wurden auf 65 EUR gekürzt. Das Jobcenter muss ein schluessiges Konzept vorlegen. Ohne schluessiges Konzept muessen die tatsaechlichen Kosten uebernommen werden.',
         betrag: 20.00,
         paragraph: '§ 22 Abs. 1 SGB II',
         templateId: 'widerspruch_kdu',
       },
       {
         type: 'warnung',
-        title: 'Kindersofortzuschlag pruefen',
+        title: 'Kindersofortzuschlag prüfen',
         description: 'Der Kindersofortzuschlag von 25 EUR je Kind sollte im Bescheid aufgefuehrt sein. Bitte pruefe ob dieser Betrag enthalten ist.',
         paragraph: '§ 72 SGB II',
       },
       {
         type: 'ok',
         title: 'Regelsatz korrekt',
-        description: 'Der Regelsatz von 563 EUR (Stufe 1) ist korrekt fuer 2025/2026.',
+        description: 'Der Regelsatz von 563 EUR (Stufe 1) ist korrekt für 2025/2026.',
         paragraph: '§ 20 SGB II',
       },
     ],
@@ -390,7 +390,7 @@ export default function BescheidScanPage() {
         </div>
         <h1 className="text-3xl font-bold mb-2">BescheidScan</h1>
         <p className="text-muted-foreground max-w-xl mx-auto">
-          Scanne alle Seiten deines Bescheids — unsere KI liest und prueft alles auf Fehler.
+          Scanne alle Seiten deines Bescheids — unsere KI liest und prüft alles auf Fehler.
           Ein Bescheid hat oft mehrere Seiten, lade einfach alle hoch.
         </p>
       </div>
@@ -449,7 +449,7 @@ export default function BescheidScanPage() {
                   </p>
                   <Button variant="amt" size="lg" onClick={() => fileInputRef.current?.click()}>
                     <Upload className="mr-2 h-5 w-5" />
-                    Seiten auswaehlen
+                    Seiten auswählen
                   </Button>
                   <input
                     ref={fileInputRef}
@@ -626,7 +626,7 @@ export default function BescheidScanPage() {
             </button>
           </div>
 
-          {/* Was wir pruefen */}
+          {/* Was wir prüfen */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
             {[
               { icon: Euro, title: 'Regelsatz', desc: 'Ist der richtige Betrag angesetzt?' },
@@ -699,7 +699,7 @@ export default function BescheidScanPage() {
               <div className="max-w-sm mx-auto space-y-3">
                 {[
                   'Seiten werden per OCR gelesen...',
-                  'Regelsaetze werden geprueft...',
+                  'Regelsaetze werden geprüft...',
                   'Mehrbedarfe werden analysiert...',
                   'KdU wird berechnet...',
                   'Fehler werden identifiziert...',
@@ -768,7 +768,7 @@ export default function BescheidScanPage() {
                     <div className="text-lg font-bold text-destructive mt-1">
                       {result.totalOver6Months.toFixed(2).replace('.', ',')} EUR
                     </div>
-                    <div className="text-xs text-muted-foreground">ueber 6 Monate</div>
+                    <div className="text-xs text-muted-foreground">über 6 Monate</div>
                   </div>
                 )}
               </div>
@@ -848,7 +848,7 @@ export default function BescheidScanPage() {
                 <h3 className="text-xl font-bold mb-2">Jetzt handeln!</h3>
                 <p className="opacity-90 mb-4">
                   Dir fehlen {result.totalMissing.toFixed(2).replace('.', ',')} EUR pro Monat. Das
-                  sind {result.totalOver6Months.toFixed(2).replace('.', ',')} EUR ueber 6 Monate.
+                  sind {result.totalOver6Months.toFixed(2).replace('.', ',')} EUR über 6 Monate.
                   Lege jetzt Widerspruch ein!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">

@@ -43,7 +43,7 @@ const footerLinks = {
     { name: 'Bewerbungen', href: '/bewerbungen' },
     { name: 'Meine Faelle', href: '/faelle' },
     { name: 'Statistiken', href: '/statistiken' },
-    { name: 'Kosten-Uebersicht', href: '/kosten' },
+    { name: 'Kosten-Übersicht', href: '/kosten' },
     { name: 'Preise & Abos', href: '/preise' },
   ],
   oekosystem: [
@@ -52,6 +52,7 @@ const footerLinks = {
     { name: 'Formulare', href: 'https://formulare.fintutto.cloud', external: true },
   ] as ({ name: string; href: string; external: true } | { name: string; href: string })[],
   rechtliches: [
+    { name: 'Über uns', href: '/ueber-uns' },
     { name: 'Impressum', href: '/impressum' },
     { name: 'Datenschutz', href: '/datenschutz' },
     { name: 'AGB', href: '/agb' },

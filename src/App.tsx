@@ -74,6 +74,7 @@ const KostenUebersichtPage = lazy(() => import('@/pages/KostenUebersichtPage'))
 const ErinnerungenPage = lazy(() => import('@/pages/ErinnerungenPage'))
 const MeineBerechnungenPage = lazy(() => import('@/pages/MeineBerechnungenPage'))
 const WiderspruchJobcenterPage = lazy(() => import('@/pages/WiderspruchJobcenterPage'))
+const UeberUnsPage = lazy(() => import('@/pages/UeberUnsPage'))
 const AdminPage = lazy(() => import('@/pages/AdminPage'))
 
 import PageSkeleton from '@/components/PageSkeleton'
@@ -139,6 +140,9 @@ function App() {
 
                 {/* Widerspruch Jobcenter SEO-Landing */}
                 <Route path="widerspruch/jobcenter" element={<WiderspruchJobcenterPage />} />
+
+                {/* Über uns / Story */}
+                <Route path="ueber-uns" element={<UeberUnsPage />} />
 
                 {/* Probleme-Guide */}
                 <Route path="probleme" element={<ProblemePage />} />

@@ -6,6 +6,7 @@ import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 interface PkhErgebnis {
   einzusetzendesEinkommen: number
@@ -597,6 +598,23 @@ export default function PkhRechner() {
               <Link to="/rechner">
                 <Button variant="outline" className="w-full">Alle Rechner</Button>
               </Link>
+              {result && (
+                <SaveCalculationButton
+                  toolId="pkh"
+                  toolType="rechner"
+                  inputData={{ status: result.status }}
+                  resultData={{
+                    status: result.status,
+                    einzusetzendes_einkommen: result.einzusetzendesEinkommen,
+                    monatliche_rate: result.monatlicherRate,
+                    max_raten: result.maxRaten,
+                    gesamt_kosten: result.gesamtKosten,
+                    freibetraege_gesamt: result.freibetraegeGesamt,
+                    vermoegen_ok: result.vermoegenOk,
+                    vermoegen_anrechenbar: result.vermoegenAnrechenbar,
+                  }}
+                />
+              )}
             </div>
           </div>
         )}

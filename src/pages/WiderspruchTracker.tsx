@@ -16,6 +16,24 @@ import {
   Download,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import EinspruchTimeline, { type EinspruchStatus } from '@/components/EinspruchTimeline'
+
+// Mapping vom Tracker-Status auf den EinspruchTimeline-Status
+function mapToTimelineStatus(s: string): EinspruchStatus {
+  switch (s) {
+    case 'eingereicht':
+      return 'eingereicht'
+    case 'in_bearbeitung':
+      return 'in_bearbeitung'
+    case 'beschieden':
+    case 'erledigt':
+      return 'entschieden'
+    case 'abgelehnt':
+      return 'entschieden'
+    default:
+      return 'entwurf'
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Types
@@ -581,26 +599,43 @@ export default function WiderspruchTracker() {
                       )}
                     </div>
 
-                    {/* Expandable Notizen toggle */}
-                    {entry.notizen && (
-                      <button
-                        onClick={() => setExpandedId(isExpanded ? null : entry.id)}
-                        className="flex items-center gap-1 text-xs text-primary hover:underline mt-2"
-                      >
-                        <ChevronRight
-                          className={`h-3.5 w-3.5 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
-                        />
-                        {isExpanded ? 'Notizen ausblenden' : 'Notizen anzeigen'}
-                      </button>
-                    )}
+                    {/* Expand-Toggle (immer verfuegbar — zeigt Timeline + Notizen) */}
+                    <button
+                      onClick={() => setExpandedId(isExpanded ? null : entry.id)}
+                      className="flex items-center gap-1 text-xs text-primary hover:underline mt-2"
+                    >
+                      <ChevronRight
+                        className={`h-3.5 w-3.5 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                      />
+                      {isExpanded ? 'Verlauf ausblenden' : 'Verlauf & Details anzeigen'}
+                    </button>
                   </div>
 
-                  {/* Expanded Notizen */}
-                  {isExpanded && entry.notizen && (
-                    <div className="px-4 pb-4">
-                      <div className="rounded-lg bg-muted/50 p-3 text-sm text-muted-foreground whitespace-pre-wrap">
-                        {entry.notizen}
+                  {/* Expanded: Timeline + Notizen */}
+                  {isExpanded && (
+                    <div className="px-4 pb-4 space-y-3">
+                      <div className="rounded-lg border bg-card p-4">
+                        <h4 className="text-sm font-medium mb-3 text-muted-foreground">
+                          Verfahrens-Timeline
+                        </h4>
+                        <EinspruchTimeline
+                          status={mapToTimelineStatus(entry.status)}
+                          createdAt={entry.eingereichtAm}
+                          eingereichtAm={entry.eingereichtAm || null}
+                          antwortErhalten={
+                            entry.status === 'beschieden' || entry.status === 'erledigt' || entry.status === 'abgelehnt'
+                              ? entry.fristende
+                              : null
+                          }
+                        />
                       </div>
+                      {entry.notizen && (
+                        <div className="rounded-lg bg-muted/50 p-3 text-sm text-muted-foreground whitespace-pre-wrap">
+                          <strong className="text-foreground">Notizen:</strong>
+                          <br />
+                          {entry.notizen}
+                        </div>
+                      )}
                     </div>
                   )}
 

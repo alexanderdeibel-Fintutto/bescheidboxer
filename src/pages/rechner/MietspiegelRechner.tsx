@@ -14,6 +14,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 // ---------------------------------------------------------------------------
 // Demo-Mietspiegel: angemessene Bruttokaltmiete (KdU) nach Haushaltgroesse
@@ -507,6 +508,23 @@ export default function MietspiegelRechner() {
                   Alle Rechner <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
+              <SaveCalculationButton
+                toolId="mietspiegel"
+                toolType="rechner"
+                inputData={{
+                  stadt: ergebnis.stadt,
+                  bruttokaltmiete: ergebnis.bruttokaltmiete,
+                }}
+                resultData={{
+                  stadt: ergebnis.stadt,
+                  bundesland: ergebnis.bundesland,
+                  bruttokaltmiete: ergebnis.bruttokaltmiete,
+                  grenze: ergebnis.grenze,
+                  differenz: ergebnis.differenz,
+                  angemessen: ergebnis.angemessen,
+                  gesamtmiete: ergebnis.gesamtmiete,
+                }}
+              />
             </div>
           </div>
         )}

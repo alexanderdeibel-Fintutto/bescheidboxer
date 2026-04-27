@@ -254,6 +254,32 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   Fintutto-Design Keyframes (von src/lib/fintutto-design.tsx genutzt)
+   ═══════════════════════════════════════════════════════════════════ */
+@keyframes bbFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes bbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes bbBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
+@keyframes bbPulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
 /* Print styles */
 @media print {
   /* Hide non-essential UI */

@@ -5,8 +5,6 @@ import {
   MessageCircle,
   FileText,
   Users,
-  ArrowRight,
-  CheckCircle2,
   Swords,
   Clock,
   Calculator,
@@ -18,67 +16,83 @@ import {
   Briefcase,
   GraduationCap,
   Scale,
+  CheckCircle2,
+  Lock,
+  Heart,
+  Sparkles,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { COMMON_PROBLEMS } from '@/lib/sgb-knowledge'
 import { PLANS, type PlanConfig } from '@/lib/credits'
+import {
+  PageHero,
+  SectionWrapper,
+  SectionHeader,
+  FadeSection,
+  GradientText,
+  PrimaryButton,
+  GhostButton,
+  TrustPill,
+  TYPE,
+  SPACING,
+} from '@/lib/fintutto-design'
 
 const features = [
   {
     icon: ScanSearch,
     title: 'BescheidScan',
     description:
-      'Fotografiere deinen Bescheid und unsere KI findet in Sekunden jeden Fehler. Regelsatz, Mehrbedarf, KdU - nichts wird übersehen.',
+      'Foto rein, Fehler raus. Unsere KI kennt SGB II, III und XII — Regelsatz, Mehrbedarf, KdU. Nichts wird übersehen.',
     href: '/scan',
     color: 'text-red-600',
-    bgColor: 'bg-red-50',
+    bgColor: 'bg-red-50 dark:bg-red-950/30',
   },
   {
     icon: MessageCircle,
     title: 'KI-Rechtsberater',
     description:
-      'Stelle deine Frage in einfachen Worten. Unsere KI kennt SGB II, III und XII besser als die meisten Sachbearbeiter.',
+      'Frag in deinen Worten. Die KI antwortet wie ein Sozialberater — ohne Termin, ohne Wartezeit, rund um die Uhr.',
     href: '/chat',
     color: 'text-emerald-600',
-    bgColor: 'bg-emerald-50',
+    bgColor: 'bg-emerald-50 dark:bg-emerald-950/30',
   },
   {
     icon: Calculator,
-    title: '9 Rechner',
+    title: '13 Rechner',
     description:
-      'Bürgergeld, KdU, Mehrbedarf, Freibetrag, Sanktion, Schonvermögen, Fristen, PKH und mehr. Sofort berechnen.',
+      'Bürgergeld, KdU, Mehrbedarf, Freibetrag, Sanktion, Schonvermögen, Fristen, PKH und mehr. Sofort die Zahl, die zählt.',
     href: '/rechner',
     color: 'text-orange-600',
-    bgColor: 'bg-orange-50',
+    bgColor: 'bg-orange-50 dark:bg-orange-950/30',
   },
   {
     icon: FileText,
     title: 'Dokumenten-Werkstatt',
     description:
-      '20+ Vorlagen für Widersprüche, Anträge und Beschwerden. Personalisiert, rechtskonform, als PDF exportierbar.',
+      '20+ Vorlagen für Widersprüche, Anträge, Beschwerden. Personalisiert. Rechtskonform. Sofort als PDF.',
     href: '/musterschreiben',
     color: 'text-blue-600',
-    bgColor: 'bg-blue-50',
+    bgColor: 'bg-blue-50 dark:bg-blue-950/30',
   },
   {
     icon: ClipboardList,
     title: 'Widerspruch-Tracker',
     description:
-      'Behalte den Überblick über all deine laufenden Widersprüche, Klagen und Fristen - mit automatischer Warnung.',
+      'Alle Fristen, alle Stände, ein Blick. Mit automatischer Warnung — bevor das Amt schweigt.',
     href: '/tracker',
     color: 'text-indigo-600',
-    bgColor: 'bg-indigo-50',
+    bgColor: 'bg-indigo-50 dark:bg-indigo-950/30',
   },
   {
     icon: Users,
     title: 'Community-Forum',
     description:
-      'Tausche dich mit anderen Betroffenen aus. Erfahrungen teilen, Tipps geben, gemeinsam stärker sein.',
+      'Hier kennt jeder das Amt. Tausch dich aus mit Menschen, die genau deinen Kampf schon gekämpft haben.',
     href: '/forum',
     color: 'text-purple-600',
-    bgColor: 'bg-purple-50',
+    bgColor: 'bg-purple-50 dark:bg-purple-950/30',
   },
 ]
 
@@ -86,7 +100,7 @@ const stats = [
   { value: '500.000+', label: 'Widersprüche/Jahr in DE' },
   { value: 'Jeder 2.', label: 'Bescheid fehlerhaft' },
   { value: '1/3', label: 'Widersprüche erfolgreich' },
-  { value: '0 EUR', label: 'Einstieg' },
+  { value: '0 €', label: 'Einstieg' },
 ]
 
 const PLAN_ORDER: Array<{ key: string; tierClass: string }> = [
@@ -104,171 +118,149 @@ function formatPlanLimit(value: number, unit: string): string {
 
 export default function HomePage() {
   useDocumentTitle('Dein KI-Assistent gegen falsche Bescheide')
+
   return (
     <div>
-      {/* ============================================================= */}
-      {/* 1. HERO SECTION                                               */}
-      {/* ============================================================= */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 gradient-boxer opacity-5" />
-        <div className="container py-16 md:py-24 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <Badge className="mb-4 text-sm px-4 py-1 bg-red-100 text-red-800 border-red-200">
-              <Swords className="mr-1.5 h-3.5 w-3.5" />
-              Kämpfe für dein Recht
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-              Dein Bescheid ist falsch?{' '}
-              <br />
-              <span className="gradient-text-boxer">
-                Wir boxen ihn durch!
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              BescheidBoxer scannt deinen Bescheid mit KI, findet jeden Fehler
-              und erstellt dir den passenden Widerspruch.
-              <br />
-              <strong className="text-foreground">Blitzschnell. Verständlich. Rechtssicher.</strong>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="xl" className="gradient-boxer text-white border-0 hover:opacity-90" asChild>
-                <Link to="/scan">
-                  <ScanSearch className="mr-2 h-5 w-5" />
-                  Bescheid jetzt scannen
-                </Link>
-              </Button>
-              <Button size="xl" variant="outline" asChild>
-                <Link to="/chat">
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  KI-Berater fragen
-                </Link>
-              </Button>
-            </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              2 kostenlose Scans &middot; 5 Fragen/Tag &middot; Kein Account nötig
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 1. HERO — Fintutto-Goldstandard                              */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <PageHero
+        badge="Kämpfe für dein Recht"
+        title="Dein Bescheid ist falsch?"
+        titleGradient="Wir boxen ihn durch."
+        subtitle="BescheidBoxer scannt deinen Bescheid mit KI, findet jeden Fehler und schreibt dir den passenden Widerspruch. Blitzschnell. Verständlich. Rechtssicher."
+        primaryCta={{
+          label: 'Bescheid jetzt scannen',
+          to: '/scan',
+          icon: <ScanSearch className="w-5 h-5" />,
+        }}
+        secondaryCta={{
+          label: 'KI-Berater fragen',
+          to: '/chat',
+          icon: <MessageCircle className="w-5 h-5" />,
+        }}
+        hint="2 kostenlose Scans · 5 Fragen/Tag · Kein Account nötig"
+      />
 
-      {/* ============================================================= */}
-      {/* 2. STATS BAR                                                  */}
-      {/* ============================================================= */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 2. STATS BAR — Industrie-Zahlen, ehrlich                     */}
+      {/* ═══════════════════════════════════════════════════════════ */}
       <section className="border-y border-border bg-muted/30">
-        <div className="container py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl font-extrabold gradient-text-boxer">
+        <div className="container py-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {stats.map((stat, i) => (
+              <FadeSection
+                key={stat.label}
+                delay={i * 80}
+                className="text-center"
+              >
+                <div className={`${TYPE.stat} gradient-text-boxer`}>
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
+                <div className="text-xs sm:text-sm text-muted-foreground mt-1.5 uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </FadeSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============================================================= */}
-      {/* 3. BETA-PIONIER-KARTE                                         */}
-      {/* ============================================================= */}
-      <section className="container py-10">
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 3. BETA-PIONIER-KARTE                                        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className={`${SPACING.sectionX} py-14 sm:py-20`}>
         <div className="max-w-3xl mx-auto">
-          <Card className="border-2 border-orange-300 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/20 dark:border-orange-900/50">
-            <CardContent className="p-6 md:p-8">
+          <FadeSection>
+            <div className="relative rounded-3xl border-2 border-orange-300 dark:border-orange-900/50 bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50 dark:from-orange-950/30 dark:via-amber-950/20 dark:to-orange-950/30 p-7 sm:p-10 shadow-xl shadow-orange-100/50 dark:shadow-none">
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl gradient-boxer text-white flex-shrink-0">
-                  <Swords className="h-7 w-7" />
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl gradient-boxer text-white flex-shrink-0 shadow-lg shadow-red-500/20">
+                  <Swords className="h-8 w-8" />
                 </div>
                 <div className="flex-1">
-                  <Badge className="mb-2 bg-orange-600 text-white border-orange-600">
-                    Beta-Phase
-                  </Badge>
-                  <h3 className="text-2xl md:text-3xl font-extrabold mb-2">
-                    Werde Pionier — 50&nbsp;% lebenslang
+                  <span className="inline-block text-xs uppercase tracking-[0.3em] font-semibold text-orange-700 dark:text-orange-300 mb-2">
+                    Beta-Phase · Pionier-Tarif
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold mb-3 leading-tight">
+                    Werde Pionier — <GradientText>50&nbsp;% lebenslang.</GradientText>
                   </h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-muted-foreground mb-5">
                     BescheidBoxer ist neu. Hilf uns, die KI besser zu machen,
-                    den Boxer stärker — und zahle dafür <strong className="text-foreground">die Hälfte. Für immer.</strong>
+                    den Boxer stärker — und zahle dafür{' '}
+                    <strong className="text-foreground">die Hälfte. Für immer.</strong>
                   </p>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                    <div className="flex items-center gap-2 bg-background border-2 border-dashed border-orange-400 rounded-lg px-4 py-2 font-mono text-base font-bold text-orange-700 dark:text-orange-300">
+                    <div className="flex items-center gap-2 bg-background border-2 border-dashed border-orange-400 rounded-lg px-4 py-2.5 font-mono text-base font-bold text-orange-700 dark:text-orange-300">
                       PIONIER50
                     </div>
-                    <Button asChild className="gradient-boxer text-white border-0 hover:opacity-90">
-                      <Link to="/preise">
-                        Plan wählen
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <PrimaryButton to="/preise">Plan wählen</PrimaryButton>
                   </div>
                   <p className="text-xs text-muted-foreground mt-3">
                     Code an der Kasse einlösen · Gilt für alle bezahlten Pläne · Solange die Beta läuft
                   </p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </FadeSection>
         </div>
       </section>
 
-      {/* ============================================================= */}
-      {/* 4. FEATURES GRID                                              */}
-      {/* ============================================================= */}
-      <section className="container py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">
-            Sechs Waffen gegen falsche Bescheide
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            BescheidBoxer gibt dir alles, was du brauchst, um dich gegen das Amt
-            zu wehren - von der Analyse bis zum fertigen Widerspruch.
-          </p>
-        </div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 4. FEATURES — Sechs Waffen                                   */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <SectionWrapper>
+        <SectionHeader
+          badge="Dein Arsenal"
+          title="Sechs Waffen."
+          titleGradient="Ein Ziel: Gerechtigkeit."
+          subtitle="Von der Analyse bis zum fertigen Widerspruch — alles, was du brauchst, um dich gegen das Amt zu wehren."
+        />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
-            <Link key={feature.title} to={feature.href}>
-              <Card className="h-full hover:shadow-lg transition-shadow group">
-                <CardContent className="p-6">
-                  <div
-                    className={`inline-flex p-3 rounded-xl ${feature.bgColor} mb-4`}
-                  >
-                    <feature.icon className={`h-6 w-6 ${feature.color}`} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                  <div className="mt-4 flex items-center text-primary font-medium text-sm">
-                    Jetzt nutzen
-                    <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
+          {features.map((feature, i) => (
+            <FadeSection key={feature.title} delay={i * 80}>
+              <Link to={feature.href} className="block h-full group">
+                <Card className="h-full rounded-2xl border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <CardContent className="p-6">
+                    <div
+                      className={`inline-flex p-3 rounded-xl ${feature.bgColor} mb-4`}
+                    >
+                      <feature.icon className={`h-6 w-6 ${feature.color}`} />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div className="mt-5 inline-flex items-center text-primary font-semibold text-sm gap-1.5 group-hover:gap-2.5 transition-all">
+                      Loslegen
+                      <span aria-hidden>→</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </FadeSection>
           ))}
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ============================================================= */}
-      {/* 5. PROBLEM FINDER                                             */}
-      {/* ============================================================= */}
-      <section className="bg-muted/30 py-16">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Welches Problem hast du?</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Wähle dein Problem und wir zeigen dir sofort die passenden
-              Musterschreiben und Tipps.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {COMMON_PROBLEMS.map((problem) => (
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 5. PROBLEM FINDER                                            */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <SectionWrapper bg="muted">
+        <SectionHeader
+          badge="Direkt zur Lösung"
+          title="Welches Problem hast du?"
+          subtitle="Wähle dein Anliegen — wir zeigen dir sofort die passenden Musterschreiben und Tipps."
+        />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {COMMON_PROBLEMS.map((problem, i) => (
+            <FadeSection key={problem.id} delay={i * 50}>
               <Link
-                key={problem.id}
                 to={`/musterschreiben?problem=${problem.id}`}
+                className="block h-full group"
               >
-                <Card className="h-full hover:border-primary/40 hover:shadow-md transition-all cursor-pointer group">
+                <Card className="h-full rounded-2xl hover:border-primary/40 hover:shadow-md transition-all duration-300">
                   <CardContent className="p-5">
                     <Badge
                       variant={
@@ -293,92 +285,94 @@ export default function HomePage() {
                     <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
                       {problem.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {problem.description}
                     </p>
                   </CardContent>
                 </Card>
               </Link>
-            ))}
-          </div>
+            </FadeSection>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ============================================================= */}
-      {/* 6. HOW IT WORKS                                               */}
-      {/* ============================================================= */}
-      <section className="container py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">In 3 Runden zum Widerspruch</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Schneller als jeder Anwaltstermin. Einfacher als jedes Amt.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 6. HOW IT WORKS                                              */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <SectionWrapper>
+        <SectionHeader
+          badge="So einfach geht's"
+          title="In 3 Runden"
+          titleGradient="zum Widerspruch."
+          subtitle="Schneller als jeder Anwaltstermin. Einfacher als jedes Amt."
+        />
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {[
             {
               step: '1',
               icon: ScanSearch,
-              title: 'Bescheid scannen',
+              title: 'Scannen',
               description:
-                'Fotografiere deinen Bescheid oder lade das PDF hoch. Unsere KI liest alles automatisch.',
+                'Foto oder PDF hoch. Die KI liest jeden Buchstaben — auch zwischen den Zeilen.',
             },
             {
               step: '2',
               icon: Swords,
-              title: 'Fehler erkennen',
+              title: 'Analysieren',
               description:
-                'BescheidBoxer prüft Regelsatz, Mehrbedarf, KdU und zeigt dir jeden Fehler mit Paragraphen.',
+                'Regelsatz. Mehrbedarf. KdU. Sanktionen. Wir zeigen jeden Fehler — mit dem passenden Paragraphen.',
             },
             {
               step: '3',
               icon: FileText,
-              title: 'Widerspruch einlegen',
+              title: 'Boxen',
               description:
-                'Wir generieren dir ein fertiges Widerspruchsschreiben - personalisiert und rechtskonform.',
+                'Fertiger Widerspruch. Personalisiert. Rechtssicher. Direkt zum Versand.',
             },
-          ].map((item) => (
-            <div key={item.step} className="text-center">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl gradient-boxer text-white text-xl font-bold mb-4">
-                {item.step}
+          ].map((item, i) => (
+            <FadeSection key={item.step} delay={i * 120}>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-boxer text-white text-2xl font-extrabold mb-5 shadow-lg shadow-red-500/20">
+                  {item.step}
+                </div>
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-muted mb-4">
+                  <item.icon className="h-6 w-6 text-muted-foreground" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-muted mb-3">
-                <item.icon className="h-5 w-5 text-muted-foreground" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-              <p className="text-muted-foreground">{item.description}</p>
-            </div>
+            </FadeSection>
           ))}
         </div>
-        <div className="text-center mt-10">
-          <Button size="lg" className="gradient-boxer text-white border-0 hover:opacity-90" asChild>
-            <Link to="/scan">
-              <ScanSearch className="mr-2 h-5 w-5" />
-              Jetzt Bescheid scannen - kostenlos
-            </Link>
-          </Button>
-        </div>
-      </section>
+        <FadeSection delay={400} className="text-center mt-14">
+          <PrimaryButton to="/scan">
+            <ScanSearch className="w-5 h-5" />
+            Jetzt Bescheid scannen — kostenlos
+          </PrimaryButton>
+        </FadeSection>
+      </SectionWrapper>
 
-      {/* ============================================================= */}
-      {/* 7. PRICING PREVIEW                                            */}
-      {/* ============================================================= */}
-      <section className="bg-muted/30 py-16">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Faire Preise für jeden Kampf</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Starte kostenlos als Schnupperer. Upgrade wenn du mehr Power brauchst.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {PLAN_ORDER.map(({ key, tierClass }) => {
-              const plan = PLANS[key as keyof typeof PLANS] as PlanConfig
-              if (!plan) return null
-              const isPopular = key === 'kaempfer'
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 7. PRICING PREVIEW                                           */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <SectionWrapper bg="muted">
+        <SectionHeader
+          badge="Transparenz · Fair"
+          title="Faire Preise."
+          titleGradient="Ein Plan für jeden Kampf."
+          subtitle="Starte kostenlos. Upgrade wenn du mehr Power brauchst. Jederzeit kündbar."
+        />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {PLAN_ORDER.map(({ key, tierClass }, i) => {
+            const plan = PLANS[key as keyof typeof PLANS] as PlanConfig
+            if (!plan) return null
+            const isPopular = key === 'kaempfer'
 
-              return (
-                <Card key={key} className={`relative ${tierClass}`}>
+            return (
+              <FadeSection key={key} delay={i * 80}>
+                <Card className={`relative h-full rounded-2xl ${tierClass}`}>
                   <CardContent className="p-6">
                     {plan.badge && (
                       <Badge
@@ -396,7 +390,7 @@ export default function HomePage() {
                       <span className="text-3xl font-extrabold">
                         {plan.price === 0
                           ? 'Gratis'
-                          : `${plan.price.toFixed(2).replace('.', ',')} EUR`}
+                          : `${plan.price.toFixed(2).replace('.', ',')} €`}
                       </span>
                       {plan.price > 0 && (
                         <span className="text-muted-foreground text-sm">
@@ -407,7 +401,7 @@ export default function HomePage() {
 
                     {plan.priceYearly > 0 && (
                       <p className="text-xs text-muted-foreground mb-3">
-                        oder {plan.priceYearly.toFixed(2).replace('.', ',')} EUR/Jahr
+                        oder {plan.priceYearly.toFixed(2).replace('.', ',')} €/Jahr
                       </p>
                     )}
 
@@ -469,7 +463,7 @@ export default function HomePage() {
                       )}
                     </ul>
                     <Button
-                      className={`w-full ${
+                      className={`w-full rounded-full ${
                         isPopular
                           ? 'gradient-boxer text-white border-0 hover:opacity-90'
                           : ''
@@ -486,287 +480,289 @@ export default function HomePage() {
                       asChild
                     >
                       <Link to={key === 'schnupperer' ? '/scan' : '/preise'}>
-                        {key === 'schnupperer'
-                          ? 'Kostenlos starten'
-                          : 'Plan wählen'}
+                        {key === 'schnupperer' ? 'Kostenlos starten' : 'Plan wählen'}
                       </Link>
                     </Button>
                   </CardContent>
                 </Card>
-              )
-            })}
-          </div>
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            Alle Preise inkl. MwSt. &middot; Jederzeit kündbar &middot;{' '}
-            <Link to="/preise" className="text-primary hover:underline">
+              </FadeSection>
+            )
+          })}
+        </div>
+        <FadeSection className="text-center mt-8">
+          <p className="text-sm text-muted-foreground">
+            Alle Preise inkl. MwSt. · Jederzeit kündbar ·{' '}
+            <Link to="/preise" className="text-primary hover:underline font-medium">
               Alle Details vergleichen
             </Link>
           </p>
-        </div>
-      </section>
+        </FadeSection>
+      </SectionWrapper>
 
-      {/* ============================================================= */}
-      {/* 8. TRUST + PIONIERE-CALL                                      */}
-      {/* ============================================================= */}
-      <section className="container py-16">
-        {/* Trust Badges - nur was wirklich stimmt */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-          <div className="flex items-center gap-2 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-full px-4 py-2 text-sm text-green-800 dark:text-green-200">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 8. TRUST + PIONIER-CALL                                      */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <SectionWrapper>
+        <FadeSection className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <TrustPill
+            icon={<Lock className="h-4 w-4 text-emerald-600" />}
+            color="bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-200"
+          >
             DSGVO-konform
-          </div>
-          <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-full px-4 py-2 text-sm text-blue-800 dark:text-blue-200">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+          </TrustPill>
+          <TrustPill
+            icon={<Shield className="h-4 w-4 text-blue-600" />}
+            color="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900 text-blue-800 dark:text-blue-200"
+          >
             SSL-verschlüsselt
-          </div>
-          <div className="flex items-center gap-2 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 rounded-full px-4 py-2 text-sm text-orange-800 dark:text-orange-200">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
+          </TrustPill>
+          <TrustPill
+            icon={<Clock className="h-4 w-4 text-orange-600" />}
+            color="bg-orange-50 dark:bg-orange-950/30 border-orange-200 dark:border-orange-900 text-orange-800 dark:text-orange-200"
+          >
             Beta · seit April 2026
-          </div>
-          <div className="flex items-center gap-2 bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded-full px-4 py-2 text-sm text-purple-800 dark:text-purple-200">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 4 5v6c0 5 3 9 8 11 5-2 8-6 8-11V5l-8-3z" /></svg>
+          </TrustPill>
+          <TrustPill
+            icon={<Sparkles className="h-4 w-4 text-purple-600" />}
+            color="bg-purple-50 dark:bg-purple-950/30 border-purple-200 dark:border-purple-900 text-purple-800 dark:text-purple-200"
+          >
             Hosted in Deutschland
-          </div>
-        </div>
+          </TrustPill>
+        </FadeSection>
 
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Sei einer der ersten Boxer</h2>
-          <p className="text-muted-foreground mb-8 text-lg">
-            BescheidBoxer ist gerade live gegangen. Statt erfundener Zahlen
-            sagen wir dir lieber die Wahrheit:{' '}
-            <strong className="text-foreground">
-              Wir bauen das hier gerade zusammen mit dir auf.
-            </strong>
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8 text-left">
-            <Card>
-              <CardContent className="p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
-                  <h3 className="font-semibold">Was du bekommst</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Eine ehrliche KI, die jeden Bescheid prüft, alle Rechner,
-                  Vorlagen und 50 % Pionier-Rabatt für immer.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <Swords className="h-5 w-5 text-red-600" />
-                  <h3 className="font-semibold">Was wir uns wünschen</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Dein Feedback. Sag uns, wo der Boxer noch zu schwach ist —
-                  wir machen ihn stärker. Im Forum, per Mail, direkt im Chat.
-                </p>
-              </CardContent>
-            </Card>
+          <FadeSection>
+            <h2 className={`${TYPE.h2} mb-5`}>
+              Sei einer der ersten <GradientText>Boxer.</GradientText>
+            </h2>
+            <p className={`${TYPE.body} mb-10`}>
+              Statt erfundener Zahlen sagen wir dir lieber die Wahrheit:{' '}
+              <strong className="text-foreground">
+                Wir bauen das hier gerade zusammen mit dir auf.
+              </strong>
+            </p>
+          </FadeSection>
+          <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10 text-left">
+            <FadeSection delay={100}>
+              <Card className="h-full rounded-2xl">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Heart className="h-5 w-5 text-emerald-600" />
+                    <h3 className="font-semibold">Was du bekommst</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Eine ehrliche KI, die jeden Bescheid prüft, alle Rechner,
+                    Vorlagen und 50 % Pionier-Rabatt für immer.
+                  </p>
+                </CardContent>
+              </Card>
+            </FadeSection>
+            <FadeSection delay={200}>
+              <Card className="h-full rounded-2xl">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Swords className="h-5 w-5 text-red-600" />
+                    <h3 className="font-semibold">Was wir uns wünschen</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Dein Feedback. Sag uns, wo der Boxer noch zu schwach ist —
+                    wir machen ihn stärker. Im Forum, per Mail, direkt im Chat.
+                  </p>
+                </CardContent>
+              </Card>
+            </FadeSection>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="gradient-boxer text-white border-0 hover:opacity-90" asChild>
-              <Link to="/scan">
-                <ScanSearch className="mr-2 h-5 w-5" />
-                Jetzt mitmachen — kostenlos starten
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link to="/forum">
-                <Users className="mr-2 h-5 w-5" />
-                Zum Pionier-Forum
-              </Link>
-            </Button>
-          </div>
+          <FadeSection delay={300} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <PrimaryButton to="/scan" showArrow={false}>
+              <ScanSearch className="w-5 h-5" />
+              Jetzt mitmachen — kostenlos starten
+            </PrimaryButton>
+            <GhostButton to="/forum" showArrow={false}>
+              <Users className="w-5 h-5" />
+              Zum Pionier-Forum
+            </GhostButton>
+          </FadeSection>
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ============================================================= */}
-      {/* 9. ECOSYSTEM                                                  */}
-      {/* ============================================================= */}
-      <section className="container py-16">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">
-            Teil des Fintutto-Ökosystems
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            BescheidBoxer ist nur der Anfang. Entdecke weitere Tools, die dir im
-            Alltag helfen.
-          </p>
-        </div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 9. ECOSYSTEM                                                 */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <SectionWrapper bg="muted">
+        <SectionHeader
+          badge="FinTuttO-Ökosystem"
+          title="BescheidBoxer ist nur"
+          titleGradient="der Anfang."
+          subtitle="Entdecke weitere FinTuttO-Tools, die dir im Alltag helfen."
+        />
         <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <Card className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <h3 className="font-semibold mb-2 flex items-center gap-2">
-                KdU-Probleme?
-                <Badge variant="kdu">KdU</Badge>
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Das Amt zahlt nicht die volle Miete? Der Mieter-Checker prüft,
-                ob deine Miete angemessen ist - und erstellt dir den passenden
-                Widerspruch.
-              </p>
-              <a
-                href="https://mieter.fintutto.cloud"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-primary font-medium flex items-center gap-1 hover:underline"
-              >
-                Zum Mieter-Checker
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
-            </CardContent>
-          </Card>
-          <Card className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <h3 className="font-semibold mb-2">Vermieter-Bescheinigung?</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Brauchst du eine Wohnungsgeberbescheinigung oder andere
-                Vermieter-Dokumente? Das Vermieter-Portal hat alle Formulare.
-              </p>
-              <a
-                href="https://vermieter.fintutto.cloud"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-primary font-medium flex items-center gap-1 hover:underline"
-              >
-                Zum Vermieter-Portal
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
-            </CardContent>
-          </Card>
+          {[
+            {
+              title: 'KdU-Probleme?',
+              tag: 'KdU',
+              desc: 'Das Amt zahlt nicht die volle Miete? Der Mieter-Checker prüft, ob deine Miete angemessen ist — und schreibt dir den passenden Widerspruch.',
+              link: 'https://mieter.fintutto.cloud',
+              cta: 'Zum Mieter-Checker',
+            },
+            {
+              title: 'Vermieter-Bescheinigung?',
+              tag: null,
+              desc: 'Brauchst du eine Wohnungsgeberbescheinigung oder andere Vermieter-Dokumente? Das Vermieter-Portal hat alle Formulare.',
+              link: 'https://vermieter.fintutto.cloud',
+              cta: 'Zum Vermieter-Portal',
+            },
+          ].map((item, i) => (
+            <FadeSection key={item.title} delay={i * 100}>
+              <Card className="h-full rounded-2xl hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                <CardContent className="p-6">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2 text-lg">
+                    {item.title}
+                    {item.tag && <Badge variant="kdu">{item.tag}</Badge>}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                    {item.desc}
+                  </p>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-primary font-semibold flex items-center gap-1.5 hover:gap-2.5 transition-all"
+                  >
+                    {item.cta}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </CardContent>
+              </Card>
+            </FadeSection>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ============================================================= */}
-      {/* 9b. NOTFALL + BEWERBUNGEN                                     */}
-      {/* ============================================================= */}
-      <section className="container py-12">
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 10. SIDE TOOLS — Notfall, Bewerbungen, Lernen, Anwalt        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <SectionWrapper>
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {/* Notfall-Hilfe */}
-          <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2.5 rounded-xl bg-red-100">
-                <AlertTriangle className="h-6 w-6 text-red-600" />
+          {[
+            {
+              icon: AlertTriangle,
+              title: 'Notfall-Hilfe',
+              desc: 'Strom abgestellt? Kündigung erhalten? Kein Geld für Essen? Sofort-Hilfe, kostenlose Hotlines, konkrete Schritte.',
+              link: '/notfall',
+              cta: 'Notfall-Hilfe',
+              btnIcon: Phone,
+              bg: 'bg-red-50 dark:bg-red-950/30',
+              border: 'border-red-200 dark:border-red-900',
+              titleColor: 'text-red-900 dark:text-red-100',
+              textColor: 'text-red-800 dark:text-red-200',
+              btnColor: 'bg-red-600 hover:bg-red-700 text-white',
+              iconBg: 'bg-red-100 dark:bg-red-950',
+              iconColor: 'text-red-600',
+            },
+            {
+              icon: Briefcase,
+              title: 'Bewerbungs-Tracker',
+              desc: 'Dokumentiere deine Eigenbemühungen für die Eingliederungsvereinbarung. Behalte den Überblick über alle Bewerbungen und Fristen.',
+              link: '/bewerbungen',
+              cta: 'Bewerbungen verwalten',
+              btnIcon: Briefcase,
+              bg: 'bg-purple-50 dark:bg-purple-950/30',
+              border: 'border-purple-200 dark:border-purple-900',
+              titleColor: 'text-purple-900 dark:text-purple-100',
+              textColor: 'text-purple-800 dark:text-purple-200',
+              btnColor: 'bg-purple-600 hover:bg-purple-700 text-white',
+              iconBg: 'bg-purple-100 dark:bg-purple-950',
+              iconColor: 'text-purple-600',
+            },
+            {
+              icon: GraduationCap,
+              title: 'Lernbereich',
+              desc: 'Verstehe deine Rechte Schritt für Schritt. 8 Module zu Bürgergeld, Widerspruch, KdU, Sanktionen und mehr.',
+              link: '/lernen',
+              cta: 'Jetzt lernen',
+              btnIcon: GraduationCap,
+              bg: 'bg-teal-50 dark:bg-teal-950/30',
+              border: 'border-teal-200 dark:border-teal-900',
+              titleColor: 'text-teal-900 dark:text-teal-100',
+              textColor: 'text-teal-800 dark:text-teal-200',
+              btnColor: 'bg-teal-600 hover:bg-teal-700 text-white',
+              iconBg: 'bg-teal-100 dark:bg-teal-950',
+              iconColor: 'text-teal-600',
+            },
+            {
+              icon: Scale,
+              title: 'Anwaltssuche',
+              desc: 'Finde Fachanwälte für Sozialrecht in deiner Nähe. Filtere nach PKH, kostenloser Erstberatung und Fachgebiet.',
+              link: '/anwaltssuche',
+              cta: 'Anwalt finden',
+              btnIcon: Scale,
+              bg: 'bg-blue-50 dark:bg-blue-950/30',
+              border: 'border-blue-200 dark:border-blue-900',
+              titleColor: 'text-blue-900 dark:text-blue-100',
+              textColor: 'text-blue-800 dark:text-blue-200',
+              btnColor: 'bg-blue-600 hover:bg-blue-700 text-white',
+              iconBg: 'bg-blue-100 dark:bg-blue-950',
+              iconColor: 'text-blue-600',
+            },
+          ].map((item, i) => (
+            <FadeSection key={item.title} delay={i * 80}>
+              <div
+                className={`${item.bg} border-2 ${item.border} rounded-2xl p-6 flex flex-col h-full`}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`p-2.5 rounded-xl ${item.iconBg}`}>
+                    <item.icon className={`h-6 w-6 ${item.iconColor}`} />
+                  </div>
+                  <h3 className={`text-xl font-bold ${item.titleColor}`}>
+                    {item.title}
+                  </h3>
+                </div>
+                <p className={`text-sm ${item.textColor} mb-4 flex-1`}>
+                  {item.desc}
+                </p>
+                <Button asChild className={`${item.btnColor} rounded-full w-fit`}>
+                  <Link to={item.link}>
+                    <item.btnIcon className="h-4 w-4 mr-2" />
+                    {item.cta}
+                  </Link>
+                </Button>
               </div>
-              <h3 className="text-xl font-bold text-red-900">Notfall-Hilfe</h3>
-            </div>
-            <p className="text-sm text-red-800 mb-4 flex-1">
-              Strom abgestellt? Kündigung erhalten? Kein Geld für Essen? Hier findest du sofortige Hilfe, kostenlose Hotlines und konkrete Schritte.
-            </p>
-            <div className="flex gap-3">
-              <Button asChild className="bg-red-600 hover:bg-red-700 text-white">
-                <Link to="/notfall">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Notfall-Hilfe
-                </Link>
-              </Button>
-            </div>
-          </div>
-
-          {/* Bewerbungs-Tracker */}
-          <div className="bg-purple-50 border-2 border-purple-200 rounded-2xl p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2.5 rounded-xl bg-purple-100">
-                <Briefcase className="h-6 w-6 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold text-purple-900">Bewerbungs-Tracker</h3>
-            </div>
-            <p className="text-sm text-purple-800 mb-4 flex-1">
-              Dokumentiere deine Eigenbemühungen für die Eingliederungsvereinbarung. Behalte den Überblick über alle Bewerbungen und Fristen.
-            </p>
-            <div className="flex gap-3">
-              <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
-                <Link to="/bewerbungen">
-                  <Briefcase className="h-4 w-4 mr-2" />
-                  Bewerbungen verwalten
-                </Link>
-              </Button>
-            </div>
-          </div>
+            </FadeSection>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
 
-      {/* ============================================================= */}
-      {/* 10. LERNBEREICH + ANWALTSSUCHE                                */}
-      {/* ============================================================= */}
-      <section className="container py-12">
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div className="bg-teal-50 dark:bg-teal-950/30 border-2 border-teal-200 dark:border-teal-800 rounded-2xl p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2.5 rounded-xl bg-teal-100 dark:bg-teal-900">
-                <GraduationCap className="h-6 w-6 text-teal-600" />
-              </div>
-              <h3 className="text-xl font-bold text-teal-900 dark:text-teal-100">Lernbereich</h3>
-            </div>
-            <p className="text-sm text-teal-800 dark:text-teal-200 mb-4 flex-1">
-              Verstehe deine Rechte Schritt für Schritt. 8 Module zu Bürgergeld, Widerspruch, KdU, Sanktionen und mehr.
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 11. URGENCY CTA — dunkler Final-Block                        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="gradient-amt text-white py-20 sm:py-24">
+        <div className="container">
+          <FadeSection className="max-w-3xl mx-auto text-center">
+            <Clock className="h-12 w-12 mx-auto mb-5 opacity-80" />
+            <h2 className="text-3xl sm:text-5xl font-extrabold mb-5 leading-tight">
+              Widerspruchsfrist läuft.
+            </h2>
+            <p className="text-lg sm:text-xl opacity-90 mb-10 max-w-xl mx-auto leading-relaxed">
+              Du hast nur <strong>einen Monat</strong>. Starte jetzt — BescheidBoxer
+              findet Fehler in Minuten, nicht in Wochen.
             </p>
-            <div className="flex gap-3">
-              <Button asChild className="bg-teal-600 hover:bg-teal-700 text-white">
-                <Link to="/lernen">
-                  <GraduationCap className="h-4 w-4 mr-2" />
-                  Jetzt lernen
-                </Link>
-              </Button>
-            </div>
-          </div>
-
-          <div className="bg-blue-50 dark:bg-blue-950/30 border-2 border-blue-200 dark:border-blue-800 rounded-2xl p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-900">
-                <Scale className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-blue-900 dark:text-blue-100">Anwaltssuche</h3>
-            </div>
-            <p className="text-sm text-blue-800 dark:text-blue-200 mb-4 flex-1">
-              Finde Fachanwälte für Sozialrecht in deiner Nähe. Filtere nach PKH, kostenloser Erstberatung und Fachgebiet.
-            </p>
-            <div className="flex gap-3">
-              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
-                <Link to="/anwaltssuche">
-                  <Scale className="h-4 w-4 mr-2" />
-                  Anwalt finden
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================= */}
-      {/* 11. URGENCY CTA                                               */}
-      {/* ============================================================= */}
-      <section className="gradient-amt text-white py-16">
-        <div className="container text-center">
-          <Clock className="h-12 w-12 mx-auto mb-4 opacity-80" />
-          <h2 className="text-3xl font-bold mb-4">Widerspruchsfrist läuft?</h2>
-          <p className="text-lg opacity-90 mb-8 max-w-xl mx-auto">
-            Du hast nur <strong>1 Monat</strong> Zeit für einen Widerspruch.
-            Starte jetzt - BescheidBoxer findet Fehler in Minuten, nicht Wochen.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="xl"
-              className="bg-white text-red-700 hover:bg-white/90 font-bold"
-              asChild
-            >
-              <Link to="/scan">
-                <ScanSearch className="mr-2 h-5 w-5" />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/scan"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-bold bg-white text-red-700 hover:bg-white/95 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] shadow-xl"
+              >
+                <ScanSearch className="w-5 h-5" />
                 Bescheid jetzt scannen
               </Link>
-            </Button>
-            <Button
-              size="xl"
-              className="bg-white/15 text-white border border-white/30 hover:bg-white/25"
-              asChild
-            >
-              <Link to="/chat">
-                <MessageCircle className="mr-2 h-5 w-5" />
+              <Link
+                to="/chat"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-white/15 text-white border-2 border-white/30 hover:bg-white/25 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+              >
+                <MessageCircle className="w-5 h-5" />
                 Kostenlos Frage stellen
               </Link>
-            </Button>
-          </div>
+            </div>
+          </FadeSection>
         </div>
       </section>
     </div>

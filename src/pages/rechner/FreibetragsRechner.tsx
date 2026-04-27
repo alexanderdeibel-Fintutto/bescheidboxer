@@ -7,6 +7,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 export default function FreibetragsRechner() {
   const [bruttoEinkommen, setBruttoEinkommen] = useState<string>('800')
@@ -255,6 +256,20 @@ export default function FreibetragsRechner() {
                 <Share2 className="w-4 h-4 mr-2" />Teilen
               </Button>
             </div>
+            {ergebnis && (
+              <div className="mt-4">
+                <SaveCalculationButton
+                  toolId="freibetrag"
+                  toolType="rechner"
+                  inputData={{ bruttoEinkommen, hatKinder, svBeitraege, werbungskosten, versicherungspauschale }}
+                  resultData={{
+                    freibetrag_gesamt: ergebnis.freibetragGesamt,
+                    anrechenbares_einkommen: ergebnis.anrechenbaresEinkommen,
+                    brutto_einkommen: parseFloat(bruttoEinkommen) || 0,
+                  }}
+                />
+              </div>
+            )}
           </div>
         )}
 

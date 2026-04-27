@@ -7,6 +7,7 @@ import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 export default function MehrbedarfRechner() {
   const [regelsatz, setRegelsatz] = useState<number>(REGELSAETZE_2025.RS1)
@@ -232,6 +233,16 @@ export default function MehrbedarfRechner() {
                   </Button>
                   <Link to="/scan" className="flex-1"><Button variant="outline" className="w-full"><Heart className="w-4 h-4 mr-2" />Bescheid pruefen</Button></Link>
                   <Link to="/rechner" className="flex-1"><Button variant="outline" className="w-full">Alle Rechner</Button></Link>
+                  <SaveCalculationButton
+                    toolId="mehrbedarf"
+                    toolType="rechner"
+                    inputData={{ regelsatz, schwanger, alleinerziehend, anzahlKinder, kinderAlter, behindert, kostenaufwaendigeErnaehrung, ernaehrungstyp, dezentraleWarmwasser }}
+                    resultData={{
+                      gesamt_mehrbedarf: result.gesamt,
+                      anzahl_positionen: result.details.length,
+                      details: result.details,
+                    }}
+                  />
                 </div>
               </>
             ) : (

@@ -8,6 +8,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RechtlicherHinweis from '@/components/RechtlicherHinweis'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 // Local wrapper with id for UI management
 interface UiMitglied extends BgMitglied {
@@ -606,6 +607,21 @@ export default function BuergergeldRechner() {
               <Link to="/scan"><Button className="w-full py-4 bg-blue-600 hover:bg-blue-700">Bescheid scannen</Button></Link>
               <Link to="/chat"><Button className="w-full py-4 bg-green-600 hover:bg-green-700">KI-Berater fragen</Button></Link>
               <Button onClick={reset} variant="outline" className="w-full py-4">Nochmal berechnen</Button>
+              {ergebnis && (
+                <SaveCalculationButton
+                  toolId="buergergeld"
+                  toolType="rechner"
+                  inputData={{ mitglieder, kaltmiete, nebenkosten, heizkosten, plz }}
+                  resultData={{
+                    gesamtBedarf: ergebnis.gesamtBedarf,
+                    gesamtAnspruch: ergebnis.gesamtAnspruch,
+                    regelsatz: ergebnis.regelsatz,
+                    kdu: ergebnis.kdu,
+                    mehrbedarfe: ergebnis.mehrbedarfe,
+                    einkommen: ergebnis.einkommen,
+                  }}
+                />
+              )}
             </div>
 
             <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">

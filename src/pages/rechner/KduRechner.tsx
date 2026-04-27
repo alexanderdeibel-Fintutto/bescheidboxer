@@ -8,6 +8,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 export default function KduRechner() {
   const [plz, setPlz] = useState('')
@@ -207,23 +208,220 @@ export default function KduRechner() {
                 <Share2 className="w-4 h-4 mr-2" />Teilen
               </Button>
               <Link to="/chat" className="flex-1"><Button className="w-full gradient-boxer text-white font-semibold py-3 rounded-lg">Widerspruch pruefen</Button></Link>
-              <Link to="/rechner" className="flex-1"><Button variant="outline" className="w-full py-3">Alle Rechner</Button></Link>
+              <SaveCalculationButton
+                toolId="kdu"
+                toolType="rechner"
+                inputData={{ plz, bgGroesse, kaltmiete, nebenkosten, heizkosten, wohnflaeche }}
+                resultData={{
+                  stadt: ergebnis.stadt,
+                  kaltmiete_angemessen: ergebnis.kaltmieteAngemessen,
+                  kaltmiete_grenze: ergebnis.kaltmieteGrenze,
+                  heizkosten_angemessen: ergebnis.heizkostenAngemessen,
+                  heizkosten_grenze: ergebnis.heizkostenGrenze,
+                  qm_angemessen: ergebnis.qmAngemessen,
+                  qm_grenze: ergebnis.qmGrenze,
+                  gesamt_kdu: ergebnis.gesamtKdu,
+                  angemessene_kdu: ergebnis.angemesseneKdu,
+                }}
+              />
             </div>
           </div>
         )}
 
-        {/* Info */}
-        <div className="mt-12 space-y-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="font-semibold text-xl mb-3">Was ist KdU?</h3>
-            <p className="text-gray-700 leading-relaxed">KdU steht fuer "Kosten der Unterkunft und Heizung". Bei Buergergeld uebernimmt das Jobcenter deine Wohnkosten - aber nur, wenn diese als angemessen gelten (§ 22 SGB II).</p>
+        {/* === SEO-CONTENT-BLOCK ============================================
+             Optimiert fuer Domains kdu-rechner.de + kosten-der-unterkunft-rechner.de.
+             Long-form Content, FAQ-Schema-tauglich, Internal Links zu verwandten Tools.
+             ============================================================== */}
+        <article className="mt-12 space-y-8 max-w-3xl mx-auto">
+
+          <header className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              Kosten der Unterkunft (KdU) Rechner — § 22 SGB II
+            </h2>
+            <p className="text-lg text-gray-600">
+              Pruefe in 30 Sekunden, ob das Jobcenter deine Miete und Heizkosten
+              vollstaendig uebernehmen muss. Mit aktuellen Mietspiegeln aus ueber 100 Staedten.
+            </p>
+          </header>
+
+          {/* Was sind KdU */}
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-3 text-gray-900">
+              Was sind Kosten der Unterkunft (KdU)?
+            </h3>
+            <p className="text-gray-700 leading-relaxed mb-3">
+              Die <strong>Kosten der Unterkunft und Heizung (KdU)</strong> umfassen nach
+              § 22 SGB II alle laufenden Wohnkosten, die das Jobcenter bei Buergergeld-
+              und Sozialhilfe-Empfaengern uebernimmt:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 space-y-1">
+              <li><strong>Kaltmiete</strong> (Grundmiete ohne Nebenkosten)</li>
+              <li><strong>Kalte Betriebskosten</strong> (Wasser, Muell, Hausmeister, etc.)</li>
+              <li><strong>Heizkosten</strong> (Gas, Oel, Fernwaerme, Strom fuer Warmwasser bei dezentraler Erwaermung)</li>
+              <li><strong>Nebenkosten-Nachzahlungen</strong> (einmalig)</li>
+            </ul>
+            <p className="text-gray-700 leading-relaxed mt-3">
+              Stromkosten fuer Beleuchtung und Haushaltsgeraete sind <em>nicht</em> Teil der KdU —
+              die werden aus dem Regelsatz bezahlt.
+            </p>
+          </section>
+
+          {/* Wer hat Anspruch */}
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-3 text-gray-900">
+              Wer hat Anspruch auf KdU-Uebernahme?
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              Jeder Buergergeld- oder Sozialhilfe-Empfaenger hat grundsaetzlich Anspruch auf
+              die Uebernahme der <strong>angemessenen</strong> Kosten der Unterkunft.
+              „Angemessen" heisst dabei: Die Wohnung muss sowohl in der <strong>Groesse</strong>
+              (z.B. 50 qm fuer Einzelpersonen, 60 qm fuer Paare) als auch im <strong>Mietpreis</strong>
+              (orientiert am lokalen Mietspiegel) im akzeptierten Rahmen liegen.
+            </p>
+          </section>
+
+          {/* Was tun wenn KdU gekürzt wird */}
+          <section className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <h3 className="font-semibold text-xl mb-3 text-amber-900">
+              Das Jobcenter haelt deine Miete fuer „unangemessen"?
+            </h3>
+            <p className="text-gray-800 leading-relaxed mb-3">
+              In den allermeisten Faellen lohnt sich ein Widerspruch. Drei haeufige Gruende,
+              warum eine Kuerzung rechtswidrig ist:
+            </p>
+            <ol className="list-decimal pl-6 text-gray-800 space-y-2">
+              <li>
+                <strong>Kein schluessiges Konzept:</strong> Das Jobcenter muss seine
+                Angemessenheits-Tabelle wissenschaftlich begruenden. Viele Konzepte halten
+                gerichtlicher Pruefung nicht stand (BSG-Rechtsprechung).
+              </li>
+              <li>
+                <strong>6-Monats-Frist nicht beachtet:</strong> Bei zu hoher Miete musst du
+                erst <strong>6 Monate</strong> Zeit bekommen, die Kosten zu senken — solange
+                werden die vollen Kosten weiter gezahlt (§ 22 Abs. 1 Satz 3 SGB II).
+              </li>
+              <li>
+                <strong>Heizkosten falsch gekuerzt:</strong> Ein bundesweiter Heizspiegel
+                gilt nur als Pruefmassstab — eine pauschale Kuerzung darunter ist meist
+                rechtswidrig.
+              </li>
+            </ol>
+            <div className="mt-4">
+              <Link to="/scan">
+                <Button variant="amt" size="lg" className="gap-2">
+                  Bescheid jetzt pruefen lassen <Info className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </section>
+
+          {/* FAQ */}
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-4 text-gray-900">Haeufig gestellte Fragen</h3>
+            <div className="space-y-5">
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">
+                  Was passiert, wenn meine Miete zu hoch ist?
+                </h4>
+                <p className="text-sm text-gray-700">
+                  Das Jobcenter fordert dich auf, die Kosten zu senken. Du hast <strong>6 Monate</strong>
+                  Zeit — waehrenddessen werden die vollen Kosten noch uebernommen. In dieser Zeit kannst
+                  du eine guenstigere Wohnung suchen, untervermieten, umziehen oder die Miete senken.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">
+                  Werden Heizkosten immer voll uebernommen?
+                </h4>
+                <p className="text-sm text-gray-700">
+                  Heizkosten werden in <strong>tatsaechlicher Hoehe</strong> uebernommen, solange sie
+                  angemessen sind. Als Orientierung dient der bundesweite Heizspiegel. Bei Verbrauch
+                  ueber dem Wert der Kategorie „zu hoch" droht eine Kuerzung — du kannst aber Gruende nennen
+                  (z.B. schlechte Daemmung, Krankheit, Familiengroesse).
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">
+                  Gilt die KdU-Pruefung auch fuer Wohneigentum?
+                </h4>
+                <p className="text-sm text-gray-700">
+                  Ja. Bei Wohneigentum werden Hauslasten (Zinsen, Grundsteuer, Versicherungen, Heizung)
+                  uebernommen, aber keine Tilgungsanteile (Bundessozialgericht).
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">
+                  Was zaehlt zur Bedarfsgemeinschaft (BG)?
+                </h4>
+                <p className="text-sm text-gray-700">
+                  Zur BG gehoeren alle Personen im selben Haushalt, die wirtschaftlich
+                  zusammenleben — also Ehepartner, eingetragene Lebenspartner, unverheiratete
+                  Paare in eheaehnlicher Gemeinschaft und minderjaehrige Kinder.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">
+                  Wie genau ist dieser KdU-Rechner?
+                </h4>
+                <p className="text-sm text-gray-700">
+                  Der Rechner basiert auf den aktuellen Mietspiegel-Tabellen aus ueber 100 deutschen
+                  Staedten und den Wohnflaechengrenzen der Wohnraumfoerderungsgesetze.
+                  Die Grenzwerte koennen sich kommunal unterscheiden — bei Streitfaellen
+                  zaehlt die Tabelle deines Jobcenters.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Verwandte Rechner */}
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-4 text-gray-900">Weitere passende Rechner</h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              <Link to="/rechner/buergergeld" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">Buergergeld-Rechner</div>
+                <div className="text-xs text-muted-foreground">Vollstaendige Anspruchsberechnung mit BG, Einkommen, Mehrbedarfen</div>
+              </Link>
+              <Link to="/rechner/mehrbedarf" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">Mehrbedarfs-Rechner</div>
+                <div className="text-xs text-muted-foreground">Alleinerziehend, schwanger, Behinderung, kostenaufwaendige Ernaehrung</div>
+              </Link>
+              <Link to="/rechner/freibetrag" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">Freibetrags-Rechner</div>
+                <div className="text-xs text-muted-foreground">Wieviel von deinem Einkommen wird angerechnet?</div>
+              </Link>
+              <Link to="/rechner/sanktion" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">Sanktions-Rechner</div>
+                <div className="text-xs text-muted-foreground">Kuerzung bei Pflichtversaeumnis berechnen</div>
+              </Link>
+            </div>
+          </section>
+
+          {/* Bescheid-Scan CTA */}
+          <section className="rounded-lg p-6 gradient-boxer text-white">
+            <h3 className="text-xl font-bold mb-2">Du hast einen Bescheid mit gekuerzten KdU?</h3>
+            <p className="opacity-90 mb-4">
+              Lade ihn hoch — unsere KI prueft in unter einer Minute, ob die Kuerzung
+              rechtmaessig ist und erstellt dir den passenden Widerspruch.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/scan">
+                <Button size="lg" className="bg-white text-red-700 hover:bg-white/90">
+                  Bescheid jetzt scannen
+                </Button>
+              </Link>
+              <Link to="/chat">
+                <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10">
+                  KI-Berater fragen
+                </Button>
+              </Link>
+            </div>
+          </section>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-600 text-center">
+            <Info className="w-4 h-4 inline mr-2" />
+            Rechtsgrundlage: § 22 SGB II — Bedarfe fuer Unterkunft und Heizung
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="font-semibold text-xl mb-3">Was passiert wenn meine Miete zu hoch ist?</h3>
-            <p className="text-gray-700 leading-relaxed">Das Jobcenter fordert dich auf, die Kosten zu senken. Du hast 6 Monate Zeit - waehrenddessen werden die vollen Kosten noch uebernommen. Unser KI-Berater kann dich beraten.</p>
-          </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-600"><Info className="w-4 h-4 inline mr-2" />Rechtsgrundlage: § 22 SGB II</div>
-        </div>
+        </article>
       </div>
     </div>
   )

@@ -13,6 +13,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 // === TYPES ===
@@ -608,6 +609,16 @@ export default function HaushaltsRechner() {
                 <Wallet className="h-4 w-4 mr-2" />
                 Speichern
               </Button>
+              <SaveCalculationButton
+                toolId="haushalt"
+                toolType="rechner"
+                inputData={{ einnahmen, ausgaben }}
+                resultData={{
+                  einnahmen_gesamt: totalEinnahmen,
+                  ausgaben_gesamt: totalAusgaben,
+                  differenz,
+                }}
+              />
             </div>
           </CardContent>
         </Card>

@@ -11,6 +11,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 // === TYPES ===
 
@@ -647,6 +648,24 @@ export default function EinkommenRechner() {
                 <Button onClick={handleShare} variant="outline" className="flex-1">
                   <Share2 className="h-4 w-4 mr-2" />Teilen
                 </Button>
+                <SaveCalculationButton
+                  toolId="einkommen"
+                  toolType="rechner"
+                  inputData={{
+                    einnahmen,
+                    hatKinder,
+                    aktuellerMonat,
+                  }}
+                  resultData={{
+                    brutto_gesamt: ergebnis.bruttoGesamt,
+                    erwerbseinkommen: ergebnis.erwerbseinkommenGesamt,
+                    sonstiges: ergebnis.sonstigesEinkommenGesamt,
+                    kindergeld: ergebnis.kindergeldGesamt,
+                    freibetrag_gesamt: ergebnis.freibetragGesamt,
+                    anrechenbares_einkommen: ergebnis.anrechnebaresEinkommen,
+                    behalten_gesamt: ergebnis.behaltenGesamt,
+                  }}
+                />
               </div>
             </CardContent>
           </Card>

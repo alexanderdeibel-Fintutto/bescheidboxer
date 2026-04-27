@@ -7,6 +7,7 @@ import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 export default function MehrbedarfRechner() {
   const [regelsatz, setRegelsatz] = useState<number>(REGELSAETZE_2025.RS1)
@@ -232,6 +233,16 @@ export default function MehrbedarfRechner() {
                   </Button>
                   <Link to="/scan" className="flex-1"><Button variant="outline" className="w-full"><Heart className="w-4 h-4 mr-2" />Bescheid pruefen</Button></Link>
                   <Link to="/rechner" className="flex-1"><Button variant="outline" className="w-full">Alle Rechner</Button></Link>
+                  <SaveCalculationButton
+                    toolId="mehrbedarf"
+                    toolType="rechner"
+                    inputData={{ regelsatz, schwanger, alleinerziehend, anzahlKinder, kinderAlter, behindert, kostenaufwaendigeErnaehrung, ernaehrungstyp, dezentraleWarmwasser }}
+                    resultData={{
+                      gesamt_mehrbedarf: result.gesamt,
+                      anzahl_positionen: result.details.length,
+                      details: result.details,
+                    }}
+                  />
                 </div>
               </>
             ) : (
@@ -244,28 +255,136 @@ export default function MehrbedarfRechner() {
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold mb-4 flex items-center"><Info className="w-5 h-5 mr-2 text-blue-600" />Informationen zum Mehrbedarf</h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Was ist Mehrbedarf?</h3>
-              <p className="text-gray-700 text-sm leading-relaxed">Mehrbedarf ist ein Zuschlag zum Regelsatz in besonderen Lebenslagen (§ 21 SGB II). Er deckt erhoehte Kosten durch Schwangerschaft, Alleinerziehung, Behinderung, besondere Ernaehrung oder dezentrale Warmwassererzeugung ab.</p>
+        {/* === SEO-CONTENT-BLOCK ============================================
+             Optimiert fuer Domain mehrbedarf-rechner.de.
+             ============================================================== */}
+        <article className="mt-12 space-y-8 max-w-3xl mx-auto">
+
+          <header className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              Mehrbedarfs-Rechner — § 21 SGB II
+            </h2>
+            <p className="text-lg text-gray-600">
+              Pruefe in unter einer Minute, welche Mehrbedarfe dir zustehen — Alleinerziehende,
+              Schwangere, Behinderte, kostenaufwaendige Ernaehrung, dezentrale Warmwasser-Erzeugung.
+            </p>
+          </header>
+
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-3 text-gray-900">Was sind Mehrbedarfe nach § 21 SGB II?</h3>
+            <p className="text-gray-700 leading-relaxed mb-3">
+              <strong>Mehrbedarfe</strong> sind Zuschlaege zum normalen Regelsatz, die das
+              Buergergeld in besonderen Lebenslagen ergaenzen — weil bestimmte Personengruppen
+              regelmaessig hoehere Kosten haben als der Regelsatz abdeckt.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              <strong>Wichtig:</strong> Mehrbedarfe werden <em>nicht automatisch</em> gewaehrt.
+              Du musst sie aktiv beantragen — aber rueckwirkend ab Antragstellung.
+            </p>
+          </section>
+
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-4 text-gray-900">Diese 5 Mehrbedarfe gibt es</h3>
+            <ul className="list-decimal pl-6 text-gray-700 space-y-3">
+              <li>
+                <strong>Alleinerziehende</strong> (§ 21 Abs. 3 SGB II) — gestaffelt nach Anzahl + Alter der Kinder.
+                Mit 2 Kindern unter 16: 36% des Regelsatzes (~202 EUR).
+              </li>
+              <li>
+                <strong>Schwangerschaft ab der 13. Woche</strong> (§ 21 Abs. 2 SGB II) — 17% des Regelsatzes (~96 EUR).
+              </li>
+              <li>
+                <strong>Kostenaufwaendige Ernaehrung</strong> (§ 21 Abs. 5 SGB II) — bei medizinisch
+                notwendiger Diaet (Diabetes, Niereninsuffizienz, Zoeliakie, Krebs, etc.) 5-30% Aufschlag,
+                je nach Erkrankung. Aerztliches Attest zwingend.
+              </li>
+              <li>
+                <strong>Behinderung mit Erwerbsminderung</strong> (§ 21 Abs. 4 SGB II) — 35% Aufschlag fuer
+                Personen, die wegen Behinderung an Massnahmen zur Eingliederung in Arbeit teilnehmen.
+              </li>
+              <li>
+                <strong>Dezentrale Warmwasser-Erzeugung</strong> (§ 21 Abs. 7 SGB II) — Pauschale je nach Alter:
+                Erwachsene 2,3% des Regelsatzes (~13 EUR/Monat).
+              </li>
+            </ul>
+          </section>
+
+          <section className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <h3 className="font-semibold text-xl mb-3 text-amber-900">
+              Mehrbedarf vergessen? Der haeufigste Fehler im Bescheid.
+            </h3>
+            <p className="text-gray-800 leading-relaxed mb-3">
+              In der Praxis fehlen Mehrbedarfe in <strong>fast jedem dritten Bescheid</strong>.
+              Das Jobcenter prueft sie nicht aktiv. Wenn dein Bescheid weniger zeigt als unser Rechner ergibt,
+              gibt's gute Chancen mit einem Widerspruch oder Ueberpruefungsantrag — der geht bis zu 1 Jahr rueckwirkend.
+            </p>
+            <Link to="/scan">
+              <Button variant="amt" size="lg" className="gap-2">Bescheid pruefen lassen</Button>
+            </Link>
+          </section>
+
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-4 text-gray-900">FAQ Mehrbedarf</h3>
+            <div className="space-y-5">
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Wie beantrage ich Mehrbedarf?</h4>
+                <p className="text-sm text-gray-700">
+                  Formloser Antrag reicht — schriftlich oder via Online-Portal des Jobcenters.
+                  Nachweise: aerztliches Attest (Ernaehrung, Behinderung), Mutterpass (Schwangerschaft),
+                  Schulbescheinigungen der Kinder (Alleinerziehend).
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Werden Mehrbedarfe rueckwirkend gezahlt?</h4>
+                <p className="text-sm text-gray-700">
+                  Ja — ab dem Monat der Antragstellung. Beim <strong>Ueberpruefungsantrag</strong> nach § 44 SGB X
+                  sogar bis zu <strong>1 Jahr rueckwirkend</strong>, wenn der Mehrbedarf von Anfang an haette beruecksichtigt werden muessen.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Kann ich mehrere Mehrbedarfe gleichzeitig bekommen?</h4>
+                <p className="text-sm text-gray-700">
+                  Ja, Mehrbedarfe sind kumulierbar — z.B. alleinerziehend + dezentrale Warmwasser-Erzeugung.
+                  Begrenzung: Summe darf nicht mehr als der Regelsatz betragen (§ 21 Abs. 8 SGB II).
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-1">Was bei Krankheit ohne Diagnose?</h4>
+                <p className="text-sm text-gray-700">
+                  Hier wird's kniffelig: Das Jobcenter folgt meist den
+                  „Empfehlungen des Deutschen Vereins" — Liste der anerkannten Krankheiten mit Pauschal-Saetzen.
+                  Bei seltenen Erkrankungen lohnt sich anwaltliche Hilfe oder Beratung beim Sozialverband.
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Wie beantrage ich Mehrbedarf?</h3>
-              <ol className="text-sm text-gray-700 space-y-2 list-decimal list-inside">
-                <li>Formlosen Antrag beim Jobcenter stellen</li>
-                <li>Nachweise vorlegen (Attest, Geburtsurkunden, Schwerbehindertenausweis)</li>
-                <li>Jobcenter prueft und erlaesst Bescheid</li>
-                <li>Mehrbedarf wird rueckwirkend ab Antragstellung gezahlt</li>
-                <li>Bescheid sorgfaeltig pruefen - nutze unseren Bescheid-Scanner</li>
-              </ol>
+          </section>
+
+          <section className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="font-semibold text-xl mb-4 text-gray-900">Verwandte Rechner</h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              <Link to="/rechner/buergergeld" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">Buergergeld-Rechner</div>
+                <div className="text-xs text-muted-foreground">Komplette Anspruchsberechnung</div>
+              </Link>
+              <Link to="/rechner/kdu" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">KdU-Rechner</div>
+                <div className="text-xs text-muted-foreground">Wohnkosten-Pruefung</div>
+              </Link>
+              <Link to="/rechner/freibetrag" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">Freibetrags-Rechner</div>
+                <div className="text-xs text-muted-foreground">Einkommens-Anrechnung</div>
+              </Link>
+              <Link to="/rechner/erstausstattung" className="block p-3 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
+                <div className="font-medium text-gray-900">Erstausstattungs-Rechner</div>
+                <div className="text-xs text-muted-foreground">Einmalige Leistungen</div>
+              </Link>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-              <p className="text-sm text-blue-900"><strong>Wichtig:</strong> Mehrbedarf wird nicht automatisch gewaehrt. Du musst ihn aktiv beantragen.</p>
-            </div>
+          </section>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-600 text-center">
+            Rechtsgrundlage: § 21 SGB II — Mehrbedarfe
           </div>
-        </div>
+        </article>
       </div>
     </div>
   )

@@ -1,10 +1,20 @@
-import { useState, useRef } from 'react'
+/**
+ * BescheidScanPage — Multi-Page-Upload + OCR + KI-Analyse.
+ *
+ * Migriert aus cloud/apps/arbeitslos-portal (836 Zeilen, +374 zur alten
+ * Standalone-Version). Backend-Calls gehen jetzt 2-Step-mässig auf
+ * unser `/api/amt-scan`-Endpoint:
+ *   action='ocr'      pro Seite -> extractedText
+ *   action='analyze'  combined  -> structured analysis
+ *
+ * Dazu: Drag-and-Drop, Manual-Text-Fallback, Per-Page-Status, Demo-Modus.
+ */
+import { useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import {
   ScanSearch,
   Upload,
-  Camera,
   FileText,
   AlertCircle,
   CheckCircle2,
@@ -15,6 +25,10 @@ import {
   Euro,
   Clock,
   Shield,
+  X,
+  Plus,
+  FileImage,
+  BookOpen,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -22,6 +36,13 @@ import { Badge } from '@/components/ui/badge'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 import { toast } from 'sonner'
+import {
+  type BescheidPage,
+  createPage,
+  releasePage,
+  fileToBase64,
+  validateFile,
+} from '@/lib/bescheid-ocr'
 
 interface ScanError {
   type: 'fehler' | 'warnung' | 'ok'
@@ -40,7 +61,6 @@ interface ScanResult {
   fristEnde?: string
 }
 
-// Demo scan results for demonstration
 function generateDemoScanResult(): ScanResult {
   return {
     errors: [
@@ -49,7 +69,7 @@ function generateDemoScanResult(): ScanResult {
         title: 'Mehrbedarf Alleinerziehend fehlt!',
         description: 'Du bist alleinerziehend mit 2 Kindern unter 16. Dir steht ein Mehrbedarf von 36% des Regelsatzes zu. Das sind 202,68 EUR monatlich die im Bescheid fehlen.',
         betrag: 202.68,
-        paragraph: '\u00a7 21 Abs. 3 Nr. 1 SGB II',
+        paragraph: '§ 21 Abs. 3 Nr. 1 SGB II',
         templateId: 'antrag_mehrbedarf',
       },
       {
@@ -57,128 +77,309 @@ function generateDemoScanResult(): ScanResult {
         title: 'Heizkosten nur teilweise anerkannt',
         description: 'Die tatsaechlichen Heizkosten von 85 EUR wurden auf 65 EUR gekuerzt. Das Jobcenter muss ein schluessiges Konzept vorlegen. Ohne schluessiges Konzept muessen die tatsaechlichen Kosten uebernommen werden.',
         betrag: 20.00,
-        paragraph: '\u00a7 22 Abs. 1 SGB II',
+        paragraph: '§ 22 Abs. 1 SGB II',
         templateId: 'widerspruch_kdu',
       },
       {
         type: 'warnung',
         title: 'Kindersofortzuschlag pruefen',
         description: 'Der Kindersofortzuschlag von 25 EUR je Kind sollte im Bescheid aufgefuehrt sein. Bitte pruefe ob dieser Betrag enthalten ist.',
-        paragraph: '\u00a7 72 SGB II',
+        paragraph: '§ 72 SGB II',
       },
       {
         type: 'ok',
         title: 'Regelsatz korrekt',
         description: 'Der Regelsatz von 563 EUR (Stufe 1) ist korrekt fuer 2025/2026.',
-        paragraph: '\u00a7 20 SGB II',
-      },
-      {
-        type: 'ok',
-        title: 'Bewilligungszeitraum korrekt',
-        description: 'Der Bewilligungszeitraum von 12 Monaten ist im Rahmen des Ueblichen.',
-        paragraph: '\u00a7 41 Abs. 3 SGB II',
+        paragraph: '§ 20 SGB II',
       },
     ],
     totalMissing: 222.68,
     totalOver6Months: 1336.08,
     urgency: 'hoch',
-    fristEnde: '2026-03-06',
+    fristEnde: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
   }
+}
+
+async function postScan(body: Record<string, unknown>): Promise<unknown> {
+  const res = await fetch('/api/amt-scan', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) {
+    const payload = await res.json().catch(() => ({}))
+    throw new Error(
+      (payload as { error?: string })?.error ||
+        `Anfrage fehlgeschlagen (HTTP ${res.status}).`,
+    )
+  }
+  return res.json()
 }
 
 export default function BescheidScanPage() {
   useDocumentTitle('BescheidScan - BescheidBoxer')
   const [scanState, setScanState] = useState<'upload' | 'scanning' | 'result'>('upload')
   const [result, setResult] = useState<ScanResult | null>(null)
-  const [fileName, setFileName] = useState<string>('')
-  const [, setSelectedFile] = useState<File | null>(null)
+  const [pages, setPages] = useState<BescheidPage[]>([])
+  const [manualText, setManualText] = useState('')
+  const [showManualInput, setShowManualInput] = useState(false)
+  const [scanProgress, setScanProgress] = useState('')
+  const [dragActive, setDragActive] = useState(false)
+  const [uploadError, setUploadError] = useState<string | null>(null)
+  const [scanError, setScanError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { checkScan, consumeScan } = useCreditsContext()
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setFileName(file.name)
-      setSelectedFile(file)
-      startScan(file)
-    }
+  const addFiles = useCallback(
+    (files: FileList | File[]) => {
+      setUploadError(null)
+      const newPages: BescheidPage[] = []
+      const errors: string[] = []
+
+      Array.from(files).forEach((file) => {
+        const validation = validateFile(file)
+        if (!validation.valid) {
+          errors.push(`${file.name}: ${validation.error}`)
+          return
+        }
+        newPages.push(createPage(file, pages.length + newPages.length + 1))
+      })
+
+      if (errors.length > 0) {
+        setUploadError(errors.join('\n'))
+      }
+
+      if (newPages.length > 0) {
+        setPages((prev) => [...prev, ...newPages])
+      }
+    },
+    [pages.length],
+  )
+
+  const removePage = (pageId: string) => {
+    setPages((prev) => {
+      const page = prev.find((p) => p.id === pageId)
+      if (page) releasePage(page)
+      return prev
+        .filter((p) => p.id !== pageId)
+        .map((p, i) => ({ ...p, pageNumber: i + 1 }))
+    })
   }
 
-  const startScan = async (file?: File) => {
-    // Credit gate
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      addFiles(e.target.files)
+    }
+    e.target.value = ''
+  }
+
+  const handleDrag = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true)
+    } else if (e.type === 'dragleave') {
+      setDragActive(false)
+    }
+  }, [])
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
+      setDragActive(false)
+      if (e.dataTransfer.files?.length) {
+        addFiles(e.dataTransfer.files)
+      }
+    },
+    [addFiles],
+  )
+
+  const startAnalysis = async () => {
+    const hasPages = pages.length > 0
+    const hasManualText = manualText.trim().length > 0
+    if (!hasPages && !hasManualText) return
+
     const scanCheck = checkScan()
     if (!scanCheck.allowed) {
       toast.error(scanCheck.reason || 'Scan nicht verfuegbar.')
       return
     }
 
-    if (!file) {
-      toast.error('Keine Datei ausgewaehlt.')
+    setScanState('scanning')
+    setScanError(null)
+
+    let combinedText = ''
+
+    // Step 1: OCR pro Seite
+    if (hasPages) {
+      setScanProgress('Seiten werden per OCR erfasst...')
+      const pageTexts: string[] = []
+      let ocrErrors = 0
+
+      for (let i = 0; i < pages.length; i++) {
+        const page = pages[i]
+        setScanProgress(`Seite ${i + 1} von ${pages.length} wird gelesen...`)
+        setPages((prev) =>
+          prev.map((p) => (p.id === page.id ? { ...p, status: 'processing' } : p)),
+        )
+
+        try {
+          const dataUrl = await fileToBase64(page.file)
+          const base64 = dataUrl.split(',')[1] || dataUrl
+          const mediaType = page.file.type || 'image/jpeg'
+
+          const data = (await postScan({
+            action: 'ocr',
+            imageData: base64,
+            mediaType,
+            pageNumber: i + 1,
+            totalPages: pages.length,
+          })) as { extractedText?: string }
+
+          if (data?.extractedText) {
+            pageTexts.push(data.extractedText)
+            setPages((prev) =>
+              prev.map((p) =>
+                p.id === page.id ? { ...p, status: 'done', extractedText: data.extractedText! } : p,
+              ),
+            )
+          } else {
+            ocrErrors++
+            setPages((prev) => prev.map((p) => (p.id === page.id ? { ...p, status: 'error' } : p)))
+          }
+        } catch {
+          ocrErrors++
+          setPages((prev) => prev.map((p) => (p.id === page.id ? { ...p, status: 'error' } : p)))
+        }
+      }
+
+      combinedText = pageTexts.filter(Boolean).join('\n\n--- Naechste Seite ---\n\n')
+
+      if (ocrErrors === pages.length) {
+        setScanError(
+          'Keine der hochgeladenen Seiten konnte gelesen werden. Bitte pruefe Bildqualitaet und Internetverbindung — oder gib den Text manuell ein.',
+        )
+        setScanState('upload')
+        return
+      }
+    }
+
+    if (hasManualText) {
+      combinedText = combinedText
+        ? combinedText + '\n\n--- Manuell eingegebener Text ---\n\n' + manualText.trim()
+        : manualText.trim()
+    }
+
+    if (!combinedText) {
+      setScanError('Kein Text zum Analysieren vorhanden.')
+      setScanState('upload')
       return
     }
 
-    setScanState('scanning')
-
+    // Step 2: Analyze
+    setScanProgress('Bescheid wird auf Fehler analysiert...')
     try {
-      const reader = new FileReader()
-      const base64Promise = new Promise<string>((resolve, reject) => {
-        reader.onload = () => {
-          const res = reader.result as string
-          const base64 = res.split(',')[1]
-          resolve(base64)
-        }
-        reader.onerror = () => reject(new Error('Datei konnte nicht gelesen werden.'))
-        reader.readAsDataURL(file)
-      })
-      const fileContent = await base64Promise
+      const data = (await postScan({
+        action: 'analyze',
+        bescheidText: combinedText,
+      })) as { analysis?: ScanResult & { fehler?: unknown[]; korrekt?: unknown[]; gesamtPotenzial?: number; dringlichkeit?: 'hoch' | 'mittel' | 'niedrig'; fristende?: string } }
 
-      const response = await fetch('/api/amt-scan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fileContent,
-          fileType: file.type,
-          fileName: file.name,
-        }),
-      })
-
-      if (!response.ok) {
-        const payload = await response.json().catch(() => ({}))
-        throw new Error(
-          payload?.error ||
-            `Scan fehlgeschlagen (HTTP ${response.status}). Bitte versuche es spaeter erneut.`,
-        )
+      if (!data?.analysis) {
+        setScanError('Die KI-Analyse hat keine Auswertung zurueckgeliefert. Bitte versuche es erneut.')
+        setScanState('upload')
+        return
       }
 
-      const data = await response.json()
-      setResult(data)
+      // Backend liefert direkt ScanResult-shape via "errors" — oder das alte Cloud-shape
+      // mit "fehler"/"korrekt". Beide Wege absichern.
+      const a = data.analysis as unknown as Record<string, unknown>
+      let errors: ScanError[] = []
+      if (Array.isArray(a.errors)) {
+        errors = a.errors as ScanError[]
+      } else {
+        const fehler = (a.fehler as Array<Record<string, unknown>>) || []
+        const korrekt = (a.korrekt as string[]) || []
+        errors = [
+          ...fehler.map((f) => ({
+            type:
+              f.schwere === 'kritisch'
+                ? ('fehler' as const)
+                : f.schwere === 'warnung'
+                  ? ('warnung' as const)
+                  : ('ok' as const),
+            title: (f.beschreibung as string)?.split('.')[0] || 'Fehler gefunden',
+            description: (f.beschreibung as string) || '',
+            paragraph: f.paragraph as string,
+            betrag: (f.potenziellerBetrag as number) || undefined,
+            templateId:
+              f.kategorie === 'kdu'
+                ? 'widerspruch_kdu'
+                : f.kategorie === 'mehrbedarf'
+                  ? 'antrag_mehrbedarf'
+                  : f.kategorie === 'einkommen'
+                    ? 'widerspruch_einkommen'
+                    : undefined,
+          })),
+          ...korrekt.map((k) => ({
+            type: 'ok' as const,
+            title: k.split('.')[0] || k,
+            description: k,
+          })),
+        ]
+      }
+
+      setResult({
+        errors,
+        totalMissing: (a.totalMissing as number) || (a.gesamtPotenzial as number) || 0,
+        totalOver6Months:
+          (a.totalOver6Months as number) ||
+          ((a.gesamtPotenzial as number) || 0) * 6,
+        urgency: (a.urgency as 'hoch' | 'mittel' | 'niedrig') || (a.dringlichkeit as 'hoch' | 'mittel' | 'niedrig') || 'mittel',
+        fristEnde: (a.fristEnde as string) || (a.fristende as string) || undefined,
+      })
       setScanState('result')
-      await consumeScan() // erst nach erfolgreichem Scan buchen
+      await consumeScan()
     } catch (err) {
-      console.error('BescheidScan fehlgeschlagen:', err)
-      toast.error(
+      setScanError(
         err instanceof Error
-          ? err.message
-          : 'Scan fehlgeschlagen. Bitte pruefe deine Internet-Verbindung.',
+          ? `Analyse fehlgeschlagen: ${err.message}`
+          : 'Die Verbindung zur KI-Analyse ist fehlgeschlagen.',
       )
       setScanState('upload')
     }
   }
 
-  const handleDemoScan = () => {
-    // Demo-Modus zeigt explizit das Ergebnis aus der statischen
-    // Beispielanalyse — NICHT als Fallback bei API-Fehlern.
-    setFileName('Bescheid_Jobcenter_2026.pdf')
-    setSelectedFile(null)
+  const handleDemoScan = async () => {
+    const scanCheck = checkScan()
+    if (!scanCheck.allowed) {
+      toast.error(scanCheck.reason || 'Scan-Limit erreicht.')
+      return
+    }
+    setPages([])
+    setManualText('')
     setScanState('scanning')
-    setTimeout(() => {
-      setResult(generateDemoScanResult())
-      setScanState('result')
-    }, 2500)
+    setScanProgress('Demo-Bescheid wird analysiert...')
+    await new Promise((r) => setTimeout(r, 2500))
+    setResult(generateDemoScanResult())
+    setScanState('result')
   }
 
-  const errorsCount = result?.errors.filter(e => e.type === 'fehler').length || 0
-  const warningsCount = result?.errors.filter(e => e.type === 'warnung').length || 0
+  const resetAll = () => {
+    pages.forEach(releasePage)
+    setPages([])
+    setManualText('')
+    setShowManualInput(false)
+    setScanState('upload')
+    setResult(null)
+    setScanProgress('')
+    setUploadError(null)
+    setScanError(null)
+  }
+
+  const errorsCount = result?.errors.filter((e) => e.type === 'fehler').length || 0
+  const warningsCount = result?.errors.filter((e) => e.type === 'warnung').length || 0
+  const canStartScan = pages.length > 0 || manualText.trim().length > 0
 
   return (
     <div className="container py-8 max-w-4xl">
@@ -189,15 +390,15 @@ export default function BescheidScanPage() {
         </div>
         <h1 className="text-3xl font-bold mb-2">BescheidScan</h1>
         <p className="text-muted-foreground max-w-xl mx-auto">
-          Lade deinen Bescheid hoch und unsere KI prueft ihn auf Fehler.
-          Wir finden was dir zusteht - in Sekunden statt Stunden.
+          Scanne alle Seiten deines Bescheids — unsere KI liest und prueft alles auf Fehler.
+          Ein Bescheid hat oft mehrere Seiten, lade einfach alle hoch.
         </p>
       </div>
 
       {/* Upload State */}
       {scanState === 'upload' && (
         <div className="space-y-6">
-          {/* Scan limit warning */}
+          {/* Scan-Limit-Warnung */}
           {!checkScan().allowed && (
             <Card className="border-destructive/40 bg-destructive/5">
               <CardContent className="p-4 flex items-center gap-3">
@@ -213,50 +414,219 @@ export default function BescheidScanPage() {
             </Card>
           )}
 
-          <Card className="border-dashed border-2 hover:border-primary/40 transition-colors">
-            <CardContent className="p-12">
-              <div className="text-center">
-                <Upload className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-                <h2 className="text-xl font-semibold mb-2">Bescheid hochladen</h2>
-                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  Lade deinen Bewilligungsbescheid, Aenderungsbescheid oder Sanktionsbescheid hoch.
-                  Wir akzeptieren PDF (auch mehrseitig), JPG und PNG.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button variant="amt" size="lg" onClick={() => fileInputRef.current?.click()}>
-                    <Upload className="mr-2 h-5 w-5" />
-                    Datei auswaehlen
-                  </Button>
-                  <Button variant="outline" size="lg" onClick={() => fileInputRef.current?.click()}>
-                    <Camera className="mr-2 h-5 w-5" />
-                    Foto aufnehmen
-                  </Button>
-                </div>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*,.pdf"
-                  className="hidden"
-                  onChange={handleFileSelect}
-                />
-                <p className="text-xs text-muted-foreground mt-4">
-                  Deine Daten werden verschluesselt uebertragen und nach der Analyse geloescht.
+          {/* Multi-page Info */}
+          <Card className="border-primary/20 bg-primary/5">
+            <CardContent className="p-4 flex items-start gap-3">
+              <BookOpen className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-medium">Mehrseitiger Bescheid-Scanner</p>
+                <p className="text-xs text-muted-foreground">
+                  Ein Bescheid besteht oft aus 4-8 Seiten (beidseitig bedruckt). Lade alle Seiten als Fotos oder PDF hoch,
+                  damit die Analyse vollstaendig ist. Du kannst auch den Text manuell eingeben.
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Demo Button */}
-          <div className="text-center">
-            <button
-              onClick={handleDemoScan}
-              className="text-sm text-primary hover:underline"
+          {/* Drop Zone */}
+          <Card
+            className={`border-dashed border-2 transition-colors ${
+              dragActive ? 'border-primary bg-primary/5' : 'hover:border-primary/40'
+            }`}
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+          >
+            <CardContent className="p-8">
+              {pages.length === 0 ? (
+                <div className="text-center">
+                  <Upload className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
+                  <h2 className="text-xl font-semibold mb-2">Bescheid-Seiten hochladen</h2>
+                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                    Lade alle Seiten deines Bescheids hoch — als Fotos (JPG, PNG) oder PDF.
+                    Ziehe Dateien hierher oder klicke auf den Button.
+                  </p>
+                  <Button variant="amt" size="lg" onClick={() => fileInputRef.current?.click()}>
+                    <Upload className="mr-2 h-5 w-5" />
+                    Seiten auswaehlen
+                  </Button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*,.pdf"
+                    multiple
+                    className="hidden"
+                    onChange={handleFileSelect}
+                  />
+                  <p className="text-xs text-muted-foreground mt-4">
+                    JPG, PNG, WebP, HEIC, PDF — max. 20 MB pro Datei — Mehrfachauswahl moeglich
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-semibold">
+                      {pages.length} {pages.length === 1 ? 'Seite' : 'Seiten'} hochgeladen
+                    </h3>
+                    <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()}>
+                      <Plus className="h-4 w-4 mr-1" />
+                      Weitere Seiten
+                    </Button>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*,.pdf"
+                      multiple
+                      className="hidden"
+                      onChange={handleFileSelect}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    {pages.map((page) => (
+                      <div
+                        key={page.id}
+                        className="relative group border rounded-lg overflow-hidden bg-muted/50"
+                      >
+                        {page.previewUrl ? (
+                          <img
+                            src={page.previewUrl}
+                            alt={`Seite ${page.pageNumber}`}
+                            className="w-full h-32 object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-32 flex items-center justify-center">
+                            <FileText className="h-8 w-8 text-muted-foreground/50" />
+                          </div>
+                        )}
+                        <div className="absolute top-1 left-1 bg-black/60 text-white text-xs px-1.5 py-0.5 rounded">
+                          S. {page.pageNumber}
+                        </div>
+                        <button
+                          onClick={() => removePage(page.id)}
+                          className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                          aria-label="Seite entfernen"
+                        >
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                        <div className="p-1.5 text-xs text-muted-foreground truncate">
+                          {page.file.name}
+                        </div>
+                      </div>
+                    ))}
+
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="border-2 border-dashed rounded-lg h-32 flex flex-col items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                    >
+                      <Plus className="h-6 w-6 mb-1" />
+                      <span className="text-xs">Seite hinzufuegen</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Upload-Fehler */}
+          {uploadError && (
+            <Card className="border-destructive/40 bg-destructive/5">
+              <CardContent className="p-4 flex items-start gap-3">
+                <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium">Upload-Fehler</p>
+                  <p className="text-xs text-muted-foreground whitespace-pre-line">{uploadError}</p>
+                </div>
+                <button onClick={() => setUploadError(null)} className="ml-auto" aria-label="Schliessen">
+                  <X className="h-4 w-4 text-muted-foreground" />
+                </button>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Scan-Fehler */}
+          {scanError && (
+            <Card className="border-destructive/40 bg-destructive/5">
+              <CardContent className="p-4 flex items-start gap-3">
+                <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium">Analyse fehlgeschlagen</p>
+                  <p className="text-xs text-muted-foreground whitespace-pre-line">{scanError}</p>
+                </div>
+                <button onClick={() => setScanError(null)} className="ml-auto" aria-label="Schliessen">
+                  <X className="h-4 w-4 text-muted-foreground" />
+                </button>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Manueller Text */}
+          <Card>
+            <CardContent className="p-4">
+              <button
+                onClick={() => setShowManualInput(!showManualInput)}
+                className="flex items-center gap-2 w-full text-left"
+              >
+                <FileText className="h-5 w-5 text-muted-foreground" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Text manuell eingeben</p>
+                  <p className="text-xs text-muted-foreground">
+                    Alternativ oder ergaenzend: Bescheid-Text abtippen oder einfuegen
+                  </p>
+                </div>
+                <span className="text-xs text-primary">
+                  {showManualInput ? 'Schliessen' : 'Oeffnen'}
+                </span>
+              </button>
+
+              {showManualInput && (
+                <div className="mt-4">
+                  <textarea
+                    className="w-full h-48 px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring text-sm font-mono"
+                    placeholder={`Gib hier den Text deines Bescheids ein oder fuege ihn ein...\n\nBeispiel:\nBewilligungsbescheid\nAktenzeichen: 123-456-789\nBewilligungszeitraum: 01.01.2026 - 31.12.2026\nRegelbedarf: 563,00 EUR\nKosten der Unterkunft: 450,00 EUR\n...`}
+                    value={manualText}
+                    onChange={(e) => setManualText(e.target.value)}
+                  />
+                  {manualText.trim() && (
+                    <p className="text-xs text-muted-foreground mt-2">
+                      {manualText.trim().split(/\s+/).length} Woerter eingegeben
+                    </p>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Start-Button */}
+          <div className="flex flex-col items-center gap-3">
+            <Button
+              variant="amt"
+              size="lg"
+              disabled={!canStartScan}
+              onClick={startAnalysis}
+              className="min-w-64"
             >
+              <ScanSearch className="mr-2 h-5 w-5" />
+              {pages.length > 0
+                ? `${pages.length} ${pages.length === 1 ? 'Seite' : 'Seiten'} analysieren`
+                : manualText.trim()
+                  ? 'Text analysieren'
+                  : 'Seiten hochladen um zu starten'}
+            </Button>
+            <p className="text-xs text-muted-foreground">
+              Deine Daten werden verschluesselt uebertragen und nach der Analyse geloescht.
+            </p>
+          </div>
+
+          {/* Demo */}
+          <div className="text-center">
+            <button onClick={handleDemoScan} className="text-sm text-primary hover:underline">
               Demo: Beispiel-Bescheid analysieren
             </button>
           </div>
 
-          {/* What we check */}
+          {/* Was wir pruefen */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
             {[
               { icon: Euro, title: 'Regelsatz', desc: 'Ist der richtige Betrag angesetzt?' },
@@ -277,6 +647,8 @@ export default function BescheidScanPage() {
               </Card>
             ))}
           </div>
+
+          <RechtlicherHinweis />
         </div>
       )}
 
@@ -294,16 +666,49 @@ export default function BescheidScanPage() {
                 </div>
               </div>
               <h2 className="text-xl font-bold mb-2">BescheidBoxer analysiert...</h2>
-              <p className="text-muted-foreground mb-6">{fileName}</p>
+              <p className="text-muted-foreground mb-6">{scanProgress}</p>
+
+              {/* Per-Page-Status */}
+              {pages.length > 0 && (
+                <div className="max-w-sm mx-auto mb-6">
+                  <div className="flex gap-1.5 justify-center flex-wrap">
+                    {pages.map((page) => (
+                      <div
+                        key={page.id}
+                        className={`flex items-center gap-1 px-2 py-1 rounded text-xs ${
+                          page.status === 'done'
+                            ? 'bg-green-100 text-green-700'
+                            : page.status === 'processing'
+                              ? 'bg-blue-100 text-blue-700'
+                              : page.status === 'error'
+                                ? 'bg-red-100 text-red-700'
+                                : 'bg-muted text-muted-foreground'
+                        }`}
+                      >
+                        {page.status === 'processing' && <Loader2 className="h-3 w-3 animate-spin" />}
+                        {page.status === 'done' && <CheckCircle2 className="h-3 w-3" />}
+                        {page.status === 'error' && <AlertCircle className="h-3 w-3" />}
+                        {page.status === 'pending' && <FileImage className="h-3 w-3" />}
+                        S. {page.pageNumber}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="max-w-sm mx-auto space-y-3">
                 {[
-                  'Bescheid wird gelesen...',
+                  'Seiten werden per OCR gelesen...',
                   'Regelsaetze werden geprueft...',
                   'Mehrbedarfe werden analysiert...',
                   'KdU wird berechnet...',
                   'Fehler werden identifiziert...',
                 ].map((step, i) => (
-                  <div key={step} className="flex items-center gap-2 text-sm animate-fade-in" style={{ animationDelay: `${i * 600}ms` }}>
+                  <div
+                    key={step}
+                    className="flex items-center gap-2 text-sm animate-fade-in"
+                    style={{ animationDelay: `${i * 600}ms` }}
+                  >
                     <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
                     <span className="text-muted-foreground">{step}</span>
                   </div>
@@ -317,8 +722,14 @@ export default function BescheidScanPage() {
       {/* Result State */}
       {scanState === 'result' && result && (
         <div className="space-y-6">
-          {/* Summary Banner */}
-          <Card className={errorsCount > 0 ? 'border-destructive/40 bg-destructive/5' : 'border-success/40 bg-success/5'}>
+          {/* Summary */}
+          <Card
+            className={
+              errorsCount > 0
+                ? 'border-destructive/40 bg-destructive/5'
+                : 'border-green-200 bg-green-50/50'
+            }
+          >
             <CardContent className="p-6">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
@@ -326,7 +737,7 @@ export default function BescheidScanPage() {
                     {errorsCount > 0 ? (
                       <AlertCircle className="h-6 w-6 text-destructive" />
                     ) : (
-                      <CheckCircle2 className="h-6 w-6 text-success" />
+                      <CheckCircle2 className="h-6 w-6 text-green-600" />
                     )}
                     <h2 className="text-xl font-bold">
                       {errorsCount > 0
@@ -338,6 +749,13 @@ export default function BescheidScanPage() {
                     <p className="text-muted-foreground">
                       {warningsCount > 0 && `Plus ${warningsCount} Warnung(en) zum Pruefen. `}
                       Handlung empfohlen!
+                    </p>
+                  )}
+                  {pages.length > 0 && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Analysiert: {pages.length} {pages.length === 1 ? 'Seite' : 'Seiten'}
+                      {pages.filter((p) => p.status === 'done').length < pages.length &&
+                        ` (${pages.filter((p) => p.status === 'error').length} mit Lesefehler)`}
                     </p>
                   )}
                 </div>
@@ -355,11 +773,15 @@ export default function BescheidScanPage() {
                 )}
               </div>
               {result.fristEnde && errorsCount > 0 && (
-                <div className="mt-4 p-3 rounded-lg bg-warning/10 border border-warning/30 flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-warning flex-shrink-0" />
+                <div className="mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200 flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-amber-600 flex-shrink-0" />
                   <span className="text-sm font-medium">
-                    Widerspruchsfrist: bis {new Date(result.fristEnde).toLocaleDateString('de-DE')} - noch{' '}
-                    {Math.ceil((new Date(result.fristEnde).getTime() - Date.now()) / (1000 * 60 * 60 * 24))} Tage!
+                    Widerspruchsfrist: bis{' '}
+                    {new Date(result.fristEnde).toLocaleDateString('de-DE')} — noch{' '}
+                    {Math.ceil(
+                      (new Date(result.fristEnde).getTime() - Date.now()) / (1000 * 60 * 60 * 24),
+                    )}{' '}
+                    Tage!
                   </span>
                 </div>
               )}
@@ -374,10 +796,10 @@ export default function BescheidScanPage() {
                 key={i}
                 className={
                   error.type === 'fehler'
-                    ? 'scan-error-card'
+                    ? 'rounded-lg border border-destructive/30 bg-destructive/5 p-4'
                     : error.type === 'warnung'
-                    ? 'scan-warning-card'
-                    : 'scan-success-card'
+                      ? 'rounded-lg border border-amber-200 bg-amber-50/50 p-4'
+                      : 'rounded-lg border border-green-200 bg-green-50/50 p-4'
                 }
               >
                 <div className="flex items-start justify-between gap-3">
@@ -386,9 +808,9 @@ export default function BescheidScanPage() {
                       {error.type === 'fehler' ? (
                         <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0" />
                       ) : error.type === 'warnung' ? (
-                        <AlertTriangle className="h-5 w-5 text-warning flex-shrink-0" />
+                        <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0" />
                       ) : (
-                        <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" />
+                        <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
                       )}
                       <h4 className="font-semibold">{error.title}</h4>
                       {error.betrag && (
@@ -419,14 +841,14 @@ export default function BescheidScanPage() {
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* CTA */}
           {errorsCount > 0 && (
             <Card className="gradient-boxer text-white">
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-2">Jetzt handeln!</h3>
                 <p className="opacity-90 mb-4">
-                  Dir fehlen {result.totalMissing.toFixed(2).replace('.', ',')} EUR pro Monat. Das sind{' '}
-                  {result.totalOver6Months.toFixed(2).replace('.', ',')} EUR ueber 6 Monate.
+                  Dir fehlen {result.totalMissing.toFixed(2).replace('.', ',')} EUR pro Monat. Das
+                  sind {result.totalOver6Months.toFixed(2).replace('.', ',')} EUR ueber 6 Monate.
                   Lege jetzt Widerspruch ein!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
@@ -436,7 +858,12 @@ export default function BescheidScanPage() {
                       Widerspruch erstellen
                     </Link>
                   </Button>
-                  <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10" asChild>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white/40 text-white hover:bg-white/10"
+                    asChild
+                  >
                     <Link to="/chat">
                       <FileText className="mr-2 h-5 w-5" />
                       Im Chat besprechen
@@ -449,14 +876,14 @@ export default function BescheidScanPage() {
 
           {/* New Scan */}
           <div className="text-center">
-            <Button variant="outline" onClick={() => { setScanState('upload'); setResult(null); setFileName(''); }}>
+            <Button variant="outline" onClick={resetAll}>
               Neuen Bescheid scannen
             </Button>
           </div>
+
+          <RechtlicherHinweis />
         </div>
       )}
-
-      <RechtlicherHinweis />
     </div>
   )
 }

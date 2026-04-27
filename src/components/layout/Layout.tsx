@@ -7,6 +7,7 @@ import SpotlightSearch from '@/components/SpotlightSearch'
 import KeyboardShortcutsHelp from '@/components/KeyboardShortcutsHelp'
 import PageTransition from '@/components/PageTransition'
 import MobileNavBar from '@/components/MobileNavBar'
+import DeadlineBanner from '@/components/DeadlineBanner'
 
 export default function Layout() {
   return (
@@ -15,6 +16,8 @@ export default function Layout() {
         Zum Inhalt springen
       </a>
       <Header />
+      {/* Globaler Frist-Banner — zeigt sich nur wenn akute Frist (<= 7 Tage) */}
+      <DeadlineBanner />
       <main id="main-content" className="flex-1 pb-16 md:pb-0" role="main">
         <PageTransition>
           <Outlet />

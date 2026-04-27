@@ -8,6 +8,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 const UMZUGSKOSTEN_ITEMS = [
   { name: 'Umzugswagen (Transport)', betragMin: 80, betragMax: 300 },
@@ -322,6 +323,15 @@ export default function UmzugskostenRechner() {
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
+                  <SaveCalculationButton
+                    toolId="umzugskosten"
+                    toolType="rechner"
+                    inputData={{ selectedItems, doppelmiete, kaution }}
+                    resultData={{
+                      gesamt_zurueckforderbar: totals.gesamtZurueckforderbar,
+                      anzahl_posten: totals.count,
+                    }}
+                  />
                 </div>
               </div>
             )}

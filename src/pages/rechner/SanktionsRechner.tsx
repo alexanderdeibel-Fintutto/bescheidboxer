@@ -7,6 +7,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SaveCalculationButton from '@/components/SaveCalculationButton'
 
 export default function SanktionsRechner() {
   const [regelsatz, setRegelsatz] = useState(563)
@@ -170,6 +171,17 @@ export default function SanktionsRechner() {
                   <Link to="/musterschreiben"><Button variant="outline" className="w-full">Widerspruch erstellen</Button></Link>
                   <Link to="/chat"><Button variant="outline" className="w-full">KI-Berater fragen</Button></Link>
                   <Link to="/rechner"><Button variant="outline" className="w-full">Alle Rechner</Button></Link>
+                  <SaveCalculationButton
+                    toolId="sanktionen"
+                    toolType="rechner"
+                    inputData={{ regelsatz, art, pflichtverletzungNr, unter25 }}
+                    resultData={{
+                      kuerzung_prozent: ergebnis.kuerzungProzent,
+                      kuerzung_betrag: ergebnis.kuerzungBetrag,
+                      dauer_monate: ergebnis.dauer,
+                      art,
+                    }}
+                  />
                 </div>
               </div>
             )}

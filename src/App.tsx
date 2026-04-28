@@ -8,6 +8,7 @@ import Layout from '@/components/layout/Layout'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import ScrollToTop from '@/components/ScrollToTop'
 import AdminRoute from '@/components/AdminRoute'
+import RequireAuth from '@/components/RequireAuth'
 
 // Eagerly load the home page for fast first paint
 import HomePage from '@/pages/HomePage'
@@ -75,6 +76,7 @@ const ErinnerungenPage = lazy(() => import('@/pages/ErinnerungenPage'))
 const MeineBerechnungenPage = lazy(() => import('@/pages/MeineBerechnungenPage'))
 const WiderspruchJobcenterPage = lazy(() => import('@/pages/WiderspruchJobcenterPage'))
 const UeberUnsPage = lazy(() => import('@/pages/UeberUnsPage'))
+const AuthCallbackPage = lazy(() => import('@/pages/AuthCallbackPage'))
 const AdminPage = lazy(() => import('@/pages/AdminPage'))
 
 import PageSkeleton from '@/components/PageSkeleton'
@@ -96,15 +98,36 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
 
-                {/* BescheidScan */}
-                <Route path="scan" element={<BescheidScanPage />} />
+                {/* BescheidScan — Auth-Pflicht (Quota-Tracking) */}
+                <Route
+                  path="scan"
+                  element={
+                    <RequireAuth>
+                      <BescheidScanPage />
+                    </RequireAuth>
+                  }
+                />
 
-                {/* KI-Rechtsberater */}
-                <Route path="chat" element={<ChatPage />} />
+                {/* KI-Rechtsberater — Auth-Pflicht (Quota-Tracking) */}
+                <Route
+                  path="chat"
+                  element={
+                    <RequireAuth>
+                      <ChatPage />
+                    </RequireAuth>
+                  }
+                />
 
                 {/* Dokumenten-Werkstatt */}
                 <Route path="musterschreiben" element={<MusterschreibenPage />} />
-                <Route path="generator/:templateId" element={<GeneratorPage />} />
+                <Route
+                  path="generator/:templateId"
+                  element={
+                    <RequireAuth>
+                      <GeneratorPage />
+                    </RequireAuth>
+                  }
+                />
 
                 {/* Community Forum */}
                 <Route path="forum" element={<ForumPage />} />
@@ -189,6 +212,7 @@ function App() {
                 {/* Auth */}
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />
+                <Route path="auth/callback" element={<AuthCallbackPage />} />
 
                 {/* Legal Pages */}
                 <Route path="impressum" element={<ImpressumPage />} />

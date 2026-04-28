@@ -1,9 +1,11 @@
-import { Link, useLocation } from 'react-router-dom'
-import { Swords, MessageCircle, FileText, Users, Menu, X, CreditCard, ScanSearch, Calculator, ClipboardList, User, Sun, Moon, Monitor, Zap, StickyNote, FolderOpen, BookOpen, CheckSquare, BarChart3, Calendar, Briefcase, AlertTriangle, FolderKanban, Scale, GraduationCap, Archive, Wallet, Bell } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Swords, MessageCircle, FileText, Users, Menu, X, CreditCard, ScanSearch, Calculator, ClipboardList, User, Sun, Moon, Monitor, Zap, StickyNote, FolderOpen, BookOpen, CheckSquare, BarChart3, Calendar, Briefcase, AlertTriangle, FolderKanban, Scale, GraduationCap, Archive, Wallet, Bell, LogOut } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import FristAlarm from '@/components/FristAlarm'
 import { useTheme } from '@/contexts/ThemeContext'
+import { useAuth } from '@/contexts/AuthContext'
+import { toast } from 'sonner'
 
 const navigation = [
   { name: 'BescheidScan', href: '/scan', icon: ScanSearch },
@@ -50,6 +52,182 @@ const schnellzugriffItems = [
   { name: 'Glossar', href: '/glossar', icon: BookOpen },
   { name: 'Notfall-Hilfe', href: '/notfall', icon: AlertTriangle },
 ]
+
+function AuthArea() {
+  const { user, profile, signOut, loading } = useAuth()
+  const navigate = useNavigate()
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    if (open) document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [open])
+
+  const handleSignOut = async () => {
+    try {
+      await signOut()
+      setOpen(false)
+      toast.success('Abgemeldet')
+      navigate('/')
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Abmeldung fehlgeschlagen')
+    }
+  }
+
+  if (loading) {
+    return <div className="h-9 w-24 rounded-full bg-muted animate-pulse" />
+  }
+
+  if (!user) {
+    return (
+      <>
+        <Button variant="ghost" size="sm" asChild>
+          <Link to="/login">Anmelden</Link>
+        </Button>
+        <Button size="sm" variant="amt" className="rounded-full" asChild>
+          <Link to="/register">Kostenlos starten</Link>
+        </Button>
+      </>
+    )
+  }
+
+  // Eingeloggt — Dropdown-Menu
+  const initials = (profile?.name || profile?.email || user.email || '?')
+    .split(/[\s@]/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((s) => s[0]?.toUpperCase())
+    .join('')
+
+  const planLabel = profile?.plan
+    ? profile.plan === 'schnupperer'
+      ? 'Schnupperer'
+      : profile.plan === 'starter'
+      ? 'Starter'
+      : profile.plan === 'kaempfer'
+      ? 'Kämpfer'
+      : 'Vollschutz'
+    : null
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 rounded-full border border-border px-2 py-1 hover:bg-muted transition-colors"
+        aria-label="Mein Konto"
+        aria-expanded={open}
+      >
+        <span className="flex h-7 w-7 items-center justify-center rounded-full gradient-boxer text-white text-xs font-bold">
+          {initials || <User className="h-3.5 w-3.5" />}
+        </span>
+        <span className="text-sm font-medium hidden lg:inline max-w-[120px] truncate">
+          {profile?.name || user.email?.split('@')[0]}
+        </span>
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full mt-2 w-64 bg-background border border-border rounded-2xl shadow-xl z-50 overflow-hidden">
+          <div className="p-4 border-b border-border">
+            <p className="text-xs text-muted-foreground">Angemeldet als</p>
+            <p className="font-semibold text-sm truncate">{user.email}</p>
+            {planLabel && (
+              <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">
+                {planLabel}-Plan
+              </span>
+            )}
+          </div>
+          <div className="py-1">
+            <Link
+              to="/dashboard"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted transition-colors"
+            >
+              <BarChart3 className="h-4 w-4" /> Dashboard
+            </Link>
+            <Link
+              to="/profil"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted transition-colors"
+            >
+              <User className="h-4 w-4" /> Profil
+            </Link>
+            <Link
+              to="/preise"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted transition-colors"
+            >
+              <CreditCard className="h-4 w-4" /> Plan & Preise
+            </Link>
+          </div>
+          <div className="border-t border-border py-1">
+            <button
+              onClick={handleSignOut}
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm text-destructive hover:bg-destructive/5 transition-colors"
+            >
+              <LogOut className="h-4 w-4" /> Abmelden
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function MobileAuthButtons({ onClose }: { onClose: () => void }) {
+  const { user, profile, signOut } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSignOut = async () => {
+    try {
+      await signOut()
+      onClose()
+      toast.success('Abgemeldet')
+      navigate('/')
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Abmeldung fehlgeschlagen')
+    }
+  }
+
+  if (!user) {
+    return (
+      <>
+        <Button variant="outline" className="w-full rounded-full" asChild>
+          <Link to="/login" onClick={onClose}>
+            Anmelden
+          </Link>
+        </Button>
+        <Button className="w-full rounded-full" variant="amt" asChild>
+          <Link to="/register" onClick={onClose}>
+            Kostenlos starten
+          </Link>
+        </Button>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <div className="px-3 py-2 mb-2 rounded-lg bg-muted/50">
+        <p className="text-xs text-muted-foreground">Angemeldet als</p>
+        <p className="font-semibold text-sm truncate">
+          {profile?.name || user.email}
+        </p>
+      </div>
+      <Button
+        variant="outline"
+        className="w-full rounded-full text-destructive border-destructive/30 hover:bg-destructive/5"
+        onClick={handleSignOut}
+      >
+        <LogOut className="h-4 w-4 mr-2" />
+        Abmelden
+      </Button>
+    </>
+  )
+}
 
 function Schnellzugriff() {
   const [open, setOpen] = useState(false)
@@ -133,18 +311,7 @@ export default function Header() {
           <FristAlarm />
           <Schnellzugriff />
           <ThemeToggle />
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/profil" className="flex items-center gap-1.5">
-              <User className="h-4 w-4" />
-              Profil
-            </Link>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/login">Anmelden</Link>
-          </Button>
-          <Button size="sm" variant="amt" asChild>
-            <Link to="/register">Kostenlos starten</Link>
-          </Button>
+          <AuthArea />
         </div>
 
         {/* Mobile Menu Button */}
@@ -204,12 +371,7 @@ export default function Header() {
                 <User className="h-5 w-5" />
                 Mein Profil
               </Link>
-              <Button variant="outline" className="w-full" asChild>
-                <Link to="/login" onClick={() => setMobileMenuOpen(false)}>Anmelden</Link>
-              </Button>
-              <Button className="w-full" variant="amt" asChild>
-                <Link to="/register" onClick={() => setMobileMenuOpen(false)}>Kostenlos starten</Link>
-              </Button>
+              <MobileAuthButtons onClose={() => setMobileMenuOpen(false)} />
             </div>
           </div>
         </div>

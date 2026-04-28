@@ -44,6 +44,7 @@ interface AuthContextType {
   loading: boolean
   signIn: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string, name?: string) => Promise<void>
+  signInWithMagicLink: (email: string, redirectTo?: string) => Promise<void>
   signOut: () => Promise<void>
   refreshProfile: () => Promise<void>
 }
@@ -343,6 +344,59 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  // ---- signInWithMagicLink ----
+  // Schickt einen Magic-Link an die E-Mail. User klickt drauf, wird
+  // automatisch eingeloggt + zu redirectTo weitergeleitet (oder Default).
+  const signInWithMagicLink = async (email: string, redirectTo?: string) => {
+    if (!hasRealSupabase) {
+      // Demo-Mode: erstelle/lade User direkt ohne Mail-Versand
+      const users = getDemoUsers()
+      let found = users.find(u => u.email === email)
+      if (!found) {
+        // Create new demo user without password
+        found = {
+          id: generateId(),
+          email,
+          name: null,
+          password: '',
+          plan: 'schnupperer',
+          createdAt: new Date().toISOString(),
+        }
+        users.push(found)
+        saveDemoUsers(users)
+      }
+      setUser({ id: found.id, email: found.email } as User)
+      setProfile({
+        id: found.id,
+        authId: found.id,
+        email: found.email,
+        name: found.name,
+        plan: found.plan,
+        role: 'user',
+        chatMessagesUsedToday: 0,
+        lettersGeneratedThisMonth: 0,
+        scansThisMonth: 0,
+        creditsCurrent: 5,
+      })
+      saveDemoSession(found)
+      return
+    }
+
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
+    const emailRedirectTo = `${baseUrl}/auth/callback${redirectTo ? `?next=${encodeURIComponent(redirectTo)}` : ''}`
+
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo,
+        // app_source ins user_metadata damit handle_new_user() in DB
+        // korrekt profiles.app_source='bescheidboxer' setzt
+        data: { app_source: 'bescheidboxer' },
+      },
+    })
+    if (error) throw error
+  }
+
   // ---- signOut ----
   const signOut = async () => {
     if (!hasRealSupabase) {
@@ -366,6 +420,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         loading,
         signIn,
         signUp,
+        signInWithMagicLink,
         signOut,
         refreshProfile,
       }}

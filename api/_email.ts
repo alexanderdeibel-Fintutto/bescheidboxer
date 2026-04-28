@@ -1,6 +1,14 @@
 /**
  * Resend-Mail-Helper (ohne npm-Dependency).
  *
+ * ⚠ Datei-Naming: Underscore-Prefix `_email.ts` (nicht in `_lib/`-Folder!)
+ * Vercel deployed Files mit Underscore-Prefix NICHT als HTTP-Function,
+ * macht sie aber für Importe in anderen Functions verfügbar. Subfolder
+ * wie `api/_lib/email.ts` werden hingegen NICHT in den Function-Bundle
+ * gezogen → Imports schlugen fehl. Daher der Top-Level-Pfad `api/_email.ts`.
+ *
+ * Genutzt von: api/amt-welcome-mail.ts, api/amt-webhook.ts
+ *
  * ENV:
  *   RESEND_API_KEY        - API-Key von resend.com
  *   RESEND_FROM_EMAIL     - Absender (Default: noreply@bescheidboxer.de)

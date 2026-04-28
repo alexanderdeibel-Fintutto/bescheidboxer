@@ -18,6 +18,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import { type SgbCategory } from '@/lib/sgb-knowledge'
+import { PageHero } from '@/lib/fintutto-design'
 
 interface ForumPost {
   id: string
@@ -186,44 +187,38 @@ export default function ForumPage() {
   })
 
   return (
-    <div className="container py-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
-            <Users className="h-8 w-8 text-primary" />
-            Community-Forum
-          </h1>
-          <p className="text-muted-foreground">
-            Erfahrungen teilen, Tipps geben und von anderen lernen.
-          </p>
-        </div>
-        {forumCheck.allowed ? (
-          <Button variant="amt" asChild>
-            <Link to="/forum/neu">
-              <PenSquare className="mr-2 h-4 w-4" />
-              Neuen Beitrag schreiben
-            </Link>
-          </Button>
-        ) : (
-          <Button variant="outline" asChild>
-            <Link to="/preise">
-              <Lock className="mr-2 h-4 w-4" />
-              Upgrade zum Schreiben
-            </Link>
-          </Button>
-        )}
-      </div>
+    <div>
+      {/* Hero */}
+      <PageHero
+        badge="Community · Forum · Real Talk"
+        title="Du bist nicht allein."
+        titleGradient="Andere haben's geschafft."
+        subtitle="Erfahrungen teilen, Tipps geben, von anderen lernen — die Bürgergeld-Community im offenen Austausch."
+        primaryCta={
+          forumCheck.allowed
+            ? {
+                label: 'Neuen Beitrag schreiben',
+                to: '/forum/neu',
+                icon: <PenSquare className="w-5 h-5" />,
+              }
+            : {
+                label: 'Upgrade zum Schreiben',
+                to: '/preise',
+                icon: <Lock className="w-5 h-5" />,
+              }
+        }
+      />
 
+      <div className="container py-8">
       {/* Stats bar */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <Card>
+        <Card className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-primary">{DEMO_POSTS.length}</div>
-            <div className="text-xs text-muted-foreground">Beitraege</div>
+            <div className="text-xs text-muted-foreground">Beiträge</div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-primary">
               {DEMO_POSTS.reduce((sum, p) => sum + p.replies, 0)}
@@ -231,12 +226,12 @@ export default function ForumPage() {
             <div className="text-xs text-muted-foreground">Antworten</div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-primary">
               {DEMO_POSTS.filter(p => p.isResolved).length}
             </div>
-            <div className="text-xs text-muted-foreground">Geloest</div>
+            <div className="text-xs text-muted-foreground">Gelöst</div>
           </CardContent>
         </Card>
       </div>
@@ -272,7 +267,7 @@ export default function ForumPage() {
         {sortedPosts.map((post) => (
           <Card
             key={post.id}
-            className={`forum-post transition-all ${
+            className={`forum-post rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${
               post.isPinned ? 'border-primary/30 bg-primary/[0.02]' : ''
             }`}
           >
@@ -297,7 +292,7 @@ export default function ForumPage() {
                        post.category === 'kdu' ? 'KdU' : 'Verwaltung'}
                     </Badge>
                     {post.isResolved && (
-                      <Badge variant="success" className="text-[10px]">Geloest</Badge>
+                      <Badge variant="success" className="text-[10px]">Gelöst</Badge>
                     )}
                   </div>
 
@@ -333,7 +328,7 @@ export default function ForumPage() {
       {sortedPosts.length === 0 && (
         <div className="text-center py-12">
           <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="font-semibold mb-2">Keine Beitraege gefunden</h3>
+          <h3 className="font-semibold mb-2">Keine Beiträge gefunden</h3>
           <p className="text-muted-foreground">
             Versuche einen anderen Suchbegriff oder eine andere Kategorie.
           </p>
@@ -342,12 +337,12 @@ export default function ForumPage() {
 
       {/* Forum info */}
       {!forumCheck.allowed && (
-        <Card className="mt-8 border-primary/30">
+        <Card className="mt-8 border-primary/30 rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardContent className="p-6 text-center">
             <Lock className="h-8 w-8 text-primary mx-auto mb-3" />
-            <h3 className="font-semibold mb-2">Schreibe eigene Beitraege</h3>
+            <h3 className="font-semibold mb-2">Schreibe eigene Beiträge</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Ab dem Plus-Tarif (3,99 EUR/Monat) kannst du eigene Beitraege und Antworten schreiben.
+              Ab dem Plus-Tarif (3,99 €/Monat) kannst du eigene Beiträge und Antworten schreiben.
             </p>
             <Button variant="amt" asChild>
               <Link to="/preise">Jetzt upgraden</Link>
@@ -355,6 +350,7 @@ export default function ForumPage() {
           </CardContent>
         </Card>
       )}
+      </div>
     </div>
   )
 }

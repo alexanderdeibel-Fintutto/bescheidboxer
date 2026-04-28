@@ -14,17 +14,33 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { COMMON_PROBLEMS, SGB_CATEGORIES, LETTER_TEMPLATES } from '@/lib/sgb-knowledge'
 import { REGELSAETZE_2026, MEHRBEDARFE, SANKTIONEN, FRISTEN, BERATUNGSSTELLEN } from '@/lib/sgb-data'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHero } from '@/lib/fintutto-design'
 
 export default function ProblemePage() {
+  useDocumentTitle('Probleme mit dem Amt — schnelle Lösungen')
+
   return (
-    <div className="container py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Haeufige Probleme mit dem Amt</h1>
-        <p className="text-muted-foreground max-w-2xl">
-          Finde schnell die richtige Loesung für dein Problem. Jedes Thema mit Erklärung,
-          passenden Musterschreiben und praktischen Tipps.
-        </p>
-      </div>
+    <div>
+      {/* Hero */}
+      <PageHero
+        badge="Problem-Finder · Lösungen · Vorlagen"
+        title="Ärger mit dem Amt?"
+        titleGradient="Hier ist die Lösung."
+        subtitle="Finde in Sekunden die richtige Antwort: Jedes Problem mit Erklärung, passenden Musterschreiben und praktischen Tipps."
+        primaryCta={{
+          label: 'KI-Berater fragen',
+          to: '/chat',
+          icon: <MessageCircle className="w-5 h-5" />,
+        }}
+        secondaryCta={{
+          label: 'Vorlagen ansehen',
+          to: '/musterschreiben',
+          icon: <FileText className="w-5 h-5" />,
+        }}
+      />
+
+      <div className="container py-8">
 
       {/* Quick Problem Finder */}
       <section className="mb-12">
@@ -33,7 +49,7 @@ export default function ProblemePage() {
           {COMMON_PROBLEMS.map((problem) => {
             const templates = LETTER_TEMPLATES.filter(t => problem.suggestedTemplates.includes(t.id))
             return (
-              <Card key={problem.id} className="hover:border-primary/40 transition-all">
+              <Card key={problem.id} className="rounded-2xl hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                 <CardContent className="p-5">
                   <Badge variant={problem.category as 'sgb2' | 'sgb3' | 'kdu' | 'sgb10'} className="mb-3">
                     {SGB_CATEGORIES[problem.category]?.name}
@@ -74,9 +90,9 @@ export default function ProblemePage() {
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Scale className="h-5 w-5 text-primary" />
-          Aktuelle Regelsaetze 2026
+          Aktuelle Regelsätze 2026
         </h2>
-        <Card>
+        <Card className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardContent className="p-0">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -92,7 +108,7 @@ export default function ProblemePage() {
                     <tr key={rs.stufe} className="border-b border-border/50">
                       <td className="py-3 px-4 font-medium">{rs.stufe}</td>
                       <td className="py-3 px-4 text-muted-foreground">{rs.beschreibung}</td>
-                      <td className="py-3 px-4 text-right font-semibold">{rs.betrag},00 EUR</td>
+                      <td className="py-3 px-4 text-right font-semibold">{rs.betrag},00 €</td>
                     </tr>
                   ))}
                 </tbody>
@@ -106,29 +122,29 @@ export default function ProblemePage() {
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Shield className="h-5 w-5 text-primary" />
-          Mehrbedarfe - Zusaetzliches Geld
+          Mehrbedarfe — Zusätzliches Geld
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <Card>
+          <Card className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <CardContent className="p-5">
               <h3 className="font-semibold mb-2">Alleinerziehende ({MEHRBEDARFE.alleinerziehend.paragraph})</h3>
               <ul className="space-y-1">
                 {MEHRBEDARFE.alleinerziehend.staffelung.map((s) => (
                   <li key={s.kinder} className="flex justify-between text-sm">
                     <span className="text-muted-foreground">{s.kinder}</span>
-                    <span className="font-medium">{s.prozent}% = {Math.round(563 * s.prozent / 100)} EUR</span>
+                    <span className="font-medium">{s.prozent}% = {Math.round(563 * s.prozent / 100)} €</span>
                   </li>
                 ))}
               </ul>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <CardContent className="p-5">
               <h3 className="font-semibold mb-2">Weitere Mehrbedarfe</h3>
               <ul className="space-y-2 text-sm">
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Schwangerschaft (ab 13. Woche)</span>
-                  <span className="font-medium">{MEHRBEDARFE.schwangerschaft.prozent}% = {MEHRBEDARFE.schwangerschaft.betrag_rs1} EUR</span>
+                  <span className="font-medium">{MEHRBEDARFE.schwangerschaft.prozent}% = {MEHRBEDARFE.schwangerschaft.betrag_rs1} €</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Behinderung (Merkzeichen G/aG)</span>
@@ -139,7 +155,7 @@ export default function ProblemePage() {
                   <span className="font-medium">0,8-2,3%</span>
                 </li>
                 <li className="text-muted-foreground">
-                  + Kostenaufwaendige Ernaehrung (individuell, Attest nötig)
+                  + Kostenaufwändige Ernährung (individuell, Attest nötig)
                 </li>
                 <li className="text-muted-foreground">
                   + Unabweisbarer Mehrbedarf § 21 Abs. 6 (individuell)
@@ -162,7 +178,7 @@ export default function ProblemePage() {
           <AlertTriangle className="h-5 w-5 text-warning" />
           Sanktionsregeln (seit Bürgergeld 2023)
         </h2>
-        <Card>
+        <Card className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <CardContent className="p-5">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -187,7 +203,7 @@ export default function ProblemePage() {
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-sm mb-2">Wichtige Gruende (= keine Sanktion!):</h3>
+                <h3 className="font-semibold text-sm mb-2">Wichtige Gründe (= keine Sanktion!):</h3>
                 <ul className="space-y-1 text-sm text-muted-foreground">
                   {SANKTIONEN.wichtigeGruende.map((grund) => (
                     <li key={grund} className="flex items-start gap-2">
@@ -210,7 +226,7 @@ export default function ProblemePage() {
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
           {Object.entries(FRISTEN).map(([key, frist]) => (
-            <Card key={key}>
+            <Card key={key} className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
               <CardContent className="p-5">
                 <h3 className="font-semibold text-sm mb-1">{key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
                 <div className="flex items-center gap-2 mb-2">
@@ -237,7 +253,7 @@ export default function ProblemePage() {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {BERATUNGSSTELLEN.map((stelle) => (
-            <Card key={stelle.name}>
+            <Card key={stelle.name} className="rounded-2xl hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
               <CardContent className="p-5">
                 <h3 className="font-semibold text-sm mb-1">{stelle.name}</h3>
                 <p className="text-xs text-muted-foreground mb-2">{stelle.beschreibung}</p>
@@ -263,6 +279,7 @@ export default function ProblemePage() {
           </Link>
         </Button>
       </section>
+      </div>
     </div>
   )
 }

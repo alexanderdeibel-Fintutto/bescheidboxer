@@ -83,13 +83,19 @@ export default function MusterschreibenPage() {
   const problem = problemFilter ? COMMON_PROBLEMS.find(p => p.id === problemFilter) : null
 
   return (
-    <div className="container py-8">
+    <div className="container py-8 sm:py-12">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Musterschreiben</h1>
-        <p className="text-muted-foreground max-w-2xl">
-          {LETTER_TEMPLATES.length} fertige Vorlagen für Widersprüche, Anträge und Beschwerden.
-          Wähle ein Schreiben, fuelle deine Daten ein, und sende es ab.
+      <div className="mb-10 max-w-3xl">
+        <span className="inline-block text-xs uppercase tracking-[0.3em] font-semibold text-primary mb-3">
+          Dokumenten-Werkstatt
+        </span>
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+          Musterschreiben.{' '}
+          <span className="gradient-text-boxer">Fertig zum Versand.</span>
+        </h1>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          {LETTER_TEMPLATES.length} Vorlagen für Widersprüche, Anträge und Beschwerden.
+          Schreiben wählen, Daten einfüllen, abschicken.
         </p>
       </div>
 
@@ -148,7 +154,7 @@ export default function MusterschreibenPage() {
 
           return (
             <Link key={template.id} to={`/generator/${template.id}`}>
-              <Card className={`h-full group transition-all hover:shadow-md ${
+              <Card className={`h-full rounded-2xl group transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
                 isSuggested ? 'border-primary/40 ring-2 ring-primary/10' : 'hover:border-primary/30'
               }`}>
                 <CardContent className="p-5">
@@ -211,8 +217,8 @@ export default function MusterschreibenPage() {
           <p className="text-muted-foreground mb-4">
             Versuche einen anderen Suchbegriff oder wähle eine andere Kategorie.
           </p>
-          <Button variant="outline" onClick={() => { setSearch(''); setActiveCategory('all') }}>
-            Filter zuruecksetzen
+          <Button variant="outline" className="rounded-full" onClick={() => { setSearch(''); setActiveCategory('all') }}>
+            Filter zurücksetzen
           </Button>
         </div>
       )}

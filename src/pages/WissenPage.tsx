@@ -19,6 +19,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHero } from '@/lib/fintutto-design'
 
 type Category = 'Alle' | 'Grundlagen' | 'Widerspruch' | 'Rechte' | 'Tipps'
 
@@ -676,21 +677,14 @@ export default function WissenPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Hero */}
+      <PageHero
+        badge="Wissen · Ratgeber · Paragraphen"
+        title="Verstehen, was dir zusteht."
+        titleGradient="Wissen ist Macht."
+        subtitle="Fundiertes Wissen zu Bürgergeld, SGB II und Sozialrecht — verständlich erklärt, mit konkreten Tipps und Paragraphen-Verweisen."
+      />
       <div className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-boxer rounded-full mb-4">
-            <BookOpen className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Wissen & Ratgeber
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Verstehen Sie Ihre Rechte. Fundiertes Wissen zu Bürgergeld, SGB II
-            und Sozialrecht - verständlich erklärt, mit konkreten Tipps und
-            Paragraphen-Verweisen.
-          </p>
-        </div>
 
         {/* Search */}
         <div className="relative mb-8 max-w-xl mx-auto">

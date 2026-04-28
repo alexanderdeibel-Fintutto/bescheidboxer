@@ -116,21 +116,21 @@ export default function NotfallSeite() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-16">
+    <div className="min-h-screen bg-background pb-16">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Breadcrumbs items={[{ label: 'Startseite', href: '/' }, { label: 'Notfall-Hilfe' }]} className="mb-4" />
 
-        {/* Header */}
-        <div className="bg-red-600 text-white rounded-2xl p-8 mb-8">
+        {/* Header — Notfall-roter Block bleibt thematisch */}
+        <div className="gradient-boxer text-white rounded-3xl p-8 sm:p-10 mb-10 shadow-xl shadow-red-500/20">
           <div className="flex items-center gap-3 mb-4">
             <AlertTriangle className="h-10 w-10" />
-            <h1 className="text-3xl font-bold">Notfall-Hilfe</h1>
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Notfall-Hilfe</h1>
           </div>
-          <p className="text-red-100 text-lg">
-            Du bist in einer Notlage? Hier findest du sofortige Hilfe, kostenlose Hotlines und konkrete Schritte für akute Probleme.
+          <p className="text-white/95 text-lg leading-relaxed">
+            Du bist in einer Notlage? Hier sind sofortige Hilfe, kostenlose Hotlines und konkrete Schritte für akute Probleme.
           </p>
-          <div className="mt-4 p-4 bg-white/10 rounded-lg">
-            <p className="font-semibold flex items-center gap-2">
+          <div className="mt-5 p-4 bg-white/15 rounded-xl border border-white/20 backdrop-blur">
+            <p className="font-bold flex items-center gap-2">
               <Phone className="h-5 w-5" />
               Im akuten Notfall: 112 (Rettungsdienst) oder 110 (Polizei)
             </p>

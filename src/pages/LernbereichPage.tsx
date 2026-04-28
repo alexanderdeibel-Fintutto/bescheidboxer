@@ -25,6 +25,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHero } from '@/lib/fintutto-design'
 
 type Difficulty = 'einsteiger' | 'fortgeschritten' | 'experte'
 type DifficultyFilter = Difficulty | 'alle'
@@ -714,20 +715,15 @@ export default function LernbereichPage() {
   // -- Grid / overview --
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero */}
+      <PageHero
+        badge="Lernbereich · 8 Module · Schritt für Schritt"
+        title="Deine Rechte."
+        titleGradient="Endlich verstanden."
+        subtitle="In 8 Modulen alles Wichtige über Bürgergeld, Widerspruch und deine Rechte im Sozialrecht — verständlich, konkret, mit Paragraphen-Verweisen."
+      />
       <div className="container mx-auto max-w-6xl px-4 py-8">
         <Breadcrumbs items={[{ label: 'Lernbereich' }]} />
-
-        {/* Hero */}
-        <div className="mt-6 mb-10 text-center">
-          <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 mb-4">
-            <GraduationCap className="w-10 h-10 text-primary" />
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">Lernbereich</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Deine Rechte verstehen - Schritt für Schritt. Lerne in 8 Modulen alles
-            Wichtige über Bürgergeld, Widerspruch und deine Rechte im Sozialrecht.
-          </p>
-        </div>
 
         {/* Progress bar */}
         <Card className="mb-8">

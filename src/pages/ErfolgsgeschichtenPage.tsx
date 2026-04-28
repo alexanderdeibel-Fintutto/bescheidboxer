@@ -24,6 +24,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHero } from '@/lib/fintutto-design'
 
 type ProblemTyp =
   | 'kdu'
@@ -286,23 +287,15 @@ export default function ErfolgsgeschichtenPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero */}
+      <PageHero
+        badge="Erfolge · Echte Menschen · Echte Beträge"
+        title="Andere haben gewonnen."
+        titleGradient="Du auch."
+        subtitle="Anonymisierte Geschichten von BescheidBoxer-Nutzern, die erfolgreich gegen fehlerhafte Bescheide vorgegangen sind — mit Details und konkreten Beträgen."
+      />
       <div className="max-w-5xl mx-auto px-4 py-8">
         <Breadcrumbs items={[{ label: 'Erfolgsgeschichten' }]} className="mb-6" />
-
-        {/* Hero */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Trophy className="w-8 h-8 text-amber-500" />
-            <h1 className="text-3xl sm:text-4xl font-bold gradient-text-boxer">
-              Erfolgsgeschichten
-            </h1>
-            <Trophy className="w-8 h-8 text-amber-500" />
-          </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Echte Menschen, echte Erfolge. Diese anonymisierten Geschichten zeigen, wie
-            BescheidBoxer-Nutzer erfolgreich gegen fehlerhafte Bescheide vorgegangen sind.
-          </p>
-        </div>
 
         {/* Stats bar */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">

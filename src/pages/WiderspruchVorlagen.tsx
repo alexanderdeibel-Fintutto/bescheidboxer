@@ -9,7 +9,6 @@ import {
   Search,
   Filter,
   ArrowRight,
-  Scale,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -18,6 +17,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHero } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -715,7 +715,15 @@ export default function WiderspruchVorlagen() {
   }, [])
 
   return (
-    <div className="container py-8">
+    <div>
+      {/* Hero */}
+      <PageHero
+        badge={`Vorlagen · ${TEMPLATES.length} Templates · Rechtssicher`}
+        title="Widerspruch."
+        titleGradient="In 3 Minuten fertig."
+        subtitle={`${TEMPLATES.length} fertige Vorlagen zum Ausfüllen, Kopieren und Drucken — geprüft, paragrafenfest, sofort einsetzbar.`}
+      />
+      <div className="container py-8">
       <Breadcrumbs
         items={[
           { label: 'Dokumenten-Werkstatt', href: '/musterschreiben' },
@@ -723,21 +731,6 @@ export default function WiderspruchVorlagen() {
         ]}
         className="mb-4"
       />
-
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="p-2.5 rounded-xl bg-primary/10">
-            <Scale className="h-6 w-6 text-primary" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-bold">Widerspruch-Vorlagen</h1>
-            <p className="text-muted-foreground">
-              {TEMPLATES.length} fertige Vorlagen zum Ausfuellen, Kopieren und Drucken
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Legal Notices */}
       <div className="grid gap-3 md:grid-cols-3 mb-8">
@@ -992,12 +985,13 @@ export default function WiderspruchVorlagen() {
                   setActiveCategory('alle')
                 }}
               >
-                Filter zuruecksetzen
+                Filter zurücksetzen
               </Button>
             </div>
           )}
         </>
       )}
+      </div>
     </div>
   )
 }

@@ -26,6 +26,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHero } from '@/lib/fintutto-design'
 
 interface AnwaltEintrag {
   name: string
@@ -451,6 +452,13 @@ export default function AnwaltsSuche() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+      {/* Hero */}
+      <PageHero
+        badge="Anwaltssuche · Sozialrecht · Beratung"
+        title="Anwalt finden."
+        titleGradient="Recht durchsetzen."
+        subtitle="Rechtsanwälte, Kanzleien und Beratungsstellen in deiner Nähe — spezialisiert auf Sozialrecht und Probleme mit dem Jobcenter."
+      />
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
@@ -459,20 +467,6 @@ export default function AnwaltsSuche() {
           ]}
           className="mb-4"
         />
-
-        {/* Hero Header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white mb-4 shadow-lg">
-            <Scale className="w-8 h-8" />
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            Anwaltssuche für Sozialrecht
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Finde Rechtsanwaelte, Kanzleien und Beratungsstellen in deiner Nähe, die auf
-            Sozialrecht spezialisiert sind und dir bei Problemen mit dem Jobcenter helfen koennen.
-          </p>
-        </div>
 
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">

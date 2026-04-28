@@ -1,24 +1,18 @@
 import { Link } from 'react-router-dom'
-import { FileText } from 'lucide-react'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 export default function AgbPage() {
   return (
-    <div className="container py-12">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl gradient-amt text-white mx-auto mb-4">
-          <FileText className="h-7 w-7" />
-        </div>
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Allgemeine Geschäftsbedingungen
-        </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-          AGB der BescheidBoxer-Plattform
-        </p>
-      </div>
+    <>
+      <PageHeader
+        badge="Rechtliches"
+        title="AGB"
+        titleGradient="der Plattform"
+        subtitle="Allgemeine Geschäftsbedingungen für die Nutzung von BescheidBoxer."
+        align="center"
+      />
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto space-y-10">
+      <FadeSection delay={120} className="container max-w-4xl mx-auto px-6 pb-16 space-y-10">
         {/* § 1 Geltungsbereich */}
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -158,7 +152,7 @@ export default function AgbPage() {
                   <td className="py-3 px-4 font-medium text-gray-900">
                     Starter
                   </td>
-                  <td className="py-3 px-4">2,99 EUR/Monat</td>
+                  <td className="py-3 px-4">2,99 €/Monat</td>
                   <td className="py-3 px-4">
                     Erweiterte Funktionen für den Einstieg
                   </td>
@@ -167,7 +161,7 @@ export default function AgbPage() {
                   <td className="py-3 px-4 font-medium text-gray-900">
                     Kaempfer
                   </td>
-                  <td className="py-3 px-4">4,99 EUR/Monat</td>
+                  <td className="py-3 px-4">4,99 €/Monat</td>
                   <td className="py-3 px-4">
                     Voller Funktionsumfang für aktive Nutzer
                   </td>
@@ -176,7 +170,7 @@ export default function AgbPage() {
                   <td className="py-3 px-4 font-medium text-gray-900">
                     Vollschutz
                   </td>
-                  <td className="py-3 px-4">7,99 EUR/Monat</td>
+                  <td className="py-3 px-4">7,99 €/Monat</td>
                   <td className="py-3 px-4">
                     Premium-Tarif mit allen Funktionen und VIP-Support
                   </td>
@@ -365,10 +359,10 @@ export default function AgbPage() {
             to="/datenschutz"
             className="text-primary hover:underline text-sm"
           >
-            Datenschutzerklaerung
+            Datenschutzerklärung
           </Link>
         </div>
-      </div>
-    </div>
+      </FadeSection>
+    </>
   )
 }

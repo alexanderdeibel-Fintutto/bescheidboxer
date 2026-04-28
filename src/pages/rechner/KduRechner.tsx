@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Home, AlertTriangle, CheckCircle, Info, MapPin, Download, Share2 } from 'lucide-react'
+import { AlertTriangle, CheckCircle, Info, MapPin, Download, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { berechneKdu, KduRechnerErgebnis } from '@/lib/rechner-logik'
 import { KDU_TABELLEN } from '@/lib/kdu-tabellen'
@@ -9,6 +9,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader } from '@/lib/fintutto-design'
 
 export default function KduRechner() {
   const [plz, setPlz] = useState('')
@@ -53,9 +54,9 @@ export default function KduRechner() {
   const getAmpel = () => {
     if (!ergebnis) return null
     const problems = [!ergebnis.kaltmieteAngemessen, !ergebnis.heizkostenAngemessen, !ergebnis.qmAngemessen].filter(Boolean).length
-    if (problems === 0) return { color: 'green', icon: CheckCircle, text: 'Alles im gruenen Bereich!', desc: 'Deine Wohnkosten liegen innerhalb der Angemessenheitsgrenzen.' }
-    if (problems >= 2) return { color: 'red', icon: AlertTriangle, text: 'Warnung: Kosten deutlich über Angemessenheit', desc: 'Mehrere deiner Wohnkosten uebersteigen die Grenzen.' }
-    return { color: 'yellow', icon: Info, text: 'Achtung: Teilweise über den Grenzen', desc: 'Einige deiner Wohnkosten uebersteigen die Angemessenheitsgrenzen.' }
+    if (problems === 0) return { color: 'green', icon: CheckCircle, text: 'Alles im grünen Bereich!', desc: 'Deine Wohnkosten liegen innerhalb der Angemessenheitsgrenzen.' }
+    if (problems >= 2) return { color: 'red', icon: AlertTriangle, text: 'Warnung: Kosten deutlich über Angemessenheit', desc: 'Mehrere deiner Wohnkosten übersteigen die Grenzen.' }
+    return { color: 'yellow', icon: Info, text: 'Achtung: Teilweise über den Grenzen', desc: 'Einige deiner Wohnkosten übersteigen die Angemessenheitsgrenzen.' }
   }
 
   const renderBar = (titel: string, ist: number, grenze: number, einheit: string, ok: boolean) => {
@@ -82,15 +83,19 @@ export default function KduRechner() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'KdU-Rechner' }]} className="mb-4" />
-          <div className="flex items-center gap-3 mb-2"><Home className="w-8 h-8 text-blue-600" /><h1 className="text-4xl font-bold text-gray-900">KdU-Rechner</h1></div>
-          <p className="text-gray-600 text-lg">Pruefe, ob deine Wohnkosten als angemessen gelten</p>
-        </div>
+      <div className="max-w-4xl mx-auto px-4 pb-8">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'KdU-Rechner' }]} className="pt-6" />
+      </div>
+      <PageHeader
+        badge="KdU-Check"
+        title="Sind deine Wohnkosten"
+        titleGradient="angemessen?"
+        subtitle="Prüfe Kaltmiete, Nebenkosten und Heizkosten gegen die Angemessenheitsgrenze nach § 22 SGB II."
+      />
+      <div className="max-w-4xl mx-auto px-4 pb-8 mt-4">
 
         {/* Input */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 mb-8">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-8">
           <h2 className="text-2xl font-semibold mb-6">Deine Angaben</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>

@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import { type SgbCategory } from '@/lib/sgb-knowledge'
+import { PageHeader } from '@/lib/fintutto-design'
 
 const CATEGORY_OPTIONS: { id: SgbCategory; label: string }[] = [
   { id: 'sgb2', label: 'Bürgergeld (SGB II)' },
@@ -19,9 +20,9 @@ const CATEGORY_OPTIONS: { id: SgbCategory; label: string }[] = [
 
 const GUIDELINES = [
   'Bleibe sachlich und respektvoll',
-  'Keine persoenlichen Daten (echte Namen, Aktenzeichen) posten',
-  'Beschreibe dein Problem moeglichst genau',
-  'Nenne wenn moeglich relevante Bescheiddaten und Paragraphen',
+  'Keine persönlichen Daten (echte Namen, Aktenzeichen) posten',
+  'Beschreibe dein Problem möglichst genau',
+  'Nenne wenn möglich relevante Bescheiddaten und Paragraphen',
   'Frage lieber einmal zu viel als zu wenig',
 ]
 
@@ -64,20 +65,25 @@ export default function ForumNewPostPage() {
   }
 
   return (
-    <div className="container py-8 max-w-3xl">
+    <div className="container py-2 max-w-3xl">
       <Link
         to="/forum"
-        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
+        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mt-6 mb-2"
       >
         <ArrowLeft className="h-4 w-4" />
         Zurück zum Forum
       </Link>
 
-      <h1 className="text-2xl font-bold mb-6">Neuen Beitrag schreiben</h1>
+      <PageHeader
+        badge="Forum"
+        title="Neuen Beitrag"
+        titleGradient="schreiben"
+        subtitle="Teile dein Anliegen mit der Community — sachlich, ohne persönliche Daten, mit so vielen Details wie möglich."
+      />
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-6 mt-6">
         <div className="md:col-span-2">
-          <Card>
+          <Card className="rounded-2xl">
             <CardContent className="p-6">
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Category */}
@@ -112,7 +118,7 @@ export default function ForumNewPostPage() {
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="z.B. Widerspruch gegen Sanktion - Hat jemand Erfahrung?"
+                    placeholder="z.B. Widerspruch gegen Sanktion — Hat jemand Erfahrung?"
                     maxLength={200}
                   />
                   <p className="text-xs text-muted-foreground mt-1">
@@ -129,7 +135,7 @@ export default function ForumNewPostPage() {
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    placeholder="Beschreibe dein Problem oder deine Erfahrung moeglichst genau. Je mehr Details, desto besser koennen andere dir helfen..."
+                    placeholder="Beschreibe dein Problem oder deine Erfahrung möglichst genau. Je mehr Details, desto besser können andere dir helfen..."
                     rows={8}
                   />
                   <p className="text-xs text-muted-foreground mt-1">
@@ -142,11 +148,11 @@ export default function ForumNewPostPage() {
                     type="submit"
                     variant="amt"
                     size="lg"
-                    className="w-full"
+                    className="w-full rounded-full"
                     disabled={!isValid || isSubmitting}
                   >
                     <Send className="mr-2 h-5 w-5" />
-                    {isSubmitting ? 'Wird gepostet...' : 'Beitrag veroeffentlichen'}
+                    {isSubmitting ? 'Wird gepostet...' : 'Beitrag veröffentlichen'}
                   </Button>
                 </div>
               </form>
@@ -156,7 +162,7 @@ export default function ForumNewPostPage() {
 
         {/* Sidebar */}
         <div className="space-y-4">
-          <Card>
+          <Card className="rounded-2xl">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Community-Regeln</CardTitle>
             </CardHeader>
@@ -172,13 +178,13 @@ export default function ForumNewPostPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-primary/20 bg-primary/5">
+          <Card className="border-primary/20 bg-primary/5 rounded-2xl">
             <CardContent className="p-4">
               <p className="text-xs text-muted-foreground">
-                <strong>Tipp:</strong> Nutze zuerst den KI-Berater für eine schnelle Einschaetzung
+                <strong>Tipp:</strong> Nutze zuerst den KI-Berater für eine schnelle Einschätzung
                 und poste dann im Forum für Erfahrungswerte anderer.
               </p>
-              <Button variant="outline" size="sm" className="w-full mt-3" asChild>
+              <Button variant="outline" size="sm" className="w-full mt-3 rounded-full" asChild>
                 <Link to="/chat">KI-Berater fragen</Link>
               </Button>
             </CardContent>

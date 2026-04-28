@@ -15,6 +15,7 @@ import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // === TYPES ===
 
@@ -298,23 +299,15 @@ export default function HaushaltsRechner() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
-      {/* Header */}
-      <div className="bg-white border-b sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Haushaltsplan' }]} className="mb-4" />
-          <div className="flex items-start gap-4">
-            <div className="bg-emerald-50 p-3 rounded-xl">
-              <Wallet className="h-8 w-8 text-emerald-600" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Haushaltsplan-Rechner</h1>
-              <p className="text-gray-600 mt-1">
-                Plane dein monatliches Budget als Bürgergeld-Empfaenger
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="max-w-4xl mx-auto px-4">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Haushaltsplan' }]} className="pt-6" />
       </div>
+      <PageHeader
+        badge="Haushaltsplan"
+        title="Plane dein"
+        titleGradient="Monatsbudget"
+        subtitle="Plane dein monatliches Budget als Bürgergeld-Empfänger - Einnahmen, Ausgaben, Spartipps."
+      />
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Info Card */}
@@ -329,12 +322,12 @@ export default function HaushaltsRechner() {
                 <p>
                   Mit Bürgergeld muss jeder Euro sitzen. Ein Haushaltsplan hilft dir,
                   den Überblick über deine Einnahmen und Ausgaben zu behalten und
-                  moegliche Einsparungen zu erkennen. Trage deine monatlichen Betraege
+                  mögliche Einsparungen zu erkennen. Trage deine monatlichen Beträge
                   ein, um zu sehen, ob dein Budget aufgeht.
                 </p>
                 <p className="text-xs text-gray-600">
-                  Deine Daten werden nur lokal auf deinem Geraet gespeichert und
-                  nicht an Server uebermittelt.
+                  Deine Daten werden nur lokal auf deinem Gerät gespeichert und
+                  nicht an Server übermittelt.
                 </p>
               </div>
             </div>
@@ -429,7 +422,7 @@ export default function HaushaltsRechner() {
               <Input
                 value={customLabel}
                 onChange={(e) => setCustomLabel(e.target.value)}
-                placeholder="Eigene Ausgabe hinzufuegen..."
+                placeholder="Eigene Ausgabe hinzufügen..."
                 className="text-sm h-9"
                 onKeyDown={(e) => { if (e.key === 'Enter') addCustomAusgabe() }}
               />
@@ -437,11 +430,11 @@ export default function HaushaltsRechner() {
                 onClick={addCustomAusgabe}
                 variant="outline"
                 size="sm"
-                className="flex-shrink-0 h-9"
+                className="flex-shrink-0 h-9 rounded-full"
                 disabled={!customLabel.trim()}
               >
                 <Plus className="h-4 w-4 mr-1" />
-                Hinzufuegen
+                Hinzufügen
               </Button>
             </div>
           </CardContent>
@@ -459,7 +452,7 @@ export default function HaushaltsRechner() {
                 ? <AlertTriangle className="h-5 w-5 text-red-600" />
                 : <TrendingUp className="h-5 w-5 text-emerald-600" />
               }
-              <h2 className="text-lg font-semibold text-gray-900">Uebersicht</h2>
+              <h2 className="text-lg font-semibold text-gray-900">Übersicht</h2>
             </div>
 
             {/* Summary boxes */}
@@ -476,7 +469,7 @@ export default function HaushaltsRechner() {
                 isDefizit ? 'border-red-300' : isSurplus ? 'border-emerald-300' : 'border-gray-200'
               }`}>
                 <div className="text-xs text-gray-600 mb-1">
-                  {isDefizit ? 'Defizit' : 'Ueberschuss'}
+                  {isDefizit ? 'Defizit' : 'Überschuss'}
                 </div>
                 <div className={`text-lg font-bold ${
                   isDefizit ? 'text-red-600' : isSurplus ? 'text-emerald-600' : 'text-gray-600'

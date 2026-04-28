@@ -21,6 +21,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 
 interface Anbieter {
   name: string
@@ -250,33 +251,23 @@ export default function AnbieterVergleich() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 pt-6 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
             { label: 'Startseite', href: '/' },
             { label: 'Beratungsstellen-Vergleich' },
           ]}
-          className="mb-4"
         />
-
-        {/* Hero Section */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-boxer rounded-full mb-4">
-            <Scale className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Beratungsstellen-Vergleich
-          </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Finden Sie die passende Beratungsstelle für Ihr Anliegen. Ob
-            Sozialverband, Erwerbslosenverein oder Anwalt mit
-            Beratungshilfeschein - hier finden Sie kostenlose und guenstige Hilfe
-            bei Problemen mit dem Jobcenter.
-          </p>
-          <p className="text-sm text-gray-500 mt-2">
-            {anbieterListe.length} Beratungsstellen im Vergleich
-          </p>
-        </div>
+      </div>
+      <PageHeader
+        badge="Beratung"
+        title="Beratungsstellen-"
+        titleGradient="Vergleich"
+        subtitle={`Finde die passende Beratungsstelle für dein Anliegen — Sozialverband, Erwerbslosenverein oder Anwalt mit Beratungshilfeschein. ${anbieterListe.length} Anbieter im direkten Vergleich.`}
+        align="center"
+      />
+      <div className="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        {/* Hero ersetzt durch PageHeader */}
 
         {/* Search and Filters */}
         <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 mb-8 shadow-sm">
@@ -636,7 +627,7 @@ export default function AnbieterVergleich() {
               }}
               className="text-red-600 font-medium hover:underline"
             >
-              Alle Filter zuruecksetzen
+              Alle Filter zurücksetzen
             </button>
           </div>
         )}
@@ -712,7 +703,7 @@ export default function AnbieterVergleich() {
               </div>
 
               <Link to="/rechner/pkh">
-                <Button variant="outline" className="border-amber-300 text-amber-800 hover:bg-amber-100">
+                <Button variant="outline" className="border-amber-300 text-amber-800 hover:bg-amber-100 rounded-full">
                   <Scale className="w-4 h-4 mr-2" />
                   Zum PKH-Rechner
                 </Button>
@@ -779,8 +770,8 @@ export default function AnbieterVergleich() {
             Bescheid schon geprüft?
           </h3>
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Bevor Sie eine Beratungsstelle aufsuchen, prüfen Sie Ihren Bescheid
-            mit unserem KI-Bescheid-Scanner. So koennen Sie vorab einschaetzen,
+            Bevor du eine Beratungsstelle aufsuchst, prüf deinen Bescheid
+            mit unserem KI-Scanner. So kannst du vorab einschätzen,
             ob sich ein Widerspruch lohnt.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -788,7 +779,7 @@ export default function AnbieterVergleich() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-white text-red-600 hover:bg-gray-100"
+                className="bg-white text-red-600 hover:bg-gray-100 rounded-full"
               >
                 <Shield className="w-5 h-5 mr-2" />
                 Bescheid prüfen
@@ -798,7 +789,7 @@ export default function AnbieterVergleich() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-white/20 text-white border border-white/30 hover:bg-white/30"
+                className="bg-white/20 text-white border border-white/30 hover:bg-white/30 rounded-full"
               >
                 <Scale className="w-5 h-5 mr-2" />
                 KI-Berater fragen
@@ -809,11 +800,11 @@ export default function AnbieterVergleich() {
 
         {/* Disclaimer */}
         <p className="text-xs text-gray-400 text-center mt-8 max-w-2xl mx-auto leading-relaxed">
-          Hinweis: Alle Angaben ohne Gewaehr. Die Informationen auf dieser Seite
+          Hinweis: Alle Angaben ohne Gewähr. Die Informationen auf dieser Seite
           dienen der allgemeinen Orientierung und ersetzen keine individuelle
-          Rechtsberatung. Beitraege und Leistungsumfang koennen je nach
-          Landesverband oder oertlicher Stelle variieren. Bitte informieren Sie
-          sich direkt bei der jeweiligen Organisation über aktuelle Konditionen.
+          Rechtsberatung. Beiträge und Leistungsumfang können je nach
+          Landesverband oder örtlicher Stelle variieren. Bitte informier dich
+          direkt bei der jeweiligen Organisation über aktuelle Konditionen.
           Stand: 2025.
         </p>
       </div>

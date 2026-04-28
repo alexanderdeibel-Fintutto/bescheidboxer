@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import EinspruchTimeline, { type EinspruchStatus } from '@/components/EinspruchTimeline'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // Mapping vom Tracker-Status auf den EinspruchTimeline-Status
 function mapToTimelineStatus(s: string): EinspruchStatus {
@@ -327,23 +328,20 @@ export default function WiderspruchTracker() {
       {/* ------------------------------------------------------------------ */}
       {/* Header                                                             */}
       {/* ------------------------------------------------------------------ */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-6">
-          <Link
-            to="/dashboard"
-            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Zurück zum Dashboard
-          </Link>
-          <div className="flex items-center gap-3 mb-1">
-            <FileText className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight">Widerspruch-Tracker</h1>
-          </div>
-          <p className="text-muted-foreground text-sm">
-            Behalte den Überblick über deine laufenden Verfahren
-          </p>
-        </div>
+      <PageHeader
+        badge="Verfahren im Blick"
+        title="Widerspruch-"
+        titleGradient="Tracker"
+        subtitle="Behalte den Überblick über deine laufenden Verfahren — Fristen, Stand, nächste Schritte."
+      />
+      <div className="container mx-auto px-4 pt-2">
+        <Link
+          to="/dashboard"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Zurück zum Dashboard
+        </Link>
       </div>
 
       <div className="container mx-auto px-4 py-6 space-y-6">

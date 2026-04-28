@@ -883,7 +883,7 @@ export default function ErinnerungenPage() {
               <Bell className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Erinnerungen &amp; Fristen</h1>
+              <h1 className="text-2xl font-bold gradient-text-boxer">Erinnerungen & Fristen</h1>
               <p className="text-sm text-gray-500">
                 Behalte alle Fristen im Blick und verpasse keine Deadline
               </p>

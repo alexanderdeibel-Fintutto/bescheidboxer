@@ -7,7 +7,7 @@
  */
 import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Bookmark, Trash2, Calculator, Calendar, ArrowRight, Lock, FileText } from 'lucide-react'
+import { Trash2, Calculator, Calendar, ArrowRight, Lock, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -20,6 +20,7 @@ import {
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import { PLANS } from '@/lib/credits'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 const TOOL_PATHS: Record<string, string> = {
   buergergeld: '/rechner/buergergeld',
@@ -90,26 +91,24 @@ export default function MeineBerechnungenPage() {
   }
 
   return (
-    <div className="container py-8 max-w-5xl">
-      <div className="flex items-start justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold flex items-center gap-3">
-            <Bookmark className="h-7 w-7 text-primary" />
-            Meine Berechnungen
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Deine gespeicherten Rechner-Ergebnisse — schnell wiederfinden, vergleichen, weiterverwenden.
-          </p>
+    <div>
+      <PageHeader
+        badge="Deine Rechen-Bibliothek"
+        title="Meine"
+        titleGradient="Berechnungen"
+        subtitle="Gespeicherte Rechner-Ergebnisse — schnell wiederfinden, vergleichen, weiterverwenden."
+      />
+      <div className="container pb-12 max-w-5xl">
+        <div className="flex justify-end mb-6">
+          <div className="text-right">
+            <Badge variant="secondary" className="text-sm">
+              {used} {limit === -1 ? 'gespeichert' : `/ ${limit}`}
+            </Badge>
+            <p className="text-xs text-muted-foreground mt-1">
+              Plan: {planDetails.name}
+            </p>
+          </div>
         </div>
-        <div className="text-right">
-          <Badge variant="secondary" className="text-sm">
-            {used} {limit === -1 ? 'gespeichert' : `/ ${limit}`}
-          </Badge>
-          <p className="text-xs text-muted-foreground mt-1">
-            Plan: {planDetails.name}
-          </p>
-        </div>
-      </div>
 
       {/* Schnupperer-Hinweis */}
       {limit === 0 && (
@@ -219,6 +218,7 @@ export default function MeineBerechnungenPage() {
           ))}
         </div>
       )}
+      </div>
     </div>
   )
 }

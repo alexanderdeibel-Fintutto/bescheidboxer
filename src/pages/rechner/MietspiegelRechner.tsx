@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Home, Download, Share2, MapPin, Users, Euro,
+  Home, Download, Share2, Users, Euro,
   AlertTriangle, CheckCircle2, Info, ArrowRight, Search,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -15,6 +15,7 @@ import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Demo-Mietspiegel: angemessene Bruttokaltmiete (KdU) nach Haushaltgroesse
@@ -177,32 +178,22 @@ export default function MietspiegelRechner() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900 pb-16">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Breadcrumbs */}
+      <div className="max-w-4xl mx-auto px-4 pb-8">
         <Breadcrumbs
           items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Mietspiegel-Rechner' }]}
-          className="mb-6"
+          className="pt-6"
         />
-
-        {/* Hero */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="bg-blue-50 dark:bg-blue-900/40 p-3 rounded-xl">
-              <MapPin className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-            </div>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold gradient-text-boxer">
-                Mietspiegel-Rechner
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400 text-lg mt-1">
-                Ist deine Miete angemessen? Pruefe es nach § 22 SGB II
-              </p>
-            </div>
-          </div>
-        </div>
+      </div>
+      <PageHeader
+        badge="Mietspiegel"
+        title="Ist deine Miete"
+        titleGradient="angemessen?"
+        subtitle="Prüfe deine Bruttokaltmiete gegen die Angemessenheitsgrenze nach § 22 SGB II."
+      />
+      <div className="max-w-4xl mx-auto px-4 pb-8 mt-4">
 
         {/* Form */}
-        <Card className="shadow-lg mb-8">
+        <Card className="shadow-lg mb-8 rounded-2xl">
           <CardContent className="pt-6 space-y-6">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
               Deine Angaben
@@ -240,7 +231,7 @@ export default function MietspiegelRechner() {
               )}
               {dropdownOpen && stadtSuche.length > 0 && gefilterteStaedte.length === 0 && (
                 <div className="absolute z-20 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg px-4 py-3 text-sm text-gray-500">
-                  Keine Stadt gefunden. Derzeit sind 15 Staedte verfuegbar.
+                  Keine Stadt gefunden. Derzeit sind 15 Städte verfügbar.
                 </div>
               )}
             </div>
@@ -248,7 +239,7 @@ export default function MietspiegelRechner() {
             {/* Household size */}
             <div>
               <Label className="mb-2 flex items-center gap-1">
-                <Users className="w-4 h-4" /> Haushaltgroesse (Bedarfsgemeinschaft)
+                <Users className="w-4 h-4" /> Haushaltgröße (Bedarfsgemeinschaft)
               </Label>
               <div className="flex flex-wrap gap-2 mt-2">
                 {[1, 2, 3, 4, 5].map((n) => (
@@ -310,7 +301,7 @@ export default function MietspiegelRechner() {
 
             <Button
               onClick={handleBerechnen}
-              className="w-full gradient-boxer text-white font-semibold py-3 rounded-lg"
+              className="w-full gradient-boxer text-white font-semibold py-3 rounded-full"
             >
               <Search className="w-4 h-4 mr-2" /> Mietspiegel prüfen
             </Button>
@@ -327,10 +318,10 @@ export default function MietspiegelRechner() {
 
         {/* Result */}
         {ergebnis && (
-          <div className="space-y-6 mb-8">
+          <FadeSection className="space-y-6 mb-8">
             {/* Status banner */}
             <Card
-              className={`shadow-lg border-2 ${
+              className={`shadow-lg border-2 rounded-2xl ${
                 ergebnis.angemessen
                   ? 'border-green-500 bg-green-50/50 dark:bg-green-900/20'
                   : 'border-red-500 bg-red-50/50 dark:bg-red-900/20'
@@ -350,7 +341,7 @@ export default function MietspiegelRechner() {
                     <p className="text-gray-700 dark:text-gray-300">
                       {ergebnis.angemessen
                         ? 'Deine Bruttokaltmiete liegt innerhalb der Angemessenheitsgrenze.'
-                        : `Deine Bruttokaltmiete uebersteigt die Grenze um ${Math.abs(ergebnis.differenz).toFixed(2)} EUR.`}
+                        : `Deine Bruttokaltmiete übersteigt die Grenze um ${Math.abs(ergebnis.differenz).toFixed(2)} €.`}
                     </p>
                   </div>
                 </div>
@@ -526,7 +517,7 @@ export default function MietspiegelRechner() {
                 }}
               />
             </div>
-          </div>
+          </FadeSection>
         )}
 
         {/* Info section */}

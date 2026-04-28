@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { Bell, AlertTriangle, Clock, Info, Lightbulb, CheckCheck, Filter } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -54,7 +54,7 @@ const FILTER_TABS: { key: FilterTab; label: string }[] = [
 const TYP_LABELS: Record<WiderspruchEntry['typ'], string> = {
   widerspruch: 'Widerspruch',
   klage: 'Klage',
-  ueberpruefung: 'Ueberpruefungsantrag',
+  ueberpruefung: 'Überprüfungsantrag',
   eilantrag: 'Eilantrag',
   beschwerde: 'Beschwerde',
 }
@@ -429,22 +429,12 @@ export default function BenachrichtigungenPage() {
       {/* ------------------------------------------------------------------ */}
       {/* Hero Section                                                       */}
       {/* ------------------------------------------------------------------ */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Bell className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight">Benachrichtigungen</h1>
-            {unreadCount > 0 && (
-              <Badge className="bg-primary text-primary-foreground text-xs">
-                {unreadCount} neu
-              </Badge>
-            )}
-          </div>
-          <p className="text-muted-foreground text-sm max-w-2xl">
-            Fristenwarnungen, System-Hinweise und persoenliche Tipps — alles auf einen Blick.
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        badge={unreadCount > 0 ? `${unreadCount} neue Hinweise` : 'Posteingang'}
+        title="Deine"
+        titleGradient="Benachrichtigungen"
+        subtitle="Fristenwarnungen, System-Hinweise und persönliche Tipps — alles auf einen Blick."
+      />
 
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* ---------------------------------------------------------------- */}

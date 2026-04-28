@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Calculator, Plus, Trash2, ArrowLeft, ArrowRight, Info, AlertTriangle, CheckCircle, Download, Share2 } from 'lucide-react'
+import { Plus, Trash2, ArrowLeft, ArrowRight, Info, AlertTriangle, CheckCircle, Download, Share2, Calculator } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { berechneBürgergeld, BgMitglied, BürgergeldErgebnis } from '@/lib/rechner-logik'
 import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
@@ -9,6 +9,7 @@ import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // Local wrapper with id for UI management
 interface UiMitglied extends BgMitglied {
@@ -142,18 +143,15 @@ export default function BuergergeldRechner() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <div className="bg-white border-b shadow-sm">
-        <div className="container mx-auto px-4 py-6">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Bürgergeld-Rechner' }]} className="mb-4" />
-          <div className="flex items-center gap-3">
-            <div className="p-3 bg-blue-100 rounded-xl"><Calculator className="w-8 h-8 text-blue-600" /></div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Bürgergeld-Rechner</h1>
-              <p className="text-gray-600">Berechne deinen monatlichen Anspruch nach SGB II</p>
-            </div>
-          </div>
-        </div>
+      <div className="container mx-auto px-4 max-w-4xl">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Bürgergeld-Rechner' }]} className="pt-6" />
       </div>
+      <PageHeader
+        badge="Bürgergeld"
+        title="Berechne dein"
+        titleGradient="Bürgergeld"
+        subtitle="Berechne deinen monatlichen Anspruch nach SGB II - in 4 Schritten."
+      />
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {step < 5 && (

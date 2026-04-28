@@ -36,6 +36,7 @@ import { Badge } from '@/components/ui/badge'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import RechtlicherHinweis from '@/components/RechtlicherHinweis'
 import { toast } from 'sonner'
+import { PageHeader } from '@/lib/fintutto-design'
 import {
   type BescheidPage,
   createPage,
@@ -382,18 +383,15 @@ export default function BescheidScanPage() {
   const canStartScan = pages.length > 0 || manualText.trim().length > 0
 
   return (
-    <div className="container py-8 max-w-4xl">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-boxer text-white mb-4">
-          <ScanSearch className="h-8 w-8" />
-        </div>
-        <h1 className="text-3xl font-bold mb-2">BescheidScan</h1>
-        <p className="text-muted-foreground max-w-xl mx-auto">
-          Scanne alle Seiten deines Bescheids — unsere KI liest und prüft alles auf Fehler.
-          Ein Bescheid hat oft mehrere Seiten, lade einfach alle hoch.
-        </p>
-      </div>
+    <div className="container max-w-4xl">
+      <PageHeader
+        badge="KI-Scanner"
+        title="Bescheid"
+        titleGradient="prüfen lassen"
+        subtitle="Scanne alle Seiten deines Bescheids — unsere KI liest und prüft alles auf Fehler. Ein Bescheid hat oft mehrere Seiten, lade einfach alle hoch."
+        align="center"
+      />
+      <div className="pb-8 pt-2">
 
       {/* Upload State */}
       {scanState === 'upload' && (
@@ -415,7 +413,7 @@ export default function BescheidScanPage() {
           )}
 
           {/* Multi-page Info */}
-          <Card className="border-primary/20 bg-primary/5">
+          <Card className="border-primary/20 bg-primary/5 rounded-2xl">
             <CardContent className="p-4 flex items-start gap-3">
               <BookOpen className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <div>
@@ -430,7 +428,7 @@ export default function BescheidScanPage() {
 
           {/* Drop Zone */}
           <Card
-            className={`border-dashed border-2 transition-colors ${
+            className={`rounded-2xl border-dashed border-2 transition-colors ${
               dragActive ? 'border-primary bg-primary/5' : 'hover:border-primary/40'
             }`}
             onDragEnter={handleDrag}
@@ -605,7 +603,7 @@ export default function BescheidScanPage() {
               size="lg"
               disabled={!canStartScan}
               onClick={startAnalysis}
-              className="min-w-64"
+              className="min-w-64 rounded-full"
             >
               <ScanSearch className="mr-2 h-5 w-5" />
               {pages.length > 0
@@ -615,7 +613,7 @@ export default function BescheidScanPage() {
                   : 'Seiten hochladen um zu starten'}
             </Button>
             <p className="text-xs text-muted-foreground">
-              Deine Daten werden verschluesselt uebertragen und nach der Analyse geloescht.
+              Deine Daten werden verschlüsselt übertragen und nach der Analyse gelöscht.
             </p>
           </div>
 
@@ -876,7 +874,7 @@ export default function BescheidScanPage() {
 
           {/* New Scan */}
           <div className="text-center">
-            <Button variant="outline" onClick={resetAll}>
+            <Button variant="outline" onClick={resetAll} className="rounded-full">
               Neuen Bescheid scannen
             </Button>
           </div>
@@ -884,6 +882,7 @@ export default function BescheidScanPage() {
           <RechtlicherHinweis />
         </div>
       )}
+      </div>
     </div>
   )
 }

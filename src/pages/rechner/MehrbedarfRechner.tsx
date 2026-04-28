@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Heart, Info, Download, Share2 } from 'lucide-react'
+import { Info, Download, Share2, Heart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { berechneMehrbedarf, MehrbedarfErgebnis, REGELSAETZE_2025 } from '@/lib/rechner-logik'
 import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
@@ -8,6 +8,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader } from '@/lib/fintutto-design'
 
 export default function MehrbedarfRechner() {
   const [regelsatz, setRegelsatz] = useState<number>(REGELSAETZE_2025.RS1)
@@ -48,16 +49,18 @@ export default function MehrbedarfRechner() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white border-b">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Mehrbedarf-Rechner' }]} className="mb-4" />
-          <h1 className="text-3xl font-bold text-gray-900">Mehrbedarf-Rechner</h1>
-          <p className="text-gray-600 mt-2">Berechne deinen Anspruch auf Mehrbedarf nach § 21 SGB II</p>
-        </div>
+      <div className="max-w-4xl mx-auto px-4">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Mehrbedarf-Rechner' }]} className="pt-6" />
       </div>
+      <PageHeader
+        badge="Mehrbedarf"
+        title="Mehrbedarf"
+        titleGradient="berechnen"
+        subtitle="Berechne deinen Anspruch auf Mehrbedarf nach § 21 SGB II - Schwangerschaft, Alleinerziehend, Behinderung u.a."
+      />
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Deine Angaben</h2>
 
           <div className="mb-6">

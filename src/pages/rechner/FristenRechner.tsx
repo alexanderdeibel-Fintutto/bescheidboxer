@@ -6,6 +6,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 type FristTyp = 'widerspruch' | 'klage' | 'ueberpruefung' | 'eilantrag' | 'berufung' | 'anhoerung' | 'mitwirkung'
 
@@ -179,23 +180,19 @@ export default function FristenRechner() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Fristenrechner' }]} className="mb-4" />
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <Clock className="w-8 h-8 text-blue-600" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900">Fristenrechner</h1>
-          </div>
-          <p className="text-lg text-gray-600 mt-2">
-            Berechne, wann deine Frist für Widerspruch, Klage oder andere Rechtsbehelfe abläuft.
-          </p>
-        </div>
+      <div className="max-w-4xl mx-auto px-4 pb-8">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Fristenrechner' }]} className="pt-6" />
+      </div>
+      <PageHeader
+        badge="Fristen-Check"
+        title="Wann läuft deine"
+        titleGradient="Frist ab?"
+        subtitle="Berechne dein Fristende für Widerspruch, Klage oder andere Rechtsbehelfe."
+      />
+      <div className="max-w-4xl mx-auto px-4 pb-8 mt-4">
 
         {/* Form */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
             <Calendar className="w-6 h-6 text-blue-600" />
             Deine Angaben
@@ -241,21 +238,21 @@ export default function FristenRechner() {
               <div className="ml-3">
                 <span className="font-medium text-gray-900">Bescheid per Post erhalten</span>
                 <p className="text-sm text-gray-500 mt-0.5">
-                  Fuegt 3 Tage Zugangsfiktion hinzu (\u00a7 37 Abs. 2 SGB X)
+                  F\u00fcgt 3 Tage Zugangsfiktion hinzu (\u00a7 37 Abs. 2 SGB X)
                 </p>
               </div>
             </label>
           </div>
 
-          <Button onClick={handleBerechnen} className="w-full py-6 text-lg">
+          <Button onClick={handleBerechnen} className="w-full py-6 text-lg rounded-full">
             Frist berechnen
           </Button>
         </div>
 
         {/* Result */}
         {ergebnis && (
-          <div className="space-y-6">
-            <div className="bg-white rounded-xl shadow-lg p-6">
+          <FadeSection className="space-y-6">
+            <div className="bg-white rounded-2xl shadow-lg p-6">
               {/* Traffic Light */}
               {!ergebnis.keineStarreFrist ? (
                 <>
@@ -463,12 +460,12 @@ export default function FristenRechner() {
                 />
               </div>
             </div>
-          </div>
+          </FadeSection>
         )}
 
         {/* Info Cards */}
         <div className="grid md:grid-cols-3 gap-6 mt-6">
-          <div className="bg-white rounded-xl shadow-sm p-6">
+          <div className="bg-white rounded-2xl shadow-sm p-6">
             <div className="flex items-center gap-2 mb-3">
               <Calendar className="w-5 h-5 text-blue-600" />
               <h3 className="font-semibold text-gray-900">Zugangsfiktion</h3>
@@ -479,7 +476,7 @@ export default function FristenRechner() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6">
+          <div className="bg-white rounded-2xl shadow-sm p-6">
             <div className="flex items-center gap-2 mb-3">
               <Clock className="w-5 h-5 text-blue-600" />
               <h3 className="font-semibold text-gray-900">Fristberechnung</h3>
@@ -490,7 +487,7 @@ export default function FristenRechner() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6">
+          <div className="bg-white rounded-2xl shadow-sm p-6">
             <div className="flex items-center gap-2 mb-3">
               <Shield className="w-5 h-5 text-blue-600" />
               <h3 className="font-semibold text-gray-900">Frist verpasst?</h3>

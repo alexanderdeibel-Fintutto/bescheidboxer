@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -198,43 +199,34 @@ export default function NotizenPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* ---------------------------------------------------------------- */}
-        {/* Header                                                          */}
-        {/* ---------------------------------------------------------------- */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-boxer rounded-full">
-              <StickyNote className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Meine Notizen</h1>
-              <p className="text-sm text-gray-500">
-                Halte wichtige Infos zu deinem Fall fest
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-2">
-            {notizen.length > 0 && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2"
-                onClick={handleExport}
-              >
-                {copied ? (
-                  <Check className="h-4 w-4 text-green-600" />
-                ) : (
-                  <Copy className="h-4 w-4" />
-                )}
-                {copied ? 'Kopiert!' : 'Exportieren'}
-              </Button>
-            )}
-            <Button size="sm" className="gap-2" onClick={handleCreate}>
-              <Plus className="h-4 w-4" />
-              Neue Notiz
+      <PageHeader
+        badge="Notizbuch"
+        title="Meine"
+        titleGradient="Notizen"
+        subtitle="Halte alles Wichtige zu deinem Fall fest — Telefonate, Bescheide, Termine, Gedanken. Lokal in deinem Browser gespeichert."
+      />
+      <div className="max-w-4xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        {/* Action Bar */}
+        <div className="flex justify-end gap-2 mb-6">
+          {notizen.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 rounded-full"
+              onClick={handleExport}
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-green-600" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+              {copied ? 'Kopiert!' : 'Exportieren'}
             </Button>
-          </div>
+          )}
+          <Button size="sm" className="gap-2 rounded-full" onClick={handleCreate}>
+            <Plus className="h-4 w-4" />
+            Neue Notiz
+          </Button>
         </div>
 
         {/* ---------------------------------------------------------------- */}
@@ -363,7 +355,7 @@ export default function NotizenPage() {
                       <button
                         onClick={() => setDeleteConfirmId(isDeleting ? null : notiz.id)}
                         className="p-1.5 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                        title="Notiz loeschen"
+                        title="Notiz löschen"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -375,7 +367,7 @@ export default function NotizenPage() {
                 {isDeleting && !isEditing && (
                   <div className="mx-4 mt-3 p-3 bg-red-50 rounded-lg border border-red-200">
                     <p className="text-sm text-red-800 mb-2">
-                      Notiz wirklich loeschen?
+                      Notiz wirklich löschen?
                     </p>
                     <div className="flex gap-2">
                       <Button
@@ -385,7 +377,7 @@ export default function NotizenPage() {
                         onClick={() => handleDelete(notiz.id)}
                       >
                         <Trash2 className="h-3.5 w-3.5" />
-                        Loeschen
+                        Löschen
                       </Button>
                       <Button
                         variant="outline"
@@ -494,7 +486,7 @@ export default function NotizenPage() {
         {notizen.length > 0 && (
           <p className="text-xs text-gray-400 text-center mt-10 max-w-2xl mx-auto leading-relaxed">
             Deine Notizen werden lokal in deinem Browser gespeichert und nicht an
-            unsere Server uebertragen. Nutze die Export-Funktion, um eine Kopie
+            unsere Server übertragen. Nutze die Export-Funktion, um eine Kopie
             deiner Notizen zu erstellen.
           </p>
         )}

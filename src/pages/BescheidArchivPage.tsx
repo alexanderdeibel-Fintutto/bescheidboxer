@@ -32,6 +32,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -613,23 +614,14 @@ export default function BescheidArchivPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* ---------------------------------------------------------------- */}
-        {/* Header                                                          */}
-        {/* ---------------------------------------------------------------- */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="inline-flex items-center justify-center w-12 h-12 gradient-amt rounded-full">
-              <Archive className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Bescheid-Archiv</h1>
-              <p className="text-sm text-gray-500">
-                Alle Bescheide zentral verwalten und im Blick behalten
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2">
+      <PageHeader
+        badge="Dein digitales Archiv"
+        title="Bescheid-"
+        titleGradient="Archiv"
+        subtitle="Alle Bescheide zentral verwalten, suchen und im Blick behalten."
+      />
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap justify-end gap-2 mb-6">
             {bescheide.length > 0 && (
               <Button
                 variant="outline"
@@ -659,7 +651,6 @@ export default function BescheidArchivPage() {
               <Plus className="h-4 w-4" />
               Neuer Bescheid
             </Button>
-          </div>
         </div>
 
         {/* ---------------------------------------------------------------- */}

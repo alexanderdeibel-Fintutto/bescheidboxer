@@ -378,6 +378,66 @@ export function PageHero({
   )
 }
 
+/** PageHeader — Kompakter Header für App-Tools / Forms / interne Pages.
+ *  Nicht 80vh wie PageHero, sondern ~py-10 mit Badge + H1 + Sub + optional CTA. */
+export function PageHeader({
+  badge,
+  badgeColor = 'text-primary',
+  title,
+  titleGradient,
+  subtitle,
+  cta,
+  align = 'left',
+}: {
+  badge?: string
+  badgeColor?: string
+  title: ReactNode
+  titleGradient?: string
+  subtitle?: string
+  cta?: { label: string; to?: string; onClick?: () => void; icon?: ReactNode }
+  align?: 'left' | 'center'
+}) {
+  return (
+    <section className={`${SPACING.sectionX} pt-8 sm:pt-12 pb-2 sm:pb-4`}>
+      <div className={SPACING.container}>
+        <FadeSection
+          className={`${align === 'center' ? 'text-center max-w-3xl mx-auto' : 'max-w-3xl'}`}
+        >
+          {badge && (
+            <span
+              className={`inline-block text-xs uppercase tracking-[0.3em] font-semibold ${badgeColor} mb-3`}
+            >
+              {badge}
+            </span>
+          )}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 leading-tight">
+            {title}
+            {titleGradient && (
+              <>
+                {' '}
+                <GradientText>{titleGradient}</GradientText>
+              </>
+            )}
+          </h1>
+          {subtitle && (
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              {subtitle}
+            </p>
+          )}
+          {cta && (
+            <div className={`mt-5 ${align === 'center' ? 'flex justify-center' : ''}`}>
+              <PrimaryButton to={cta.to} onClick={cta.onClick} showArrow={!cta.icon}>
+                {cta.icon}
+                {cta.label}
+              </PrimaryButton>
+            </div>
+          )}
+        </FadeSection>
+      </div>
+    </section>
+  )
+}
+
 /** TrustPill — Kleines Feature/Trust-Label */
 export function TrustPill({
   icon,

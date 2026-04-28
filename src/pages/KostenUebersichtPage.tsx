@@ -28,6 +28,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Progress } from '@/components/ui/progress'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -1487,21 +1488,14 @@ export default function KostenUebersichtPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="inline-flex items-center justify-center w-12 h-12 gradient-amt rounded-full">
-              <Wallet className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Kosten-Uebersicht</h1>
-              <p className="text-sm text-gray-500">
-                Finanzen, Einnahmen und Forderungen im Blick
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-2 flex-wrap">
+      <PageHeader
+        badge="Geld im Griff"
+        title="Kosten-"
+        titleGradient="Übersicht"
+        subtitle="Finanzen, Einnahmen und Forderungen im Blick — alles auf einen Schlag."
+      />
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div className="flex justify-end gap-2 flex-wrap mb-6">
             {eintraege.length > 0 && (
               <>
                 <Button variant="outline" size="sm" className="gap-1.5" onClick={handleExportJSON}>
@@ -1533,7 +1527,6 @@ export default function KostenUebersichtPage() {
                 Neuer Eintrag
               </Button>
             )}
-          </div>
         </div>
 
         {/* Tabs */}

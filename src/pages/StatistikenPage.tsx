@@ -15,6 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -505,26 +506,20 @@ export default function StatistikenPage() {
       {/* ------------------------------------------------------------------ */}
       {/* Page Header                                                        */}
       {/* ------------------------------------------------------------------ */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-6">
-          <Breadcrumbs
-            items={[
-              { label: 'Dashboard', href: '/dashboard' },
-              { label: 'Statistiken' },
-            ]}
-            className="mb-4"
-          />
-          <div className="flex items-center gap-3 mb-1">
-            <BarChart3 className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight">
-              Statistiken
-            </h1>
-          </div>
-          <p className="text-muted-foreground text-sm">
-            Deine Nutzung von BescheidBoxer auf einen Blick — alle Daten werden lokal
-            aus deinem Browser gelesen.
-          </p>
-        </div>
+      <PageHeader
+        badge="Deine Zahlen"
+        title="Statistiken &"
+        titleGradient="Nutzungsdaten"
+        subtitle="Alles auf einen Blick — alle Daten lokal aus deinem Browser, nichts geht in die Cloud."
+      />
+      <div className="container mx-auto px-4 pt-2">
+        <Breadcrumbs
+          items={[
+            { label: 'Dashboard', href: '/dashboard' },
+            { label: 'Statistiken' },
+          ]}
+          className="mb-4"
+        />
       </div>
 
       <div className="container mx-auto px-4 py-6 space-y-6">

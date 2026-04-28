@@ -1,22 +1,17 @@
 import { Link } from 'react-router-dom'
-import { Scale } from 'lucide-react'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 export default function ImpressumPage() {
   return (
-    <div className="container py-12">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl gradient-amt text-white mx-auto mb-4">
-          <Scale className="h-7 w-7" />
-        </div>
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Impressum</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-          Angaben gemaess &sect; 5 TMG
-        </p>
-      </div>
+    <>
+      <PageHeader
+        badge="Rechtliches"
+        title="Impressum"
+        subtitle="Angaben gemäß § 5 TMG"
+        align="center"
+      />
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto space-y-10">
+      <FadeSection delay={120} className="container max-w-4xl mx-auto px-6 pb-16 space-y-10">
         {/* Angaben gemaess § 5 TMG */}
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -195,13 +190,13 @@ export default function ImpressumPage() {
             to="/datenschutz"
             className="text-primary hover:underline text-sm"
           >
-            Datenschutzerklaerung
+            Datenschutzerklärung
           </Link>
           <Link to="/agb" className="text-primary hover:underline text-sm">
             Allgemeine Geschäftsbedingungen
           </Link>
         </div>
-      </div>
-    </div>
+      </FadeSection>
+    </>
   )
 }

@@ -5,8 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { toast } from 'sonner'
-import { Loader2, RefreshCw, UserCog } from 'lucide-react'
+import { Loader2, RefreshCw } from 'lucide-react'
 import type { PlanType } from '@/lib/credits'
+import { PageHeader } from '@/lib/fintutto-design'
 
 type UserRole =
   | 'user'
@@ -127,37 +128,33 @@ export default function AdminPage() {
     if (error) {
       toast.error(`Reset fehlgeschlagen: ${error.message}`)
     } else {
-      toast.success(`${userRow.email}: Zaehler zurueckgesetzt`)
+      toast.success(`${userRow.email}: Zähler zurückgesetzt`)
       await load()
     }
     setBusyId(null)
   }
 
   return (
-    <div className="container py-8 max-w-6xl">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl gradient-boxer text-white">
-            <UserCog className="h-6 w-6" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold">Admin</h1>
-            <p className="text-sm text-muted-foreground">
-              Minimal-Interface für Plan-Overrides und Credit-Resets.
-            </p>
-          </div>
+    <div>
+      <PageHeader
+        badge="Interner Bereich"
+        title="Admin-"
+        titleGradient="Konsole"
+        subtitle="Plan-Overrides, Credit-Resets und Nutzer-Übersicht."
+      />
+      <div className="container py-6 max-w-6xl">
+        <div className="flex justify-end mb-4">
+          <Button variant="outline" size="sm" onClick={load} disabled={loading} className="rounded-full">
+            {loading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCw className="h-4 w-4" />
+            )}
+            <span className="ml-2">Neu laden</span>
+          </Button>
         </div>
-        <Button variant="outline" size="sm" onClick={load} disabled={loading}>
-          {loading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <RefreshCw className="h-4 w-4" />
-          )}
-          <span className="ml-2">Neu laden</span>
-        </Button>
-      </div>
 
-      <Card>
+      <Card className="rounded-2xl">
         <CardHeader>
           <CardTitle className="text-base">Nutzer ({rows.length})</CardTitle>
         </CardHeader>
@@ -238,6 +235,7 @@ export default function AdminPage() {
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   )
 }

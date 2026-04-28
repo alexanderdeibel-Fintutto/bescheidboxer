@@ -7,6 +7,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 interface PkhErgebnis {
   einzusetzendesEinkommen: number
@@ -166,37 +167,31 @@ export default function PkhRechner() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-700 to-indigo-700 text-white py-8 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'PKH-Rechner' }]} className="mb-4 [&_a]:text-white/90 [&_a:hover]:text-white [&_span]:text-white [&_svg]:text-white/70" />
-          <div className="flex items-start gap-4">
-            <div className="bg-white/20 p-3 rounded-lg">
-              <Scale className="w-8 h-8" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold mb-2">Prozesskostenhilfe-Rechner</h1>
-              <p className="text-blue-100 text-lg">Pruefe, ob du Anspruch auf PKH hast (SS 114 ZPO)</p>
-            </div>
-          </div>
-        </div>
+      <div className="max-w-4xl mx-auto px-4">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'PKH-Rechner' }]} className="pt-6" />
       </div>
+      <PageHeader
+        badge="PKH-Check"
+        title="Prozesskostenhilfe"
+        titleGradient="prüfen"
+        subtitle="Prüfe in 2 Minuten, ob du Anspruch auf PKH hast. Grundlage: § 114 ZPO."
+      />
 
-      <div className="max-w-4xl mx-auto px-4 -mt-6">
+      <div className="max-w-4xl mx-auto px-4 mt-4">
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 mb-6">
           <div className="flex gap-3">
             <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm text-blue-900">
               <p className="font-semibold mb-1">Was ist Prozesskostenhilfe?</p>
-              <p>PKH hilft Menschen, die sich die Kosten eines Gerichtsverfahrens nicht leisten koennen. Beim Sozialgericht gibt es keine Gerichtskosten - PKH deckt dort die Anwaltskosten.</p>
+              <p>PKH hilft Menschen, die sich die Kosten eines Gerichtsverfahrens nicht leisten können. Beim Sozialgericht gibt es keine Gerichtskosten - PKH deckt dort die Anwaltskosten.</p>
             </div>
           </div>
         </div>
 
         {/* Einkommen */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4">Einkommen und Abzuege</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+          <h2 className="text-xl font-bold mb-4">Einkommen und Abzüge</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
@@ -228,7 +223,7 @@ export default function PkhRechner() {
             {/* Erwerbstaetig Toggle */}
             <div className="border-t pt-4">
               <div className="flex items-center justify-between mb-3">
-                <label className="text-sm font-medium text-gray-700">Bist du erwerbstaetig?</label>
+                <label className="text-sm font-medium text-gray-700">Bist du erwerbstätig?</label>
                 <button
                   onClick={() => setIstErwerbstaetig(!istErwerbstaetig)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${istErwerbstaetig ? 'bg-blue-600' : 'bg-gray-300'}`}
@@ -302,11 +297,11 @@ export default function PkhRechner() {
             <div className="border-t pt-4">
               <h3 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
                 <HelpCircle className="w-4 h-4 text-gray-400" />
-                Weitere Abzuege
+                Weitere Abzüge
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-gray-600 mb-2">SV-Beitraege (falls nicht schon abgezogen)</label>
+                  <label className="block text-sm text-gray-600 mb-2">SV-Beiträge (falls nicht schon abgezogen)</label>
                   <input
                     type="number"
                     value={svBeitraege || ''}
@@ -318,7 +313,7 @@ export default function PkhRechner() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-2">Sonstige Abzuege (EUR)</label>
+                  <label className="block text-sm text-gray-600 mb-2">Sonstige Abzüge (€)</label>
                   <input
                     type="number"
                     value={sonstigeAbzuege || ''}
@@ -335,11 +330,11 @@ export default function PkhRechner() {
         </div>
 
         {/* Vermoegen */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4">Vermoegen</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+          <h2 className="text-xl font-bold mb-4">Vermögen</h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Gesamtvermoegen (Konten, Sparbuch, Bargeld) (EUR)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Gesamtvermögen (Konten, Sparbuch, Bargeld) (€)</label>
               <input
                 type="number"
                 value={vermoegen || ''}
@@ -349,10 +344,10 @@ export default function PkhRechner() {
                 step="500"
                 placeholder="0"
               />
-              <p className="text-xs text-gray-500 mt-1">Freibetrag: {formatEuro(VERMOEGENSFREIBETRAG)} - Riester-Rente ist geschuetzt</p>
+              <p className="text-xs text-gray-500 mt-1">Freibetrag: {formatEuro(VERMOEGENSFREIBETRAG)} - Riester-Rente ist geschützt</p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">KFZ-Wert (EUR)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">KFZ-Wert (€)</label>
               <input
                 type="number"
                 value={autoWert || ''}
@@ -362,16 +357,16 @@ export default function PkhRechner() {
                 step="500"
                 placeholder="0"
               />
-              <p className="text-xs text-gray-500 mt-1">Auto bis {formatEuro(AUTO_FREIBETRAG)} geschuetzt</p>
+              <p className="text-xs text-gray-500 mt-1">Auto bis {formatEuro(AUTO_FREIBETRAG)} geschützt</p>
             </div>
           </div>
         </div>
 
         {/* Anwaltskosten */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4">Geschaetzte Anwaltskosten</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+          <h2 className="text-xl font-bold mb-4">Geschätzte Anwaltskosten</h2>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Anwaltskosten (EUR, optional)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Anwaltskosten (€, optional)</label>
             <input
               type="number"
               value={anwaltskosten || ''}
@@ -381,23 +376,23 @@ export default function PkhRechner() {
               step="50"
               placeholder="500"
             />
-            <p className="text-xs text-gray-500 mt-1">Richtwert Sozialgericht 1. Instanz: ca. 500 EUR</p>
+            <p className="text-xs text-gray-500 mt-1">Richtwert Sozialgericht 1. Instanz: ca. 500 €</p>
           </div>
         </div>
 
         {/* Calculate Button */}
         <Button
           onClick={handleCalculate}
-          className="w-full mb-6 bg-blue-700 hover:bg-blue-800 text-white py-3"
+          className="w-full mb-6 bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-full"
         >
           <Scale className="w-5 h-5 mr-2" />PKH-Anspruch prüfen
         </Button>
 
         {/* Results */}
         {result && (
-          <div className="space-y-6">
+          <FadeSection className="space-y-6">
             {/* Main Result Card */}
-            <div className={`rounded-lg shadow-sm border-2 p-6 ${
+            <div className={`rounded-2xl shadow-sm border-2 p-6 ${
               result.status === 'bewilligt'
                 ? 'bg-green-50 border-green-300'
                 : result.status === 'raten'
@@ -417,7 +412,7 @@ export default function PkhRechner() {
                         : 'text-red-900'
                   }`}>
                     {result.status === 'bewilligt' && 'PKH bewilligt - ohne Ratenzahlung'}
-                    {result.status === 'raten' && 'PKH mit Ratenzahlung moeglich'}
+                    {result.status === 'raten' && 'PKH mit Ratenzahlung möglich'}
                     {result.status === 'unwahrscheinlich' && 'PKH unwahrscheinlich'}
                   </h3>
                   <p className={
@@ -427,9 +422,9 @@ export default function PkhRechner() {
                         ? 'text-amber-800'
                         : 'text-red-800'
                   }>
-                    {result.status === 'bewilligt' && 'Du hast voraussichtlich Anspruch auf volle Prozesskostenhilfe. Die Anwaltskosten werden vollstaendig uebernommen.'}
+                    {result.status === 'bewilligt' && 'Du hast voraussichtlich Anspruch auf volle Prozesskostenhilfe. Die Anwaltskosten werden vollständig übernommen.'}
                     {result.status === 'raten' && `Du hast voraussichtlich Anspruch auf PKH, musst aber monatliche Raten zahlen: ${formatEuro(result.monatlicherRate)} / Monat.`}
-                    {result.status === 'unwahrscheinlich' && 'Nach dieser Berechnung ist PKH voraussichtlich nicht moeglich. Eine individuelle Prüfung kann aber zu einem anderen Ergebnis fuehren.'}
+                    {result.status === 'unwahrscheinlich' && 'Nach dieser Berechnung ist PKH voraussichtlich nicht möglich. Eine individuelle Prüfung kann aber zu einem anderen Ergebnis führen.'}
                   </p>
                 </div>
               </div>
@@ -437,7 +432,7 @@ export default function PkhRechner() {
 
             {/* Raten-Details */}
             {result.status === 'raten' && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
                 <h4 className="font-semibold text-amber-900 mb-3">Ratenzahlung im Detail</h4>
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="bg-white rounded-lg p-3 border border-amber-200">
@@ -454,13 +449,13 @@ export default function PkhRechner() {
                   </div>
                 </div>
                 <p className="text-sm text-amber-800 mt-3">
-                  Aber: Du zahlst maximal die tatsaechlichen Anwaltskosten ({formatEuro(anwaltskosten)}). Die Ratenzahlung endet, wenn dieser Betrag erreicht ist.
+                  Aber: Du zahlst maximal die tatsächlichen Anwaltskosten ({formatEuro(anwaltskosten)}). Die Ratenzahlung endet, wenn dieser Betrag erreicht ist.
                 </p>
               </div>
             )}
 
             {/* Detailed Breakdown */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
               <h3 className="text-xl font-bold mb-4">Berechnung im Detail</h3>
               <div className="border rounded-lg overflow-hidden">
                 <table className="w-full">
@@ -492,7 +487,7 @@ export default function PkhRechner() {
                       </tr>
                     ))}
                     <tr className="bg-green-50 font-semibold">
-                      <td className="px-4 py-3 text-sm text-gray-900">Freibetraege gesamt</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">Freibeträge gesamt</td>
                       <td className="px-4 py-3 text-sm text-green-600 text-right">{formatEuro(result.freibetraegeGesamt)}</td>
                     </tr>
                     <tr className={`font-semibold ${result.einzusetzendesEinkommen <= 0 ? 'bg-green-100' : result.einzusetzendesEinkommen < 600 ? 'bg-amber-100' : 'bg-red-100'}`}>
@@ -510,7 +505,7 @@ export default function PkhRechner() {
             </div>
 
             {/* Vermoegenspruefung */}
-            <div className={`rounded-lg border-2 p-4 ${result.vermoegenOk ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'}`}>
+            <div className={`rounded-2xl border-2 p-4 ${result.vermoegenOk ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'}`}>
               <div className="flex items-start gap-3">
                 {result.vermoegenOk
                   ? <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
@@ -518,25 +513,25 @@ export default function PkhRechner() {
                 }
                 <div>
                   <h4 className={`font-semibold mb-1 ${result.vermoegenOk ? 'text-green-900' : 'text-red-900'}`}>
-                    Vermoegenspruefung: {result.vermoegenOk ? 'Bestanden' : 'Nicht bestanden'}
+                    Vermögensprüfung: {result.vermoegenOk ? 'Bestanden' : 'Nicht bestanden'}
                   </h4>
                   <p className={`text-sm ${result.vermoegenOk ? 'text-green-800' : 'text-red-800'}`}>
                     {result.vermoegenOk
-                      ? `Dein anrechenbares Vermoegen liegt innerhalb des Freibetrags von ${formatEuro(result.vermoegenFreibetrag)}.`
-                      : `Dein Vermoegen uebersteigt den Freibetrag um ${formatEuro(result.vermoegenAnrechenbar)}. Du musst vorrangig dein Vermoegen einsetzen.`
+                      ? `Dein anrechenbares Vermögen liegt innerhalb des Freibetrags von ${formatEuro(result.vermoegenFreibetrag)}.`
+                      : `Dein Vermögen übersteigt den Freibetrag um ${formatEuro(result.vermoegenAnrechenbar)}. Du musst vorrangig dein Vermögen einsetzen.`
                     }
                   </p>
                   <div className="mt-2 text-xs text-gray-600 space-y-1">
-                    <p>Vermoegensfreibetrag: {formatEuro(VERMOEGENSFREIBETRAG)}</p>
+                    <p>Vermögensfreibetrag: {formatEuro(VERMOEGENSFREIBETRAG)}</p>
                     <p>KFZ-Freibetrag: {formatEuro(AUTO_FREIBETRAG)}</p>
-                    <p>Riester-Rente: vollstaendig geschuetzt</p>
+                    <p>Riester-Rente: vollständig geschützt</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Tips */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4">
               <h4 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
                 <Info className="w-5 h-5" />
                 Wichtige Hinweise
@@ -544,7 +539,7 @@ export default function PkhRechner() {
               <ul className="text-sm text-blue-800 space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="font-bold mt-0.5">1.</span>
-                  <span>Beim Sozialgericht gibt es KEINE Gerichtskosten (SS 183 SGG) - PKH deckt die Anwaltskosten.</span>
+                  <span>Beim Sozialgericht gibt es KEINE Gerichtskosten (§ 183 SGG) - PKH deckt die Anwaltskosten.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold mt-0.5">2.</span>
@@ -556,7 +551,7 @@ export default function PkhRechner() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold mt-0.5">4.</span>
-                  <span>Beratungshilfe (beim Amtsgericht) gibt es für die aussergerichtliche Phase.</span>
+                  <span>Beratungshilfe (beim Amtsgericht) gibt es für die außergerichtliche Phase.</span>
                 </li>
               </ul>
             </div>
@@ -616,11 +611,11 @@ export default function PkhRechner() {
                 />
               )}
             </div>
-          </div>
+          </FadeSection>
         )}
 
         {/* Legal Info */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mt-6">
           <h3 className="text-xl font-bold mb-4">Rechtliche Grundlagen</h3>
           <div className="space-y-6">
             <div>

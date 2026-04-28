@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import {
-  LayoutDashboard,
   MessageCircle,
   FileText,
   Users,
@@ -37,6 +36,7 @@ import { useCreditsContext } from '@/contexts/CreditsContext'
 import { loadRechnerVerlauf } from '@/lib/rechner-verlauf'
 import Fortschritt from '@/components/Fortschritt'
 import Zeitstrahl from '@/components/Zeitstrahl'
+import { PageHeader } from '@/lib/fintutto-design'
 import {
   getLevelForPoints,
   getNextLevel,
@@ -310,25 +310,18 @@ export default function DashboardPage() {
       {/* ---------------------------------------------------------------- */}
       {/* Page header                                                      */}
       {/* ---------------------------------------------------------------- */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-3 mb-1">
-            <LayoutDashboard className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight">
-              Mein BescheidBoxer Dashboard
-            </h1>
-          </div>
-          <p className="text-muted-foreground text-sm">
-            Willkommen zurück! Hier siehst du alles auf einen Blick.
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        badge="Dein Kommandostand"
+        title="Mein"
+        titleGradient="BescheidBoxer"
+        subtitle="Willkommen zurück. Hier siehst du Fristen, Scans und Fortschritt auf einen Blick."
+      />
 
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* ---------------------------------------------------------------- */}
         {/* Level Banner                                                     */}
         {/* ---------------------------------------------------------------- */}
-        <Card className="overflow-hidden border-2 border-primary/20">
+        <Card className="overflow-hidden rounded-2xl border-2 border-primary/20">
           <CardContent className="p-0">
             <div className="flex flex-col md:flex-row items-stretch">
               {/* Level info */}
@@ -397,7 +390,7 @@ export default function DashboardPage() {
         {/* ---------------------------------------------------------------- */}
         {/* Money Recovered Highlight                                        */}
         {/* ---------------------------------------------------------------- */}
-        <Card className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-primary/30">
+        <Card className="rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-primary/30">
           <CardContent className="flex flex-col sm:flex-row items-center gap-4 py-6">
             <div className="flex items-center justify-center h-14 w-14 rounded-full bg-primary/20">
               <TrendingUp className="h-7 w-7 text-primary" />
@@ -407,7 +400,7 @@ export default function DashboardPage() {
                 Du hast bisher durchgesetzt:
               </p>
               <p className="text-3xl font-extrabold tracking-tight text-primary">
-                {formatEur(DEMO_MONEY_RECOVERED)} EUR
+                {formatEur(DEMO_MONEY_RECOVERED)} €
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 Durch Widersprüche und korrigierte Bescheide — weiter so!
@@ -476,7 +469,7 @@ export default function DashboardPage() {
             { name: 'Dokumente', href: '/dokumente', icon: FolderOpen, color: 'text-cyan-600 bg-cyan-50' },
           ].map((tile) => (
             <Link key={tile.name} to={tile.href}>
-              <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
+              <Card className="rounded-2xl hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-pointer h-full">
                 <CardContent className="p-3 flex flex-col items-center text-center gap-2">
                   <div className={`p-2.5 rounded-xl ${tile.color}`}>
                     <tile.icon className="h-5 w-5" />
@@ -609,7 +602,7 @@ export default function DashboardPage() {
                         <p className="text-xs text-muted-foreground">
                           {scan.date}
                           {scan.errorsFound > 0 &&
-                            ` — ${scan.errorsFound} Fehler, ca. ${formatEur(scan.potentialRecovery)} EUR`}
+                            ` — ${scan.errorsFound} Fehler, ca. ${formatEur(scan.potentialRecovery)} €`}
                         </p>
                       </div>
                       {scanStatusBadge(scan.status)}
@@ -723,7 +716,7 @@ export default function DashboardPage() {
                   </div>
                   <div>
                     <p className="text-xl font-bold text-primary">
-                      {(DEMO_COMMUNITY_STATS.moneyRecoveredTotal / 1000).toFixed(0)}k EUR
+                      {(DEMO_COMMUNITY_STATS.moneyRecoveredTotal / 1000).toFixed(0)}k €
                     </p>
                     <p className="text-xs text-muted-foreground">
                       Insgesamt durchgesetzt
@@ -772,7 +765,7 @@ export default function DashboardPage() {
                     <p className="text-xs text-muted-foreground">
                       {planConfig.price === 0
                         ? 'Kostenlos'
-                        : `${formatEur(planConfig.price)} EUR / Monat`}
+                        : `${formatEur(planConfig.price)} € / Monat`}
                     </p>
                   </div>
                   {planConfig.badge && (

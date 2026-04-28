@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ShoppingBag, ArrowRight, Info, CheckCircle2, Euro, Download, Share2 } from 'lucide-react'
+import { ArrowRight, Info, CheckCircle2, Euro, Download, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -9,6 +9,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader } from '@/lib/fintutto-design'
 
 const ERSTAUSSTATTUNG_KATEGORIEN = [
   {
@@ -95,23 +96,15 @@ export default function ErstausstattungsRechner() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
-      {/* Header */}
-      <div className="bg-white border-b sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Erstausstattung' }]} className="mb-2" />
-          <div className="flex items-start gap-4">
-            <div className="bg-amber-50 p-3 rounded-xl">
-              <ShoppingBag className="h-8 w-8 text-amber-600" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Erstausstattungsrechner</h1>
-              <p className="text-gray-600 mt-1">
-                Berechne deinen Anspruch auf Erstausstattung nach § 24 Abs. 3 SGB II
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="max-w-4xl mx-auto px-4">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Erstausstattung' }]} className="pt-6" />
       </div>
+      <PageHeader
+        badge="Erstausstattung"
+        title="Was steht dir"
+        titleGradient="zu?"
+        subtitle="Berechne deinen Anspruch auf Erstausstattung nach § 24 Abs. 3 SGB II."
+      />
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Info Card */}
@@ -126,12 +119,12 @@ export default function ErstausstattungsRechner() {
                 <ul className="list-disc list-inside space-y-1 ml-2">
                   <li>Erste eigene Wohnung (z.B. nach Obdachlosigkeit)</li>
                   <li>Nach Brand, Hochwasser oder anderem Totalverlust</li>
-                  <li>Nach Trennung / Scheidung (neue Haushaltsgruendung)</li>
+                  <li>Nach Trennung / Scheidung (neue Haushaltsgründung)</li>
                   <li>Schwangerschaft und Geburt eines Kindes</li>
                 </ul>
                 <p className="text-xs text-gray-600 mt-3">
-                  Wähle die Gegenstaende aus, die du benoetigst. Die angegebenen Betraege sind Richtwerte
-                  und koennen je nach Kommune abweichen.
+                  Wähle die Gegenstände aus, die du benötigst. Die angegebenen Beträge sind Richtwerte
+                  und können je nach Kommune abweichen.
                 </p>
               </div>
             </div>
@@ -192,7 +185,7 @@ export default function ErstausstattungsRechner() {
 
             {totals.count === 0 ? (
               <p className="text-sm text-gray-600">
-                Wähle Gegenstaende aus, um deinen Anspruch zu berechnen.
+                Wähle Gegenstände aus, um deinen Anspruch zu berechnen.
               </p>
             ) : (
               <div className="space-y-4">
@@ -213,11 +206,11 @@ export default function ErstausstattungsRechner() {
 
                 <div className="bg-white/60 rounded-lg p-3 text-sm">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-gray-700">Ausgewaehlte Gegenstaende:</span>
+                    <span className="text-gray-700">Ausgewählte Gegenstände:</span>
                     <span className="font-semibold text-gray-900">{totals.count}</span>
                   </div>
                   <p className="text-xs text-gray-600">
-                    Die tatsaechlichen Betraege haengen von deiner Kommune ab. Diese Schaetzung basiert
+                    Die tatsächlichen Beträge hängen von deiner Kommune ab. Diese Schätzung basiert
                     auf bundesweiten Durchschnittswerten.
                   </p>
                 </div>
@@ -233,7 +226,7 @@ export default function ErstausstattungsRechner() {
                         }))
                       )
                       generateRechnerPdf('Erstausstattung (§ 24 Abs. 3 SGB II)', sections,
-                        { label: 'Geschaetzter Gesamtbetrag', value: `${totals.avgTotal} EUR` },
+                        { label: 'Geschätzter Gesamtbetrag', value: `${totals.avgTotal} €` },
                       )
                       saveRechnerErgebnis('Erstausstattungs-Rechner', 'erstausstattung', {
                         durchschnitt: totals.avgTotal,
@@ -249,7 +242,7 @@ export default function ErstausstattungsRechner() {
                   <Button
                     onClick={() => shareResult({
                       title: 'Erstausstattungs-Berechnung',
-                      text: `Erstausstattungs-Rechner: ca. ${totals.avgTotal} EUR für ${totals.count} Posten (${totals.minTotal}-${totals.maxTotal} EUR)`,
+                      text: `Erstausstattungs-Rechner: ca. ${totals.avgTotal} € für ${totals.count} Posten (${totals.minTotal}-${totals.maxTotal} €)`,
                       url: window.location.href,
                     })}
                     variant="outline"

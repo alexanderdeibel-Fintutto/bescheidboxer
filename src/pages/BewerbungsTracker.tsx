@@ -25,6 +25,7 @@ import { generateRechnerPdf } from '@/lib/pdf-export'
 import type { RechnerSection } from '@/lib/pdf-export'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -372,24 +373,20 @@ export default function BewerbungsTracker() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-6">
-          <Breadcrumbs
-            items={[
-              { label: 'Dashboard', href: '/dashboard' },
-              { label: 'Bewerbungen' },
-            ]}
-            className="mb-4"
-          />
-          <div className="flex items-center gap-3 mb-1">
-            <Briefcase className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight">Bewerbungs-Tracker</h1>
-          </div>
-          <p className="text-muted-foreground text-sm">
-            Dokumentiere deine Eigenbemühungen für das Jobcenter
-          </p>
-        </div>
+      <PageHeader
+        badge="Eigenbemühungen lückenlos"
+        title="Bewerbungs-"
+        titleGradient="Tracker"
+        subtitle="Dokumentiere deine Bewerbungen sauber für das Jobcenter — Sanktionen vermeiden, Beweise sichern."
+      />
+      <div className="container mx-auto px-4 pt-2">
+        <Breadcrumbs
+          items={[
+            { label: 'Dashboard', href: '/dashboard' },
+            { label: 'Bewerbungen' },
+          ]}
+          className="mb-4"
+        />
       </div>
 
       <div className="container mx-auto px-4 py-6 space-y-6">

@@ -22,6 +22,7 @@ import { Progress } from '@/components/ui/progress'
 import { getTemplateById, SGB_CATEGORIES, type LetterType } from '@/lib/sgb-knowledge'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import { generateLetterPdf } from '@/lib/pdf-export'
+import { GradientText } from '@/lib/fintutto-design'
 
 export default function GeneratorPage() {
   useDocumentTitle('Dokumenten-Werkstatt - BescheidBoxer')
@@ -88,15 +89,17 @@ export default function GeneratorPage() {
           </Badge>
           <Badge variant="outline">{template.difficulty}</Badge>
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold mb-2">{template.title}</h1>
-        <p className="text-muted-foreground">{template.description}</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 leading-tight">
+          <GradientText>{template.title}</GradientText>
+        </h1>
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{template.description}</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
         {/* Main Form / Preview */}
         <div className="md:col-span-2">
           {step === 'form' && (
-            <Card>
+            <Card className="rounded-2xl">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">Deine Angaben</CardTitle>
@@ -154,9 +157,9 @@ export default function GeneratorPage() {
                     <div className="mb-4 p-3 rounded-lg bg-muted flex items-start gap-2">
                       <CreditCard className="h-4 w-4 mt-0.5 text-muted-foreground" />
                       <div>
-                        <p className="text-sm font-medium">Kosten: {letterCheck.cost.toFixed(2).replace('.', ',')} EUR</p>
+                        <p className="text-sm font-medium">Kosten: {letterCheck.cost.toFixed(2).replace('.', ',')} €</p>
                         <p className="text-xs text-muted-foreground">
-                          {letterCheck.reason || 'Fuer die Erstellung des personalisierten Schreibens.'}
+                          {letterCheck.reason || 'Für die Erstellung des personalisierten Schreibens.'}
                         </p>
                       </div>
                     </div>
@@ -166,11 +169,11 @@ export default function GeneratorPage() {
                     disabled={!requiredFieldsFilled}
                     variant="amt"
                     size="lg"
-                    className="w-full"
+                    className="w-full rounded-full"
                   >
                     <FileText className="mr-2 h-5 w-5" />
                     Schreiben generieren
-                    {letterCheck.cost > 0 && ` (${letterCheck.cost.toFixed(2).replace('.', ',')} EUR)`}
+                    {letterCheck.cost > 0 && ` (${letterCheck.cost.toFixed(2).replace('.', ',')} €)`}
                   </Button>
                 </div>
               </CardContent>
@@ -178,7 +181,7 @@ export default function GeneratorPage() {
           )}
 
           {step === 'preview' && (
-            <Card>
+            <Card className="rounded-2xl">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg flex items-center gap-2">
@@ -198,19 +201,19 @@ export default function GeneratorPage() {
                   <Button
                     variant="amt"
                     size="lg"
-                    className="flex-1"
+                    className="flex-1 rounded-full"
                     onClick={() => generateLetterPdf(generatedLetter, template.title, categoryInfo?.name || '')}
                   >
                     <Download className="mr-2 h-5 w-5" />
                     Als PDF herunterladen
                   </Button>
-                  <Button variant="outline" size="lg" className="flex-1">
+                  <Button variant="outline" size="lg" className="flex-1 rounded-full">
                     <Send className="mr-2 h-5 w-5" />
-                    Per Post senden (1,99 EUR)
+                    Per Post senden (1,99 €)
                   </Button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-3 text-center">
-                  Tipp: Sende den Widerspruch per Einschreiben oder gib ihn persoenlich ab!
+                  Tipp: Sende den Widerspruch per Einschreiben oder gib ihn persönlich ab!
                 </p>
               </CardContent>
             </Card>
@@ -220,7 +223,7 @@ export default function GeneratorPage() {
         {/* Sidebar */}
         <div className="space-y-4">
           {/* Legal Basis */}
-          <Card>
+          <Card className="rounded-2xl">
             <CardContent className="p-4">
               <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                 <Scale className="h-4 w-4 text-primary" />
@@ -237,7 +240,7 @@ export default function GeneratorPage() {
           </Card>
 
           {/* Tips */}
-          <Card>
+          <Card className="rounded-2xl">
             <CardContent className="p-4">
               <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                 <Lightbulb className="h-4 w-4 text-warning" />
@@ -255,12 +258,12 @@ export default function GeneratorPage() {
           </Card>
 
           {/* Disclaimer */}
-          <Card className="border-warning/30 bg-warning/5">
+          <Card className="border-warning/30 bg-warning/5 rounded-2xl">
             <CardContent className="p-4">
               <div className="flex items-start gap-2">
                 <AlertCircle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
                 <p className="text-xs text-muted-foreground">
-                  Dieses Schreiben ersetzt keine Rechtsberatung. Bei komplexen Faellen empfehlen wir eine Beratung
+                  Dieses Schreiben ersetzt keine Rechtsberatung. Bei komplexen Fällen empfehlen wir eine Beratung
                   beim Sozialverband oder einer Rechtsantragstelle.
                 </p>
               </div>
@@ -268,13 +271,13 @@ export default function GeneratorPage() {
           </Card>
 
           {/* KI Chat Link */}
-          <Card className="hover:border-primary/30 transition-colors">
+          <Card className="rounded-2xl hover:border-primary/30 transition-colors">
             <CardContent className="p-4">
               <h3 className="font-semibold text-sm mb-2">Fragen zu diesem Thema?</h3>
               <p className="text-xs text-muted-foreground mb-3">
                 Unser KI-Rechtsberater hilft dir, deine Situation besser zu verstehen.
               </p>
-              <Button variant="outline" size="sm" className="w-full" asChild>
+              <Button variant="outline" size="sm" className="w-full rounded-full" asChild>
                 <Link to="/chat">KI-Berater fragen</Link>
               </Button>
             </CardContent>

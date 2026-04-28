@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AlertTriangle, Info, Shield, Scale, Download, Share2 } from 'lucide-react'
+import { Info, Shield, Scale, Download, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { berechneSanktion, SanktionsErgebnis } from '@/lib/rechner-logik'
 import { generateRechnerPdf } from '@/lib/pdf-export'
@@ -8,6 +8,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader } from '@/lib/fintutto-design'
 
 export default function SanktionsRechner() {
   const [regelsatz, setRegelsatz] = useState(563)
@@ -37,18 +38,19 @@ export default function SanktionsRechner() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Sanktions-Rechner' }]} className="mb-4" />
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-red-100 rounded-lg"><AlertTriangle className="w-8 h-8 text-red-600" /></div>
-            <h1 className="text-4xl font-bold text-gray-900">Sanktions-Rechner</h1>
-          </div>
-          <p className="text-lg text-gray-600 mt-2">Verstehe deine Rechte und berechne moegliche Sanktionen.</p>
-        </div>
+      <div className="max-w-4xl mx-auto px-4 pb-8">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Sanktions-Rechner' }]} className="pt-6" />
+      </div>
+      <PageHeader
+        badge="Sanktionen"
+        title="Sanktion"
+        titleGradient="berechnen"
+        subtitle="Verstehe deine Rechte und berechne mögliche Kürzungen nach § 31a SGB II."
+      />
+      <div className="max-w-4xl mx-auto px-4 pb-8 mt-4">
 
         {/* Input */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2"><Scale className="w-6 h-6 text-blue-600" />Deine Situation</h2>
 
           <div className="mb-6">
@@ -94,7 +96,7 @@ export default function SanktionsRechner() {
             </label>
           </div>
 
-          <Button onClick={handleBerechnen} className="w-full py-6 text-lg">Sanktion berechnen</Button>
+          <Button onClick={handleBerechnen} className="w-full py-6 text-lg rounded-full">Sanktion berechnen</Button>
         </div>
 
         {/* Result */}

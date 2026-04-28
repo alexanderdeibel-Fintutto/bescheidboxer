@@ -689,7 +689,7 @@ export default function ChatPage() {
               variant={creditCheck.allowed ? 'outline' : 'destructive'}
               className="text-xs"
             >
-              {creditCheck.allowed ? 'Nachrichten verfuegbar' : 'Tageslimit erreicht'}
+              {creditCheck.allowed ? 'Nachrichten verfügbar' : 'Tageslimit erreicht'}
             </Badge>
           </div>
         </div>
@@ -814,7 +814,7 @@ export default function ChatPage() {
               <div className="chat-bubble-ai flex items-center gap-2">
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />
                 <span className="text-sm text-muted-foreground">
-                  Analysiere dein Anliegen...
+                  Analysiere dein Anliegen…
                 </span>
               </div>
             </div>
@@ -840,7 +840,7 @@ export default function ChatPage() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Beschreib dein Problem \u2013 ich bin auf deiner Seite..."
+              placeholder="Beschreib dein Problem \u2014 ich bin auf deiner Seite..."
               className="chat-input flex-1"
               rows={1}
               disabled={isLoading}
@@ -858,7 +858,7 @@ export default function ChatPage() {
           <div className="flex items-center justify-between mt-2">
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <AlertCircle className="h-3 w-3" />
-              Keine Rechtsberatung \u2013 KI-gestuetzte Ersteinschaetzung.
+              Keine Rechtsberatung \u2014 KI-gest\u00fctzte Ersteinsch\u00e4tzung.
             </p>
             <div className="flex items-center gap-3">
               <Link

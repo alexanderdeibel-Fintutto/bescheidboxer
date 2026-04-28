@@ -154,7 +154,7 @@ export default function OnboardingPage() {
                 {[
                   { icon: MessageCircle, label: 'KI-Berater', desc: 'Fragen beantworten' },
                   { icon: ScanSearch, label: 'BescheidScan', desc: 'Fehler finden' },
-                  { icon: Calculator, label: 'Rechner', desc: 'Ansprueche berechnen' },
+                  { icon: Calculator, label: 'Rechner', desc: 'Ansprüche berechnen' },
                   { icon: FileText, label: 'Musterschreiben', desc: 'Widersprüche erstellen' },
                 ].map((feature) => (
                   <div
@@ -175,7 +175,7 @@ export default function OnboardingPage() {
               <div className="space-y-2">
                 <label className="text-sm font-medium flex items-center gap-2">
                   <User className="h-4 w-4 text-muted-foreground" />
-                  Wie heisst du? (optional)
+                  Wie heißt du? (optional)
                 </label>
                 <input
                   type="text"
@@ -185,7 +185,7 @@ export default function OnboardingPage() {
                   className="flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 />
                 <p className="text-xs text-muted-foreground">
-                  Damit wir dich persoenlich ansprechen koennen.
+                  Damit wir dich persönlich ansprechen können.
                 </p>
               </div>
             </>
@@ -211,7 +211,7 @@ export default function OnboardingPage() {
                 <div>
                   <h2 className="text-2xl font-bold">Deine Situation</h2>
                   <p className="text-muted-foreground">
-                    Damit wir dir passende Empfehlungen geben koennen.
+                    Damit wir dir passende Empfehlungen geben können.
                   </p>
                 </div>
               </div>
@@ -427,7 +427,7 @@ export default function OnboardingPage() {
             </Button>
           ) : (
             <Button variant="amt" onClick={handleComplete} className="gap-2">
-              Abschliessen
+              Abschließen
               <CheckCircle2 className="h-4 w-4" />
             </Button>
           )}

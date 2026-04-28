@@ -12,6 +12,7 @@ import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // === TYPES ===
 
@@ -292,26 +293,18 @@ export default function EinkommenRechner() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
-      {/* Header */}
-      <div className="bg-white border-b sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <Breadcrumbs
-            items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Einkommens-Uebersicht' }]}
-            className="mb-4"
-          />
-          <div className="flex items-start gap-4">
-            <div className="bg-emerald-50 p-3 rounded-xl">
-              <Wallet className="h-8 w-8 text-emerald-600" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Einkommens-Uebersicht</h1>
-              <p className="text-gray-600 mt-1">
-                Erfasse deine monatlichen Einnahmen und sieh, wie viel auf dein Bürgergeld angerechnet wird (§ 11b SGB II).
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="max-w-4xl mx-auto px-4">
+        <Breadcrumbs
+          items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Einkommens-Übersicht' }]}
+          className="pt-6"
+        />
       </div>
+      <PageHeader
+        badge="Einkommen"
+        title="Einkommens-"
+        titleGradient="Übersicht"
+        subtitle="Erfasse deine monatlichen Einnahmen und sieh, wie viel auf dein Bürgergeld angerechnet wird (§ 11b SGB II)."
+      />
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Month Selector + Kinder Toggle */}
@@ -347,7 +340,7 @@ export default function EinkommenRechner() {
                   </button>
                 </div>
                 {hatKinder && (
-                  <p className="text-xs text-emerald-700 mt-1">Hoehere Freibetraege: Stufe 2 bis 1.500 EUR statt 1.000 EUR</p>
+                  <p className="text-xs text-emerald-700 mt-1">Höhere Freibeträge: Stufe 2 bis 1.500 € statt 1.000 €</p>
                 )}
               </div>
             </div>
@@ -362,8 +355,8 @@ export default function EinkommenRechner() {
                 <Euro className="h-5 w-5 text-emerald-600" />
                 Einnahmen - {formatMonatLabel(aktuellerMonat)}
               </h2>
-              <Button onClick={addEinnahme} size="sm" className="bg-emerald-600 hover:bg-emerald-700">
-                <Plus className="h-4 w-4 mr-1" />Hinzufuegen
+              <Button onClick={addEinnahme} size="sm" className="bg-emerald-600 hover:bg-emerald-700 rounded-full">
+                <Plus className="h-4 w-4 mr-1" />Hinzufügen
               </Button>
             </div>
 
@@ -371,7 +364,7 @@ export default function EinkommenRechner() {
               <div className="text-center py-10 text-gray-500">
                 <Wallet className="h-12 w-12 mx-auto mb-3 text-gray-300" />
                 <p className="font-medium">Noch keine Einnahmen erfasst</p>
-                <p className="text-sm mt-1">Klicke auf &quot;Hinzufuegen&quot;, um deine erste Einnahme einzutragen.</p>
+                <p className="text-sm mt-1">Klicke auf &quot;Hinzufügen&quot;, um deine erste Einnahme einzutragen.</p>
               </div>
             ) : (
               <div className="space-y-4">

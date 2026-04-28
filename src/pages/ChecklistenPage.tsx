@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import {
-  ClipboardList,
   ChevronDown,
   ChevronUp,
   Clock,
@@ -16,6 +15,7 @@ import {
   ExternalLink,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { PageHeader } from '@/lib/fintutto-design'
 
 interface ChecklistItem {
   id: string
@@ -395,19 +395,13 @@ export default function ChecklistenPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-boxer rounded-full mb-4">
-            <ClipboardList className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Checklisten</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Interaktive Checklisten für die wichtigsten Situationen im
-            Bürgergeld-Bezug. Haken Sie erledigte Schritte ab - Ihr Fortschritt
-            wird automatisch gespeichert.
-          </p>
-        </div>
+      <PageHeader
+        badge="Schritt für Schritt"
+        title="Interaktive"
+        titleGradient="Checklisten"
+        subtitle="Für die wichtigsten Situationen im Bürgergeld-Bezug. Hake erledigte Schritte ab — dein Fortschritt wird automatisch gespeichert."
+      />
+      <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
 
         {/* Checklist Cards */}
         <div className="space-y-4">

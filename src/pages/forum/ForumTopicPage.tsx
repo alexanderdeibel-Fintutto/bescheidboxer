@@ -29,7 +29,7 @@ interface ForumReply {
 // Demo topic data
 const DEMO_TOPIC = {
   id: '3',
-  title: 'Ueberpruefungsantrag - 1.800 EUR Nachzahlung bekommen!',
+  title: 'Überprüfungsantrag — 1.800 € Nachzahlung bekommen!',
   content: `Hallo zusammen,
 
 ich wollte meine Erfahrung mit euch teilen, weil ich glaube, dass viele von euch auch zu wenig bekommen haben.
@@ -149,7 +149,7 @@ export default function ForumTopicPage() {
       </Link>
 
       {/* Topic */}
-      <Card className="mb-6">
+      <Card className="mb-6 rounded-2xl">
         <CardContent className="p-6">
           <div className="flex items-center gap-2 mb-3 flex-wrap">
             {topic.isPinned && <Pin className="h-4 w-4 text-primary" />}
@@ -159,7 +159,7 @@ export default function ForumTopicPage() {
             {topic.isResolved && <Badge variant="success">Geloest</Badge>}
           </div>
 
-          <h1 className="text-2xl font-bold mb-4">{topic.title}</h1>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4 leading-tight">{topic.title}</h1>
 
           <div className="prose prose-sm max-w-none mb-4">
             {topic.content.split('\n').map((line, i) => {
@@ -203,7 +203,7 @@ export default function ForumTopicPage() {
                 to="/generator/ueberpruefungsantrag"
                 className="text-xs px-3 py-1.5 rounded-lg bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
               >
-                Ueberpruefungsantrag § 44
+                Überprüfungsantrag § 44
               </Link>
               <Link
                 to="/generator/akteneinsicht"
@@ -234,7 +234,7 @@ export default function ForumTopicPage() {
         {replies.map((reply) => (
           <Card
             key={reply.id}
-            className={reply.isBestAnswer ? 'border-success/40 bg-success/[0.03]' : ''}
+            className={`rounded-2xl ${reply.isBestAnswer ? 'border-success/40 bg-success/[0.03]' : ''}`}
           >
             <CardContent className="p-5">
               {reply.isBestAnswer && (
@@ -271,7 +271,7 @@ export default function ForumTopicPage() {
       </div>
 
       {/* Reply Form */}
-      <Card>
+      <Card className="rounded-2xl">
         <CardContent className="p-5">
           <h3 className="font-semibold mb-3">Deine Antwort</h3>
           {forumCheck.allowed ? (
@@ -287,6 +287,7 @@ export default function ForumTopicPage() {
                 onClick={handleReply}
                 disabled={!replyText.trim() || isSubmitting}
                 variant="amt"
+                className="rounded-full"
               >
                 <Send className="mr-2 h-4 w-4" />
                 Antwort posten
@@ -295,7 +296,7 @@ export default function ForumTopicPage() {
           ) : (
             <div className="text-center py-4">
               <p className="text-sm text-muted-foreground mb-3">{forumCheck.reason}</p>
-              <Button variant="amt" size="sm" asChild>
+              <Button variant="amt" size="sm" className="rounded-full" asChild>
                 <Link to="/preise">Upgrade</Link>
               </Button>
             </div>

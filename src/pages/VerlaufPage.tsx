@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -140,7 +141,7 @@ function getDateGroup(date: Date): 'heute' | 'gestern' | 'aeltere' {
 const DATE_GROUP_LABELS: Record<string, string> = {
   heute: 'Heute',
   gestern: 'Gestern',
-  aeltere: 'Aeltere Eintraege',
+  aeltere: 'Ältere Einträge',
 }
 
 function activityIcon(type: ActivityItem['type']) {
@@ -293,22 +294,12 @@ export default function VerlaufPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ------------------------------------------------------------------ */}
-      {/* Hero Section                                                       */}
-      {/* ------------------------------------------------------------------ */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Clock className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight">Mein Verlauf</h1>
-          </div>
-          <p className="text-muted-foreground text-sm max-w-2xl">
-            Hier siehst du deine bisherigen Aktivitaeten auf BescheidBoxer — Chat-Nachrichten,
-            Widersprüche, Rechner-Ergebnisse und mehr. Alles wird lokal in deinem Browser
-            gespeichert.
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        badge="Deine Spur"
+        title="Mein"
+        titleGradient="Verlauf"
+        subtitle="Chat-Nachrichten, Widersprüche, Rechner-Ergebnisse — alles lokal in deinem Browser, nichts in der Cloud."
+      />
 
       <div className="container mx-auto px-4 py-6 space-y-8">
         {/* ---------------------------------------------------------------- */}
@@ -320,7 +311,7 @@ export default function VerlaufPage() {
             <h3 className="font-semibold text-lg mb-2">Noch kein Verlauf vorhanden</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
               Sobald du den Chat nutzt, Bescheide scannst oder Rechner verwendest,
-              erscheinen deine Aktivitaeten hier.
+              erscheinen deine Aktivitäten hier.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link to="/chat">
@@ -361,7 +352,7 @@ export default function VerlaufPage() {
                   </h2>
                   <div className="space-y-3">
                     {items.map((activity) => (
-                      <Card key={activity.id}>
+                      <Card key={activity.id} className="rounded-2xl hover:shadow-md transition-all duration-300">
                         <CardContent className="p-4">
                           <div className="flex items-start gap-4">
                             {/* Icon */}
@@ -396,7 +387,7 @@ export default function VerlaufPage() {
                                   to={activity.link}
                                   className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2"
                                 >
-                                  Oeffnen
+                                  Öffnen
                                   <span aria-hidden="true">&rarr;</span>
                                 </Link>
                               )}
@@ -423,7 +414,7 @@ export default function VerlaufPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {rechnerVerlauf.map((entry) => (
-                <Card key={entry.id}>
+                <Card key={entry.id} className="rounded-2xl hover:shadow-md transition-all duration-300">
                   <CardContent className="p-5">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2">
@@ -467,19 +458,19 @@ export default function VerlaufPage() {
         )}
 
         {/* ---------------------------------------------------------------- */}
-        {/* Verlauf loeschen                                                 */}
+        {/* Verlauf löschen                                                 */}
         {/* ---------------------------------------------------------------- */}
         {(hasAnyActivity || hasRechnerResults) && (
           <div className="border-t pt-6">
-            <Card className="border-destructive/20 bg-destructive/5">
+            <Card className="rounded-2xl border-destructive/20 bg-destructive/5">
               <CardContent className="p-5">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 shrink-0" />
                     <div>
-                      <h3 className="text-sm font-semibold">Verlauf loeschen</h3>
+                      <h3 className="text-sm font-semibold">Verlauf löschen</h3>
                       <p className="text-xs text-muted-foreground mt-0.5">
-                        Loescht Chat-Verlauf, Widerspruch-Tracker-Eintraege und
+                        Löscht Chat-Verlauf, Widerspruch-Tracker-Einträge und
                         gespeicherte Rechner-Ergebnisse aus deinem Browser.
                         Cookie-Einstellungen bleiben erhalten.
                       </p>
@@ -492,7 +483,7 @@ export default function VerlaufPage() {
                     onClick={() => setShowDeleteConfirm(true)}
                   >
                     <Trash2 className="h-3.5 w-3.5" />
-                    Verlauf loeschen
+                    Verlauf löschen
                   </Button>
                 </div>
               </CardContent>
@@ -511,11 +502,11 @@ export default function VerlaufPage() {
               <div className="flex items-center justify-center h-10 w-10 rounded-full bg-destructive/10">
                 <AlertTriangle className="h-5 w-5 text-destructive" />
               </div>
-              <h2 className="text-lg font-semibold">Verlauf wirklich loeschen?</h2>
+              <h2 className="text-lg font-semibold">Verlauf wirklich löschen?</h2>
             </div>
 
             <p className="text-sm text-muted-foreground mb-6">
-              Diese Aktion loescht deinen gesamten Chat-Verlauf, alle Widerspruch-Tracker-Eintraege
+              Diese Aktion löscht deinen gesamten Chat-Verlauf, alle Widerspruch-Tracker-Einträge
               und gespeicherte Rechner-Ergebnisse unwiderruflich aus deinem Browser. Cookie-Einstellungen
               bleiben erhalten.
             </p>
@@ -533,7 +524,7 @@ export default function VerlaufPage() {
                 onClick={handleDeleteHistory}
               >
                 <Trash2 className="h-4 w-4" />
-                Ja, loeschen
+                Ja, löschen
               </Button>
             </div>
           </div>

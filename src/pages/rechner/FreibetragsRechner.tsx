@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { TrendingUp, Info, Download, Share2 } from 'lucide-react'
+import { Info, Download, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { berechneFreibetrag, FreibetragsErgebnis } from '@/lib/rechner-logik'
 import { generateRechnerPdf } from '@/lib/pdf-export'
@@ -8,6 +8,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 export default function FreibetragsRechner() {
   const [bruttoEinkommen, setBruttoEinkommen] = useState<string>('800')
@@ -38,21 +39,18 @@ export default function FreibetragsRechner() {
     new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(betrag)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pb-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-6">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Freibetrags-Rechner' }]} className="mb-4" />
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="bg-blue-100 p-3 rounded-full"><TrendingUp className="w-6 h-6 text-blue-600" /></div>
-              <h1 className="text-3xl font-bold text-gray-900">Freibetrags-Rechner</h1>
-            </div>
-            <p className="text-gray-600 mt-2">Berechne, wie viel von deinem Einkommen du behalten darfst. Grundlage: § 11b SGB II</p>
-          </div>
-        </div>
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Freibetrags-Rechner' }]} className="pt-6" />
+        <PageHeader
+          badge="Rechner"
+          title="Freibetrag"
+          titleGradient="berechnen"
+          subtitle="Berechne, wie viel von deinem Einkommen du behalten darfst. Grundlage: § 11b SGB II."
+        />
 
         {/* Input */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-2xl shadow-md p-6 mb-6 mt-4">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Deine Angaben</h2>
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">Brutto-Erwerbseinkommen pro Monat</label>
@@ -96,11 +94,11 @@ export default function FreibetragsRechner() {
               </div>
             )}
           </div>
-          <Button onClick={handleBerechnen} className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold">Berechnen</Button>
+          <Button onClick={handleBerechnen} className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold rounded-full">Berechnen</Button>
         </div>
 
         {/* Staffelung-Grafik */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">So funktioniert die Staffelung</h2>
           <div className="space-y-3">
             <div className="flex items-center gap-3">
@@ -132,7 +130,7 @@ export default function FreibetragsRechner() {
 
         {/* Results */}
         {ergebnis && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <FadeSection className="bg-white rounded-2xl shadow-md p-6 mb-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">Dein Ergebnis</h2>
 
             {/* Visual Bar */}
@@ -155,7 +153,7 @@ export default function FreibetragsRechner() {
             {/* Big Numbers */}
             <div className="grid md:grid-cols-3 gap-4 mb-6">
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <div className="text-sm text-green-700 mb-1">Du behaeltst</div>
+                <div className="text-sm text-green-700 mb-1">Du behältst</div>
                 <div className="text-3xl font-bold text-green-600">{formatEuro(ergebnis.freibetragGesamt)}</div>
               </div>
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
@@ -206,7 +204,7 @@ export default function FreibetragsRechner() {
                     </tr>
                   )}
                   <tr className="bg-green-50">
-                    <td className="px-4 py-3 text-sm text-gray-700">SV-Beitraege</td>
+                    <td className="px-4 py-3 text-sm text-gray-700">SV-Beiträge</td>
                     <td className="px-4 py-3 text-sm text-green-600 text-right font-medium">- {formatEuro(ergebnis.svAbzug)}</td>
                   </tr>
                   <tr className="bg-green-50">
@@ -218,7 +216,7 @@ export default function FreibetragsRechner() {
                     <td className="px-4 py-3 text-sm text-green-600 text-right font-medium">- {formatEuro(ergebnis.versicherungsAbzug)}</td>
                   </tr>
                   <tr className="bg-gray-50 font-semibold">
-                    <td className="px-4 py-3 text-sm text-gray-900">Gesamt Freibetraege</td>
+                    <td className="px-4 py-3 text-sm text-gray-900">Gesamt Freibeträge</td>
                     <td className="px-4 py-3 text-sm text-green-600 text-right">{formatEuro(ergebnis.freibetragGesamt)}</td>
                   </tr>
                   <tr className="bg-red-50 font-semibold">
@@ -270,11 +268,11 @@ export default function FreibetragsRechner() {
                 />
               </div>
             )}
-          </div>
+          </FadeSection>
         )}
 
         {/* CTAs */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-2xl shadow-md p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Weitere Rechner</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <Link to="/rechner/buergergeld"><Button variant="outline" className="w-full justify-start">Bürgergeld berechnen</Button></Link>

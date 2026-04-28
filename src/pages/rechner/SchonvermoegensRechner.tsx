@@ -8,6 +8,7 @@ import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SaveCalculationButton from '@/components/SaveCalculationButton'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 export default function SchonvermoegensRechner() {
   const [alter, setAlter] = useState(30)
@@ -42,32 +43,29 @@ export default function SchonvermoegensRechner() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
-      <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-8 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Schonvermögens-Rechner' }]} className="mb-4 [&_a]:text-white/90 [&_a:hover]:text-white [&_span]:text-white [&_svg]:text-white/70" />
-          <div className="flex items-start gap-4">
-            <div className="bg-white/20 p-3 rounded-lg"><PiggyBank className="w-8 h-8" /></div>
-            <div>
-              <h1 className="text-3xl font-bold mb-2">Schonvermögens-Rechner</h1>
-              <p className="text-green-100 text-lg">Pruefe, ob dein Vermoegen geschuetzt ist</p>
-            </div>
-          </div>
-        </div>
+      <div className="max-w-4xl mx-auto px-4">
+        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Schonvermögens-Rechner' }]} className="pt-6" />
       </div>
+      <PageHeader
+        badge="Sofort-Check"
+        title="Schonvermögen"
+        titleGradient="prüfen"
+        subtitle="Prüfe, ob dein Vermögen geschützt ist. Grundlage: § 12 SGB II."
+      />
 
-      <div className="max-w-4xl mx-auto px-4 -mt-6">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <div className="max-w-4xl mx-auto px-4 mt-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 mb-6">
           <div className="flex gap-3">
             <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm text-blue-900">
               <p className="font-semibold mb-1">Keine Angst!</p>
-              <p>Du musst nicht alles verkaufen. Es gibt Freibetraege und Schutzregeln.</p>
+              <p>Du musst nicht alles verkaufen. Es gibt Freibeträge und Schutzregeln.</p>
             </div>
           </div>
         </div>
 
         {/* Input */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
           <h2 className="text-xl font-bold mb-4">Deine Angaben</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
@@ -76,7 +74,7 @@ export default function SchonvermoegensRechner() {
                 <input type="number" value={alter} onChange={(e) => setAlter(Number(e.target.value))} className="w-full px-4 py-2 border border-gray-300 rounded-lg" min="18" max="100" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">BG-Groesse</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">BG-Größe</label>
                 <select value={bgGroesse} onChange={(e) => setBgGroesse(Number(e.target.value))} className="w-full px-4 py-2 border border-gray-300 rounded-lg">
                   {[1,2,3,4,5].map(n => <option key={n} value={n}>{n} Person{n > 1 ? 'en' : ''}</option>)}
                 </select>
@@ -110,7 +108,7 @@ export default function SchonvermoegensRechner() {
                 </button>
               </div>
               {hatImmobilie && (
-                <div><label className="block text-sm font-medium text-gray-700 mb-2">Wohnflaeche (qm)</label>
+                <div><label className="block text-sm font-medium text-gray-700 mb-2">Wohnfläche (qm)</label>
                 <input type="number" value={immobilieQm || ''} onChange={(e) => setImmobilieQm(Number(e.target.value))} className="w-full px-4 py-2 border border-gray-300 rounded-lg" min="0" /></div>
               )}
             </div>
@@ -123,35 +121,35 @@ export default function SchonvermoegensRechner() {
                 </button>
               </div>
               {hatAltersvorsorge && (
-                <div><label className="block text-sm font-medium text-gray-700 mb-2">Rueckkaufswert (EUR)</label>
+                <div><label className="block text-sm font-medium text-gray-700 mb-2">Rückkaufswert (EUR)</label>
                 <input type="number" value={altersvorsorge || ''} onChange={(e) => setAltersvorsorge(Number(e.target.value))} className="w-full px-4 py-2 border border-gray-300 rounded-lg" min="0" step="1000" /></div>
               )}
             </div>
           </div>
-          <Button onClick={handleCalculate} className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white py-3"><PiggyBank className="w-5 h-5 mr-2" />Vermoegensschutz berechnen</Button>
+          <Button onClick={handleCalculate} className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white py-3 rounded-full"><PiggyBank className="w-5 h-5 mr-2" />Vermögensschutz berechnen</Button>
         </div>
 
         {/* Result */}
         {result && (
-          <div className="space-y-6">
-            <div className={`rounded-lg shadow-sm border-2 p-6 ${result.anspruch ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'}`}>
+          <FadeSection className="space-y-6">
+            <div className={`rounded-2xl shadow-sm border-2 p-6 ${result.anspruch ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'}`}>
               <div className="flex items-start gap-4">
                 {result.anspruch ? <CheckCircle className="w-12 h-12 text-green-600 flex-shrink-0" /> : <AlertTriangle className="w-12 h-12 text-red-600 flex-shrink-0" />}
                 <div>
                   <h3 className={`text-2xl font-bold mb-2 ${result.anspruch ? 'text-green-900' : 'text-red-900'}`}>
-                    {result.anspruch ? 'Dein Vermoegen ist geschuetzt!' : 'Vermoegen über dem Freibetrag'}
+                    {result.anspruch ? 'Dein Vermögen ist geschützt!' : 'Vermögen über dem Freibetrag'}
                   </h3>
                   <p className={result.anspruch ? 'text-green-800' : 'text-red-800'}>
                     {result.anspruch
-                      ? 'Du hast Anspruch auf Bürgergeld. Dein Vermoegen liegt innerhalb der Schutzgrenzen.'
-                      : `Dein Vermoegen liegt ${result.vermoegenAnrechenbar.toLocaleString('de-DE')} EUR über dem Freibetrag.`}
+                      ? 'Du hast Anspruch auf Bürgergeld. Dein Vermögen liegt innerhalb der Schutzgrenzen.'
+                      : `Dein Vermögen liegt ${result.vermoegenAnrechenbar.toLocaleString('de-DE')} € über dem Freibetrag.`}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Aufschluesselung</h3>
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Aufschlüsselung</h3>
               <div className="mb-6">
                 <div className="flex justify-between text-sm mb-2">
                   <span className="font-medium">Grundfreibetrag genutzt</span>
@@ -174,7 +172,7 @@ export default function SchonvermoegensRechner() {
                   <div className={`p-3 rounded-lg ${autoWert <= result.autoFreibetrag ? 'bg-green-50' : 'bg-orange-50'}`}>
                     <div className="flex items-center gap-2">
                       <Car className={`w-4 h-4 ${autoWert <= result.autoFreibetrag ? 'text-green-600' : 'text-orange-600'}`} />
-                      <span className="text-sm font-medium">Auto ({autoWert.toLocaleString('de-DE')} EUR): {autoWert <= result.autoFreibetrag ? 'Geschuetzt' : 'Über Freibetrag'}</span>
+                      <span className="text-sm font-medium">Auto ({autoWert.toLocaleString('de-DE')} €): {autoWert <= result.autoFreibetrag ? 'Geschützt' : 'Über Freibetrag'}</span>
                     </div>
                   </div>
                 )}
@@ -193,12 +191,12 @@ export default function SchonvermoegensRechner() {
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4">
               <h4 className="font-semibold text-blue-900 mb-2">Karenzzeit-Regelung</h4>
               <ul className="text-sm text-blue-800 space-y-1">
-                <li>• Erste 12 Monate: erhoehter Vermoegens-Schutz</li>
-                <li>• KFZ bis 15.000 EUR geschuetzt</li>
-                <li>• Danach: 15.000 EUR pro Person weiterhin geschuetzt</li>
+                <li>• Erste 12 Monate: erhöhter Vermögens-Schutz</li>
+                <li>• KFZ bis 15.000 € geschützt</li>
+                <li>• Danach: 15.000 € pro Person weiterhin geschützt</li>
               </ul>
             </div>
 
@@ -208,7 +206,7 @@ export default function SchonvermoegensRechner() {
                   const sections: RechnerSection[] = [
                     ...result.details.map(d => ({ label: d.label, value: `${d.betrag.toLocaleString('de-DE')} EUR` })),
                     { label: 'Barvermögen', value: `${vermoegen.toLocaleString('de-DE')} EUR` },
-                    { label: 'Ergebnis', value: result.anspruch ? 'Geschuetzt' : 'Über Freibetrag', highlight: true },
+                    { label: 'Ergebnis', value: result.anspruch ? 'Geschützt' : 'Über Freibetrag', highlight: true },
                   ]
                   generateRechnerPdf('Schonvermögens-Prüfung (§ 12 SGB II)', sections,
                     { label: 'Freibetrag gesamt', value: `${result.freibetragGesamt.toLocaleString('de-DE')} EUR` },
@@ -221,7 +219,7 @@ export default function SchonvermoegensRechner() {
               <Button
                 onClick={() => shareResult({
                   title: 'Schonvermögens-Prüfung',
-                  text: `Schonvermögens-Prüfung: Freibetrag ${result.freibetragGesamt.toLocaleString('de-DE')} EUR - ${result.anspruch ? 'Vermoegen geschuetzt' : 'Über Freibetrag'}`,
+                  text: `Schonvermögens-Prüfung: Freibetrag ${result.freibetragGesamt.toLocaleString('de-DE')} € - ${result.anspruch ? 'Vermögen geschützt' : 'Über Freibetrag'}`,
                   url: window.location.href,
                 })}
                 variant="outline"
@@ -241,30 +239,30 @@ export default function SchonvermoegensRechner() {
                 />
               )}
             </div>
-          </div>
+          </FadeSection>
         )}
 
         {/* Info */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mt-6">
           <h3 className="text-xl font-bold mb-4">Wichtige Informationen</h3>
           <div className="space-y-6">
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">Was zaehlt als Vermoegen?</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">Was zählt als Vermögen?</h4>
               <ul className="text-sm text-gray-700 space-y-1 ml-4">
-                <li>• Bargeld, Kontoguthaben, Sparbuecher</li>
+                <li>• Bargeld, Kontoguthaben, Sparbücher</li>
                 <li>• Wertpapiere, Aktien, Fonds</li>
-                <li>• Lebensversicherungen (Rueckkaufswert)</li>
+                <li>• Lebensversicherungen (Rückkaufswert)</li>
                 <li>• Kraftfahrzeuge</li>
-                <li>• Immobilien und Grundstuecke</li>
+                <li>• Immobilien und Grundstücke</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">Was ist geschuetzt?</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">Was ist geschützt?</h4>
               <ul className="text-sm text-gray-700 space-y-1 ml-4">
                 <li>• Angemessener Hausrat</li>
-                <li>• Selbstgenutzte Immobilie (angemessene Groesse)</li>
-                <li>• Riester/Ruerup-Rente</li>
-                <li>• Ein angemessenes KFZ (Karenzzeit: bis 15.000 EUR)</li>
+                <li>• Selbstgenutzte Immobilie (angemessene Größe)</li>
+                <li>• Riester/Rürup-Rente</li>
+                <li>• Ein angemessenes KFZ (Karenzzeit: bis 15.000 €)</li>
               </ul>
             </div>
             <div className="pt-4 border-t"><p className="text-sm text-gray-600">Rechtsgrundlage: § 12 SGB II</p></div>

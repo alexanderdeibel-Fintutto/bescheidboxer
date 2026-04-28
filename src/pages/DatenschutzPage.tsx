@@ -1,24 +1,18 @@
 import { Link } from 'react-router-dom'
-import { Shield } from 'lucide-react'
+import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 
 export default function DatenschutzPage() {
   return (
-    <div className="container py-12">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl gradient-amt text-white mx-auto mb-4">
-          <Shield className="h-7 w-7" />
-        </div>
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Datenschutzerklaerung
-        </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-          Informationen zum Schutz Ihrer personenbezogenen Daten
-        </p>
-      </div>
+    <>
+      <PageHeader
+        badge="Rechtliches"
+        title="Datenschutz"
+        titleGradient="erklärung"
+        subtitle="Informationen zum Schutz Ihrer personenbezogenen Daten."
+        align="center"
+      />
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto space-y-10">
+      <FadeSection delay={120} className="container max-w-4xl mx-auto px-6 pb-16 space-y-10">
         {/* 1. Datenschutz auf einen Blick */}
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -351,7 +345,7 @@ export default function DatenschutzPage() {
             Allgemeine Geschäftsbedingungen
           </Link>
         </div>
-      </div>
-    </div>
+      </FadeSection>
+    </>
   )
 }

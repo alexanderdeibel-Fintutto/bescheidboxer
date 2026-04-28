@@ -5,6 +5,7 @@ import { Search, Calculator, FileText, HelpCircle, Wrench, ArrowRight, MessageCi
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/lib/fintutto-design'
 
 interface SearchItem {
   title: string
@@ -321,12 +322,14 @@ export default function SuchePage() {
   }
 
   return (
-    <div className="container max-w-6xl py-8">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-8">
-        <Search className="w-8 h-8" />
-        <h1 className="text-3xl font-bold">Suche</h1>
-      </div>
+    <div>
+      <PageHeader
+        badge="Alles auf einen Streich"
+        title="Such-"
+        titleGradient="Zentrale"
+        subtitle="Rechner, Musterschreiben, Hilfe-Artikel — alles in einem Eingabefeld."
+      />
+      <div className="container max-w-6xl pb-12">
 
       {/* Search Input */}
       <div className="relative mb-6">
@@ -374,6 +377,7 @@ export default function SuchePage() {
 
       {/* Results */}
       {renderResults()}
+      </div>
     </div>
   )
 }
@@ -389,7 +393,7 @@ function ResultCard({
 
   return (
     <Link to={item.href}>
-      <Card className="h-full hover:shadow-lg transition-shadow">
+      <Card className="h-full rounded-2xl hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
         <CardContent className="p-6 flex items-start gap-4">
           <div className="flex-shrink-0">
             <Icon className="w-6 h-6 text-primary" />

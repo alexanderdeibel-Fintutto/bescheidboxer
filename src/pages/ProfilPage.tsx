@@ -10,6 +10,7 @@ import { useCreditsContext } from '@/contexts/CreditsContext'
 import { PLANS, CREDIT_COSTS } from '@/lib/credits'
 import { downloadExport, importData, getStorageStats } from '@/lib/daten-export'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 export default function ProfilPage() {
   useDocumentTitle('Mein Profil - BescheidBoxer')
@@ -68,32 +69,30 @@ export default function ProfilPage() {
 
   const handleDeleteAccount = () => {
     if (confirm('ACHTUNG: Moechten Sie Ihr Konto wirklich unwiderruflich loeschen? Alle Ihre Daten gehen verloren.')) {
-      console.log('Konto loeschen angefordert')
+      console.log('Konto löschen angefordert')
       // TODO: Implement account deletion
     }
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <PageHeader
+        badge="Konto & Einstellungen"
+        title="Mein"
+        titleGradient="Profil"
+        subtitle="Verwalte deine Kontodaten, dein Abo und deine Datenschutz-Einstellungen."
+      />
       <div className="container mx-auto px-4 py-8">
-        {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Settings className="h-8 w-8 text-blue-600" />
-            <h1 className="text-4xl font-bold gradient-text-boxer">Mein Profil</h1>
-          </div>
-          <p className="text-gray-600">Verwalten Sie Ihre Kontodaten und Einstellungen</p>
-        </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Main Column */}
           <div className="lg:col-span-2 space-y-6">
             {/* Account Overview */}
-            <Card className="border-2">
+            <Card className="rounded-2xl border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <UserIcon className="h-5 w-5" />
-                  Account-Uebersicht
+                  Account-Übersicht
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -111,19 +110,19 @@ export default function ProfilPage() {
                   <div className="text-right">
                     <Badge variant="outline">{planDetails.name}{planDetails.badge ? ` — ${planDetails.badge}` : ''}</Badge>
                     <p className="text-sm text-muted-foreground mt-2">
-                      {planDetails.price === 0 ? 'Kostenlos' : `${planDetails.price} EUR / Monat`}
+                      {planDetails.price === 0 ? 'Kostenlos' : `${planDetails.price} € / Monat`}
                     </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Persoenliche Daten */}
-            <Card className="border-2">
+            {/* Persönliche Daten */}
+            <Card className="rounded-2xl border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <UserIcon className="h-5 w-5" />
-                  Persoenliche Daten
+                  Persönliche Daten
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -145,7 +144,7 @@ export default function ProfilPage() {
                       disabled
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Aendern via E-Mail-Verifizierung</p>
+                    <p className="text-xs text-gray-500 mt-1">Ändern via E-Mail-Verifizierung</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2 flex items-center gap-2">
@@ -179,13 +178,13 @@ export default function ProfilPage() {
                 </div>
                 <Button onClick={handleSaveProfile} className="gradient-boxer">
                   <CheckCircle2 className="h-4 w-4 mr-2" />
-                  Aenderungen speichern
+                  Änderungen speichern
                 </Button>
               </CardContent>
             </Card>
 
             {/* Abo & Credits */}
-            <Card className="border-2">
+            <Card className="rounded-2xl border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CreditCard className="h-5 w-5" />
@@ -200,7 +199,7 @@ export default function ProfilPage() {
                     <Badge variant="outline">{planDetails.name}</Badge>
                   </div>
                   <p className="text-2xl font-bold mb-1">
-                    {planDetails.price === 0 ? 'Kostenlos' : `${planDetails.price} EUR / Monat`}
+                    {planDetails.price === 0 ? 'Kostenlos' : `${planDetails.price} € / Monat`}
                   </p>
                   <p className="text-sm text-muted-foreground">
                     Periode endet: {credits?.periodEnd ? new Date(credits.periodEnd).toLocaleDateString('de-DE') : 'N/A'}
@@ -211,7 +210,7 @@ export default function ProfilPage() {
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="font-medium">Credits verfuegbar</span>
+                      <span className="font-medium">Credits verfügbar</span>
                       <span>{credits?.creditsAktuell || 0}{planDetails.creditsPerMonth > 0 ? ` / ${planDetails.creditsPerMonth}` : ''}</span>
                     </div>
                     <Progress value={creditsProgress} className="h-2" />
@@ -286,7 +285,7 @@ export default function ProfilPage() {
             </Card>
 
             {/* Benachrichtigungen */}
-            <Card className="border-2">
+            <Card className="rounded-2xl border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Bell className="h-5 w-5" />
@@ -313,7 +312,7 @@ export default function ProfilPage() {
                 <div className="flex items-center justify-between py-3 border-b">
                   <div>
                     <p className="font-medium">Neue Community-Antworten</p>
-                    <p className="text-sm text-gray-600">Benachrichtigung bei Antworten auf Ihre Forum-Beitraege</p>
+                    <p className="text-sm text-gray-600">Benachrichtigung bei Antworten auf Ihre Forum-Beiträge</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
@@ -348,7 +347,7 @@ export default function ProfilPage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Sicherheit */}
-            <Card className="border-2">
+            <Card className="rounded-2xl border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Shield className="h-5 w-5" />
@@ -358,7 +357,7 @@ export default function ProfilPage() {
               <CardContent className="space-y-4">
                 <Button variant="outline" className="w-full justify-start">
                   <Key className="h-4 w-4 mr-2" />
-                  Passwort aendern
+                  Passwort ändern
                 </Button>
 
                 <div className="pt-4 border-t">
@@ -372,7 +371,7 @@ export default function ProfilPage() {
             </Card>
 
             {/* Daten & Datenschutz */}
-            <Card className="border-2">
+            <Card className="rounded-2xl border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <HardDrive className="h-5 w-5" />
@@ -387,7 +386,7 @@ export default function ProfilPage() {
                     {storageStats.keyDetails.map(k => (
                       <div key={k.key} className="flex justify-between">
                         <span>{k.key}</span>
-                        <span>{k.entries} {k.entries === 1 ? 'Eintrag' : 'Eintraege'} ({k.size})</span>
+                        <span>{k.entries} {k.entries === 1 ? 'Eintrag' : 'Einträge'} ({k.size})</span>
                       </div>
                     ))}
                   </div>
@@ -429,7 +428,7 @@ export default function ProfilPage() {
                 <Link to="/datenschutz">
                   <Button variant="ghost" className="w-full justify-start">
                     <Shield className="h-4 w-4 mr-2" />
-                    Datenschutzerklaerung
+                    Datenschutzerklärung
                   </Button>
                 </Link>
 
@@ -437,7 +436,7 @@ export default function ProfilPage() {
                   <div className="mb-3 p-3 bg-red-50 rounded-lg">
                     <p className="text-sm text-red-800 flex items-start gap-2">
                       <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                      <span>Das Loeschen Ihres Kontos ist unwiderruflich. Alle Ihre Daten werden permanent geloescht.</span>
+                      <span>Das Löschen deines Kontos ist unwiderruflich. Alle Daten werden permanent gelöscht.</span>
                     </p>
                   </div>
                   <Button
@@ -446,14 +445,14 @@ export default function ProfilPage() {
                     onClick={handleDeleteAccount}
                   >
                     <Trash2 className="h-4 w-4 mr-2" />
-                    Konto loeschen
+                    Konto löschen
                   </Button>
                 </div>
               </CardContent>
             </Card>
 
             {/* Quick Actions */}
-            <Card className="border-2 bg-primary/5">
+            <Card className="rounded-2xl border-2 bg-primary/5">
               <CardHeader>
                 <CardTitle className="text-lg">Schnellzugriff</CardTitle>
               </CardHeader>

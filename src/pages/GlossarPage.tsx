@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { BookOpen, Search, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { PageHeader } from '@/lib/fintutto-design'
 
 interface GlossarEntry {
   id: string
@@ -328,23 +329,15 @@ export default function GlossarPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-boxer rounded-full mb-4">
-            <BookOpen className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Glossar Sozialrecht
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Die wichtigsten Begriffe aus dem SGB II und Sozialrecht - einfach und
-            verständlich erklärt. Von Anhoerung bis Zusicherung.
-          </p>
-          <p className="text-sm text-gray-500 mt-2">
-            {glossarEntries.length} Begriffe &middot; Alphabetisch sortiert
-          </p>
-        </div>
+      <PageHeader
+        badge="Glossar"
+        title="Sozialrecht"
+        titleGradient="verständlich erklärt"
+        subtitle={`Die wichtigsten Begriffe aus SGB II und Sozialrecht — von Anhörung bis Zusicherung. ${glossarEntries.length} Einträge, alphabetisch sortiert.`}
+        align="center"
+      />
+      <div className="max-w-4xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        {/* alter Hero entfernt — durch PageHeader ersetzt */}
 
         {/* Search Bar */}
         <div className="relative mb-6 max-w-xl mx-auto">
@@ -487,7 +480,7 @@ export default function GlossarPage() {
               onClick={() => setSearchQuery('')}
               className="text-red-600 font-medium hover:underline"
             >
-              Suche zuruecksetzen
+              Suche zurücksetzen
             </button>
           </div>
         )}
@@ -498,15 +491,15 @@ export default function GlossarPage() {
             Begriff nicht gefunden?
           </h3>
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Stellen Sie Ihre Frage direkt unserem KI-Assistenten - er erklärt
-            Ihnen jeden Fachbegriff aus dem Sozialrecht verständlich und mit
+            Stell deine Frage direkt unserem KI-Assistenten — er erklärt
+            jeden Fachbegriff aus dem Sozialrecht verständlich und mit
             Paragraphen-Verweis.
           </p>
           <Link to="/chat">
             <Button
               size="lg"
               variant="secondary"
-              className="bg-white text-red-600 hover:bg-gray-100"
+              className="bg-white text-red-600 hover:bg-gray-100 rounded-full"
             >
               <BookOpen className="w-5 h-5 mr-2" />
               Zum KI-Berater
@@ -517,10 +510,10 @@ export default function GlossarPage() {
         {/* Disclaimer */}
         <p className="text-xs text-gray-400 text-center mt-8 max-w-2xl mx-auto leading-relaxed">
           Hinweis: Die Erklärungen in diesem Glossar dienen der allgemeinen
-          Orientierung und ersetzen keine individuelle Rechtsberatung. Fuer eine
-          verbindliche Auskunft wenden Sie sich bitte an einen Anwalt für
-          Sozialrecht, Ihren oertlichen Sozialverband (VdK, SoVD) oder eine
-          Beratungsstelle. Stand: 2025. Alle Angaben ohne Gewaehr.
+          Orientierung und ersetzen keine individuelle Rechtsberatung. Für eine
+          verbindliche Auskunft wende dich bitte an einen Anwalt für
+          Sozialrecht, deinen örtlichen Sozialverband (VdK, SoVD) oder eine
+          Beratungsstelle. Stand: 2025. Alle Angaben ohne Gewähr.
         </p>
       </div>
     </div>

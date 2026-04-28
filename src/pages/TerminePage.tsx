@@ -23,6 +23,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -587,7 +588,13 @@ export default function TerminePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <PageHeader
+        badge="Im Kalender behalten"
+        title="Meine"
+        titleGradient="Termine"
+        subtitle="Jobcenter-Termine verwalten und gezielt vorbereiten."
+      />
+      <div className="max-w-4xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
             { label: 'Dashboard', href: '/dashboard' },
@@ -595,26 +602,11 @@ export default function TerminePage() {
           ]}
           className="mb-4"
         />
-
-        {/* ---------------------------------------------------------------- */}
-        {/* Header                                                          */}
-        {/* ---------------------------------------------------------------- */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-boxer rounded-full">
-              <Calendar className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Meine Termine</h1>
-              <p className="text-sm text-gray-500">
-                Jobcenter-Termine verwalten und vorbereiten
-              </p>
-            </div>
-          </div>
-          {!showForm && (
+        {!showForm && (
+          <div className="flex justify-end mb-4">
             <Button
               size="sm"
-              className="gap-2"
+              className="gap-2 rounded-full"
               onClick={() => {
                 setForm(emptyForm())
                 setEditingId(null)
@@ -624,8 +616,8 @@ export default function TerminePage() {
               <Plus className="h-4 w-4" />
               Neuer Termin
             </Button>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* ---------------------------------------------------------------- */}
         {/* Tipp-Box: Meldepflicht                                          */}

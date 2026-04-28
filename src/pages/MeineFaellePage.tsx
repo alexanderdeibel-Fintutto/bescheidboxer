@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -411,7 +412,7 @@ export default function MeineFaellePage() {
           <Breadcrumbs
             items={[
               { label: 'Dashboard', href: '/dashboard' },
-              { label: 'Meine Faelle' },
+              { label: 'Meine Fälle' },
             ]}
             className="mb-4"
           />
@@ -421,11 +422,11 @@ export default function MeineFaellePage() {
               <Briefcase className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-              Noch keine Faelle vorhanden
+              Noch keine Fälle vorhanden
             </h1>
             <p className="text-gray-500 dark:text-gray-400 max-w-lg mx-auto mb-8 leading-relaxed">
               Sobald Sie Widersprüche, Aktenzeichen, Termine oder Dokumente anlegen,
-              werden diese hier automatisch als Faelle zusammengefuehrt und uebersichtlich
+              werden diese hier automatisch als Fälle zusammengeführt und übersichtlich
               dargestellt.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -460,31 +461,20 @@ export default function MeineFaellePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-      <div className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <PageHeader
+        badge="Alle Vorgänge gebündelt"
+        title="Meine"
+        titleGradient="Fälle"
+        subtitle="Widersprüche, Aktenzeichen, Termine und Dokumente — als Fall zusammengeführt."
+      />
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
             { label: 'Dashboard', href: '/dashboard' },
-            { label: 'Meine Faelle' },
+            { label: 'Meine Fälle' },
           ]}
           className="mb-4"
         />
-
-        {/* ---------------------------------------------------------------- */}
-        {/* Hero Header                                                      */}
-        {/* ---------------------------------------------------------------- */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-boxer rounded-2xl shadow-lg">
-            <Briefcase className="w-7 h-7 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
-              Meine Faelle
-            </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Alle Vorgaenge auf einen Blick
-            </p>
-          </div>
-        </div>
 
         {/* ---------------------------------------------------------------- */}
         {/* Zusammenfassung Cards                                            */}
@@ -499,7 +489,7 @@ export default function MeineFaellePage() {
                 {widersprueche.length}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                {widersprueche.length === 1 ? 'Fall' : 'Faelle'} gesamt
+                {widersprueche.length === 1 ? 'Fall' : 'Fälle'} gesamt
               </p>
             </CardContent>
           </Card>

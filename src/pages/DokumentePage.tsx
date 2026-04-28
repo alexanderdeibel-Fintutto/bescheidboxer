@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -178,8 +179,13 @@ export default function DokumentePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Breadcrumbs */}
+      <PageHeader
+        badge="Dein digitaler Aktenschrank"
+        title="Meine"
+        titleGradient="Dokumente"
+        subtitle="Verwalte alle wichtigen Unterlagen an einem Ort — Bescheide, Nachweise, Schreiben."
+      />
+      <div className="max-w-4xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
             { label: 'Dashboard', href: '/dashboard' },
@@ -187,23 +193,6 @@ export default function DokumentePage() {
           ]}
           className="mb-4"
         />
-
-        {/* ---------------------------------------------------------------- */}
-        {/* Header                                                          */}
-        {/* ---------------------------------------------------------------- */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-boxer rounded-full">
-              <FolderOpen className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Meine Dokumente</h1>
-              <p className="text-sm text-gray-500">
-                Verwalte alle wichtigen Unterlagen an einem Ort
-              </p>
-            </div>
-          </div>
-        </div>
 
         {/* ---------------------------------------------------------------- */}
         {/* Tipp info box                                                   */}
@@ -219,9 +208,9 @@ export default function DokumentePage() {
                   Tipp: Warum Dokumentenverwaltung wichtig ist
                 </h3>
                 <p className="text-sm text-blue-800 leading-relaxed">
-                  Bei einem Widerspruch gegen Jobcenter-Bescheide ist eine lueckenlose
+                  Bei einem Widerspruch gegen Jobcenter-Bescheide ist eine lückenlose
                   Dokumentation entscheidend. Bewahren Sie alle Bescheide, Nachweise
-                  und Schreiben sorgfaeltig auf. Wer seine Unterlagen griffbereit hat,
+                  und Schreiben sorgfältig auf. Wer seine Unterlagen griffbereit hat,
                   kann Fristen einhalten und Fehler im Bescheid schneller nachweisen.
                   Ordnung schafft Sicherheit - besonders wenn es um Ihre Rechte geht.
                 </p>

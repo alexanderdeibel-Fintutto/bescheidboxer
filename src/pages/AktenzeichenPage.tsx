@@ -10,7 +10,6 @@ import {
   Mail,
   Building,
   Search,
-  Hash,
   Info,
   Check,
 } from 'lucide-react'
@@ -21,6 +20,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -431,7 +431,13 @@ export default function AktenzeichenPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <PageHeader
+        badge="Alles griffbereit"
+        title="Aktenzeichen &"
+        titleGradient="Kontakte"
+        subtitle="Aktenzeichen, Sachbearbeiter, Telefonnummern — sofort zur Hand bei Anrufen, Terminen und Schreiben."
+      />
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
             { label: 'Dashboard', href: '/dashboard' },
@@ -439,25 +445,6 @@ export default function AktenzeichenPage() {
           ]}
           className="mb-4"
         />
-
-        {/* -------------------------------------------------------------- */}
-        {/* Header                                                         */}
-        {/* -------------------------------------------------------------- */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-boxer rounded-full">
-              <Hash className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Aktenzeichen & Kontakte
-              </h1>
-              <p className="text-sm text-gray-500">
-                Verwalte deine Aktenzeichen und Sachbearbeiter-Kontakte
-              </p>
-            </div>
-          </div>
-        </div>
 
         {/* -------------------------------------------------------------- */}
         {/* Tipp Box                                                       */}

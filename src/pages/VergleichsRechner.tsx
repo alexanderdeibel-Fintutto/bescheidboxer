@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, AlertTriangle, CheckCircle, TrendingUp, TrendingDown, Minus, Download, Info, Share2 } from 'lucide-react'
+import { AlertTriangle, CheckCircle, TrendingUp, TrendingDown, Minus, Download, Info, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { generateRechnerPdf, RechnerSection } from '@/lib/pdf-export'
 import { saveRechnerErgebnis } from '@/lib/rechner-verlauf'
 import { shareResult } from '@/lib/share'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 
 interface BescheidPosition {
   label: string
@@ -78,23 +79,24 @@ export default function VergleichsRechner() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="max-w-5xl mx-auto px-4 py-8">
-        <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Bescheid-Vergleich' }]} className="mb-4" />
-
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-3 bg-indigo-100 rounded-lg"><ArrowRight className="w-8 h-8 text-indigo-600" /></div>
-          <h1 className="text-4xl font-bold text-gray-900">Bescheid-Vergleich</h1>
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="pt-6">
+          <Breadcrumbs items={[{ label: 'Rechner', href: '/rechner' }, { label: 'Bescheid-Vergleich' }]} />
         </div>
-        <p className="text-lg text-gray-600 mt-2 mb-8">
-          Vergleiche zwei Bescheide Seite an Seite und finde Abweichungen.
-        </p>
-
+      </div>
+      <PageHeader
+        badge="Rechner"
+        title="Bescheid-"
+        titleGradient="Vergleich"
+        subtitle="Vergleiche zwei Bescheide Seite an Seite — die Differenzen werden sofort sichtbar. So findest du heraus, wo sich was geändert hat."
+      />
+      <div className="max-w-5xl mx-auto px-4 py-6">
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex gap-3">
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 mb-6 flex gap-3">
           <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div className="text-sm text-blue-900">
             <p className="font-semibold mb-1">So funktioniert der Vergleich</p>
-            <p>Trage die Betraege aus deinem alten und neuen Bescheid ein. Der Vergleich zeigt dir sofort, wo sich etwas geaendert hat und ob du weniger Geld bekommst als vorher.</p>
+            <p>Trage die Beträge aus deinem alten und neuen Bescheid ein. Der Vergleich zeigt dir sofort, wo sich etwas geändert hat und ob du weniger Geld bekommst als vorher.</p>
           </div>
         </div>
 
@@ -169,7 +171,7 @@ export default function VergleichsRechner() {
           </div>
         </div>
 
-        <Button onClick={handleVergleichen} className="w-full py-6 text-lg mb-6">Vergleich auswerten</Button>
+        <Button onClick={handleVergleichen} className="w-full py-6 text-lg mb-6 rounded-full">Vergleich auswerten</Button>
 
         {/* Results */}
         {calculated && (
@@ -189,8 +191,8 @@ export default function VergleichsRechner() {
                     {differenz === 0 && 'Kein Unterschied'}
                   </h3>
                   <p className={differenz > 0 ? 'text-green-800' : differenz < 0 ? 'text-red-800' : 'text-gray-600'}>
-                    {differenz > 0 && 'Der neue Bescheid ist hoeher. Pruefe trotzdem alle Positionen auf Richtigkeit.'}
-                    {differenz < 0 && 'Der neue Bescheid ist niedriger! Pruefe die Aenderungen genau und lege ggf. Widerspruch ein.'}
+                    {differenz > 0 && 'Der neue Bescheid ist höher. Prüfe trotzdem alle Positionen auf Richtigkeit.'}
+                    {differenz < 0 && 'Der neue Bescheid ist niedriger! Prüfe die Änderungen genau und lege ggf. Widerspruch ein.'}
                     {differenz === 0 && 'Beide Bescheide ergeben den gleichen Gesamtbetrag.'}
                   </p>
                 </div>
@@ -199,7 +201,7 @@ export default function VergleichsRechner() {
 
             {/* Detail Changes */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-xl font-bold mb-4">Aenderungen im Detail</h3>
+              <h3 className="text-xl font-bold mb-4">Änderungen im Detail</h3>
               <div className="space-y-3">
                 {positionen.filter(p => p.altBetrag > 0 || p.neuBetrag > 0).map((pos, i) => {
                   const diff = pos.neuBetrag - pos.altBetrag

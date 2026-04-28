@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { PageHeader } from '@/lib/fintutto-design'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -165,16 +166,14 @@ export default function SanktionsTracker() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-6">
-          <Breadcrumbs items={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Sanktions-Tracker' }]} className="mb-4" />
-          <div className="flex items-center gap-3 mb-1">
-            <ShieldAlert className="h-6 w-6 text-red-500" />
-            <h1 className="text-2xl font-bold tracking-tight">Sanktions-Tracker</h1>
-          </div>
-          <p className="text-muted-foreground text-sm">Behalte den Überblick über deine Sanktionen und wehr dich gegen unrechtmaessige Kürzungen</p>
-        </div>
+      <PageHeader
+        badge="Wehr dich"
+        title="Sanktions-"
+        titleGradient="Tracker"
+        subtitle="Behalte den Überblick über deine Sanktionen und wehr dich gegen unrechtmäßige Kürzungen."
+      />
+      <div className="container mx-auto px-4 pt-2">
+        <Breadcrumbs items={[{ label: 'Dashboard', href: '/dashboard' }, { label: 'Sanktions-Tracker' }]} className="mb-4" />
       </div>
 
       <div className="container mx-auto px-4 py-6 space-y-6">

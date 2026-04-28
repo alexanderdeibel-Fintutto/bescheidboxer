@@ -146,29 +146,54 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return
     }
 
-    // Real Supabase mode
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-      setUser(session?.user ?? null)
-      if (session?.user) {
-        fetchProfile(session.user.id, session.user.email ?? null)
-      }
+    // Safety-Net: nach 4 Sekunden auf jeden Fall loading=false,
+    // damit Header/RequireAuth nicht ewig im Loading-State haengen
+    // wenn getSession() aus irgendeinem Grund nicht resolved.
+    const safetyTimer = setTimeout(() => {
       setLoading(false)
-    })
+    }, 4000)
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+    // Real Supabase mode — mit defensivem Error-Handling
+    supabase.auth
+      .getSession()
+      .then(({ data: { session } }) => {
         setSession(session)
         setUser(session?.user ?? null)
         if (session?.user) {
-          await fetchProfile(session.user.id, session.user.email ?? null)
-        } else {
-          setProfile(null)
+          // fetchProfile darf scheitern ohne loading zu blockieren
+          fetchProfile(session.user.id, session.user.email ?? null).catch((err) =>
+            console.error('fetchProfile failed:', err),
+          )
         }
-      }
-    )
+      })
+      .catch((err) => {
+        console.error('Supabase getSession() failed:', err)
+      })
+      .finally(() => {
+        clearTimeout(safetyTimer)
+        setLoading(false)
+      })
 
-    return () => subscription.unsubscribe()
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      setSession(session)
+      setUser(session?.user ?? null)
+      if (session?.user) {
+        await fetchProfile(session.user.id, session.user.email ?? null).catch((err) =>
+          console.error('fetchProfile (onAuthStateChange) failed:', err),
+        )
+      } else {
+        setProfile(null)
+      }
+      // Auch hier sicherstellen, dass loading false wird
+      setLoading(false)
+    })
+
+    return () => {
+      clearTimeout(safetyTimer)
+      subscription.unsubscribe()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

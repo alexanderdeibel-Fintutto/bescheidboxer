@@ -77,6 +77,8 @@ const MeineBerechnungenPage = lazy(() => import('@/pages/MeineBerechnungenPage')
 const WiderspruchJobcenterPage = lazy(() => import('@/pages/WiderspruchJobcenterPage'))
 const UeberUnsPage = lazy(() => import('@/pages/UeberUnsPage'))
 const AuthCallbackPage = lazy(() => import('@/pages/AuthCallbackPage'))
+const SetPasswordPage = lazy(() => import('@/pages/SetPasswordPage'))
+const ForgotPasswordPage = lazy(() => import('@/pages/ForgotPasswordPage'))
 const AdminPage = lazy(() => import('@/pages/AdminPage'))
 
 import PageSkeleton from '@/components/PageSkeleton'
@@ -212,7 +214,16 @@ function App() {
                 {/* Auth */}
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />
+                <Route path="passwort-vergessen" element={<ForgotPasswordPage />} />
                 <Route path="auth/callback" element={<AuthCallbackPage />} />
+                <Route
+                  path="onboarding/passwort"
+                  element={
+                    <RequireAuth>
+                      <SetPasswordPage />
+                    </RequireAuth>
+                  }
+                />
 
                 {/* Legal Pages */}
                 <Route path="impressum" element={<ImpressumPage />} />

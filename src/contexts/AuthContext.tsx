@@ -35,6 +35,8 @@ interface UserProfile {
   lettersGeneratedThisMonth: number
   scansThisMonth: number
   creditsCurrent: number
+  hasPassword: boolean        // True sobald der User ein Passwort gesetzt hat
+                              // (via user_metadata.has_password oder signUp mit Passwort)
 }
 
 interface AuthContextType {
@@ -45,8 +47,20 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string, name?: string) => Promise<void>
   signInWithMagicLink: (email: string, redirectTo?: string) => Promise<void>
+  setPassword: (newPassword: string) => Promise<void>
   signOut: () => Promise<void>
   refreshProfile: () => Promise<void>
+}
+
+/** Helper: hat dieser User bereits ein Passwort gesetzt?
+ *  Wir prüfen primär user_metadata.has_password (eigenes Flag),
+ *  fallback identities[provider='email'] (gibt es bei Magic-Link UND Passwort).
+ *  Beim Magic-Link-Sign-Up setzen wir KEIN Flag — es muss nach Passwort-Setup
+ *  via setPassword() gesetzt werden. Bei klassischem signUp() setzen wir
+ *  has_password=true direkt. */
+function userHasPassword(user: User | null): boolean {
+  if (!user) return false
+  return Boolean(user.user_metadata?.has_password)
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -140,6 +154,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           lettersGeneratedThisMonth: 0,
           scansThisMonth: 0,
           creditsCurrent: 5,
+          hasPassword: true, // Demo-Mode: Passwort gilt als gesetzt
         })
       }
       setLoading(false)
@@ -242,6 +257,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const name = profileRow?.full_name ?? null
     const role = ((profileRow?.role as UserRole) || 'user')
 
+    // Aktuellen User-State aus Supabase ziehen, damit user_metadata frisch ist
+    const { data: { user: freshUser } } = await supabase.auth.getUser()
+
     setProfile({
       id: userId,
       authId: userId,
@@ -253,6 +271,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       lettersGeneratedThisMonth: stateRow?.letters_generated_this_month || 0,
       scansThisMonth: stateRow?.scans_this_month || 0,
       creditsCurrent: stateRow?.credits_current || 0,
+      hasPassword: userHasPassword(freshUser),
     })
   }
 
@@ -291,6 +310,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         lettersGeneratedThisMonth: 0,
         scansThisMonth: 0,
         creditsCurrent: 5,
+        hasPassword: true, // Demo-Mode: Passwort gilt als gesetzt
       })
       saveDemoSession(found)
       return
@@ -329,6 +349,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         lettersGeneratedThisMonth: 0,
         scansThisMonth: 0,
         creditsCurrent: 5,
+        hasPassword: true, // Demo-Mode: Passwort gilt als gesetzt
       })
       saveDemoSession(newUser)
       return
@@ -338,6 +359,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // handle_new_user() in der DB profiles.app_source='bescheidboxer'
     // anlegt. Dadurch feuert der Trigger ensure_bb_user_state()
     // automatisch und bb_user_state wird angelegt.
+    // has_password=true wird gesetzt, weil bei signUp() ein Passwort
+    // direkt mitgegeben wurde — User muss nicht mehr zum Setup.
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -346,6 +369,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           app_source: 'bescheidboxer',
           full_name: name || null,
           display_name: name || null,
+          has_password: true,
         },
       },
     })
@@ -402,6 +426,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         lettersGeneratedThisMonth: 0,
         scansThisMonth: 0,
         creditsCurrent: 5,
+        hasPassword: true, // Demo-Mode: Passwort gilt als gesetzt
       })
       saveDemoSession(found)
       return
@@ -420,6 +445,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       },
     })
     if (error) throw error
+  }
+
+  // ---- setPassword ----
+  // Wird auf der SetPasswordPage genutzt nach Erstanmeldung via Magic-Link.
+  // Setzt Passwort + has_password=true im user_metadata.
+  const setPassword = async (newPassword: string) => {
+    if (!hasRealSupabase) {
+      // Demo-Mode: Passwort lokal updaten
+      const session = getDemoSession()
+      if (!session) throw new Error('Nicht eingeloggt.')
+      const users = getDemoUsers()
+      const idx = users.findIndex((u) => u.id === session.id)
+      if (idx === -1) throw new Error('User nicht gefunden.')
+      users[idx].password = await hashPassword(newPassword)
+      saveDemoUsers(users)
+      return
+    }
+
+    const { error } = await supabase.auth.updateUser({
+      password: newPassword,
+      data: { has_password: true },
+    })
+    if (error) throw error
+
+    // Profil refresh damit hasPassword=true im UI sichtbar wird
+    if (user) {
+      await fetchProfile(user.id, user.email ?? null).catch((err) =>
+        console.error('fetchProfile after setPassword failed:', err),
+      )
+    }
   }
 
   // ---- signOut ----
@@ -446,6 +501,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signIn,
         signUp,
         signInWithMagicLink,
+        setPassword,
         signOut,
         refreshProfile,
       }}

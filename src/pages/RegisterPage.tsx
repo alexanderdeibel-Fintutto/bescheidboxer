@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { Loader2, CheckCircle2, Mail, KeyRound } from 'lucide-react'
+import { Loader2, CheckCircle2, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -9,18 +9,13 @@ import { useAuth } from '@/contexts/AuthContext'
 import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 
-type Mode = 'magic' | 'password'
-
 export default function RegisterPage() {
   useDocumentTitle('Konto erstellen')
-  const [mode, setMode] = useState<Mode>('magic')
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [magicSent, setMagicSent] = useState(false)
-  const { user, signUp, signInWithMagicLink, loading } = useAuth()
+  const { user, signInWithMagicLink, loading } = useAuth()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const next = searchParams.get('next') || '/dashboard'
@@ -37,50 +32,17 @@ export default function RegisterPage() {
     setError('')
     setIsLoading(true)
     try {
+      // Nach Magic-Link-Klick führt der AuthCallback den User
+      // automatisch zu /onboarding/passwort, weil noch kein Passwort
+      // gesetzt ist. Von dort aus dann zu next.
       await signInWithMagicLink(email, next)
       setMagicSent(true)
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'Magic-Link konnte nicht versendet werden.',
+        err instanceof Error
+          ? err.message
+          : 'Anmelde-Link konnte nicht versendet werden.',
       )
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handlePasswordSignUp = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-    if (password.length < 6) {
-      setError('Passwort muss mindestens 6 Zeichen lang sein.')
-      return
-    }
-    setIsLoading(true)
-    try {
-      await signUp(email, password, name)
-      navigate(next, { replace: true })
-    } catch (err) {
-      const msg = err instanceof Error ? err.message.toLowerCase() : ''
-      if (
-        msg.includes('already') ||
-        msg.includes('user_already_exists') ||
-        msg.includes('exists') ||
-        msg.includes('registered')
-      ) {
-        setError(
-          'Diese E-Mail ist bereits registriert. Melde dich bitte an.',
-        )
-      } else if (msg.includes('invalid') || msg.includes('email')) {
-        setError('Bitte prüfe die E-Mail-Adresse.')
-      } else if (msg.includes('password')) {
-        setError('Passwort zu schwach. Mindestens 8 Zeichen, Buchstaben + Zahlen.')
-      } else {
-        setError(
-          err instanceof Error && err.message
-            ? `Registrierung fehlgeschlagen: ${err.message}`
-            : 'Registrierung fehlgeschlagen. Bitte später erneut versuchen.',
-        )
-      }
     } finally {
       setIsLoading(false)
     }
@@ -89,7 +51,7 @@ export default function RegisterPage() {
   if (magicSent) {
     return (
       <>
-        <PageHeader badge="Magic-Link versendet" title="Schau in dein Postfach." align="center" />
+        <PageHeader badge="Anmelde-Link versendet" title="Schau in dein Postfach." align="center" />
         <div className="container max-w-md mx-auto px-6 pb-16">
           <FadeSection>
             <Card className="rounded-2xl">
@@ -99,10 +61,18 @@ export default function RegisterPage() {
                 </div>
                 <h3 className="text-lg font-bold mb-2">E-Mail gesendet</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-5">
-                  Wir haben dir einen Anmelde-Link an{' '}
-                  <strong className="text-foreground">{email}</strong> geschickt. Klick
-                  drauf — und du bist drin.
+                  Wir haben dir einen Link an{' '}
+                  <strong className="text-foreground">{email}</strong> geschickt.
+                  Klick drauf — dann legst du dein Passwort fest und bist drin.
                 </p>
+                <div className="bg-muted/40 rounded-xl p-4 text-left text-sm space-y-2 mb-5">
+                  <p>📬 <strong>Mail nicht angekommen?</strong></p>
+                  <ul className="text-muted-foreground text-xs space-y-1 ml-4 list-disc">
+                    <li>Prüfe deinen Spam-Ordner</li>
+                    <li>Der Link gilt 1 Stunde</li>
+                    <li>Achte auf den Absender „BescheidBoxer"</li>
+                  </ul>
+                </div>
                 <Button
                   variant="outline"
                   className="rounded-full"
@@ -127,7 +97,7 @@ export default function RegisterPage() {
         badge="Konto erstellen"
         title="2 kostenlose Scans"
         titleGradient="warten auf dich."
-        subtitle="In unter 30 Sekunden registriert — ohne Kreditkarte, ohne Risiko."
+        subtitle="Email eingeben — wir schicken dir einen Anmelde-Link. Danach legst du dein Passwort fest."
         align="center"
       />
 
@@ -156,125 +126,44 @@ export default function RegisterPage() {
                 </ul>
               </div>
 
-              {/* Mode-Toggle */}
-              <div className="flex gap-2 p-1 bg-muted/50 rounded-full mb-6">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMode('magic')
-                    setError('')
-                  }}
-                  className={`flex-1 flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
-                    mode === 'magic'
-                      ? 'bg-background shadow-sm'
-                      : 'text-muted-foreground'
-                  }`}
-                >
-                  <Mail className="h-4 w-4" />
-                  Magic-Link
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMode('password')
-                    setError('')
-                  }}
-                  className={`flex-1 flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
-                    mode === 'password'
-                      ? 'bg-background shadow-sm'
-                      : 'text-muted-foreground'
-                  }`}
-                >
-                  <KeyRound className="h-4 w-4" />
-                  Passwort
-                </button>
-              </div>
-
               {error && (
                 <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm mb-4">
                   {error}
                 </div>
               )}
 
-              {mode === 'magic' ? (
-                <form onSubmit={handleMagic} className="space-y-4">
-                  <div>
-                    <Label htmlFor="email-magic">E-Mail-Adresse</Label>
-                    <Input
-                      id="email-magic"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="deine@email.de"
-                      required
-                      autoFocus
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full rounded-full gradient-boxer text-white border-0 hover:opacity-90"
-                    disabled={isLoading}
-                  >
-                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    <Mail className="mr-2 h-4 w-4" />
-                    Anmelde-Link schicken
-                  </Button>
-                  <p className="text-xs text-muted-foreground text-center">
-                    Funktioniert für neue + bestehende Accounts. Kein Passwort nötig.
-                  </p>
-                </form>
-              ) : (
-                <form onSubmit={handlePasswordSignUp} className="space-y-4">
-                  <div>
-                    <Label htmlFor="name">Name (optional)</Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Dein Name"
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">E-Mail</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="deine@email.de"
-                      required
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="password">Passwort</Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Mindestens 6 Zeichen"
-                      required
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full rounded-full gradient-boxer text-white border-0 hover:opacity-90"
-                    disabled={isLoading}
-                  >
-                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Kostenlos registrieren
-                  </Button>
-                </form>
-              )}
+              <form onSubmit={handleMagic} className="space-y-4">
+                <div>
+                  <Label htmlFor="email">E-Mail-Adresse</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="deine@email.de"
+                    required
+                    autoFocus
+                    autoComplete="email"
+                    className="mt-1.5"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full rounded-full gradient-boxer text-white border-0 hover:opacity-90"
+                  disabled={isLoading}
+                >
+                  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  <Mail className="mr-2 h-4 w-4" />
+                  Anmelde-Link schicken
+                </Button>
+                <p className="text-xs text-muted-foreground text-center">
+                  Kein Passwort nötig — Email reicht. Nach Bestätigung legst du
+                  dein Passwort fest.
+                </p>
+              </form>
 
-              <div className="mt-5 text-center text-sm text-muted-foreground">
+              <div className="mt-6 pt-5 border-t border-border text-center text-sm text-muted-foreground">
                 Bereits registriert?{' '}
                 <Link
                   to={`/login${searchParams.get('next') ? `?next=${encodeURIComponent(searchParams.get('next') || '')}` : ''}`}

@@ -6,27 +6,44 @@ import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 /**
  * AuthCallbackPage — landet hier nach Klick auf Magic-Link.
- * Supabase macht via onAuthStateChange im AuthContext automatisch
- * `setSession(...)`. Wir warten darauf und redirecten dann zum
- * `next`-Parameter (oder /dashboard als Fallback).
+ *
+ * Logik:
+ *   1. Warte auf Auth-State von Supabase (onAuthStateChange im AuthContext)
+ *   2. Wenn user da:
+ *      - Wenn ?next=/onboarding/passwort?reset=1 → direkt dorthin (Reset-Flow)
+ *      - Wenn !hasPassword → /onboarding/passwort?next=<urspruengliches-next>
+ *      - Wenn hasPassword → /next (normalfall)
+ *   3. Wenn Auth fehlgeschlagen → /login mit Fehler
  */
 export default function AuthCallbackPage() {
   useDocumentTitle('Anmeldung läuft …')
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const { user, loading } = useAuth()
+  const { user, profile, loading } = useAuth()
 
   useEffect(() => {
-    // Warte auf Auth-State von Supabase
     if (loading) return
 
     const next = searchParams.get('next') || '/dashboard'
 
     if (user) {
+      // Reset-Flow erkennen — explizit Passwort-Reset
+      if (next.startsWith('/onboarding/passwort')) {
+        navigate(next, { replace: true })
+        return
+      }
+
+      // Normaler Login: Hat User schon Passwort? → next, sonst Setup
+      if (profile && !profile.hasPassword) {
+        navigate(`/onboarding/passwort?next=${encodeURIComponent(next)}`, {
+          replace: true,
+        })
+        return
+      }
+
       navigate(next, { replace: true })
     } else {
-      // Auth fehlgeschlagen oder Link abgelaufen
-      // Fehler-Hashes/Errors stehen in URL-Hash bei Supabase
+      // Kein User — Link abgelaufen oder Fehler
       const hash = window.location.hash
       if (hash.includes('error')) {
         navigate('/login?error=link-invalid', { replace: true })
@@ -38,7 +55,7 @@ export default function AuthCallbackPage() {
         return () => clearTimeout(t)
       }
     }
-  }, [user, loading, navigate, searchParams])
+  }, [user, profile, loading, navigate, searchParams])
 
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6">

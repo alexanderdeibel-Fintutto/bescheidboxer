@@ -329,7 +329,7 @@ function useStatistikData() {
     }
     if (chatMessages.length === 0) {
       tipps.push(
-        'Unser KI-Rechtsberater kann dir Fragen zu deinem Bescheid beantworten. Starte jetzt einen Chat!'
+        'Unser KI-Wissenshelfer kann dir Fragen zu deinem Bescheid beantworten. Starte jetzt einen Chat!'
       )
     }
     if (widersprueche.filter((w) => w.status === 'eingereicht').length > 0) {

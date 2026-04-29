@@ -38,7 +38,7 @@ const FEATURE_CARDS = [
   {
     to: '/chat',
     icon: MessageCircle,
-    title: 'KI-Rechtsberater',
+    title: 'KI-Sozialrecht-Assistent',
     description: 'Stelle Fragen zu Bürgergeld, Sanktionen, KdU und mehr.',
     color: 'text-green-500',
     bg: 'bg-green-500/10',

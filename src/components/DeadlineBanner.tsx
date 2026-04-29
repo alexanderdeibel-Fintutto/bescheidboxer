@@ -125,7 +125,7 @@ export default function DeadlineBanner() {
           isOverdue ? 'text-red-800' : 'text-amber-800'
         }`}>
           {isOverdue
-            ? `Frist ueberschritten: ${mostUrgent.label}`
+            ? `Frist überschritten: ${mostUrgent.label}`
             : mostUrgent.daysLeft === 0
               ? `Frist läuft heute ab: ${mostUrgent.label}`
               : `Noch ${mostUrgent.daysLeft} ${mostUrgent.daysLeft === 1 ? 'Tag' : 'Tage'}: ${mostUrgent.label}`
@@ -135,6 +135,9 @@ export default function DeadlineBanner() {
               (+{urgent.length - 1} weitere)
             </span>
           )}
+        </p>
+        <p className="text-[10px] text-muted-foreground/80 mt-0.5">
+          Schätzung — bitte mit der Rechtsbehelfsbelehrung auf deinem Bescheid abgleichen.
         </p>
       </div>
 

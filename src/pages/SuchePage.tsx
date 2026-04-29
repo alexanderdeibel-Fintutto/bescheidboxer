@@ -153,7 +153,7 @@ const SEARCH_ITEMS: SearchItem[] = [
     keywords: ['bescheid', 'prüfen', 'fehler', 'upload']
   },
   {
-    title: 'KI-Rechtsberater',
+    title: 'KI-Sozialrecht-Assistent',
     description: 'Stelle deine Fragen zum Bürgergeld',
     category: 'tool',
     href: '/chat',

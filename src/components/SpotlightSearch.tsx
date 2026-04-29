@@ -11,7 +11,7 @@ interface SearchItem {
 
 const searchItems: SearchItem[] = [
   { title: 'BescheidScan', href: '/scan', icon: ScanSearch, keywords: ['scan', 'bescheid', 'prüfen'] },
-  { title: 'KI-Rechtsberater', href: '/chat', icon: MessageCircle, keywords: ['chat', 'frage', 'beratung'] },
+  { title: 'KI-Sozialrecht-Assistent', href: '/chat', icon: MessageCircle, keywords: ['chat', 'frage', 'beratung'] },
   { title: 'Bürgergeld-Rechner', href: '/rechner/buergergeld', icon: Calculator, keywords: ['rechner', 'buergergeld', 'regelsatz'] },
   { title: 'KdU-Rechner', href: '/rechner/kdu', icon: Calculator, keywords: ['miete', 'wohnung', 'heizung'] },
   { title: 'Mehrbedarf-Rechner', href: '/rechner/mehrbedarf', icon: Calculator, keywords: ['schwanger', 'alleinerziehend'] },

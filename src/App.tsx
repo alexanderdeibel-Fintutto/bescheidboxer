@@ -110,7 +110,7 @@ function App() {
                   }
                 />
 
-                {/* KI-Rechtsberater — Auth-Pflicht (Quota-Tracking) */}
+                {/* KI-Sozialrecht-Assistent — Auth-Pflicht (Quota-Tracking) */}
                 <Route
                   path="chat"
                   element={

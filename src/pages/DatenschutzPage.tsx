@@ -156,7 +156,7 @@ export default function DatenschutzPage() {
                 e) Bei Nutzung des KI-Chats
               </h3>
               <p className="text-gray-600">
-                Wenn Sie den KI-Rechtsberater nutzen, werden Ihre
+                Wenn Sie den KI-Sozialrecht-Assistent nutzen, werden Ihre
                 Chatverlaeufe verschluesselt in unserer Datenbank gespeichert.
                 Sie koennen Ihre Chatverlaeufe jederzeit selbststaendig
                 loeschen. Die Verarbeitung erfolgt auf Grundlage von Art. 6
@@ -200,6 +200,108 @@ export default function DatenschutzPage() {
             Auftragsverarbeitungsvertraege (AVV) gemaess Art. 28 DSGVO
             abgeschlossen.
           </p>
+        </section>
+
+        {/* 4a. Besondere Kategorien personenbezogener Daten (Art. 9 DSGVO) */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            4a. Besondere Kategorien personenbezogener Daten (Art. 9 DSGVO)
+          </h2>
+          <p className="text-gray-600 mb-3">
+            Bescheide vom Jobcenter können <strong>besondere Kategorien
+            personenbezogener Daten</strong> im Sinne des Art. 9 Abs. 1 DSGVO
+            enthalten — insbesondere:
+          </p>
+          <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4 mb-3">
+            <li>Gesundheitsdaten (z. B. bei Mehrbedarf wegen Krankheit, Schwerbehinderung, kostenaufwändiger Ernährung)</li>
+            <li>Sozialdaten im Sinne von § 67 SGB X</li>
+            <li>ggf. Hinweise auf Religionszugehörigkeit (z. B. Kirchensteuer)</li>
+          </ul>
+          <p className="text-gray-600 mb-3">
+            Die Verarbeitung dieser Daten erfolgt ausschließlich auf Grundlage
+            Ihrer <strong>ausdrücklichen Einwilligung gemäß Art. 9 Abs. 2 lit. a
+            DSGVO</strong>, die Sie vor dem Upload des ersten Bescheides
+            erteilen. Sie können diese Einwilligung jederzeit mit Wirkung für
+            die Zukunft widerrufen, indem Sie Ihren Account löschen oder uns
+            unter support@bescheidboxer.de kontaktieren.
+          </p>
+          <p className="text-gray-600">
+            Hochgeladene Bescheid-Dokumente werden ausschließlich temporär zur
+            KI-Analyse verarbeitet und <strong>spätestens 24 Stunden nach
+            Abschluss der Analyse aus dem temporären Speicher gelöscht</strong>.
+            Die Analyse-Ergebnisse (Strukturierte Daten ohne Originaldokument)
+            werden in Ihrem Account gespeichert, bis Sie diese löschen.
+          </p>
+        </section>
+
+        {/* 4b. Drittlandtransfer USA */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            4b. Drittlandtransfer (USA)
+          </h2>
+          <p className="text-gray-600 mb-3">
+            Im Rahmen der KI-Analyse (BescheidScan, KI-Sozialrecht-Assistent)
+            übermitteln wir Eingaben an <strong>Anthropic, Inc.</strong> (USA),
+            den Anbieter unseres KI-Modells. Diese Übermittlung in ein Drittland
+            außerhalb der EU/des EWR ist abgesichert durch:
+          </p>
+          <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4 mb-3">
+            <li>
+              <strong>Standardvertragsklauseln (SCC)</strong> der Europäischen
+              Kommission gemäß Art. 46 Abs. 2 lit. c DSGVO
+            </li>
+            <li>
+              Vertragliche Zusicherung von Anthropic, dass übermittelte Inhalte{' '}
+              <strong>nicht zum Training von KI-Modellen verwendet</strong>{' '}
+              werden (Anthropic Commercial Terms)
+            </li>
+            <li>
+              Verschlüsselte Übertragung (TLS 1.2+) und Verschlüsselung im
+              Speicher
+            </li>
+          </ul>
+          <p className="text-gray-600">
+            Trotz dieser Maßnahmen weisen wir darauf hin, dass für US-Anbieter
+            grundsätzlich der CLOUD Act und vergleichbare Gesetze gelten können,
+            die im Einzelfall einen behördlichen Datenzugriff in den USA
+            ermöglichen. Wenn Sie diese Übermittlung nicht wünschen, nutzen Sie
+            den BescheidScan / KI-Assistent bitte nicht.
+          </p>
+        </section>
+
+        {/* 4c. Speicherdauer */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            4c. Speicherdauer und Löschkonzept
+          </h2>
+          <p className="text-gray-600 mb-3">
+            Wir verarbeiten Ihre Daten nur so lange, wie es für den jeweiligen
+            Zweck erforderlich ist:
+          </p>
+          <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+            <li>
+              <strong>Hochgeladene Bescheide:</strong> Sofortige Löschung nach
+              Verarbeitung, spätestens 24 Stunden
+            </li>
+            <li>
+              <strong>Scan-/Analyse-Ergebnisse:</strong> bis zur manuellen
+              Löschung durch Sie oder Konto-Löschung
+            </li>
+            <li>
+              <strong>Chat-Verläufe:</strong> bis zur manuellen Löschung,
+              spätestens 12 Monate nach letzter Nutzung
+            </li>
+            <li>
+              <strong>Account-Daten (Profil, Plan):</strong> bis zur Konto-Löschung
+            </li>
+            <li>
+              <strong>Rechnungen / Zahlungsdaten:</strong> 10 Jahre gemäß § 257 HGB / § 147 AO
+            </li>
+            <li>
+              <strong>Server-Logfiles:</strong> 7 Tage, danach automatische
+              Löschung
+            </li>
+          </ul>
         </section>
 
         {/* 5. Cookies */}

@@ -265,7 +265,7 @@ Der Widerspruch muss schriftlich oder zur Niederschrift eingelegt werden. Er mus
 Die Begruendung des Widerspruchs ist zunaechst nicht zwingend erforderlich. Um die Frist zu wahren, genuegt ein kurzer "fristwahrende r Widerspruch" mit dem Hinweis "Begruendung folgt". Sie koennen die Begruendung dann in Ruhe nachreichen. Beachten Sie dabei, dass Sie das Jobcenter um eine angemessene Frist zur Nachreichung der Begruendung bitten sollten.
 
 Der Widerspruch muss an die Behoerde gerichtet werden, die den Bescheid erlassen hat - also in der Regel an Ihr Jobcenter. Senden Sie ihn per Einschreiben, geben Sie ihn persoenlich ab und lassen Sie sich den Eingang bestaetigen, oder senden Sie ihn per Fax (Sendebericht aufheben!).`,
-        tip: 'Nutzen Sie unseren Widerspruchs-Generator, um schnell einen rechtssicheren Widerspruch zu erstellen. Die Vorlage beruecksichtigt alle formalen Anforderungen.',
+        tip: 'Nutzen Sie unseren Widerspruchs-Generator, um schnell einen formal korrekten Widerspruch zu erstellen. Die Vorlage beruecksichtigt alle formalen Anforderungen.',
       },
       {
         title: 'Das Widerspruchsverfahren',

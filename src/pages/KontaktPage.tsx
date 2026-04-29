@@ -22,7 +22,7 @@ import {
 const QUICK_HELP = [
   {
     icon: MessageCircle,
-    title: 'KI-Rechtsberater',
+    title: 'KI-Sozialrecht-Assistent',
     desc: 'Sofort Antworten auf deine Fragen — rund um die Uhr.',
     href: '/chat',
     cta: 'Zum Chat',

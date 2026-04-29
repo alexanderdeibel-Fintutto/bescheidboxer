@@ -391,10 +391,19 @@ export default function PricingPage() {
           </div>
 
           {/* PIONIER50 Hinweis */}
-          <FadeSection className="text-center mt-8">
+          <FadeSection className="text-center mt-8 max-w-2xl mx-auto">
             <p className="text-sm text-muted-foreground">
               💡 Mit Code <strong className="text-foreground font-mono">PIONIER50</strong>{' '}
               sparst du <GradientText>50&nbsp;% lebenslang</GradientText> auf jeden bezahlten Plan
+            </p>
+            <p className="text-xs text-muted-foreground/80 mt-2 leading-relaxed">
+              <strong>Bedingungen PIONIER50:</strong> 50&nbsp;% Rabatt auf alle
+              monatlichen und jährlichen Tarif-Preise (Starter, Kämpfer,
+              Vollschutz) für die gesamte Laufzeit deines aktiven Abos. Bei
+              Kündigung erlischt der Rabatt; eine erneute Aktivierung ist
+              ausgeschlossen. Gilt nicht auf Credit-Pakete und Postversand.
+              Während der Beta-Phase verfügbar; danach prüfen wir das Angebot
+              für Neuanmeldungen neu.
             </p>
           </FadeSection>
         </div>

@@ -275,7 +275,7 @@ export default function GeneratorPage() {
             <CardContent className="p-4">
               <h3 className="font-semibold text-sm mb-2">Fragen zu diesem Thema?</h3>
               <p className="text-xs text-muted-foreground mb-3">
-                Unser KI-Rechtsberater hilft dir, deine Situation besser zu verstehen.
+                Unser KI-Wissenshelfer hilft dir, deine Situation besser zu verstehen.
               </p>
               <Button variant="outline" size="sm" className="w-full rounded-full" asChild>
                 <Link to="/chat">KI-Berater fragen</Link>

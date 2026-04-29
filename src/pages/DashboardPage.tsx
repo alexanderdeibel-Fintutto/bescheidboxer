@@ -872,7 +872,7 @@ export default function DashboardPage() {
                     className="w-full justify-start gap-2 h-9 text-sm"
                   >
                     <MessageCircle className="h-4 w-4 text-blue-500" />
-                    KI-Rechtsberater fragen
+                    KI-Sozialrecht-Assistent fragen
                   </Button>
                 </Link>
                 <Link to="/scan" className="block">

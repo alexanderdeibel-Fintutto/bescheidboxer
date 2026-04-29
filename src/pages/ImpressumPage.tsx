@@ -12,6 +12,19 @@ export default function ImpressumPage() {
       />
 
       <FadeSection delay={120} className="container max-w-4xl mx-auto px-6 pb-16 space-y-10">
+        {/* TODO BANNER — vor Live-Schaltung muss alles ergänzt sein */}
+        <div className="rounded-2xl border-2 border-amber-400 bg-amber-50 dark:bg-amber-950/30 p-5">
+          <p className="text-sm font-bold text-amber-900 dark:text-amber-100 mb-1">
+            ⚠️ Hinweis (intern, vor Live-Schaltung entfernen):
+          </p>
+          <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
+            Dieses Impressum enthält noch Platzhalter. Vor Beta-Skalierung
+            müssen Vertretungsberechtigter, Adresse, USt-Status / Handelsregister
+            und Verantwortlicher nach § 18 MStV mit echten Daten gefüllt
+            werden — sonst Abmahnungs-Risiko nach § 5 TMG / § 5a UWG.
+          </p>
+        </div>
+
         {/* Angaben gemaess § 5 TMG */}
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">

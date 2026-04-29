@@ -51,7 +51,7 @@ const features = [
   },
   {
     icon: MessageCircle,
-    title: 'KI-Rechtsberater',
+    title: 'KI-Sozialrecht-Assistent',
     description:
       'Frag in deinen Worten. Die KI antwortet wie ein Sozialberater — ohne Termin, ohne Wartezeit, rund um die Uhr.',
     href: '/chat',
@@ -98,7 +98,7 @@ const features = [
 
 const stats = [
   { value: '500.000+', label: 'Widersprüche/Jahr in DE' },
-  { value: 'Jeder 2.', label: 'Bescheid fehlerhaft' },
+  { value: '~50 %', label: 'Fehlerquote (lt. Studien)' },
   { value: '1/3', label: 'Widersprüche erfolgreich' },
   { value: '0 €', label: 'Einstieg' },
 ]
@@ -128,7 +128,7 @@ export default function HomePage() {
         badge="Kämpfe für dein Recht"
         title="Dein Bescheid ist falsch?"
         titleGradient="Wir boxen ihn durch."
-        subtitle="BescheidBoxer scannt deinen Bescheid mit KI, findet jeden Fehler und schreibt dir den passenden Widerspruch. Blitzschnell. Verständlich. Rechtssicher."
+        subtitle="BescheidBoxer scannt deinen Bescheid mit KI, findet mögliche Fehler und bereitet eine passende Widerspruchs-Vorlage für dich vor. Blitzschnell. Verständlich. Sachlich-formal."
         primaryCta={{
           label: 'Bescheid jetzt scannen',
           to: '/scan',
@@ -327,7 +327,7 @@ export default function HomePage() {
               icon: FileText,
               title: 'Boxen',
               description:
-                'Fertiger Widerspruch. Personalisiert. Rechtssicher. Direkt zum Versand.',
+                'Fertiger Widerspruch. Personalisiert. Sachlich-formal strukturiert. Direkt zum Versand.',
             },
           ].map((item, i) => (
             <FadeSection key={item.step} delay={i * 120}>

@@ -80,7 +80,7 @@ const FINTUTTO_PRODUKTE = [
   { name: 'HausmeisterPro', desc: 'Digitale Objektbetreuung und Wartungsmanagement' },
   { name: 'MieterApp', desc: 'Das moderne Mieterportal für einfache Kommunikation' },
   { name: 'Zähler-App', desc: 'KI-gestützte Zählerablesung mit OCR-Technologie' },
-  { name: 'Formulare-Suite', desc: 'Rechtssichere Dokumente für jeden Bedarf' },
+  { name: 'Formulare-Suite', desc: 'Sorgfältig vorbereitete Dokumente für jeden Bedarf' },
 ]
 
 const WERTE = [
@@ -123,9 +123,9 @@ export default function UeberUnsPage() {
       {/* ═══════════════════════════════════════════════════════════ */}
       <PageHero
         badge="Warum es uns gibt"
-        title="Jeder zweite Bescheid ist falsch."
-        titleGradient="Wir ändern das."
-        subtitle="Und die meisten Menschen wissen es nicht. BescheidBoxer macht aus Sozialrecht ein Werkzeug für jeden."
+        title="Viele Bescheide enthalten Fehler."
+        titleGradient="Wir helfen, sie zu finden."
+        subtitle="Studien zeigen hohe Fehlerquoten bei Sozialleistungs-Bescheiden — die meisten Menschen wissen es nicht. BescheidBoxer macht aus Sozialrecht ein Werkzeug für jeden."
         primaryCta={{
           label: 'Bescheid prüfen',
           to: '/scan',
@@ -144,8 +144,8 @@ export default function UeberUnsPage() {
       <SectionWrapper bg="muted">
         <SectionHeader
           badge="Das Problem"
-          title="500.000 fehlerhafte Bescheide."
-          titleGradient="Pro Jahr."
+          title="Hunderttausende Widersprüche."
+          titleGradient="Jedes Jahr."
         />
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <FadeSection delay={100}>
@@ -158,8 +158,9 @@ export default function UeberUnsPage() {
                   <h3 className="text-xl font-bold">Die Studienlage</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  Jedes Jahr verschicken die 400 Jobcenter in Deutschland Millionen
-                  Bescheide. Studien zeigen: Mindestens jeder zweite enthält Fehler.
+                  Die rund 400 Jobcenter in Deutschland verschicken jährlich Millionen
+                  Bescheide. Studien (z. B. Sozialgerichtsbarkeit, BA-Statistik) deuten
+                  auf hohe Fehlerquoten hin — Größenordnung etwa jeder zweite Bescheid.
                 </p>
               </CardContent>
             </Card>

@@ -4,7 +4,7 @@ import { Swords } from 'lucide-react'
 const footerLinks = {
   hilfe: [
     { name: 'BescheidScan', href: '/scan' },
-    { name: 'KI-Rechtsberater', href: '/chat' },
+    { name: 'KI-Sozialrecht-Assistent', href: '/chat' },
     { name: 'Dokumenten-Werkstatt', href: '/musterschreiben' },
     { name: 'AmtsRechner-Suite', href: '/rechner' },
     { name: 'Widerspruch-Tracker', href: '/tracker' },

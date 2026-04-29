@@ -718,7 +718,7 @@ export default function WiderspruchVorlagen() {
     <div>
       {/* Hero */}
       <PageHero
-        badge={`Vorlagen · ${TEMPLATES.length} Templates · Rechtssicher`}
+        badge={`Vorlagen · ${TEMPLATES.length} Templates · Sachlich-formal strukturiert`}
         title="Widerspruch."
         titleGradient="In 3 Minuten fertig."
         subtitle={`${TEMPLATES.length} fertige Vorlagen zum Ausfüllen, Kopieren und Drucken — geprüft, paragrafenfest, sofort einsetzbar.`}

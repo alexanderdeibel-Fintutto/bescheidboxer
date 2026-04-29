@@ -289,7 +289,7 @@ function buildTippNotifications(): Notification[] {
         id: 'tipp-chat',
         type: 'tipp',
         severity: 'info',
-        title: 'Tipp: Nutze den KI-Rechtsberater',
+        title: 'Tipp: Nutze den KI-Sozialrecht-Assistent',
         description:
           'Stelle dem KI-Berater Fragen zu deinem Bescheid, Widerspruch oder Bürgergeld-Anspruch — kostenlos im Schnupperer-Tarif.',
         timestamp: new Date(),

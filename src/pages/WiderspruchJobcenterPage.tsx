@@ -30,7 +30,7 @@ export default function WiderspruchJobcenterPage() {
         badge="Widerspruch · Jobcenter · 1 Monat Frist"
         title="Bescheid falsch?"
         titleGradient="Widersprich richtig."
-        subtitle="Jeder zweite Bürgergeld-Bescheid ist fehlerhaft. Lass deinen in 60 Sekunden von KI prüfen — und schick den Widerspruch mit unserer rechtssicheren Vorlage."
+        subtitle="Jeder zweite Bürgergeld-Bescheid ist fehlerhaft. Lass deinen in 60 Sekunden von KI prüfen — und schick den Widerspruch mit unserer formal vorbereiteten Vorlage."
         primaryCta={{
           label: 'Bescheid prüfen lassen',
           to: '/scan',
@@ -96,7 +96,7 @@ export default function WiderspruchJobcenterPage() {
               </li>
               <li>
                 <strong>Widerspruch verfassen</strong> — formloser Brief reicht, aber er muss bestimmte
-                Punkte enthalten. Wir liefern dir die rechtssichere Vorlage.
+                Punkte enthalten. Wir liefern dir die formal vorbereitete Vorlage.
                 <Link to="/musterschreiben" className="text-primary hover:underline ml-1">→ Vorlagen</Link>
               </li>
               <li>
@@ -216,7 +216,7 @@ export default function WiderspruchJobcenterPage() {
                   <FileText className="h-5 w-5 text-primary" />
                   <div className="font-medium">Widerspruchs-Vorlagen</div>
                 </div>
-                <div className="text-xs text-muted-foreground">20+ rechtssichere Templates</div>
+                <div className="text-xs text-muted-foreground">20+ formal vorbereitete Vorlagen</div>
               </Link>
               <Link to="/tracker" className="block p-4 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">
                 <div className="flex items-center gap-2 mb-1">

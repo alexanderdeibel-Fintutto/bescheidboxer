@@ -318,7 +318,7 @@ Nach **\u00A7 24 Abs. 3 SGB II** hast du Anspruch auf **einmalige Leistungen** f
 
 **Typische Betraege:** 100\u2013250 EUR für eine Waschmaschine (je nach Kommune). Du kannst aber auch einen hoeheren Betrag beantragen.
 
-**Dein naechster Schritt:** Erstelle den Antrag in der **Dokumenten-Werkstatt** \u2013 dauert nur 5 Minuten und ist rechtssicher formuliert.
+**Dein naechster Schritt:** Erstelle den Antrag in der **Dokumenten-Werkstatt** \u2013 dauert nur 5 Minuten und ist sachlich-formal strukturiert.
 
 [TEMPLATE:antrag_einmalige_leistung]`
     suggestedTemplates = ['antrag_einmalige_leistung']
@@ -356,7 +356,7 @@ Du hast ein **Recht auf respektvolle Behandlung** (\u00A7 14 SGB I \u2013 Beratu
 - Lass dir muendliche Aussagen **schriftlich bestaetigen**
 - Bleibe sachlich \u2013 das staerkt deine Position
 
-**Dein naechster Schritt:** Erstelle deine Dienstaufsichtsbeschwerde in der **Dokumenten-Werkstatt** \u2013 rechtssicher und sachlich formuliert.
+**Dein naechster Schritt:** Erstelle deine Dienstaufsichtsbeschwerde in der **Dokumenten-Werkstatt** \u2013 sachlich-formal strukturiert.
 
 [TEMPLATE:beschwerde_sachbearbeiter]`
     suggestedTemplates = ['beschwerde_sachbearbeiter', 'akteneinsicht']
@@ -518,7 +518,7 @@ function saveChatHistory(messages: ChatMessage[]) {
 }
 
 export default function ChatPage() {
-  useDocumentTitle('KI-Rechtsberater - BescheidBoxer')
+  useDocumentTitle('KI-Sozialrecht-Assistent - BescheidBoxer')
   const restored = loadChatHistory()
   const [messages, setMessages] = useState<ChatMessage[]>(restored || [OPENING_MESSAGE])
   const [input, setInput] = useState('')

@@ -46,7 +46,7 @@ export default function AgbPage() {
             <li>
               <strong className="text-gray-900">KI-gestuetzte Analysen</strong>{' '}
               &ndash; Automatische Prüfung von Bescheiden auf moegliche Fehler
-              (BescheidScan) sowie einen KI-Rechtsberater für Fragen zu SGB II,
+              (BescheidScan) sowie einen KI-Sozialrecht-Assistent für Fragen zu SGB II,
               III, X und XII
             </li>
             <li>

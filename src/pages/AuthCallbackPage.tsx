@@ -33,8 +33,13 @@ export default function AuthCallbackPage() {
         return
       }
 
-      // Normaler Login: Hat User schon Passwort? → next, sonst Setup
-      if (profile && !profile.hasPassword) {
+      // KRITISCH: Wenn user schon da ist aber profile noch nicht geladen,
+      // hier WARTEN. Sonst Race-Condition → User landet ohne hasPassword-
+      // Check direkt im Dashboard und überspringt das Pflicht-Passwort-Setup.
+      if (!profile) return
+
+      // Normaler Login: Hat User schon Passwort? → next, sonst Pflicht-Setup
+      if (!profile.hasPassword) {
         navigate(`/onboarding/passwort?next=${encodeURIComponent(next)}`, {
           replace: true,
         })

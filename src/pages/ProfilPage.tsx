@@ -355,10 +355,37 @@ export default function ProfilPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Button variant="outline" className="w-full justify-start">
-                  <Key className="h-4 w-4 mr-2" />
-                  Passwort ändern
+                {/*
+                  Passwort-Button — dynamisch je nach hasPassword-Status:
+                  - kein Passwort gesetzt (z.B. Magic-Link-User vor Erstvergabe):
+                    "Passwort vergeben" → /onboarding/passwort (Erstvergabe-Modus)
+                  - Passwort vorhanden:
+                    "Passwort ändern" → /onboarding/passwort?reset=1 (Reset-Modus)
+                */}
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  asChild
+                >
+                  <Link
+                    to={
+                      profile?.hasPassword
+                        ? '/onboarding/passwort?reset=1&next=/profil'
+                        : '/onboarding/passwort?next=/profil'
+                    }
+                  >
+                    <Key className="h-4 w-4 mr-2" />
+                    {profile?.hasPassword ? 'Passwort ändern' : 'Passwort vergeben'}
+                  </Link>
                 </Button>
+
+                {!profile?.hasPassword && (
+                  <p className="text-xs text-amber-700 dark:text-amber-400 -mt-2 px-1">
+                    Du hast bisher noch kein Passwort gesetzt — bitte einmal
+                    vergeben, damit du dich künftig auch ohne Magic-Link
+                    anmelden kannst.
+                  </p>
+                )}
 
                 <div className="pt-4 border-t">
                   <p className="text-sm font-medium mb-2">Aktive Sitzungen</p>

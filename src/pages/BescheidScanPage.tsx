@@ -35,6 +35,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useCreditsContext } from '@/contexts/CreditsContext'
 import RechtlicherHinweis from '@/components/RechtlicherHinweis'
+import GdprConsentModal, { hasGdprConsent } from '@/components/GdprConsentModal'
 import { toast } from 'sonner'
 import { PageHeader } from '@/lib/fintutto-design'
 import {
@@ -128,6 +129,7 @@ export default function BescheidScanPage() {
   const [dragActive, setDragActive] = useState(false)
   const [uploadError, setUploadError] = useState<string | null>(null)
   const [scanError, setScanError] = useState<string | null>(null)
+  const [showGdprModal, setShowGdprModal] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { checkScan, consumeScan } = useCreditsContext()
 
@@ -200,6 +202,12 @@ export default function BescheidScanPage() {
     const hasPages = pages.length > 0
     const hasManualText = manualText.trim().length > 0
     if (!hasPages && !hasManualText) return
+
+    // GDPR Art. 9 + RDG Einwilligung Pflicht vor erstem Scan
+    if (!hasGdprConsent()) {
+      setShowGdprModal(true)
+      return
+    }
 
     const scanCheck = checkScan()
     if (!scanCheck.allowed) {
@@ -883,6 +891,17 @@ export default function BescheidScanPage() {
         </div>
       )}
       </div>
+
+      {/* GDPR Art. 9 + RDG Einwilligungs-Modal */}
+      <GdprConsentModal
+        open={showGdprModal}
+        onAccept={() => {
+          setShowGdprModal(false)
+          // Direkt nach Einwilligung: Analyse weiter starten
+          setTimeout(() => startAnalysis(), 100)
+        }}
+        onCancel={() => setShowGdprModal(false)}
+      />
     </div>
   )
 }

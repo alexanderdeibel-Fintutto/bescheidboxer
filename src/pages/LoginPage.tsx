@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { Loader2, KeyRound } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -7,11 +7,14 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useAuth } from '@/contexts/AuthContext'
 import { PageHeader, FadeSection } from '@/lib/fintutto-design'
+import { getLastEmail, forgetLastEmail } from '@/lib/last-email'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 export default function LoginPage() {
   useDocumentTitle('Anmelden')
-  const [email, setEmail] = useState('')
+  // Email aus localStorage vorausfüllen — wenn der User schon mal hier war,
+  // muss er nur noch das Passwort eingeben.
+  const [email, setEmail] = useState(() => getLastEmail())
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -20,6 +23,17 @@ export default function LoginPage() {
   const [searchParams] = useSearchParams()
   const next = searchParams.get('next') || '/dashboard'
   const errorParam = searchParams.get('error')
+  const passwordRef = useRef<HTMLInputElement>(null)
+  const hasPrefilledEmail = email.length > 0
+
+  // Wenn Email schon vorausgefüllt ist, direkt im Passwort-Feld starten
+  useEffect(() => {
+    if (hasPrefilledEmail) {
+      // Mini-Delay damit Component erst voll gemountet ist
+      const t = setTimeout(() => passwordRef.current?.focus(), 50)
+      return () => clearTimeout(t)
+    }
+  }, [hasPrefilledEmail])
 
   // Wenn schon eingeloggt: redirect
   useEffect(() => {
@@ -57,7 +71,11 @@ export default function LoginPage() {
         badge="Anmelden"
         title="Willkommen"
         titleGradient="zurück."
-        subtitle="Melde dich mit deiner E-Mail und deinem Passwort an."
+        subtitle={
+          hasPrefilledEmail
+            ? `Eingeloggt als ${email}. Gib dein Passwort ein.`
+            : 'Melde dich mit deiner E-Mail und deinem Passwort an.'
+        }
         align="center"
       />
 
@@ -73,7 +91,21 @@ export default function LoginPage() {
 
               <form onSubmit={handleSignIn} className="space-y-4">
                 <div>
-                  <Label htmlFor="email">E-Mail</Label>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <Label htmlFor="email">E-Mail</Label>
+                    {hasPrefilledEmail && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          forgetLastEmail()
+                          setEmail('')
+                        }}
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        Andere E-Mail?
+                      </button>
+                    )}
+                  </div>
                   <Input
                     id="email"
                     type="email"
@@ -81,7 +113,7 @@ export default function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="deine@email.de"
                     required
-                    autoFocus
+                    autoFocus={!hasPrefilledEmail}
                     autoComplete="email"
                     className="mt-1.5"
                   />
@@ -97,6 +129,7 @@ export default function LoginPage() {
                     </Link>
                   </div>
                   <Input
+                    ref={passwordRef}
                     id="password"
                     type="password"
                     value={password}

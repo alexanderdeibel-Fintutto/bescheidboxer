@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useAuth } from '@/contexts/AuthContext'
 import { PageHeader, FadeSection } from '@/lib/fintutto-design'
+import { getLastEmail } from '@/lib/last-email'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 /**
@@ -17,7 +18,7 @@ import useDocumentTitle from '@/hooks/useDocumentTitle'
  */
 export default function ForgotPasswordPage() {
   useDocumentTitle('Passwort vergessen')
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState(() => getLastEmail())
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [sent, setSent] = useState(false)

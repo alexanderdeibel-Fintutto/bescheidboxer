@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import { User, Session } from '@supabase/supabase-js'
 import { supabase } from '@/integrations/supabase/client'
 import { PlanType } from '@/lib/credits'
+import { rememberLastEmail } from '@/lib/last-email'
 
 // ---------------------------------------------------------------------------
 // Rollen
@@ -318,6 +319,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) throw error
+    rememberLastEmail(email)
   }
 
   // ---- signUp ----
@@ -376,6 +378,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       },
     })
     if (error) throw error
+
+    rememberLastEmail(email)
 
     if (data.user) {
       // Willkommens-Mail fire-and-forget. Fehler beim Mail-Versand
@@ -436,6 +440,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
     const emailRedirectTo = `${baseUrl}/auth/callback${redirectTo ? `?next=${encodeURIComponent(redirectTo)}` : ''}`
+
+    // Email schon vor dem Send merken — falls der Magic-Link
+    // im Mail-Client präfetched wird (Token verbraucht), kann der User
+    // wenigstens auf /login mit vorausgefüllter Email landen.
+    rememberLastEmail(email)
 
     const { error } = await supabase.auth.signInWithOtp({
       email,

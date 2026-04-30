@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useAuth } from '@/contexts/AuthContext'
 import { PageHeader, FadeSection } from '@/lib/fintutto-design'
+import { getLastEmail } from '@/lib/last-email'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 /**
@@ -22,9 +23,9 @@ export default function RegisterPage() {
   useDocumentTitle('Konto erstellen')
   const [mode, setMode] = useState<'magic' | 'password'>('magic')
 
-  // gemeinsam
+  // gemeinsam — Email aus localStorage prefillen falls schon mal genutzt
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState(() => getLastEmail())
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)

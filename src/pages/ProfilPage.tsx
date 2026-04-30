@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Settings, CreditCard, Shield, Download, Trash2, Key, Bell, MapPin, Users, Mail, ArrowRight, CheckCircle2, AlertCircle, User as UserIcon, ScanSearch, MessageCircle, Upload, HardDrive } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -17,11 +17,21 @@ export default function ProfilPage() {
   const { profile } = useAuth()
   const { credits } = useCreditsContext()
 
-  // Demo form state
-  const [name, setName] = useState(profile?.name || 'Max Mustermann')
-  const [email] = useState(profile?.email || 'max@beispiel.de')
-  const [plz, setPlz] = useState('10115')
+  // Form state — echte User-Daten, kein Demo-Fallback. Wenn Felder leer
+  // bleiben weil User noch nichts gesetzt hat, sieht das ehrlich aus.
+  const [name, setName] = useState(profile?.name || '')
+  const [email, setEmail] = useState(profile?.email || '')
+  const [plz, setPlz] = useState('')
   const [bedarfsgemeinschaft, setBedarfsgemeinschaft] = useState('1')
+
+  // Wichtig: profile kommt async aus DB. Sobald da, mit den echten
+  // Werten syncen (sonst bleiben name/email leer wenn ProfilPage
+  // gemountet wird bevor profile geladen ist).
+  useEffect(() => {
+    if (profile?.name && !name) setName(profile.name)
+    if (profile?.email && !email) setEmail(profile.email)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile?.name, profile?.email])
 
   // Notification settings
   const [fristErinnerung, setFristErinnerung] = useState(true)

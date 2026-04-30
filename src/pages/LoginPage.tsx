@@ -87,7 +87,15 @@ export default function LoginPage() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="password">Passwort</Label>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <Label htmlFor="password">Passwort</Label>
+                    <Link
+                      to="/passwort-vergessen"
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      Vergessen?
+                    </Link>
+                  </div>
                   <Input
                     id="password"
                     type="password"
@@ -98,15 +106,6 @@ export default function LoginPage() {
                     autoComplete="current-password"
                     className="mt-1.5"
                   />
-                  <p className="text-xs text-muted-foreground mt-1.5">
-                    Passwort vergessen? Bitte kontaktiere{' '}
-                    <a
-                      href="mailto:hello@bescheidboxer.de"
-                      className="text-primary hover:underline"
-                    >
-                      hello@bescheidboxer.de
-                    </a>
-                  </p>
                 </div>
                 <Button
                   type="submit"

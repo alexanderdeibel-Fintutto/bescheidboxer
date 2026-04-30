@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { Loader2, CheckCircle2, KeyRound } from 'lucide-react'
+import { Loader2, CheckCircle2, KeyRound, Mail, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -9,14 +9,28 @@ import { useAuth } from '@/contexts/AuthContext'
 import { PageHeader, FadeSection } from '@/lib/fintutto-design'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 
+/**
+ * RegisterPage — Erstanmeldung primär via Magic-Link.
+ *
+ * Standard-Flow: User gibt nur Email ein → Magic-Link → AuthCallback →
+ * Pflicht-Passwort-Setup auf /onboarding/passwort.
+ *
+ * Fallback-Flow: User klickt "Lieber direkt mit Passwort?" → klassische
+ * Email+Passwort-Form via signUp().
+ */
 export default function RegisterPage() {
   useDocumentTitle('Konto erstellen')
+  const [mode, setMode] = useState<'magic' | 'password'>('magic')
+
+  // gemeinsam
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const { user, signUp, loading } = useAuth()
+  const [magicSent, setMagicSent] = useState(false)
+
+  const { user, signUp, signInWithMagicLink, loading } = useAuth()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const next = searchParams.get('next') || '/dashboard'
@@ -28,7 +42,34 @@ export default function RegisterPage() {
     }
   }, [user, loading, navigate, next])
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Magic-Link senden
+  const handleMagicLink = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError('')
+    if (!email) {
+      setError('Bitte gib deine E-Mail-Adresse ein.')
+      return
+    }
+    setIsLoading(true)
+    try {
+      // Nach Klick auf Magic-Link: AuthCallback → SetPasswordPage (Pflicht)
+      // → dann zum eigentlichen Ziel (next)
+      await signInWithMagicLink(email, next)
+      setMagicSent(true)
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        msg
+          ? `Anmelde-Link konnte nicht gesendet werden: ${msg}`
+          : 'Anmelde-Link konnte nicht gesendet werden. Bitte später erneut versuchen.',
+      )
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Klassische Passwort-Registrierung
+  const handlePasswordSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
@@ -64,6 +105,58 @@ export default function RegisterPage() {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  // -------- "Email-Link versendet"-Erfolgsstate --------
+  if (magicSent) {
+    return (
+      <>
+        <PageHeader
+          badge="Konto erstellen"
+          title="Schau in dein"
+          titleGradient="Postfach."
+          align="center"
+        />
+        <div className="container max-w-md mx-auto px-6 pb-16">
+          <FadeSection>
+            <Card className="rounded-2xl">
+              <CardContent className="p-7 text-center">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-950/40 mb-5">
+                  <CheckCircle2 className="h-7 w-7 text-emerald-600" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Anmelde-Link gesendet</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+                  Wir haben dir einen Link an{' '}
+                  <strong className="text-foreground">{email}</strong> geschickt.
+                  Klick drauf und du landest direkt in deinem Konto. Im
+                  nächsten Schritt legst du ein Passwort fest — dann brauchst du
+                  beim nächsten Mal keinen Link mehr.
+                </p>
+                <p className="text-xs text-muted-foreground mb-5">
+                  Keine Mail nach 2 Min? Schau im Spam-Ordner oder probiere
+                  es erneut.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                  <Button
+                    variant="outline"
+                    className="rounded-full"
+                    onClick={() => {
+                      setMagicSent(false)
+                      setError('')
+                    }}
+                  >
+                    Andere E-Mail
+                  </Button>
+                  <Button variant="outline" className="rounded-full" asChild>
+                    <Link to="/login">Zurück zur Anmeldung</Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </FadeSection>
+        </div>
+      </>
+    )
   }
 
   return (
@@ -107,60 +200,121 @@ export default function RegisterPage() {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Label htmlFor="name">Name (optional)</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Dein Name"
-                    autoComplete="name"
-                    className="mt-1.5"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email">E-Mail-Adresse</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="deine@email.de"
-                    required
-                    autoFocus
-                    autoComplete="email"
-                    className="mt-1.5"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="password">Passwort</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Mindestens 8 Zeichen"
-                    required
-                    autoComplete="new-password"
-                    className="mt-1.5"
-                  />
-                  <p className="text-xs text-muted-foreground mt-1.5">
-                    Mindestens 8 Zeichen. Tipp: Passwort-Manager nutzen.
-                  </p>
-                </div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full rounded-full gradient-boxer text-white border-0 hover:opacity-90"
-                  disabled={isLoading}
-                >
-                  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  <KeyRound className="mr-2 h-4 w-4" />
-                  Kostenlos registrieren
-                </Button>
-              </form>
+              {mode === 'magic' ? (
+                /* ---------------- Magic-Link Flow (Default) ---------------- */
+                <form onSubmit={handleMagicLink} className="space-y-4">
+                  <div>
+                    <Label htmlFor="email">E-Mail-Adresse</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="deine@email.de"
+                      required
+                      autoFocus
+                      autoComplete="email"
+                      className="mt-1.5"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1.5">
+                      Wir schicken dir einen Anmelde-Link. Kein Passwort
+                      nötig — das legst du gleich danach fest.
+                    </p>
+                  </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full rounded-full gradient-boxer text-white border-0 hover:opacity-90"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <Sparkles className="mr-2 h-4 w-4" />
+                    )}
+                    Anmelde-Link schicken
+                  </Button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMode('password')
+                      setError('')
+                    }}
+                    className="w-full text-xs text-muted-foreground hover:text-primary transition-colors pt-1"
+                  >
+                    Lieber direkt mit Passwort registrieren?
+                  </button>
+                </form>
+              ) : (
+                /* ---------------- Passwort-Fallback ---------------- */
+                <form onSubmit={handlePasswordSignup} className="space-y-4">
+                  <div>
+                    <Label htmlFor="name">Name (optional)</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Dein Name"
+                      autoComplete="name"
+                      className="mt-1.5"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">E-Mail-Adresse</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="deine@email.de"
+                      required
+                      autoFocus
+                      autoComplete="email"
+                      className="mt-1.5"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="password">Passwort</Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Mindestens 8 Zeichen"
+                      required
+                      autoComplete="new-password"
+                      className="mt-1.5"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1.5">
+                      Mindestens 8 Zeichen. Tipp: Passwort-Manager nutzen.
+                    </p>
+                  </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full rounded-full gradient-boxer text-white border-0 hover:opacity-90"
+                    disabled={isLoading}
+                  >
+                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    <KeyRound className="mr-2 h-4 w-4" />
+                    Kostenlos registrieren
+                  </Button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMode('magic')
+                      setError('')
+                    }}
+                    className="w-full text-xs text-muted-foreground hover:text-primary transition-colors pt-1 inline-flex items-center justify-center gap-1.5"
+                  >
+                    <Mail className="h-3.5 w-3.5" />
+                    Doch lieber Anmelde-Link per E-Mail?
+                  </button>
+                </form>
+              )}
 
               <div className="mt-6 pt-5 border-t border-border text-center text-sm text-muted-foreground">
                 Bereits registriert?{' '}

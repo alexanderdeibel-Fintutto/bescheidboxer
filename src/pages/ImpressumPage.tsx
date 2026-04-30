@@ -12,35 +12,27 @@ export default function ImpressumPage() {
       />
 
       <FadeSection delay={120} className="container max-w-4xl mx-auto px-6 pb-16 space-y-10">
-        {/* TODO BANNER — vor Live-Schaltung muss alles ergänzt sein */}
-        <div className="rounded-2xl border-2 border-amber-400 bg-amber-50 dark:bg-amber-950/30 p-5">
-          <p className="text-sm font-bold text-amber-900 dark:text-amber-100 mb-1">
-            ⚠️ Hinweis (intern, vor Live-Schaltung entfernen):
-          </p>
-          <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
-            Dieses Impressum enthält noch Platzhalter. Vor Beta-Skalierung
-            müssen Vertretungsberechtigter, Adresse, USt-Status / Handelsregister
-            und Verantwortlicher nach § 18 MStV mit echten Daten gefüllt
-            werden — sonst Abmahnungs-Risiko nach § 5 TMG / § 5a UWG.
-          </p>
-        </div>
-
-        {/* Angaben gemaess § 5 TMG */}
+        {/* Angaben gemäß § 5 TMG */}
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Angaben gemaess &sect; 5 TMG
+            Angaben gemäß &sect; 5 TMG
           </h2>
           <div className="space-y-2 text-gray-600">
             <p className="font-semibold text-gray-900">
-              Fintutto UG (haftungsbeschraenkt) &ndash; i.G. (in Gruendung)
+              Fintutto UG (haftungsbeschränkt) i.G.
             </p>
             <p>
               <strong className="text-gray-900">Vertreten durch:</strong>{' '}
-              [Name wird ergaenzt]
+              Alexander Deibel (Geschäftsführer)
             </p>
             <p>
-              <strong className="text-gray-900">Adresse:</strong>{' '}
-              [Wird nach Eintragung ergaenzt]
+              <strong className="text-gray-900">Anschrift:</strong>
+              <br />
+              Kolonie 2
+              <br />
+              18317 Saal
+              <br />
+              Deutschland
             </p>
           </div>
         </section>
@@ -52,10 +44,19 @@ export default function ImpressumPage() {
             <p>
               <strong className="text-gray-900">E-Mail:</strong>{' '}
               <a
-                href="mailto:kontakt@fintutto.de"
+                href="mailto:mail@fintutto.de"
                 className="text-primary hover:underline"
               >
-                kontakt@fintutto.de
+                mail@fintutto.de
+              </a>
+            </p>
+            <p className="text-sm">
+              Für BescheidBoxer-spezifische Anfragen:{' '}
+              <a
+                href="mailto:hello@bescheidboxer.de"
+                className="text-primary hover:underline"
+              >
+                hello@bescheidboxer.de
               </a>
             </p>
           </div>
@@ -67,8 +68,9 @@ export default function ImpressumPage() {
             Umsatzsteuer-ID
           </h2>
           <p className="text-gray-600">
-            Umsatzsteuer-Identifikationsnummer gemaess &sect; 27 a
-            Umsatzsteuergesetz: [Wird nach Anmeldung ergaenzt]
+            Umsatzsteuer-Identifikationsnummer gemäß &sect; 27 a
+            Umsatzsteuergesetz: <em>beantragt</em> (wird nach Erteilung durch
+            das Finanzamt hier ergänzt).
           </p>
         </section>
 
@@ -77,7 +79,12 @@ export default function ImpressumPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
             Handelsregister
           </h2>
-          <p className="text-gray-600">[Wird nach Eintragung ergaenzt]</p>
+          <p className="text-gray-600">
+            Eintragung in das Handelsregister beim Amtsgericht Stralsund
+            beantragt. Die HRB-Nummer wird nach Eintragung hier ergänzt.
+            Aktuell führt die Gesellschaft den Zusatz <em>i.G.</em> (in
+            Gründung).
+          </p>
         </section>
 
         {/* Verantwortlich für den Inhalt */}
@@ -85,7 +92,13 @@ export default function ImpressumPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
             Verantwortlich für den Inhalt nach &sect; 18 Abs. 2 MStV
           </h2>
-          <p className="text-gray-600">[Wird ergaenzt]</p>
+          <p className="text-gray-600">
+            Alexander Deibel
+            <br />
+            Kolonie 2
+            <br />
+            18317 Saal
+          </p>
         </section>
 
         {/* EU-Streitschlichtung */}

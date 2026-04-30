@@ -235,7 +235,7 @@ export default function AgbPage() {
           </p>
           <p className="text-gray-600 mt-3">
             Um Ihr Widerrufsrecht auszuueben, muessen Sie uns (Fintutto UG
-            (haftungsbeschraenkt) i.G., E-Mail: kontakt@fintutto.de) mittels
+            (haftungsbeschraenkt) i.G., E-Mail: mail@fintutto.de) mittels
             einer eindeutigen Erklärung (z.&nbsp;B. ein mit der Post
             versandter Brief oder eine E-Mail) über Ihren Entschluss, diesen
             Vertrag zu widerrufen, informieren.

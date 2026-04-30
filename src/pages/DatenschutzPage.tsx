@@ -44,16 +44,24 @@ export default function DatenschutzPage() {
           </h2>
           <div className="space-y-2 text-gray-600">
             <p className="font-semibold text-gray-900">
-              Fintutto UG (haftungsbeschraenkt) i.G.
+              Fintutto UG (haftungsbeschränkt) i.G.
             </p>
-            <p>[Adresse wird nach Eintragung ergaenzt]</p>
+            <p>
+              Vertreten durch: Alexander Deibel (Geschäftsführer)
+              <br />
+              Kolonie 2
+              <br />
+              18317 Saal
+              <br />
+              Deutschland
+            </p>
             <p>
               <strong className="text-gray-900">E-Mail:</strong>{' '}
               <a
-                href="mailto:kontakt@fintutto.de"
+                href="mailto:mail@fintutto.de"
                 className="text-primary hover:underline"
               >
-                kontakt@fintutto.de
+                mail@fintutto.de
               </a>
             </p>
           </div>
@@ -223,7 +231,7 @@ export default function DatenschutzPage() {
             DSGVO</strong>, die Sie vor dem Upload des ersten Bescheides
             erteilen. Sie können diese Einwilligung jederzeit mit Wirkung für
             die Zukunft widerrufen, indem Sie Ihren Account löschen oder uns
-            unter support@bescheidboxer.de kontaktieren.
+            unter hello@bescheidboxer.de kontaktieren.
           </p>
           <p className="text-gray-600">
             Hochgeladene Bescheid-Dokumente werden ausschließlich temporär zur
@@ -393,10 +401,10 @@ export default function DatenschutzPage() {
           <p className="text-gray-600 mt-3">
             Zur Ausuebung Ihrer Rechte wenden Sie sich bitte an{' '}
             <a
-              href="mailto:kontakt@fintutto.de"
+              href="mailto:mail@fintutto.de"
               className="text-primary hover:underline"
             >
-              kontakt@fintutto.de
+              mail@fintutto.de
             </a>
             .
           </p>

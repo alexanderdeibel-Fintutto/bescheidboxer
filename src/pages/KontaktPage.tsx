@@ -170,10 +170,10 @@ export default function KontaktPage() {
                 <div>
                   <h3 className="font-semibold mb-0.5">E-Mail</h3>
                   <a
-                    href="mailto:support@bescheidboxer.de"
+                    href="mailto:hello@bescheidboxer.de"
                     className="text-primary hover:underline"
                   >
-                    support@bescheidboxer.de
+                    hello@bescheidboxer.de
                   </a>
                 </div>
               </div>
@@ -187,9 +187,9 @@ export default function KontaktPage() {
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     Fintutto UG (haftungsbeschränkt) i.G.
                     <br />
-                    Musterstraße 1
+                    Kolonie 2
                     <br />
-                    10115 Berlin
+                    18317 Saal
                   </p>
                 </div>
               </div>

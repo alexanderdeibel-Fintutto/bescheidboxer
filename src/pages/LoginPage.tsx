@@ -101,10 +101,10 @@ export default function LoginPage() {
                   <p className="text-xs text-muted-foreground mt-1.5">
                     Passwort vergessen? Bitte kontaktiere{' '}
                     <a
-                      href="mailto:support@bescheidboxer.de"
+                      href="mailto:hello@bescheidboxer.de"
                       className="text-primary hover:underline"
                     >
-                      support@bescheidboxer.de
+                      hello@bescheidboxer.de
                     </a>
                   </p>
                 </div>

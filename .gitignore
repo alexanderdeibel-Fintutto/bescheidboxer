@@ -20,3 +20,6 @@ dist/
 
 # Migration-Backups (durch Konsolidierung ersetzt)
 *.archived
+email_template_*.txt
+supabase_redirect_urls.txt
+supabase_email_setup_anleitung.txt

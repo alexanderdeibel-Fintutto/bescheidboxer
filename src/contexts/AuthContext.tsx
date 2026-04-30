@@ -367,6 +367,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       options: {
         data: {
           app_source: 'bescheidboxer',
+          app_name: 'BescheidBoxer',
+          app_url: 'https://bescheidboxer.de',
           full_name: name || null,
           display_name: name || null,
           has_password: true,
@@ -439,9 +441,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       email,
       options: {
         emailRedirectTo,
-        // app_source ins user_metadata damit handle_new_user() in DB
-        // korrekt profiles.app_source='bescheidboxer' setzt
-        data: { app_source: 'bescheidboxer' },
+        // user_metadata für DB + Email-Template:
+        // - app_source: technische ID (handle_new_user() in DB nutzt das)
+        // - app_name + app_url: vom Supabase-Email-Template als
+        //   {{ .Data.app_name }} / {{ .Data.app_url }} ausgelesen,
+        //   damit die Mail "Anmelde-Link für BescheidBoxer" sagt
+        //   und nicht generisch "Fintutto" — Multi-App-skalierbar:
+        //   jede Fintutto-App schickt eigenen app_name/app_url mit.
+        data: {
+          app_source: 'bescheidboxer',
+          app_name: 'BescheidBoxer',
+          app_url: 'https://bescheidboxer.de',
+        },
       },
     })
     if (error) throw error

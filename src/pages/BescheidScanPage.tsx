@@ -222,13 +222,21 @@ export default function BescheidScanPage() {
 
     // Step 1: OCR pro Seite
     if (hasPages) {
-      setScanProgress('Seiten werden per OCR erfasst...')
+      setScanProgress(
+        pages.length > 3
+          ? `${pages.length} Seiten — wir nehmen uns dafür kurz Zeit, jede Zeile zählt.`
+          : 'Wir lesen deinen Bescheid Zeile für Zeile …',
+      )
       const pageTexts: string[] = []
       let ocrErrors = 0
 
       for (let i = 0; i < pages.length; i++) {
         const page = pages[i]
-        setScanProgress(`Seite ${i + 1} von ${pages.length} wird gelesen...`)
+        setScanProgress(
+          pages.length > 1
+            ? `Seite ${i + 1} von ${pages.length} — gründlich entziffert (kann ein paar Sekunden dauern).`
+            : 'Wir entziffern deinen Bescheid — gründlich, jede Zeile.',
+        )
         setPages((prev) =>
           prev.map((p) => (p.id === page.id ? { ...p, status: 'processing' } : p)),
         )
@@ -287,7 +295,9 @@ export default function BescheidScanPage() {
     }
 
     // Step 2: Analyze
-    setScanProgress('Bescheid wird auf Fehler analysiert...')
+    setScanProgress(
+      'Jetzt wird gerechnet — Regelsätze, Mehrbedarfe, KdU, Fristen. Dauert ein paar Sekunden, dafür gründlich.',
+    )
     try {
       const data = (await postScan({
         action: 'analyze',
@@ -671,8 +681,25 @@ export default function BescheidScanPage() {
                   <Loader2 className="h-5 w-5 animate-spin text-primary" />
                 </div>
               </div>
-              <h2 className="text-xl font-bold mb-2">BescheidBoxer analysiert...</h2>
+              <h2 className="text-xl font-bold mb-2">BescheidBoxer prüft jeden Posten.</h2>
               <p className="text-muted-foreground mb-6">{scanProgress}</p>
+
+              {/* Warmer Hinweis-Block bei großen/langen Bescheiden — Anthropic
+                  Vision braucht bei vielen Tabellen-Seiten 30-60 Sek pro Seite.
+                  Damit der User nicht denkt, da hängt was. */}
+              {pages.length > 3 && (
+                <div className="max-w-md mx-auto mb-6 p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 text-left">
+                  <p className="text-sm text-amber-900 dark:text-amber-100 leading-relaxed">
+                    <strong>Wir lassen uns Zeit — bewusst.</strong>
+                    <br />
+                    Dein Bescheid hat {pages.length} Seiten mit Tabellen,
+                    Regelsätzen und Berechnungen. Damit kein Fehler übersehen
+                    wird, prüft die KI jede Position einzeln. Das dauert bis zu
+                    1&nbsp;Minute. Bleib einfach offen — wir melden uns sobald
+                    fertig.
+                  </p>
+                </div>
+              )}
 
               {/* Per-Page-Status */}
               {pages.length > 0 && (

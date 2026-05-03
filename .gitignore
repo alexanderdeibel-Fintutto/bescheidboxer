@@ -24,3 +24,6 @@ email_template_*.txt
 supabase_redirect_urls.txt
 supabase_email_setup_anleitung.txt
 FINTUTTO_AUTH_GUIDE.txt
+vercel_seo_domains_setup.txt
+POSITIONIERUNG_UND_PREISE_STRATEGIE.txt
+STRIPE_PRICING_MIGRATION.txt

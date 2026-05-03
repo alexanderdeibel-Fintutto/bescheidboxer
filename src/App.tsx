@@ -75,6 +75,7 @@ const KostenUebersichtPage = lazy(() => import('@/pages/KostenUebersichtPage'))
 const ErinnerungenPage = lazy(() => import('@/pages/ErinnerungenPage'))
 const MeineBerechnungenPage = lazy(() => import('@/pages/MeineBerechnungenPage'))
 const WiderspruchJobcenterPage = lazy(() => import('@/pages/WiderspruchJobcenterPage'))
+const UeberpruefungsantragPage = lazy(() => import('@/pages/UeberpruefungsantragPage'))
 const UeberUnsPage = lazy(() => import('@/pages/UeberUnsPage'))
 const AuthCallbackPage = lazy(() => import('@/pages/AuthCallbackPage'))
 const SetPasswordPage = lazy(() => import('@/pages/SetPasswordPage'))
@@ -165,6 +166,9 @@ function App() {
 
                 {/* Widerspruch Jobcenter SEO-Landing */}
                 <Route path="widerspruch/jobcenter" element={<WiderspruchJobcenterPage />} />
+
+                {/* § 44 SGB X Killer-USP-Landing — alte Bescheide rückwirkend prüfen */}
+                <Route path="ueberpruefungsantrag" element={<UeberpruefungsantragPage />} />
 
                 {/* Über uns / Story */}
                 <Route path="ueber-uns" element={<UeberUnsPage />} />

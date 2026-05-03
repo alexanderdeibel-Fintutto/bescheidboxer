@@ -1,3 +1,22 @@
+/**
+ * Plan- und Credit-Konfiguration für BescheidBoxer.
+ *
+ * NEUE PREISGESTALTUNG (Stand 2026-05-01):
+ *
+ *   Schnupperer  0,00 €      Test-Tier, keine Bestandskunden zu schützen
+ *   Starter      7,99 €/Mo   Einzel-Widerspruch-Workflow
+ *   Profi       14,99 €/Mo   Highlight, "Beliebt" — unbegrenzt
+ *   Premium     29,99 €/Mo   Alles + Frühzugang zu Coming-Soon-Features
+ *
+ * Die TypeScript-IDs (schnupperer/starter/kaempfer/vollschutz) bleiben
+ * erhalten, damit die DB-Migration trivial bleibt — nur Display-Names,
+ * Preise und Limits werden geändert. kaempfer = neuer "Profi"-Tier.
+ *
+ * Coming-Soon-Features (NICHT als verfügbar verkaufen, UWG-Risiko):
+ *   - Einschreiben-Versand → in Premium als "Frühzugang" beworben
+ *   - Anwalt-Hotline 15 Min/Mo → ebenfalls Premium-Frühzugang
+ *   Stripe-Beschreibung muss "geplant für Q3 2026" enthalten.
+ */
 export type PlanType = 'schnupperer' | 'starter' | 'kaempfer' | 'vollschutz'
 
 export interface PlanConfig {
@@ -15,6 +34,9 @@ export interface PlanConfig {
   letterPrice: number
   tier: number
   badge?: string
+  /** Liste mit "Coming Soon"-Features die im Tier als Frühzugang
+   *  beworben werden. Wird NICHT als "jetzt verfügbar" verkauft. */
+  comingSoonFeatures?: string[]
   stripePriceIdMonthly?: string
   stripePriceIdYearly?: string
 }
@@ -32,59 +54,64 @@ export const PLANS: Record<PlanType, PlanConfig> = {
     postversandInklusive: 0,
     prioritySupport: false,
     mieterAppInklusive: false,
-    letterPrice: 2.99,
+    letterPrice: 9.99,
     tier: 0,
   },
   starter: {
     name: 'Starter',
-    price: 2.99,
-    priceYearly: 29.99,
+    price: 7.99,
+    priceYearly: 69,
     creditsPerMonth: 10,
-    chatMessagesPerDay: 10,
+    chatMessagesPerDay: 25,
     lettersPerMonth: 1,
-    bescheidScansPerMonth: 3,
+    bescheidScansPerMonth: 5,
     forumAccess: 'read_post_chat_limited',
     postversandInklusive: 0,
     prioritySupport: false,
     mieterAppInklusive: false,
-    letterPrice: 1.99,
+    letterPrice: 4.99,
     tier: 1,
     stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_STARTER_MONTH || '',
     stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_STARTER_YEAR || '',
   },
   kaempfer: {
-    name: 'Kaempfer',
-    price: 4.99,
-    priceYearly: 49.99,
-    creditsPerMonth: 25,
+    name: 'Profi',
+    price: 14.99,
+    priceYearly: 129,
+    creditsPerMonth: 50,
     chatMessagesPerDay: -1,
-    lettersPerMonth: 3,
+    lettersPerMonth: -1,
     bescheidScansPerMonth: -1,
     forumAccess: 'full',
-    postversandInklusive: 1,
+    postversandInklusive: 0,
     prioritySupport: true,
     mieterAppInklusive: 'basic',
-    letterPrice: 0.99,
+    letterPrice: 0,
     tier: 2,
     badge: 'Beliebt',
     stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_KAEMPFER_MONTH || '',
     stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_KAEMPFER_YEAR || '',
   },
   vollschutz: {
-    name: 'Vollschutz',
-    price: 7.99,
-    priceYearly: 79.99,
-    creditsPerMonth: 50,
+    name: 'Premium',
+    price: 29.99,
+    priceYearly: 249,
+    creditsPerMonth: 150,
     chatMessagesPerDay: -1,
     lettersPerMonth: -1,
     bescheidScansPerMonth: -1,
     forumAccess: 'vip',
-    postversandInklusive: 3,
+    postversandInklusive: 0,
     prioritySupport: true,
     mieterAppInklusive: 'premium',
     letterPrice: 0,
     tier: 3,
-    badge: 'VIP',
+    badge: 'Premium',
+    comingSoonFeatures: [
+      'Einschreiben-Versand (Frühzugang, geplant Q3 2026)',
+      'Anwalt-Hotline 15 Min/Monat (Frühzugang, geplant Q3 2026)',
+      'Eigenes Dokumenten-Archiv mit Cloud-Backup',
+    ],
     stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_VOLLSCHUTZ_MONTH || '',
     stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_VOLLSCHUTZ_YEAR || '',
   },
@@ -104,14 +131,10 @@ export const CREDIT_COSTS = {
 /**
  * Credit-Top-up-Pakete (Einmalkauf, keine Subscription).
  *
- * Die stripePriceId wird zur Laufzeit aus VITE_STRIPE_PRICE_CREDITS_*
- * gelesen, damit Test-Mode vs Production-Mode ohne Code-Change
- * umschaltbar sind. Setze die ENV-Variablen in Vercel für Preview
- * und Production jeweils auf die richtige price_*-ID.
- *
- * Fallback auf leeren String, wenn ENV nicht gesetzt ist -> Buttons
- * zeigen einen Support-Fehler an, statt zu einem leeren Checkout zu
- * leiten.
+ * Plus: NEU "Widerspruch-Paket Einzelfall" als Conversion-Bridge für
+ * User die kein Abo wollen — 19,99 € einmalig, ein kompletter
+ * Widerspruchs-Workflow (1 Scan + 1 KI-Analyse + 1 personalisierter
+ * Brief). Stripe-Price separat unter VITE_STRIPE_PRICE_EINMAL_WIDERSPRUCH.
  */
 export const CREDIT_PACKAGES = [
   {
@@ -136,6 +159,24 @@ export const CREDIT_PACKAGES = [
   },
 ]
 
+/**
+ * Einmal-Kauf "Widerspruch-Paket Einzelfall" — 19,99 € als Brücke
+ * für User die kein Abo wollen, aber einmal einen Widerspruch brauchen.
+ * Stripe-Produkt einmalig (keine Subscription).
+ */
+export const EINMAL_KAUF_WIDERSPRUCH = {
+  label: 'Widerspruch-Paket Einzelfall',
+  price: 19.99,
+  beschreibung: 'Ein kompletter Widerspruch — Scan, KI-Analyse, personalisiertes Schreiben. Ohne Abo.',
+  inkludiert: [
+    '1 BescheidScan mit KI-Analyse',
+    '1 personalisiertes Widerspruchs-Schreiben',
+    'Frist-Tracker bis zur Erledigung',
+    'Alle 14 Musterschreiben einsehbar',
+  ],
+  stripePriceId: import.meta.env.VITE_STRIPE_PRICE_EINMAL_WIDERSPRUCH || '',
+}
+
 export interface UserCredits {
   userId: string
   plan: PlanType
@@ -156,12 +197,12 @@ export function canAskQuestion(credits: UserCredits): { allowed: boolean; reason
     if (credits.plan === 'schnupperer') {
       return {
         allowed: false,
-        reason: 'Du hast deine 5 kostenlosen Nachrichten für heute aufgebraucht. Upgrade auf Starter für 10/Tag oder Kaempfer für unbegrenzt.',
+        reason: 'Du hast deine 5 kostenlosen Nachrichten für heute aufgebraucht. Upgrade auf Starter für 25/Tag oder Profi für unbegrenzt.',
       }
     }
     return {
       allowed: false,
-      reason: `Tageslimit von ${plan.chatMessagesPerDay} Nachrichten erreicht. Upgrade auf Kaempfer für unbegrenzten Chat.`,
+      reason: `Tageslimit von ${plan.chatMessagesPerDay} Nachrichten erreicht. Upgrade auf Profi für unbegrenzten Chat.`,
     }
   }
   return { allowed: true }

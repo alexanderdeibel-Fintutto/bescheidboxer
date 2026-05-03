@@ -10,8 +10,10 @@ import {
   HelpCircle,
   CreditCard,
   ArrowRight,
-  Home,
   Loader2,
+  FileText,
+  Users,
+  Mail,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -32,26 +34,27 @@ import {
 
 const planMeta: Record<
   PlanType,
-  { icon: typeof Shield; features: string[]; cta: string }
+  { icon: typeof Shield; features: string[]; comingSoon?: string[]; cta: string }
 > = {
   schnupperer: {
     icon: Shield,
     features: [
       '5 KI-Nachrichten pro Tag',
       '2 Bescheid-Scans pro Monat',
+      'Alle 14 Musterschreiben einsehbar',
       'Forum lesen & posten',
-      'Basis-Rechtsinfos zu SGB II, III, XII',
     ],
     cta: 'Kostenlos starten',
   },
   starter: {
     icon: Zap,
     features: [
-      '10 KI-Nachrichten pro Tag',
+      '25 KI-Nachrichten pro Tag',
+      '5 Bescheid-Scans pro Monat',
       '1 personalisiertes Schreiben/Monat',
-      '3 Bescheid-Scans pro Monat',
+      'Alle 14 Musterschreiben + Generator',
+      '§ 44 SGB X — alte Bescheide rückwirkend prüfen',
       '10 Credits monatlich inklusive',
-      'Forum lesen, posten & limitierter Chat',
     ],
     cta: 'Starter wählen',
   },
@@ -59,27 +62,29 @@ const planMeta: Record<
     icon: Swords,
     features: [
       'Unbegrenzte KI-Nachrichten',
-      '3 Schreiben pro Monat inklusive',
       'Unbegrenzte Bescheid-Scans',
-      '25 Credits monatlich inklusive',
-      '1 Postversand inklusive',
-      'Voller Forum-Zugang inkl. Chat',
-      'MieterApp Basic inklusive',
+      'Unbegrenzte personalisierte Schreiben',
+      'KI-Tiefenanalyse jeder Position',
+      '50 Credits monatlich inklusive',
+      'Voller Forum-Zugang',
+      'Priority-Support',
     ],
-    cta: 'Kämpfer wählen',
+    cta: 'Profi wählen',
   },
   vollschutz: {
     icon: Crown,
     features: [
-      'Unbegrenzte KI-Nachrichten',
-      'Unbegrenzte Schreiben',
-      'Unbegrenzte Bescheid-Scans',
-      '50 Credits monatlich inklusive',
-      '3 Postversand inklusive',
-      'VIP-Forum mit Priority-Support',
-      'MieterApp Premium inklusive',
+      'Alles aus Profi',
+      '150 Credits monatlich inklusive',
+      'VIP-Forum',
+      'Frühzugang zu Beta-Features',
     ],
-    cta: 'Vollschutz wählen',
+    comingSoon: [
+      'Einschreiben-Versand (geplant Q3 2026)',
+      'Anwalt-Hotline 15 Min/Mo (geplant Q3 2026)',
+      'Cloud-Archiv für deine Bescheide',
+    ],
+    cta: 'Premium wählen',
   },
 }
 
@@ -101,20 +106,28 @@ const faqItems = [
     a: 'Nein. BescheidBoxer bietet KI-gestützte Informationen basierend auf SGB II, III, X und XII. Es ersetzt keine anwaltliche Beratung. Bei komplexen Fällen empfehlen wir eine Beratung beim Sozialverband (VdK, SoVD) oder einem Fachanwalt.',
   },
   {
-    q: 'Was kostet der Postversand eines Briefs?',
-    a: 'Im Kämpfer-Tarif ist 1 Postversand pro Monat inklusive, im Vollschutz sind es 3. Darüber hinaus kostet ein Standardversand 6 Credits, ein Einschreiben 10 Credits. Du kannst Credits jederzeit als Paket nachkaufen.',
+    q: 'Was bedeutet § 44 SGB X — alte Bescheide rückwirkend prüfen?',
+    a: 'Auch wenn die 1-Monats-Widerspruchsfrist verpasst wurde: Der Überprüfungsantrag nach § 44 SGB X erlaubt es, Bescheide bis zu 4 Jahre rückwirkend nochmal prüfen zu lassen. Wir helfen dir Scan + KI-Analyse + fertige Antrags-Vorlage. In jedem bezahlten Tarif inklusive — eigene Detail-Page unter /ueberpruefungsantrag.',
+  },
+  {
+    q: 'Was ist der Einmal-Kauf "Widerspruch-Paket"?',
+    a: 'Wenn du keinen Abo-Kunden werden willst, sondern nur EINEN Widerspruch brauchst: 19,99 € einmalig — du bekommst 1 BescheidScan, 1 personalisiertes Schreiben und Frist-Tracker. Ohne monatliche Bindung. Wenn du später doch noch mehr Bescheide hast, kannst du jederzeit ins Abo wechseln.',
+  },
+  {
+    q: 'Was sind die "Coming Soon"-Features im Premium-Tarif?',
+    a: 'Wir kommunizieren ehrlich: Einschreiben-Versand und Anwalt-Hotline sind geplant für Q3 2026, aber heute noch nicht verfügbar. Mit Premium sicherst du dir den Frühzugang ohne Aufpreis sobald sie live sind. Cloud-Archiv kommt parallel. Wer kein Frühzugang braucht, ist mit Profi besser bedient.',
   },
   {
     q: 'Was bringt mir die Jahresabrechnung?',
-    a: 'Bei jährlicher Zahlung sparst du je nach Tarif bis zu 17 % gegenüber der monatlichen Abrechnung. Du zahlst einmal und hast 12 Monate Ruhe — inklusive aller monatlichen Credit-Guthaben.',
-  },
-  {
-    q: 'Was ist die MieterApp und wie hängt sie zusammen?',
-    a: 'Die Fintutto MieterApp hilft bei Problemen rund um Miete, Nebenkostenabrechnung und Kosten der Unterkunft (KdU). Ab dem Kämpfer-Tarif ist sie in der Basic-Version inklusive, im Vollschutz sogar als Premium — ohne zusätzliche Kosten.',
+    a: 'Bei jährlicher Zahlung sparst du je nach Tarif 28-31 % gegenüber der monatlichen Abrechnung — Profi z.B. 129 € statt 12 × 14,99 € = 179,88 €. Du zahlst einmal und hast 12 Monate Ruhe.',
   },
   {
     q: 'Funktioniert BescheidBoxer auch für ALG I und Sozialhilfe?',
-    a: 'Ja. Unser KI-Berater kennt SGB II (Bürgergeld), SGB III (ALG I), SGB XII (Sozialhilfe) und SGB X (Verwaltungsrecht). Die Musterschreiben und Bescheid-Scans decken alle relevanten Bereiche ab.',
+    a: 'Ja. Unser KI-Berater kennt SGB II (Bürgergeld), SGB III (ALG I), SGB XII (Sozialhilfe) und SGB X (Verwaltungsrecht). Die 14 Musterschreiben und Bescheid-Scans decken alle relevanten Bereiche ab.',
+  },
+  {
+    q: 'Habt ihr ein Angebot für Sozialverbände oder Beratungsstellen?',
+    a: 'Ja — schreib uns an hello@bescheidboxer.de mit Stichwort "B2B Sozialverband". Wir machen Konditionen für Mehr-User-Accounts inkl. Reporting und optional White-Label.',
   },
 ]
 
@@ -227,14 +240,17 @@ export default function PricingPage() {
       {/* ═══════════════════════════════════════════════════════════ */}
       <section className={`${SPACING.sectionX} pt-4 pb-20 sm:pb-24`}>
         <div className="max-w-6xl mx-auto">
-          {/* Trial Banner */}
+          {/* § 44 SGB X USP-Banner — der Killer-Differenzierer */}
           <FadeSection className="max-w-2xl mx-auto mb-8">
-            <div className="rounded-2xl border-2 border-orange-300 dark:border-orange-900/50 bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50 dark:from-orange-950/30 dark:via-amber-950/20 dark:to-orange-950/30 p-5 text-center shadow-sm">
-              <p className="text-sm font-bold text-orange-800 dark:text-orange-200">
-                🥊 14 Tage kostenlos den Kämpfer-Plan testen
+            <div className="rounded-2xl border-2 border-emerald-300 dark:border-emerald-900/50 bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-50 dark:from-emerald-950/30 dark:via-teal-950/20 dark:to-emerald-950/30 p-5 text-center shadow-sm">
+              <p className="text-sm font-bold text-emerald-800 dark:text-emerald-200">
+                ⭐ Auch alte Bescheide können noch Geld bringen — bis zu 4 Jahre rückwirkend
               </p>
-              <p className="text-xs text-orange-700/80 dark:text-orange-300/80 mt-1">
-                Unbegrenzte Scans · Unbegrenzter Chat · 3 Schreiben — ohne Risiko, jederzeit kündbar.
+              <p className="text-xs text-emerald-700/80 dark:text-emerald-300/80 mt-1">
+                § 44 SGB X Überprüfungsantrag — in jedem bezahlten Tarif.{' '}
+                <Link to="/ueberpruefungsantrag" className="underline hover:no-underline font-medium">
+                  Mehr erfahren →
+                </Link>
               </p>
             </div>
           </FadeSection>
@@ -347,7 +363,7 @@ export default function PricingPage() {
                         )}
                       </CardHeader>
                       <CardContent className="pt-4 flex flex-col flex-1">
-                        <ul className="space-y-2.5 mb-6 flex-1">
+                        <ul className="space-y-2.5 mb-4 flex-1">
                           {meta.features.map((feature) => (
                             <li
                               key={feature}
@@ -362,6 +378,25 @@ export default function PricingPage() {
                             </li>
                           ))}
                         </ul>
+                        {/* Coming-Soon-Block — zeigt geplante Features ehrlich
+                            als "kommend" statt sie als jetzt-verfügbar zu verkaufen */}
+                        {meta.comingSoon && meta.comingSoon.length > 0 && (
+                          <div className="mb-6 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
+                            <p className="text-[10px] uppercase tracking-wider font-bold text-amber-800 dark:text-amber-200 mb-2">
+                              Frühzugang zu kommenden Features:
+                            </p>
+                            <ul className="space-y-1">
+                              {meta.comingSoon.map((feature) => (
+                                <li
+                                  key={feature}
+                                  className="text-xs text-amber-900 dark:text-amber-100 leading-relaxed"
+                                >
+                                  • {feature}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                         <Button
                           className={`w-full rounded-full ${
                             isHighlighted
@@ -398,13 +433,68 @@ export default function PricingPage() {
             </p>
             <p className="text-xs text-muted-foreground/80 mt-2 leading-relaxed">
               <strong>Bedingungen PIONIER50:</strong> 50&nbsp;% Rabatt auf alle
-              monatlichen und jährlichen Tarif-Preise (Starter, Kämpfer,
-              Vollschutz) für die gesamte Laufzeit deines aktiven Abos. Bei
+              monatlichen und jährlichen Tarif-Preise (Starter, Profi,
+              Premium) für die gesamte Laufzeit deines aktiven Abos. Bei
               Kündigung erlischt der Rabatt; eine erneute Aktivierung ist
-              ausgeschlossen. Gilt nicht auf Credit-Pakete und Postversand.
-              Während der Beta-Phase verfügbar; danach prüfen wir das Angebot
-              für Neuanmeldungen neu.
+              ausgeschlossen. Gilt nicht auf den Einmal-Kauf, Credit-Pakete
+              und Postversand. Während der Beta-Phase verfügbar; danach
+              prüfen wir das Angebot für Neuanmeldungen neu.
             </p>
+          </FadeSection>
+
+          {/* ═══════════════════════════════════════════════════════════ */}
+          {/* EINMAL-KAUF — für User die kein Abo wollen                 */}
+          {/* ═══════════════════════════════════════════════════════════ */}
+          <FadeSection className="mt-16 max-w-3xl mx-auto">
+            <Card className="rounded-2xl border-2 border-primary/30 hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-6 sm:p-8">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl gradient-amt text-white flex-shrink-0">
+                    <FileText className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-1">
+                      Ohne Abo · Einmalige Zahlung
+                    </p>
+                    <h3 className="text-xl font-bold mb-1">Widerspruch-Paket Einzelfall</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Du hast nur diesen einen Bescheid? Hier ist der direkte Weg —
+                      ohne Abo-Bindung, einmal zahlen, alles dabei.
+                    </p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-3xl font-extrabold">19,99&nbsp;€</p>
+                    <p className="text-xs text-muted-foreground">einmalig</p>
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-2 mb-5 pl-16">
+                  {[
+                    '1 BescheidScan mit KI-Analyse',
+                    '1 personalisiertes Widerspruchs-Schreiben',
+                    'Frist-Tracker bis zur Erledigung',
+                    'Alle 14 Musterschreiben einsehbar',
+                  ].map((f) => (
+                    <div key={f} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pl-16">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full"
+                    asChild
+                  >
+                    <Link to={user ? '/scan' : '/register?next=/scan'}>
+                      Einzel-Widerspruch starten
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </FadeSection>
         </div>
       </section>
@@ -426,29 +516,32 @@ export default function PricingPage() {
                 <th className="text-center py-4 px-4 font-semibold">Schnupperer</th>
                 <th className="text-center py-4 px-4 font-semibold">Starter</th>
                 <th className="text-center py-4 px-4 font-semibold text-red-600">
-                  Kämpfer
+                  Profi
                 </th>
                 <th className="text-center py-4 px-4 font-semibold text-amber-600">
-                  Vollschutz
+                  Premium
                 </th>
               </tr>
             </thead>
             <tbody>
               {[
-                ['KI-Nachrichten/Tag', '5', '10', 'Unbegrenzt', 'Unbegrenzt'],
-                ['Schreiben/Monat', '—', '1', '3', 'Unbegrenzt'],
-                ['Bescheid-Scans', '2/Monat', '3/Monat', 'Unbegrenzt', 'Unbegrenzt'],
-                ['Credits/Monat', '—', '10', '25', '50'],
+                ['KI-Nachrichten/Tag', '5', '25', 'Unbegrenzt', 'Unbegrenzt'],
+                ['Schreiben/Monat', '—', '1', 'Unbegrenzt', 'Unbegrenzt'],
+                ['Bescheid-Scans', '2/Monat', '5/Monat', 'Unbegrenzt', 'Unbegrenzt'],
+                ['Credits/Monat', '—', '10', '50', '150'],
+                ['§ 44 SGB X — alte Bescheide', '—', '✓', '✓', '✓'],
+                ['Alle 14 Vorlagen', 'Lesbar', '+ Generator', '+ Generator', '+ Generator'],
+                ['KI-Tiefenanalyse', '—', '—', '✓', '✓'],
                 [
                   'Forum-Zugang',
                   'Lesen & Posten',
-                  'Lesen, Posten & Chat (limitiert)',
+                  'Lesen, Posten & Chat (limit.)',
                   'Voll',
                   'VIP',
                 ],
-                ['Postversand inkl.', '—', '—', '1/Monat', '3/Monat'],
-                ['MieterApp', '—', '—', 'Basic', 'Premium'],
                 ['Priority-Support', '—', '—', '✓', '✓'],
+                ['Einschreiben-Versand', '—', '—', '—', 'Frühzugang Q3 2026'],
+                ['Anwalt-Hotline 15 Min/Mo', '—', '—', '—', 'Frühzugang Q3 2026'],
               ].map(([feature, schnupperer, starter, kaempfer, vollschutz]) => (
                 <tr key={feature} className="border-b border-border/50 last:border-0">
                   <td className="py-3 px-5 font-medium">{feature}</td>
@@ -528,30 +621,32 @@ export default function PricingPage() {
       </SectionWrapper>
 
       {/* ═══════════════════════════════════════════════════════════ */}
-      {/* 5. CROSS-SELL MIETERAPP                                      */}
+      {/* 5. B2B FÜR SOZIALVERBÄNDE & BERATUNGSSTELLEN                 */}
       {/* ═══════════════════════════════════════════════════════════ */}
       <SectionWrapper bg="muted">
         <FadeSection className="max-w-4xl mx-auto">
-          <Card className="overflow-hidden rounded-2xl">
+          <Card className="overflow-hidden rounded-2xl border-2 border-purple-200 dark:border-purple-900">
             <div className="flex flex-col sm:flex-row">
-              <div className="sm:w-20 gradient-amt flex items-center justify-center py-5 sm:py-0">
-                <Home className="h-10 w-10 text-white" />
+              <div className="sm:w-20 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center py-5 sm:py-0">
+                <Users className="h-10 w-10 text-white" />
               </div>
               <CardContent className="p-7 flex-1">
+                <p className="text-xs uppercase tracking-wider font-semibold text-purple-700 dark:text-purple-300 mb-1">
+                  Für Sozialverbände, Beratungsstellen, Selbsthilfegruppen
+                </p>
                 <h3 className={`${TYPE.h3} mb-2`}>
-                  Probleme mit Miete oder KdU? Die <GradientText>MieterApp</GradientText> hilft.
+                  BescheidBoxer für <GradientText>dein Team</GradientText>.
                 </h3>
                 <p className="text-muted-foreground mb-5">
-                  Im <strong>Kämpfer</strong>-Tarif ist die MieterApp Basic inklusive,
-                  im <strong>Vollschutz</strong> sogar Premium. Prüfe deine Miethöhe,
-                  Nebenkosten und ob das Jobcenter deine KdU korrekt berechnet — alles
-                  in einer App.
+                  Mehrere Berater-Accounts, Reporting, optional White-Label.
+                  Konditionen für VdK, SoVD, AWO, Caritas, Diakonie und ähnliche
+                  Träger — auf Anfrage individuell zugeschnitten.
                 </p>
                 <Button variant="outline" className="rounded-full" asChild>
-                  <Link to="/probleme/kdu">
-                    Mehr zur MieterApp
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  <a href="mailto:hello@bescheidboxer.de?subject=Anfrage%20B2B-Tarif%20Sozialverband">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Anfragen an hello@bescheidboxer.de
+                  </a>
                 </Button>
               </CardContent>
             </div>

@@ -125,10 +125,10 @@ export default function HomePage() {
       {/* 1. HERO — Fintutto-Goldstandard                              */}
       {/* ═══════════════════════════════════════════════════════════ */}
       <PageHero
-        badge="Kämpfe für dein Recht"
-        title="Dein Bescheid ist falsch?"
-        titleGradient="Wir boxen ihn durch."
-        subtitle="BescheidBoxer scannt deinen Bescheid mit KI, findet mögliche Fehler und bereitet eine passende Widerspruchs-Vorlage für dich vor. Blitzschnell. Verständlich. Sachlich-formal."
+        badge="Kämpfe für dein Recht · ohne Anwalt · in 10 Min"
+        title="Kein Bescheid ist"
+        titleGradient="das letzte Wort."
+        subtitle="Widerspruch einlegen ohne Anwalt — in 10 Minuten, für unter 15 €/Monat. BescheidBoxer scannt deinen Bescheid mit KI, findet mögliche Fehler und bereitet einen passenden Widerspruch vor. Sachlich-formal, korrekt zitiert, sofort versandbereit."
         primaryCta={{
           label: 'Bescheid jetzt scannen',
           to: '/scan',
@@ -200,6 +200,69 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
+            </div>
+          </FadeSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* 3a. § 44 SGB X — KILLER-USP "Alte Bescheide rückwirkend"     */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className={`${SPACING.sectionX} py-14 sm:py-20 bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-50 dark:from-emerald-950/30 dark:via-teal-950/20 dark:to-emerald-950/30 border-y border-emerald-200 dark:border-emerald-900/50`}>
+        <div className="max-w-4xl mx-auto">
+          <FadeSection>
+            <div className="text-center mb-8">
+              <span className="inline-block text-xs uppercase tracking-[0.3em] font-semibold text-emerald-700 dark:text-emerald-300 mb-3">
+                § 44 SGB X — Das vergessene Supervermögen
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+                Auch alte Bescheide können noch{' '}
+                <GradientText>Geld bringen.</GradientText>
+              </h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Du hast die 1-Monats-Widerspruchsfrist verpasst? Macht nichts. Mit dem
+                Überprüfungsantrag nach <strong className="text-foreground">§ 44 SGB X</strong>{' '}
+                lässt sich jeder Bescheid bis zu <strong className="text-foreground">4 Jahre rückwirkend</strong>{' '}
+                nochmal prüfen — und falsch berechnete Leistungen können nachgezahlt werden.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-4 mb-8">
+              {[
+                { jahr: '2022', betrag: '~ 2.880 €', label: 'Mehrbedarf vergessen' },
+                { jahr: '2023', betrag: '~ 1.260 €', label: 'Heizkosten zu niedrig' },
+                { jahr: '2023', betrag: '~ 506 €', label: 'Sanktion fehlerhaft' },
+              ].map((b) => (
+                <div
+                  key={b.label}
+                  className="rounded-2xl bg-white/60 dark:bg-background/40 border border-emerald-200 dark:border-emerald-900 p-5 text-center backdrop-blur-sm"
+                >
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
+                    Bescheid aus {b.jahr}
+                  </p>
+                  <p className="text-2xl font-extrabold text-emerald-700 dark:text-emerald-400">
+                    {b.betrag}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">{b.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-xs text-muted-foreground text-center mb-6">
+              Beispielrechnungen — der konkrete Erfolg hängt vom Einzelfall ab.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <PrimaryButton to="/scan">
+                <ScanSearch className="w-5 h-5 mr-2" />
+                Alten Bescheid scannen lassen
+              </PrimaryButton>
+              <Link
+                to="/ueberpruefungsantrag"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-emerald-600 text-emerald-700 dark:text-emerald-300 font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-950/50 transition-colors"
+              >
+                Wie funktioniert § 44 SGB X?
+              </Link>
             </div>
           </FadeSection>
         </div>

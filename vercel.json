@@ -4,7 +4,7 @@
   "outputDirectory": "dist",
   "functions": {
     "api/amt-scan.ts": {
-      "maxDuration": 60
+      "maxDuration": 300
     },
     "api/amt-checkout.ts": {
       "maxDuration": 30
